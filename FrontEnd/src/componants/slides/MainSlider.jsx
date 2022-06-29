@@ -1,1 +1,0 @@
-"main home slider " 
