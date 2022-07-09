@@ -1,12 +1,18 @@
-import './App.css';
-import ProductsCard from './componants/products/ProductsCard';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
+
+
+function App ()
+{
   return (
-    <>
-    
-    <ProductsCard/>
-    </>
+    <div>
+      <header>
+        <a href='#'>amazone</a>
+      </header>
+      <main>
+
+      </main>
+    </div>
   );
 }
 
