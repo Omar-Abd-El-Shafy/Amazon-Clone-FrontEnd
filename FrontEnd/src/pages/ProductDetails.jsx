@@ -8,7 +8,7 @@ import { Col } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
-import Rating from '../Components/Rating';
+import Rating from '../Components/Rating/Rating';
 import Button from 'react-bootstrap/Button';
 
 function ProductDetails() {

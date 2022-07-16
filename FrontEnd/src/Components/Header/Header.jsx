@@ -1,6 +1,5 @@
 import React from "react";
-import "./Header.css";
-import image from "../../../public/assets/imgs/logo/amazon_logo.png";
+import image from "../../assets/imgs/logo/amazon_logo.png";
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 
