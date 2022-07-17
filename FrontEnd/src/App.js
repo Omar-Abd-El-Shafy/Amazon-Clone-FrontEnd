@@ -7,7 +7,6 @@ import "./index.css";
 import ProHome from "./pages/ProHome";
 import ProductDetails from "./pages/ProductDetails";
 function App() {
-  console.log("test");
   return (
     <Router>
       <div className="d-flex flex-column main">
