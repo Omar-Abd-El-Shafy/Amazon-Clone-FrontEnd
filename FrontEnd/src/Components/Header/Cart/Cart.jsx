@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CartPage from "../../pages/Cart/CartPage";
+import CartPage from "../../../pages/Cart/CartPage";
 class Cart extends Component {
     render() {
         return (

@@ -1,19 +1,20 @@
 import React from "react";
-import image from "../../assets/imgs/logo/amazon_logo.png";
+import "./Header.css";
+import logo from '../../assets/amazon_logo.png';
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 
 function Header() {
     return (
-        <div className="">
-            <div className="Header d-flex align-items-center justify-content-between">
-                <a href="/">
-                    <img src={image} alt="logo" className="logo" />
+      <div className="">
+        <div className="Header d-flex align-items-center justify-content-between">
+          <a href="/">
+                    <img src={logo} alt="logo" className="logo" />
                 </a>
-                <Search />
-                <Cart />
-            </div>
+          <Search />
+          <Cart />
         </div>
+      </div>
     );
 }
 

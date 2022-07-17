@@ -1,0 +1,36 @@
+.Header {
+    background-color: #131921;
+    height: 60px;
+}
+.logo {
+    object-fit: contain;
+    margin: 0 20px;
+    margin-top: 18px;
+    width: 96px;
+}
+.search {
+    width: 100%;
+}
+
+.searchIcon {
+    background-color: #febd69 !important;
+}
+.searchIcon:hover {
+    background-color: #f3a847 !important;
+}
+.input-group input:focus {
+    outline: none !important;
+    border: 2px solid #f3a847;
+    box-shadow: 0 0 10px #f3a847;
+}
+.header-search {
+    width: 65%;
+}
+.cart-count {
+    color: #f08804;
+    font-size: 15pt;
+}
+.header-cart {
+    right: 9%;
+    bottom: 25%;
+}

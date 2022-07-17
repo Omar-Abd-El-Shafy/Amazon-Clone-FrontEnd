@@ -7,9 +7,11 @@ import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Rating from '../Components/Rating/Rating';
-import Button from 'react-bootstrap/Button';
+import Error from '../Components/Error/Error';
+import Loading from '../Components/Loading/Loading';
 
 function ProductDetails() {
   const params = useParams();
@@ -38,9 +40,9 @@ function ProductDetails() {
   }, [id]);
 
   return loading ? (
-    <div>loading</div>
+    <Loading />
   ) : error ? (
-    <div>{error}</div>
+    <Error variant="danger">{error}</Error>
   ) : (
     <div>
       <Row>
@@ -67,7 +69,7 @@ function ProductDetails() {
               products Description :<p>{product.description}</p>
             </ListGroup.Item>
             <ListGroup.Item>
-              price:<span style={{color:'red'}}>${product.price}</span>
+              price:<span style={{ color: 'red' }}>${product.price}</span>
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -75,11 +77,11 @@ function ProductDetails() {
           <Card>
             <Card.Body>
               <ListGroup variant="flush">
-                <Row>
+                {/* <Row>
                   <Col>price:</Col>
                   <Col className="text-danger">${product.price}</Col>
-                </Row>
-                <Row>
+                </Row> */}
+                <Row className="items-center">
                   <Col>satus:</Col>
                   <Col>
                     {product.rating.count > 0 ? (
@@ -97,11 +99,13 @@ function ProductDetails() {
               <ListGroup>
                 <div className="d-grid">
                   {product.rating.count > 0 ? (
-                    <Button className="rounded-pill" variant="warning">
+                    <Button className="rounded-pill shadow-sm" variant="warning">
                       Add to Cart
                     </Button>
                   ) : (
-                    <Button variant="secondary">Add to Cart</Button>
+                    <Button className="rounded-pill shadow-sm" variant="secondary">
+                      Add to Cart
+                    </Button>
                   )}
                 </div>
               </ListGroup>
