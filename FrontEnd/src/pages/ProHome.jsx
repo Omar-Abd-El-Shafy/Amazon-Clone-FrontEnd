@@ -1,16 +1,16 @@
 import React, { useReducer, useEffect } from 'react';
-import reducer from '../network/FecthingData';
-import axiosInstance from '../network/axiosInstansce';
-import logger from 'use-reducer-logger';
-import { Link } from 'react-router-dom';
-import { Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Rating from '../Components/Rating/Rating';
 import  '../index.css';
+import axiosInstance from '../network/axiosInstansce';
 import Loading from '../Components/Loading/Loading';
 import Error from '../Components/Error/Error';
+import reducer from '../network/FecthingData';
+import logger from 'use-reducer-logger';
+import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Rating from '../Components/Rating/Rating';
 function ProHome() {
   const [{ data: products, loading, error }, dispatch] = useReducer(
     logger(reducer),
