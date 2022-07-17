@@ -38,7 +38,7 @@ function ProductDetails() {
     }, [id, params.id, product]);
 
     return loading ? (
-        <div style={{ fontSize: "30px", margin: "20%" }}>loading</div>
+        <div>loading</div>
     ) : error ? (
         <div>{error}</div>
     ) : (
