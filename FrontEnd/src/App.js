@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import "./index.css";
 import Home from "./pages/Home";
+import CartPage from "./pages/CartPage";
 import ProductDetails from "./pages/ProductDetails";
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <main>
                     <Container className="mt-3">
                         <Routes>
+                            <Route path="/CartPage" element={<CartPage />} />
                             <Route
                                 path="/product/:id"
                                 element={<ProductDetails />}

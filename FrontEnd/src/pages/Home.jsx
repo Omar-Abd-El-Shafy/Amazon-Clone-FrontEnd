@@ -7,7 +7,7 @@ import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Rating from "../Components/Rating";
+import Rating from "../Components/Rating/Rating";
 
 function Home() {
     const [{ data: products, loading, error }, dispatch] = useReducer(

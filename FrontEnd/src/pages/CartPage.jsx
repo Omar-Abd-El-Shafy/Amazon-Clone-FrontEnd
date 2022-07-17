@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
-export default class CartPage extends Component {
+class CartPage extends Component {
     render() {
         return <div>CartPage</div>;
     }
 }
+
+export default CartPage;
