@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../network/axiosInstansce";
@@ -10,6 +11,22 @@ import Badge from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import Rating from "../Components/Rating/Rating";
 import Button from "react-bootstrap/Button";
+=======
+import React, { useEffect, useReducer } from 'react';
+import { useParams } from 'react-router-dom';
+import axiosInstance from '../network/axiosInstansce';
+import reducer from '../network/FecthingData';
+import logger from 'use-reducer-logger';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Badge from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Rating from '../Components/Rating/Rating';
+import Error from '../Components/Error/Error';
+import Loading from '../Components/Loading/Loading';
+>>>>>>> 9ba66d266d0fc21da32dfda2b309426af924eb83
 
 function ProductDetails() {
     const params = useParams();
@@ -37,6 +54,7 @@ function ProductDetails() {
             });
     }, [id]);
 
+<<<<<<< HEAD
     return loading ? (
         <div style={{ fontSize: "30px", margin: "20%" }}>loading</div>
     ) : error ? (
@@ -121,6 +139,84 @@ function ProductDetails() {
             </Row>
         </div>
     );
+=======
+  return loading ? (
+    <Loading />
+  ) : error ? (
+    <Error variant="danger">{error}</Error>
+  ) : (
+    <div>
+      <Row>
+        <Col md={5}>
+          <img
+            style={{ maxWidth: '100%' }}
+            src={product.image}
+            alt={product.title}
+            className="w-75"
+          ></img>
+        </Col>
+        <Col md={3}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <h1 className="text-secondary">{product.title}</h1>
+              <Rating
+                rating={product.rating.rate}
+                Reviews={product.rating.count}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item>price :${product.price}</ListGroup.Item>
+
+            <ListGroup.Item>
+              products Description :<p>{product.description}</p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              price:<span style={{ color: 'red' }}>${product.price}</span>
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
+        <Col md={3}>
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+                {/* <Row>
+                  <Col>price:</Col>
+                  <Col className="text-danger">${product.price}</Col>
+                </Row> */}
+                <Row className="items-center">
+                  <Col>satus:</Col>
+                  <Col>
+                    {product.rating.count > 0 ? (
+                      <Badge className=" text-success text-center m-1 p-1 ">
+                        in stock
+                      </Badge>
+                    ) : (
+                      <Badge className=" text-danger text-center m-1 p-1 ">
+                        out of stock
+                      </Badge>
+                    )}
+                  </Col>
+                </Row>
+              </ListGroup>
+              <ListGroup>
+                <div className="d-grid">
+                  {product.rating.count > 0 ? (
+                    <Button className="rounded-pill shadow-sm" variant="warning">
+                      Add to Cart
+                    </Button>
+                  ) : (
+                    <Button className="rounded-pill shadow-sm" variant="secondary">
+                      Add to Cart
+                    </Button>
+                  )}
+                </div>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+  );
+>>>>>>> 9ba66d266d0fc21da32dfda2b309426af924eb83
 }
 
 export default ProductDetails;

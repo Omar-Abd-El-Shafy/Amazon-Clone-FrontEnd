@@ -8,7 +8,9 @@ import { Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Rating from '../Components/Rating/Rating';
-
+import  '../index.css';
+import Loading from '../Components/Loading/Loading';
+import Error from '../Components/Error/Error';
 function ProHome() {
   const [{ data: products, loading, error }, dispatch] = useReducer(
     logger(reducer),
@@ -36,23 +38,29 @@ function ProHome() {
       <h1>Feather Products</h1>
       <div className="products">
         {loading ? (
-          <div>loading...</div>
+          <Loading />
         ) : error ? (
-          <div> {error}</div>
+          <Error variant="danger">{error}</Error>
         ) : (
           <Row>
             {products.map((product) => (
               <Col key={product.id} sm={6} md={4} lg={3} className="mb-3 ">
-                <Card className="product">
+                <Card className="shadow border-0" style={{ height: '100%' }}>
                   <Link to={`/product/${product.id}`}>
                     <img
-                      style={{}}
                       className="card-img-top"
                       src={product.image}
                       alt={product.title}
                     />
                   </Link>
-                  <Card.Body>
+                  <Card.Body
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
                     <Link to={`/product/${product.id}`}>
                       <Card.Title>{product.title}</Card.Title>
                     </Link>
@@ -60,11 +68,11 @@ function ProHome() {
                       rating={product.rating.rate}
                       Reviews={product.rating.count}
                     />
-                    <Card.Text>
-                      <strong>${product.price}</strong>
+                    <Card.Text style={{ fontSize: '28px', fontWeight: '400' }}>
+                      ${product.price}
                     </Card.Text>
                     <Button
-                      className="bg-warning text-dark mt-auto"
+                      className="bg-warning text-dark mt-auto shadow-sm"
                       style={{ border: 'none', fontSize: '20px' }}
                     >
                       Add to Cart

@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
+import CartPage from "../../../pages/Cart/CartPage";
 class Cart extends Component {
     render() {
         return (
             <>
-                <Link to="/CartPage" className="btn">
+                <a href={CartPage} className="btn">
                     <i className="fa-brands fa-opencart fs-1 header-cart text-white">
                         <span className="cart-count ms-sm-1 me-3 font-monospace">
                             0
                         </span>
                     </i>
-                </Link>
+                </a>
             </>
         );
     }
