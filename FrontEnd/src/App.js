@@ -7,23 +7,26 @@ import "./index.css";
 import ProHome from "./pages/ProHome";
 import ProductDetails from "./pages/ProductDetails";
 function App() {
-  return (
-    <Router>
-      <div className="d-flex flex-column main">
-        <Header />
-        <main>
-          <Container className="mt-3">
-            <Routes>
-              <Route path="/CartPage" element={<CartPage />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/" element={<ProHome />} />
-            </Routes>
-          </Container>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
+    return (
+        <Router>
+            <div className="d-flex flex-column main">
+                <Header />
+                <main>
+                    <Container className="mt-3">
+                        <Routes>
+                            <Route path="/CartPage" element={<CartPage />} />
+                            <Route
+                                path="/product/:id"
+                                element={<ProductDetails />}
+                            />
+                            <Route path="/" element={<ProHome />} />
+                        </Routes>
+                    </Container>
+                </main>
+                <Footer />
+            </div>
+        </Router>
+    );
 }
 
 export default App;

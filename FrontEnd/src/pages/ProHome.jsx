@@ -11,7 +11,11 @@ import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Rating from "../Components/Rating/Rating";
+import { addProduct } from "../Redux/cartRedux";
+import { useDispatch } from "react-redux";
+
 function ProHome() {
+    const Dispatch = useDispatch();
     const [{ data: products, loading, error }, dispatch] = useReducer(
         logger(reducer),
         {
@@ -32,7 +36,9 @@ function ProHome() {
                 dispatch({ type: "FEACH-FALE", payload: err.message });
             });
     }, []);
-
+    const handleAddToCart = () => {
+        Dispatch(addProduct({ products }));
+    };
     return (
         <>
             <h1>Feather Products</h1>
@@ -94,6 +100,7 @@ function ProHome() {
                                                 border: "none",
                                                 fontSize: "20px",
                                             }}
+                                            onClick={handleAddToCart}
                                         >
                                             Add to Cart
                                         </Button>
