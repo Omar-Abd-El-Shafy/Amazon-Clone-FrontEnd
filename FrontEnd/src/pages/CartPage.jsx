@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Col, ListGroup, Row } from 'react-bootstrap';
+import React from 'react';
+import { Button, Col, ListGroup, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
-
+console.log(cart)
   return (
     <div>
       <Helmet>
@@ -14,12 +14,14 @@ const CartPage = () => {
       </Helmet>
       <h1>Shoping Cart</h1>
       <Row>
-        <Col md={8}>
-          {cart.length === 0 ? (
-            <h1>
-              {' '}
-              Cart is Empty.<Link to="/">Go shopping</Link>
-            </h1>
+        <Col md={8} >
+          {cart.products.length === 0 ? (
+            <Col>
+              <h3>Cart is Empty</h3>
+              <Button variant="warning">
+                <Link to="/">Go shopping</Link>
+              </Button>
+            </Col>
           ) : (
             <ListGroup>
               {cart.products.map((pro) => (

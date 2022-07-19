@@ -1,163 +1,91 @@
 :root {
-    --button-color: #ffd814;
-    --ser-color: #febd69;
-    --hover-color: #f3a847;
-    --cart-color: #f08804;
-    --form-border-color: #e77600;
-    --border-input-color: #a6a6a6;
+  --button-color: #ffd814;
+  --ser-color: #febd69;
+  --hover-color: #f3a847;
+  --cart-color: #f08804;
 }
 
 * {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 /* header section  */
 
 .Header {
-    background-color: #131921;
-    height: 60px;
+  background-color: #131921;
+  height: 60px;
 }
 .logo {
-    object-fit: contain;
-    margin: 0 20px;
-    margin-top: 18px;
-    width: 96px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 18px;
+  width: 96px;
 }
 .search {
-    width: 100%;
+  width: 100%;
 }
 
 .searchIcon {
-    background-color: var(--ser-color) !important;
+  background-color: var(--ser-color) !important;
 }
 .searchIcon:hover {
-    background-color: var(--cart-color) !important;
+  background-color: var(--cart-color) !important;
 }
 .input-group input:focus {
-    outline: none !important;
-    border: 2px solid var(--cart-color);
+  outline: none !important;
+  border: 2px solid var(--cart-color);
 }
 .header-search {
-    width: 65%;
+  width: 65%;
 }
 .cart-count {
-    color: var(--cart-color);
-    font-size: 15pt;
+  color: var(--cart-color);
+  font-size: 15pt;
 }
 .header-cart {
-    right: 9%;
-    bottom: 25%;
+  right: 9%;
+  bottom: 25%;
 }
 
 /* end header section  */
 /* pro section  */
 main {
-    flex: 1;
+  flex: 1;
 }
 .main {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .product button {
-    background-color: var(--button-color);
+  background-color: var(--button-color);
 }
 .products img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
 }
 .product-info {
-    padding: 1rem;
+  padding: 1rem;
 }
 a {
-    color: #0f1111 !important;
-    font-size: 16px !important;
-    line-height: 24px !important;
-    text-decoration: none;
+  color: #0f1111 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  text-decoration: none;
 }
 a:hover {
-    color: var(--cart-color) !important;
+  color: var(--cart-color) !important;
 }
 /*end pro section  */
-/* Form */
-form {
-    background-color: #fff;
-    border: 1px #ddd solid;
-    border-radius: 4px;
-    padding: 14px 18px;
-    width: 30%;
-    margin: auto;
+/* backTop  */
+.backTop {
+  max-width: 100%;
+  background-color: #37475a;
+  cursor: pointer;
 }
-form > input {
-    border: 1px solid var(--border-input-color);
-    border-radius: 3px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-form > input:focus {
-    border-color: var(--form-border-color);
-    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
-}
-form > input:focus-visible {
-    outline: none;
-}
-form > label {
-    font-weight: 700;
-    font-size: smaller;
-    padding-bottom: 2px;
-    padding-left: 2px;
-    display: block;
-    margin-bottom: 5px;
-}
-form button:hover {
-    background-color: var(--hover-color);
-    border: none;
-}
-.reg-btn {
-    font-weight: 600;
-    color: var(--bs-white);
-    background-color: #e7e9ec;
-    border-color: #adb1b8 #a2a6ac #8d9096;
-    border-radius: 0.3rem;
-    width: 30%;
-}
-.reg-btn:hover {
-    background-color: #c7c8c9;
-    color: black !important;
-}
-.new-to-amazon {
-    display: block;
-    width: 30%;
-    text-align: center;
-    line-height: 1;
-    font-size: 12px;
-    color: #767676;
-    z-index: 2;
-    position: relative;
-    display: inline-block;
-    background-color: #fff;
-}
-.new-to-amazon::after {
-    content: "";
-    width: 100%;
-    background-color: transparent;
-    display: block;
-    height: 1px;
-    border-top: 1px solid #e7e7e7;
-    position: absolute;
-    top: 50%;
-    z-index: -1;
-}
-.new-amzn-con {
-    text-align: center;
-    position: relative;
-    top: 2px;
-    padding-top: 11px;
-    margin-bottom: 14px;
-}
-/* End of form */
+.backTop:hover{background-color: #445569;}
