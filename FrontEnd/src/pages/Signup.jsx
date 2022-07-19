@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { register } from "../store/actions/register";
+import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
 export default function Registration() {
     const [userData, setUserData] = useState({
@@ -123,43 +124,76 @@ export default function Registration() {
     };
 
     return (
-        <form>
-            <input
-                type="text"
-                id="name"
-                placeholder="Name"
-                value={userData.name}
-                onChange={(e) => handleChange(e)}
-            />
-            <div>{errors.nameError}</div>
-            <input
-                type="text"
-                id="emailorphone"
-                placeholder="email or phone"
-                value={userData.emailorphone}
-                onChange={(e) => handleChange(e)}
-            />
-            <div>{errors.emailorphoneError}</div>
-            <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                value={userData.password}
-                onChange={(e) => handleChange(e)}
-            />
-            <div>{errors.passwordError}</div>
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm password"
-                value={userData.confirmPassword}
-                onChange={(e) => handleChange(e)}
-            />
-            <div>{errors.confirmPasswordError}</div>
+        <div>
+            <div className="mb-3 text-center">
+                <Link to="/">
+                    <img
+                        src={logoMain}
+                        alt="logo-main"
+                        style={{ width: "103px" }}
+                    />
+                </Link>
+            </div>
+            <div className="mb-3">
+                <form>
+                    <h2 className="mb-3 text-center">Create account</h2>
+                    <label for="name">Your Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="First and last name"
+                        value={userData.name}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <div className="text-danger mb-2">{errors.nameError}</div>
+                    <label for="emailorphone">Email or phone</label>
+                    <input
+                        type="text"
+                        id="emailorphone"
+                        placeholder=""
+                        value={userData.emailorphone}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <div className="text-danger mb-2">
+                        {errors.emailorphoneError}
+                    </div>
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        value={userData.password}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <div className="text-danger mb-2">
+                        {errors.passwordError}
+                    </div>
+                    <label for="confirmPassword">Confirm password</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm password"
+                        value={userData.confirmPassword}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <div className="text-danger mb-2">
+                        {errors.confirmPasswordError}
+                    </div>
 
-            <input type="button" value="Register" onClick={registeer} />
-
-            <Link to="/">Login</Link>
-        </form>
+                    <input
+                        className="btn btn-warning"
+                        type="button"
+                        value="Register"
+                        onClick={registeer}
+                    />
+                    <p>
+                        <span>Already have an account? </span>
+                        <Link to="/login" className="text-info">
+                            Sign-in
+                        </Link>
+                    </p>
+                </form>
+            </div>
+        </div>
     );
 }

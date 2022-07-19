@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import logo from "../../assets/amazon_logo.png";
+import logo from "../../assets/imgs/logo/amazon_logo.png";
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 import { Link } from "react-router-dom";
