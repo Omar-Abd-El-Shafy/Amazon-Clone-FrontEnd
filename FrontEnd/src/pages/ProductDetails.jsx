@@ -48,7 +48,20 @@ function ProductDetails() {
     }, [id, params.id, product]);
 
     return loading ? (
+<<<<<<< HEAD
       <Loading />
+=======
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "5%",
+            }}
+        >
+            <Loading />
+        </div>
+>>>>>>> e3972ab1f12a3885af716323a25b38e9f2c59802
     ) : error ? (
       <Error variant="danger">{error}</Error>
     ) : (

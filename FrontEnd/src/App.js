@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
-import CartPage from "./pages/Cart/CartPage.jsx";
+import CartPage from "./pages/CartPage";
 import "./index.css";
 import ProHome from "./pages/ProHome";
 import ProductDetails from "./pages/ProductDetails";
