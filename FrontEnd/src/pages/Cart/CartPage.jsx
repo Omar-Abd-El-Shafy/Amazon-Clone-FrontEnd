@@ -28,16 +28,17 @@ const CartPage = () => {
                     <Col md={4}>
                       <img
                         className="img-fluid rounded "
-                        style={{ height: '80px',maxWidth:'100%' }}
+                        style={{ height: '80px', maxWidth: '100%' }}
                         src={pro.image}
                         alt={pro.title}
                       />
                     </Col>
                     <Col md={5}>
-                      <Link to={ `/products/${ pro.id }` }>{ pro.title }</Link>
+                      <Link to={`/product/${pro.id}`}>{pro.title}</Link>
                     </Col>
-                    <Col className='fw-bold fs-4'><p>${ pro.price }</p></Col>
-                    
+                    <Col className="fw-bold fs-4">
+                      <p>${pro.price}</p>
+                    </Col>
                   </Row>
                 </ListGroup.Item>
               ))}
