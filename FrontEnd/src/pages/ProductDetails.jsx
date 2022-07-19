@@ -6,7 +6,7 @@ import axiosInstance from "../network/axiosInstansce";
 import { useParams } from "react-router-dom";
 import reducer from "../network/FecthingData";
 import logger from "use-reducer-logger";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 import Card from "react-bootstrap/Card";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
@@ -48,9 +48,6 @@ function ProductDetails() {
     }, [id, params.id, product]);
 
     return loading ? (
-<<<<<<< HEAD
-      <Loading />
-=======
         <div
             style={{
                 display: "flex",
@@ -61,84 +58,88 @@ function ProductDetails() {
         >
             <Loading />
         </div>
->>>>>>> e3972ab1f12a3885af716323a25b38e9f2c59802
     ) : error ? (
-      <Error variant="danger">{error}</Error>
+        <Error variant="danger">{error}</Error>
     ) : (
-      <div>
-        <Row>
-          <Col md={5}>
-            <img
-              style={{ maxWidth: '100%' }}
-              src={product.image}
-              alt={product.title}
-              className="w-75"
-            ></img>
-          </Col>
-          <Col md={3}>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                <Helmet>
-                  <title>{product.title}</title>
-                </Helmet>
-                <h1 className="text-secondary">{product.title}</h1>
-                <Rating
-                  rating={product.rating.rate}
-                  Reviews={product.rating.count}
-                />
-              </ListGroup.Item>
-              <ListGroup.Item>price :${product.price}</ListGroup.Item>
+        <div>
+            <Row>
+                <Col md={5}>
+                    <img
+                        style={{ maxWidth: "100%" }}
+                        src={product.image}
+                        alt={product.title}
+                        className="w-75"
+                    ></img>
+                </Col>
+                <Col md={3}>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            <Helmet>
+                                <title>{product.title}</title>
+                            </Helmet>
+                            <h1 className="text-secondary">{product.title}</h1>
+                            <Rating
+                                rating={product.rating.rate}
+                                Reviews={product.rating.count}
+                            />
+                        </ListGroup.Item>
+                        <ListGroup.Item>price :${product.price}</ListGroup.Item>
 
-              <ListGroup.Item>
-                products Description :<p>{product.description}</p>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                price:
-                <span style={{ color: 'red' }}>${product.price}</span>
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-          <Col md={3}>
-            <Card>
-              <Card.Body>
-                <ListGroup variant="flush">
-                  <Row className="align-items-center">
-                    <Col>status:</Col>
-                    <Col>
-                      {product.rating.count > 0 ? (
-                        <Badge className=" text-success text-center m-1 p-1 ">
-                          in stock
-                        </Badge>
-                      ) : (
-                        <Badge className=" text-danger text-center m-1 p-1 ">
-                          out of stock
-                        </Badge>
-                      )}
-                    </Col>
-                  </Row>
-                </ListGroup>
-                <ListGroup>
-                  <div className="d-grid">
-                    {product.rating.count > 0 ? (
-                      <Button
-                        className="rounded-pill "
-                        variant="warning"
-                        onClick={handleAddToCart}
-                      >
-                        Add to Cart
-                      </Button>
-                    ) : (
-                      <Button variant="secondary" onClick={handleAddToCart}>
-                        Add to Cart
-                      </Button>
-                    )}
-                  </div>
-                </ListGroup>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </div>
+                        <ListGroup.Item>
+                            products Description :<p>{product.description}</p>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            price:
+                            <span style={{ color: "red" }}>
+                                ${product.price}
+                            </span>
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Col>
+                <Col md={3}>
+                    <Card>
+                        <Card.Body>
+                            <ListGroup variant="flush">
+                                <Row className="align-items-center">
+                                    <Col>status:</Col>
+                                    <Col>
+                                        {product.rating.count > 0 ? (
+                                            <Badge className=" text-success text-center m-1 p-1 ">
+                                                in stock
+                                            </Badge>
+                                        ) : (
+                                            <Badge className=" text-danger text-center m-1 p-1 ">
+                                                out of stock
+                                            </Badge>
+                                        )}
+                                    </Col>
+                                </Row>
+                            </ListGroup>
+                            <ListGroup>
+                                <div className="d-grid">
+                                    {product.rating.count > 0 ? (
+                                        <Button
+                                            className="rounded-pill "
+                                            variant="warning"
+                                            onClick={handleAddToCart}
+                                        >
+                                            Add to Cart
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="secondary"
+                                            onClick={handleAddToCart}
+                                        >
+                                            Add to Cart
+                                        </Button>
+                                    )}
+                                </div>
+                            </ListGroup>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </div>
     );
 }
 

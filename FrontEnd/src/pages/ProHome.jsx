@@ -5,7 +5,7 @@ import Loading from "../Components/Loading/Loading";
 import Error from "../Components/Error/Error";
 import reducer from "../network/FecthingData";
 import logger from "use-reducer-logger";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -39,7 +39,7 @@ function ProHome() {
             });
     }, []);
     const handleAddToCart = () => {
-        Dispatch(addProduct({products }));
+        Dispatch(addProduct({ products }));
     };
     return (
         <>
@@ -82,8 +82,7 @@ function ProHome() {
                                             textAlign: "center",
                                         }}
                                     >
-                                        <Link to={ `/product/${ product.id }` }>
-                                            
+                                        <Link to={`/product/${product.id}`}>
                                             <Card.Title>
                                                 {product.title}
                                             </Card.Title>
