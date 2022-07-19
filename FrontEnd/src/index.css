@@ -33,7 +33,6 @@
 .input-group input:focus {
   outline: none !important;
   border: 2px solid var(--cart-color);
-
 }
 .header-search {
   width: 65%;
@@ -62,7 +61,6 @@ main {
   justify-content: center;
 }
 
-
 .product button {
   background-color: var(--button-color);
 }
@@ -79,7 +77,15 @@ a {
   font-size: 16px !important;
   line-height: 24px !important;
   text-decoration: none;
-
 }
-a:hover{color: var(--cart-color)!important;}
+a:hover {
+  color: var(--cart-color) !important;
+}
 /*end pro section  */
+/* backTop  */
+.backTop {
+  max-width: 100%;
+  background-color: #37475a;
+  cursor: pointer;
+}
+.backTop:hover{background-color: #445569;}
