@@ -17,7 +17,7 @@ console.log(cart)
         <Col md={8} >
           {cart.products.length === 0 ? (
             <Col>
-              <h1>Cart is Empty.</h1>
+              <h3>Cart is Empty</h3>
               <Button variant="warning">
                 <Link to="/">Go shopping</Link>
               </Button>
