@@ -144,14 +144,20 @@ form button:hover {
     background-color: #c7c8c9;
     color: black !important;
 }
+.new-amzn-con {
+    text-align: center;
+    position: relative;
+    top: 2px;
+    padding-top: 11px;
+    margin-bottom: 14px;
+}
 .new-to-amazon {
-    display: block;
     width: 30%;
     text-align: center;
     line-height: 1;
-    font-size: 12px;
+    font-size: 13px;
     color: #767676;
-    z-index: 2;
+    z-index: 20;
     position: relative;
     display: inline-block;
     background-color: #fff;
@@ -166,12 +172,5 @@ form button:hover {
     position: absolute;
     top: 50%;
     z-index: -1;
-}
-.new-amzn-con {
-    text-align: center;
-    position: relative;
-    top: 2px;
-    padding-top: 11px;
-    margin-bottom: 14px;
 }
 /* End of form */

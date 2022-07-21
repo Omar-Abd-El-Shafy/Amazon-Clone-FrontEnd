@@ -31,7 +31,10 @@ function App() {
                             />
 
                             <Route path="/" element={<ProHome />} />
-                            <Route path="/login" element={<Login />} />
+                            <Route
+                                path="/login"
+                                element={<Login funcNav={setShowNav} />}
+                            />
                             <Route
                                 path="/signup"
                                 element={<Signup funcNav={setShowNav} />}

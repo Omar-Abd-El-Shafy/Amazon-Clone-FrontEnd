@@ -7,7 +7,8 @@ import login from "../store/actions/login";
 import signup from "../pages/Signup";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
-export default function Login() {
+export default function Login(props) {
+    props.funcNav(false);
     const [emailorphone, setEmailorphone] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -31,13 +32,13 @@ export default function Login() {
     return (
         <div>
             <div className="mb-3 text-center">
-                <Link to="/">
+                <a href="/">
                     <img
                         src={logoMain}
                         alt="logo-main"
                         style={{ width: "103px" }}
                     />
-                </Link>
+                </a>
             </div>
             <form>
                 <h2 className="mb-3 text-center">Sign-In</h2>
@@ -45,7 +46,7 @@ export default function Login() {
                 <input
                     type="text"
                     id="name"
-                    placeholder="Username"
+                    placeholder=""
                     // value={emailorphone}
                     // onChange={(e) => setEmailorphone(e.target.value)}
                 />
@@ -53,7 +54,7 @@ export default function Login() {
                 <input
                     type="password"
                     id="pass"
-                    placeholder="Password"
+                    placeholder=""
                     // value={password}
                     // onChange={(e) => setPassword(e.target.value)}
                 />

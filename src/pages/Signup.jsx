@@ -6,6 +6,7 @@ import { register } from "../store/actions/register";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
 export default function Registration(props) {
+    props.funcNav(false);
     const [userData, setUserData] = useState({
         name: "",
         emailorphone: "",
@@ -20,7 +21,6 @@ export default function Registration(props) {
         confirmPasswordError: "",
     });
     const [valid, setValid] = useState(false);
-    props.funcNav(false);
     const handleValidation = (field, value) => {
         console.log(field, value);
 
@@ -127,13 +127,13 @@ export default function Registration(props) {
         <>
             <div>
                 <div className="mb-3 text-center">
-                    <Link to="/">
+                    <a href="/">
                         <img
                             src={logoMain}
                             alt="logo-main"
                             style={{ width: "103px" }}
                         />
-                    </Link>
+                    </a>
                 </div>
                 <div className="mb-3">
                     <form>
@@ -164,7 +164,7 @@ export default function Registration(props) {
                         <input
                             type="password"
                             id="password"
-                            placeholder="Password"
+                            placeholder=""
                             value={userData.password}
                             onChange={(e) => handleChange(e)}
                         />
@@ -175,7 +175,7 @@ export default function Registration(props) {
                         <input
                             type="password"
                             id="confirmPassword"
-                            placeholder="Confirm password"
+                            placeholder=""
                             value={userData.confirmPassword}
                             onChange={(e) => handleChange(e)}
                         />
