@@ -45,7 +45,7 @@ function ProductDetails() {
             .catch((err) => {
                 dispatch({ type: "FEACH-FALE", payload: err.message });
             });
-    }, [id, params.id, product]);
+    }, []);
 
     return loading ? (
         <div
