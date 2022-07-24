@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
-console.log(cart)
+  console.log(cart);
   return (
     <div>
       <Helmet>
@@ -14,12 +14,14 @@ console.log(cart)
       </Helmet>
       <h1>Shoping Cart</h1>
       <Row>
-        <Col md={8} >
+        <Col md={8} className="m-5 w-100 justify-content-center text-center">
           {cart.products.length === 0 ? (
             <Col>
-              <h3>Cart is Empty</h3>
-              <Button variant="warning">
-                <Link to="/">Go shopping</Link>
+              <h1>Cart is Empty</h1>
+              <Button className=" py-2 px-4" variant="warning">
+                <Link style={{ fontSize: '1.5rem', fontweight: '500'}} to="/">
+                  Go shopping
+                </Link>
               </Button>
             </Col>
           ) : (

@@ -1,12 +1,8 @@
-import React, { useReducer, useEffect } from 'react';
+import React from 'react';
 import '../index.css';
-import axiosInstance from '../network/axiosInstansce';
 import Loading from '../Components/Loading/Loading';
 import Error from '../Components/Error/Error';
-import reducer from '../network/FecthingData';
-import logger from 'use-reducer-logger';
 import { Helmet } from 'react-helmet-async';
-
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { Row } from 'react-bootstrap';
@@ -15,33 +11,20 @@ import Button from 'react-bootstrap/Button';
 import Rating from '../Components/Rating/Rating';
 import { addProduct } from '../Redux/cartRedux';
 import { useDispatch } from 'react-redux';
+import { useGetAllProdactsQuery } from '../Redux/prodactsApi';
 
 function ProHome() {
-  const Dispatch = useDispatch();
-  const [{ data: products, loading, error }, dispatch] = useReducer(
-    logger(reducer),
-    {
-      products: [],
-      loading: true,
-      error: '',
-    }
-  );
-  useEffect(() => {
-    axiosInstance
-      .get('/products')
-      .then((res) => {
-        console.log(res);
-        dispatch({ type: 'FETCH-REQUEST' });
-        dispatch({ type: 'FETCH-SUCESS', payload: res.data });
-      })
-      .catch((err) => {
-        dispatch({ type: 'FEACH-FALE', payload: err.message });
-      });
-  }, []);
-  const handleAddToCart = () => {
-    Dispatch(addProduct({ products }));
-  };
+  const {
+    data: products,
+    error,
+    isLoading: loading,
+  } = useGetAllProdactsQuery();
+ 
 
+//  const Dispatch = useDispatch();
+//  const handleAddToCart = () => {
+//    Dispatch(addProduct({ products }));
+//  };
   return (
     <>
       <Helmet>
@@ -89,16 +72,16 @@ function ProHome() {
                     >
                       ${product.price}
                     </Card.Text>
-                    <Button
+                    {/* <Button
                       className="bg-warning text-dark mt-auto shadow-sm"
                       style={{
                         border: 'none',
                         fontSize: '20px',
                       }}
-                      onClick={handleAddToCart}
+                      // onClick={handleAddToCart}
                     >
                       Add to Cart
-                    </Button>
+                    </Button> */}
                   </Card.Body>
                 </Card>
               </Col>
