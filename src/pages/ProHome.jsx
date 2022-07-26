@@ -22,8 +22,8 @@ function ProHome() {
  
 
 //  const Dispatch = useDispatch();
-//  const handleAddToCart = () => {
-//    Dispatch(addProduct({ products }));
+//  const handleAddToCart = (product) => {
+//    Dispatch(addProduct(product));
 //  };
   return (
     <>
@@ -55,6 +55,7 @@ function ProHome() {
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       textAlign: 'center',
+                      borderRadius:'18px'
                     }}
                   >
                     <Link to={`/product/${product.id}`}>
@@ -78,7 +79,7 @@ function ProHome() {
                         border: 'none',
                         fontSize: '20px',
                       }}
-                      // onClick={handleAddToCart}
+                      onClick={handleAddToCart(product)}
                     >
                       Add to Cart
                     </Button> */}

@@ -9,7 +9,7 @@ const CartPage = () => {
   console.log(cart);
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>Shoping Cart</title>
       </Helmet>
       <h1>Shoping Cart</h1>
@@ -50,7 +50,7 @@ const CartPage = () => {
           )}
         </Col>
         <Col md={4}></Col>
-      </Row>
+      </Row> */}
     </div>
   );
 };

@@ -25,8 +25,8 @@ function ProductDetails() {
    isLoading: loading,
   } = useGetSingleProdactQuery( id );
    const Dispatch = useDispatch();
-   const handleAddToCart = () => {
-     Dispatch(addProduct({ product }));
+   const handleAddToCart = (product) => {
+     Dispatch(addProduct( product ));
    };
   return loading ? (
     <div
@@ -95,7 +95,7 @@ function ProductDetails() {
                 </Row>
               </ListGroup>
               <ListGroup>
-                    <Quantity product={ product } />
+                <Quantity product={product} />
               </ListGroup>
               <ListGroup>
                 <div className="d-grid">
@@ -103,12 +103,15 @@ function ProductDetails() {
                     <Button
                       className="rounded-pill "
                       variant="warning"
-                      onClick={handleAddToCart}
+                      onClick={() => handleAddToCart(product)}
                     >
                       Add to Cart
                     </Button>
                   ) : (
-                    <Button variant="secondary" onClick={handleAddToCart}>
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleAddToCart(product)}
+                    >
                       Add to Cart
                     </Button>
                   )}

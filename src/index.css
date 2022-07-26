@@ -2,18 +2,19 @@
   height: 100%;
 }
 :root {
+    --main-color:#f08804;
     --button-color: #ffd814;
-    --ser-color: #febd69;
+    /* --ser-color: #febd69; */
     --hover-color: #f3a847;
-    --cart-color: #f08804;
-    --button-color: #ffd814;
-    --ser-color: #febd69;
-    --hover-color: #f3a847;
-    --cart-color: #f08804;
-    --form-border-color: #e77600;
+    /* --cart-color: #f08804; */
+    /* --button-color: #ffd814; */
+    --sec-color: #febd69;
+    /* --hover-color: #f3a847; */
+    /* --cart-color: #f08804; */
+    /* --form-border-color: #e77600; */
     --border-input-color: #a6a6a6;
 }
-* {
+body {
     text-transform: capitalize;
 }
 /* header section  */
@@ -33,14 +34,14 @@
 }
 
 .searchIcon {
-    background-color: var(--ser-color) !important;
+    background-color: var(--sec-color) !important;
 }
 .searchIcon:hover {
-    background-color: var(--cart-color) !important;
+    background-color: var(--hover-color) !important;
 }
 .input-group input:focus {
     outline: none !important;
-    border: 2px solid var(--cart-color);
+    border: 2px solid var(--sec-color);
 }
 .header-search {
     width: 65%;
@@ -116,7 +117,7 @@ form > input {
     margin-bottom: 10px;
 }
 form > input:focus {
-    border-color: var(--form-border-color);
+    border-color: var(--main-color);
     box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
 }
 form > input:focus-visible {
@@ -136,7 +137,7 @@ form button:hover {
 }
 .reg-btn {
     font-weight: 600;
-    color: var(--bs-white);
+    color: #e7e9ec;
     background-color: #e7e9ec;
     border-color: #adb1b8 #a2a6ac #8d9096;
     border-radius: 0.3rem;
