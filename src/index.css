@@ -1,5 +1,5 @@
 #root {
-  height: 100%;
+    height: 100%;
 }
 :root {
     --button-color: #ffd814;
@@ -12,6 +12,7 @@
     --cart-color: #f08804;
     --form-border-color: #e77600;
     --border-input-color: #a6a6a6;
+    --header: #131921;
 }
 * {
     text-transform: capitalize;
@@ -19,7 +20,7 @@
 /* header section  */
 
 .Header {
-    background-color: #131921;
+    background-color: var(--header);
     height: 60px;
 }
 .logo {
@@ -176,3 +177,16 @@ form button:hover {
     z-index: -1;
 }
 /* End of form */
+/* start sideBar */
+.sideBar {
+    background-color: var(--header);
+    color: #fff;
+    display: inline-block;
+    width: fit-content;
+    padding: 1px 6px 6px 6px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* end sideBar */

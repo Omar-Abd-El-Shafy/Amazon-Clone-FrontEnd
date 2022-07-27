@@ -10,6 +10,8 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import { useState } from "react";
+import SideBar from "./Components/SideBar/SideBar";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
     const [showNav, setShowNav] = useState(true);
@@ -17,10 +19,11 @@ function App() {
         <Router>
             <div className="d-flex flex-column main">
                 {showNav && (
-                    <nav>
+                    <div>
                         <Header />
-                    </nav>
+                    </div>
                 )}
+                {showNav && <SideBar />}
                 <main>
                     <Container className="mt-3">
                         <Routes>
@@ -38,6 +41,10 @@ function App() {
                             <Route
                                 path="/signup"
                                 element={<Signup funcNav={setShowNav} />}
+                            />
+                            <Route
+                                path="/dashboard"
+                                element={<Dashboard funcNav={setShowNav} />}
                             />
                         </Routes>
                     </Container>
