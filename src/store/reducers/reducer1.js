@@ -1,6 +1,33 @@
 import { LOGIN } from "../actions/login";
 import { REGISTER } from "../actions/register";
 
+// import { createSlice,configureStore } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   loggedInUser: null,
+// };
+
+// const loggedInUserSlice= createSlice({
+//   name: "loggedInUser",
+//   initialState,
+//   reducers: {
+//     register(state, action) {
+//       state.loggedInUser = action.payload;
+//     },
+//     login(state, action) {
+//       state.loggedInUser = action.payload;
+//     },
+//     logout(state) {
+//       state.loggedInUser = null;
+//     },
+//   },
+// });
+
+// const store=configureStore({reducer:loggedInUserSlice.reducer});
+
+// export const loggedInUserActions=loggedInUserSlice.actions;
+// export default store;
+
 const INITIAL_VALUE = {
   loggedInUser: null,
 };

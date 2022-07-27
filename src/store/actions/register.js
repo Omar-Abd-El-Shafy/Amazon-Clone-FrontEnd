@@ -5,7 +5,7 @@ export const REGISTER = "REGISTER";
 export const register = (payload) => (dispatch) => {
   console.log(payload);
   return axios
-    .post("https://amazon-clone-deploy.herokuapp.com/user/register", payload)
+    .post("http://localhost:3333/user/register", payload)
 
     .then((res) => {
       return dispatch({

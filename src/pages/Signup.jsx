@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { register } from "../store/actions/register";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
@@ -8,16 +8,16 @@ import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 export default function Registration(props) {
   const [userData, setUserData] = useState({
     name: "",
-    emailorphone: "",
+    email: "",
+    phone: "",
     password: "",
     confirm_password: "",
   });
 
-  const [file, setFile] = useState();
-  const [fileName, setFileName] = useState("");
   const [errors, setErrors] = useState({
     nameError: "",
-    emailorphoneError: "",
+    emailError: "",
+    phoneError: "",
     passwordError: "",
     confirmPasswordError: "",
   });
@@ -36,29 +36,27 @@ export default function Registration(props) {
             ? "Not valid name"
             : null,
       });
-    } else if (field === "emailorphone") {
+    } else if (field === "email") {
       setErrors({
         ...errors,
-        emailorphoneError:
+        emailError:
           value.length === 0
             ? "This field is required"
-            : !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value) &&
-              !/^(012|010|011)[0-9]{8}$/.test(value)
-            ? "Not valid email or phone"
+            : !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+            ? "Not valid email"
             : null,
       });
-    } //else if (field === "userName") {
-    //   setErrors({
-    //     ...errors,
-    //     userNameError:
-    //       value.length === 0
-    //         ? "This field is required"
-    //         : !/^[a-z]+$/i.test(value)
-    //         ? "Not valid user name"
-    //         : null,
-    //   });
-    // }
-    else if (field === "password") {
+    } else if (field === "phone") {
+      setErrors({
+        ...errors,
+        phoneError:
+          value.length === 0
+            ? "This field is required"
+            : !/^(012|010|011)[0-9]{8}$/.test(value)
+            ? "Not valid phone"
+            : null,
+      });
+    } else if (field === "password") {
       setErrors({
         ...errors,
         passwordError:
@@ -92,13 +90,9 @@ export default function Registration(props) {
     handleValidation(e.target.id, e.target.value);
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  //   const saveFile = (e) => {
-  //     setFile(e.target.files[0]);
-  //     setFileName(e.target.files[0].name);
-  //   };
 
   function checkProperties(obj) {
     for (var key in obj) {
@@ -112,29 +106,12 @@ export default function Registration(props) {
 
   const registeer = () => {
     if (valid) {
-      const formData = new FormData();
-
-      formData.append("name", userData.name);
-      formData.append(
-        "email",
-        userData.emailorphone.includes("@") ? userData.emailorphone : null
-      );
-      formData.append(
-        "phone",
-        !userData.emailorphone.includes("@") ? userData.emailorphone : null
-      );
-      formData.append("password", userData.password);
-      formData.append("image", fileName);
-      formData.append("role", "regular");
-      formData.append("file", file);
-
-      dispatch(register({ ...userData, email: userData.emailorphone }));
-      console.log({ ...userData, email: userData.emailorphone });
+      dispatch(register({ ...userData }));
+      console.log({ ...userData });
 
       // navigate(`/${userData.name}/products`);
     } else {
       console.log(valid);
-      // return false;
     }
   };
 
@@ -158,15 +135,26 @@ export default function Registration(props) {
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.nameError}</div>
-            <label for="emailorphone">Email or phone</label>
+            {/* /////////////////////////////////////////////// */}
+            <label for="email">Email</label>
             <input
               type="text"
-              id="emailorphone"
+              id="email"
               placeholder=""
-              value={userData.emailorphone}
+              value={userData.email}
               onChange={(e) => handleChange(e)}
             />
-            <div className="text-danger mb-2">{errors.emailorphoneError}</div>
+            <div className="text-danger mb-2">{errors.emailError}</div>
+            <label for="phone">phone</label>
+            <input
+              type="text"
+              id="phone"
+              placeholder=""
+              value={userData.phone}
+              onChange={(e) => handleChange(e)}
+            />
+            <div className="text-danger mb-2">{errors.phoneError}</div>
+            {/* ////////////////////////////////////////////////////////// */}
             <label for="password">Password</label>
             <input
               type="password"

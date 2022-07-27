@@ -17,19 +17,11 @@ export default function Login(props) {
   );
 
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const storeData = JSON.parse(localStorage.getItem("userData"));
 
-  //   if (storeData && storeData.token) {
-  //     var decoded = jwt_decode(storeData.token);
-  //     console.log(decoded);
-  //     dispatch(login(decoded._id, storeData.token));
-  //     //navigate(`/ali/products`);
-  //   }
-  // }, [dispatch, navigate]);
   useEffect(() => {
     if (loggedInUser) {
-      navigate(`/${loggedInUser.name}/products`);
+      console.log("user is loggedin");
+      //navigate(`/${loggedInUser.name}/products`);
     } else {
       console.log(loggedInUser);
     }
@@ -63,7 +55,6 @@ export default function Login(props) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {/* <input type="button" value="Login" onClick={loginn} /> */}
         <input
           type="button"
           value="Login"

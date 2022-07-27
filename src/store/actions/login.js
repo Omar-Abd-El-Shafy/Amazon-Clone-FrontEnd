@@ -5,7 +5,7 @@ export const LOGIN = "LOGIN";
 const login = (payload) => (dispatch) => {
   console.log(payload);
   return axios
-    .post("https://amazon-clone-deploy.herokuapp.com/user/login", payload)
+    .post("http://localhost:3333/user/login", payload)
     .then((res) => {
       const payload = res.data;
       if (payload) {
