@@ -11,7 +11,7 @@ function Example() {
 
     return (
         <>
-            <div onClick={handleShow} className="sideBar">
+            <div onClick={handleShow} className="sideBar1">
                 <GiHamburgerMenu />
             </div>
             <Offcanvas show={show} onHide={handleClose}>

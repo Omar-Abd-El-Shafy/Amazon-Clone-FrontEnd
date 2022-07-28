@@ -178,7 +178,7 @@ form button:hover {
 }
 /* End of form */
 /* start sideBar */
-.sideBar {
+.sideBar1 {
     background-color: var(--header);
     color: #fff;
     display: inline-block;
@@ -190,3 +190,34 @@ form button:hover {
     cursor: pointer;
 }
 /* end sideBar */
+/* start Dashboard sideBar */
+
+.sidebar {
+    position: fixed;
+    background-color: var(--header);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 100vh !important;
+    z-index: 100;
+    width: 15%;
+}
+#sidebar-wrapper {
+    min-height: 100vh !important;
+    width: 100vw;
+    margin-left: -1rem;
+    -webkit-transition: margin 0.25s ease-out;
+    -moz-transition: margin 0.25s ease-out;
+    -o-transition: margin 0.25s ease-out;
+    transition: margin 0.25s ease-out;
+}
+/* #sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+} */
+/* end Dashboard sideBar */

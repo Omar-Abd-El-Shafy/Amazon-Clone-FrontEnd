@@ -12,6 +12,8 @@ import "./index.css";
 import { useState } from "react";
 import SideBar from "./Components/SideBar/SideBar";
 import Dashboard from "./pages/Dashboard";
+import DashProducts from "./Components/Dashboard/DashProducts";
+import DashMain from "./Components/Dashboard/DashMain";
 
 function App() {
     const [showNav, setShowNav] = useState(true);
@@ -45,7 +47,13 @@ function App() {
                             <Route
                                 path="/dashboard"
                                 element={<Dashboard funcNav={setShowNav} />}
-                            />
+                            >
+                                <Route
+                                    path="DashProducts"
+                                    element={<DashProducts />}
+                                />
+                                <Route path="DashMain" element={<DashMain />} />
+                            </Route>
                         </Routes>
                     </Container>
                 </main>
