@@ -3,33 +3,25 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import login from "../store/actions/login";
+//import login from "../store/actions/login";
 // import signup from "../pages/Signup";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
+
+import { login } from "../store/userSlice";
 
 export default function Login(props) {
   props.funcNav(false);
   const [emailorphone, setEmailorphone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const loggedInUser = useSelector(
-    (state) => state.authentication.loggedInUser
-  );
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const storeData = JSON.parse(localStorage.getItem("userData"));
 
-  //   if (storeData && storeData.token) {
-  //     var decoded = jwt_decode(storeData.token);
-  //     console.log(decoded);
-  //     dispatch(login(decoded._id, storeData.token));
-  //     //navigate(`/ali/products`);
-  //   }
-  // }, [dispatch, navigate]);
   useEffect(() => {
     if (loggedInUser) {
-      navigate(`/${loggedInUser.name}/products`);
+      console.log("user is loggedin");
+      //navigate(`/${loggedInUser.name}/products`);
     } else {
       console.log(loggedInUser);
     }
@@ -63,7 +55,6 @@ export default function Login(props) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {/* <input type="button" value="Login" onClick={loginn} /> */}
         <input
           type="button"
           value="Login"
