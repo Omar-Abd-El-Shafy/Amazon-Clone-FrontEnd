@@ -1,9 +1,12 @@
 import React from "react";
+import AddProduct from "./AddProductsButton/AddProductsButton";
 
 export default function DashProducts() {
     return (
         <>
-            <p>Helllo</p>
+            <div className="row ms-auto" style={{ width: "150px" }}>
+                <AddProduct />
+            </div>
         </>
     );
 }

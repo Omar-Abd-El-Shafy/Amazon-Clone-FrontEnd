@@ -48,11 +48,12 @@ function App() {
                                 path="/dashboard"
                                 element={<Dashboard funcNav={setShowNav} />}
                             >
+                                <Route index element={<DashMain />} />
+                                <Route path="DashMain" element={<DashMain />} />
                                 <Route
                                     path="DashProducts"
                                     element={<DashProducts />}
                                 />
-                                <Route path="DashMain" element={<DashMain />} />
                             </Route>
                         </Routes>
                     </Container>
