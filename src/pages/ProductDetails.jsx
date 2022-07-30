@@ -3,7 +3,7 @@ import Rating from '../Components/Rating/Rating';
 import Loading from '../Components/Loading/Loading';
 import Error from '../Components/Error/Error';
 import { useParams } from 'react-router-dom';
-import { addProduct } from '../Redux/cartRedux';
+import { addToCart } from '../Redux/cartSlice';
 import { useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import Card from 'react-bootstrap/Card';
@@ -16,18 +16,17 @@ import Quantity from '../Components/quantity/Quantity';
 import { useGetSingleProdactQuery } from '../Redux/prodactsApi';
 
 function ProductDetails() {
- 
   const params = useParams();
   const { id } = params;
-   const {
-   data: product,
-   error,
-   isLoading: loading,
-  } = useGetSingleProdactQuery( id );
-   const Dispatch = useDispatch();
-   const handleAddToCart = (product) => {
-     Dispatch(addProduct( product ));
-   };
+  const {
+    data: product,
+    error,
+    isLoading: loading,
+  } = useGetSingleProdactQuery(id);
+  const Dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    Dispatch(addToCart(product));
+  };
   return loading ? (
     <div
       style={{
@@ -122,7 +121,7 @@ function ProductDetails() {
         </Col>
       </Row>
     </div>
-  ); 
+  );
 }
 
 export default ProductDetails;

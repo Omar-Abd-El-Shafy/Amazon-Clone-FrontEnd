@@ -2,9 +2,10 @@ import axios from "axios";
 
 export const LOGIN = "LOGIN";
 
-const login = (emailorphone, password) => (dispatch) => {
+const login = (payload) => (dispatch) => {
+  console.log(payload);
   return axios
-    .post("http://localhost:4000/Login", { emailorphone, password })
+    .post("https://amazon-clone-deploy.herokuapp.com/user/login", payload)
     .then((res) => {
       const payload = res.data;
       if (payload) {

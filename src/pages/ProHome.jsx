@@ -9,24 +9,24 @@ import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Rating from '../Components/Rating/Rating';
-import { addProduct } from '../Redux/cartRedux';
+import { addToCart } from '../Redux/cartSlice';
 import { useDispatch } from 'react-redux';
 import { useGetAllProdactsQuery } from '../Redux/prodactsApi';
-
 function ProHome() {
   const {
     data: products,
     error,
     isLoading: loading,
   } = useGetAllProdactsQuery();
- 
 
-//  const Dispatch = useDispatch();
-//  const handleAddToCart = (product) => {
-//    Dispatch(addProduct(product));
-//  };
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
   return (
     <>
+      
+      
       <Helmet>
         <title>Amazon</title>
       </Helmet>
@@ -55,7 +55,7 @@ function ProHome() {
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       textAlign: 'center',
-                      borderRadius:'18px'
+                      borderRadius: '18px',
                     }}
                   >
                     <Link to={`/product/${product.id}`}>
@@ -73,16 +73,21 @@ function ProHome() {
                     >
                       ${product.price}
                     </Card.Text>
-                    {/* <Button
-                      className="bg-warning text-dark mt-auto shadow-sm"
-                      style={{
-                        border: 'none',
-                        fontSize: '20px',
-                      }}
-                      onClick={handleAddToCart(product)}
-                    >
-                      Add to Cart
-                    </Button> */}
+                    {product.rating.count > 0 ? (
+                      <Button
+                        variant="warning"
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        Add to Cart
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="secondary"
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        Add to Cart
+                      </Button>
+                    )}
                   </Card.Body>
                 </Card>
               </Col>

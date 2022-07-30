@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from './cartRedux';
-import ProductsReducer, { productFetch } from './ProductSlice.jsx';
+import cartReducer, { getTotal } from './cartSlice';
+import ProductsReducer, { productFetch } from './ProductSlice.js';
 import { prodactsApi } from './prodactsApi';
-import reducers from '../store/reducers/combineReducer'
+import reducers from '../store/reducers/combineReducer';
+import CategoryReducer, { CategoryFetch } from './CategorySlice';
 const store = configureStore({
   reducer: {
-    cart: cartReducer,
     prodacts: ProductsReducer,
+    cart: cartReducer,
+    Category: CategoryReducer,
     reducers,
     [prodactsApi.reducerPath]: prodactsApi.reducer,
   },
@@ -14,4 +16,6 @@ const store = configureStore({
     getDefaultMiddleware().concat(prodactsApi.middleware),
 });
 store.dispatch(productFetch());
+store.dispatch(getTotal());
+store.dispatch(CategoryFetch());
 export default store;
