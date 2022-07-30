@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Rating from "../Components/Rating/Rating";
-import { addProduct } from "../Redux/cartSlice";
-import { useDispatch } from "react-redux";
+// import { addProduct } from "../Redux/cartSlice";
+// import { useDispatch } from "react-redux";
 import { useGetAllProdactsQuery } from "../Redux/prodactsApi";
 
 function ProHome() {
