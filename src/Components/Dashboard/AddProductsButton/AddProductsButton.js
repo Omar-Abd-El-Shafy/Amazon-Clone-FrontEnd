@@ -30,19 +30,64 @@ export default function AddProduct() {
                             className="mb-3"
                             controlId="exampleForm.ControlInput1"
                         >
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="name@example.com"
-                                autoFocus
-                            />
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" autoFocus />
                         </Form.Group>
                         <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlTextarea1"
+                            controlId="exampleForm.ControlInput1"
                         >
-                            <Form.Label>Example textarea</Form.Label>
-                            <Form.Control as="textarea" rows={1} />
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control type="text" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control type="number" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>Quantity</Form.Label>
+                            <Form.Control type="number" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>Image_URL</Form.Label>
+                            <Form.Control type="text" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>department_name</Form.Label>
+                            <Form.Control type="text" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>category_name</Form.Label>
+                            <Form.Control type="text" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>Brand</Form.Label>
+                            <Form.Control type="text" autoFocus />
+                        </Form.Group>
+                        <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                        >
+                            <Form.Label>Weight</Form.Label>
+                            <Form.Control type="number" autoFocus />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
