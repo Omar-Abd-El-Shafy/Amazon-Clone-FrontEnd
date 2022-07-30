@@ -1,6 +1,27 @@
 import React from "react";
+import DashSidebar from "../Components/Dashboard/DashSidebar";
+import { Col, Row } from "react-bootstrap";
+import DashMain from "../Components/Dashboard/DashMain";
+import { Outlet } from "react-router-dom";
 
-export default function Dashboard(props) {
+const Users = (props) => {
     props.funcNav(false);
-    return <div>Dashboard</div>;
-}
+    return (
+        <div className="container-fluid">
+            <div className="row flex no-wrap">
+                <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+                    <Row>
+                        <Col xs={2} id="sidebar-wrapper">
+                            <DashSidebar />
+                        </Col>
+                    </Row>
+                </div>
+                <div className="col py-3">
+                    <Outlet />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Users;
