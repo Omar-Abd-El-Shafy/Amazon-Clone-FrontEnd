@@ -3,18 +3,18 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import login from "../store/actions/login";
+//import login from "../store/actions/login";
 // import signup from "../pages/Signup";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
+
+import { login } from "../store/userSlice";
 
 export default function Login(props) {
   props.funcNav(false);
   const [emailorphone, setEmailorphone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const loggedInUser = useSelector(
-    (state) => state.authentication.loggedInUser
-  );
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
   const dispatch = useDispatch();
 

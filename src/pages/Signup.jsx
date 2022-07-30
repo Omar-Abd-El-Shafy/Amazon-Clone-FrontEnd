@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { register } from "../store/actions/register";
+import { register } from "../store/userSlice";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
 export default function Registration(props) {
