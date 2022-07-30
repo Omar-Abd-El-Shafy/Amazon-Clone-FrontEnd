@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-//import login from "../store/actions/login";
-// import signup from "../pages/Signup";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
-import { login } from "../store/userSlice";
+import { login } from "../Redux/userSlice";
 
 export default function Login(props) {
   props.funcNav(false);

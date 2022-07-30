@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { register } from "../store/userSlice";
+import { register } from "../Redux/userSlice";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
 export default function Registration(props) {
@@ -90,7 +90,7 @@ export default function Registration(props) {
     handleValidation(e.target.id, e.target.value);
   };
 
-  // const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const dispatch = useDispatch();
 

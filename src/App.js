@@ -10,6 +10,8 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import { useState } from "react";
+import ForgotPassword from "./pages/ForgotPassword";
+import PasswordReset from "./pages/PasswordReset";
 import SideBar from "./Components/SideBar/SideBar";
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
@@ -45,15 +47,25 @@ function App() {
                                 element={<Signup funcNav={setShowNav} />}
                             />
                             <Route
+                                path="/forgot-password"
+                                element={
+                                    <ForgotPassword funcNav={setShowNav} />
+                                }
+                            />
+                            <Route
+                                path="/password-reset/:id/:token"
+                                element={<PasswordReset />}
+                            />
+                            <Route
                                 path="/dashboard"
                                 element={<Dashboard funcNav={setShowNav} />}
                             >
                                 <Route index element={<DashMain />} />
-                                <Route path="DashMain" element={<DashMain />} />
                                 <Route
                                     path="DashProducts"
                                     element={<DashProducts />}
                                 />
+                                <Route path="DashMain" element={<DashMain />} />
                             </Route>
                         </Routes>
                     </Container>
