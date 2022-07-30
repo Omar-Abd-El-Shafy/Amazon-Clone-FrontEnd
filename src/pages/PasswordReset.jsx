@@ -44,14 +44,15 @@ const PasswordReset = () => {
       );
       setMsg(data.message);
       setError("");
-      window.location = "/login";
+      //window.location = "/login";
     } catch (error) {
       if (
         error.response &&
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        setError(error.response.data.message);
+        setError(error.response.data.errors[0].msg);
+
         setMsg("");
       }
     }

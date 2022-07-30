@@ -12,7 +12,7 @@ import "./index.css";
 import { useState } from "react";
 import ForgotPassword from "./pages/ForgotPassword";
 import PasswordReset from "./pages/PasswordReset";
-import SideBar from "./Components/SideBar/SideBar";
+// import SideBar from "./Components/SideBar/SideBar";
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
 import DashMain from "./Components/Dashboard/DashMain";
@@ -44,6 +44,12 @@ function App() {
                 path="/password-reset/:id/:token"
                 element={<PasswordReset />}
               />
+              <Route
+                path="/dashboard"
+                element={<Dashboard funcNav={setShowNav} />}
+              />
+              <Route path="DashProducts" element={<DashProducts />} />
+              <Route path="DashMain" element={<DashMain />} />
             </Routes>
           </Container>
         </main>
@@ -56,37 +62,6 @@ function App() {
       </div>
     </Router>
   );
-                            <Route path="/" element={<ProHome />} />
-                            <Route
-                                path="/login"
-                                element={<Login funcNav={setShowNav} />}
-                            />
-                            <Route
-                                path="/signup"
-                                element={<Signup funcNav={setShowNav} />}
-                            />
-                            <Route
-                                path="/dashboard"
-                                element={<Dashboard funcNav={setShowNav} />}
-                            >
-                                <Route
-                                    path="DashProducts"
-                                    element={<DashProducts />}
-                                />
-                                <Route path="DashMain" element={<DashMain />} />
-                            </Route>
-                        </Routes>
-                    </Container>
-                </main>
-                {showNav && (
-                    <footer>
-                        <BackTop />
-                        <Footer />
-                    </footer>
-                )}
-            </div>
-        </Router>
-    );
 }
 
 export default App;
