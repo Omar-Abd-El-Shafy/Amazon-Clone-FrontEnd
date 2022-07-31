@@ -16,6 +16,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
 import DashMain from "./Components/Dashboard/DashMain";
+import EditProfileForm from "./Components/EditProfileForm/EditProfileForm";
 
 function App() {
     const [showNav, setShowNav] = useState(true);
@@ -67,6 +68,12 @@ function App() {
                                 />
                                 <Route path="DashMain" element={<DashMain />} />
                             </Route>
+                            <Route
+                                path="/profile"
+                                element={
+                                    <EditProfileForm funcNav={setShowNav} />
+                                }
+                            />
                         </Routes>
                     </Container>
                 </main>
