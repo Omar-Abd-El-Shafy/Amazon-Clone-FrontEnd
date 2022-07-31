@@ -66,27 +66,27 @@ main {
 /* end header section  */
 /* start home  */
 .top {
-  border-radius: 2rem;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0)
-  );
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  margin-bottom: -150px;
+    border-radius: 2rem;
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0)
+    );
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    margin-bottom: -150px;
     height: 80%;
-  object-fit: cover;
+    object-fit: cover;
 }
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-  width: 6rem;
-  height: 3rem;
+    width: 6rem;
+    height: 3rem;
 }
 .carousel-control-next,
 .carousel-control-prev {
-  width: 10%;
-  bottom: 80px;
-  opacity: 1;
+    width: 10%;
+    bottom: 80px;
+    opacity: 1;
 }
 /* end home  */
 /* pro section  */
