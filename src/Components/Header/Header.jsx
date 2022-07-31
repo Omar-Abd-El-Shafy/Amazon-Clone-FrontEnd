@@ -4,6 +4,7 @@ import logo from "../../assets/amazon_logo.png";
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 import { Link } from "react-router-dom";
+import LogInButton from "./LoginButton/LoginButton";
 
 function Header() {
     return (
@@ -13,6 +14,7 @@ function Header() {
             <img src={logo} alt="logo" className="logo" />
           </Link>
           <Search />
+          <LogInButton />
           <Cart />
         </div>
       </div>

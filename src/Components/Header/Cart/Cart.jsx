@@ -7,14 +7,14 @@ export default function Cart() {
       (state) => state.cart
     );
     return (
-      <>
-        <Link to="/CartPage" style={{ cursor: 'pointer' }}>
-          <i className="fa-solid fa-solid fa-basket-shopping fs-2 header-cart text-white">
-            <span className="cart-count ms-sm-1 me-3 font-monospace">
-              {totalcartQuantitye}
-            </span>
-          </i>
-        </Link>
-      </>
+        <>
+            <Link to="/CartPage" style={{ cursor: "pointer" }}>
+                <i className="fa-solid fa-solid fa-basket-shopping fs-2 header-cart text-white">
+                    <span className="cart-count ms-sm-1 me-3 font-monospace">
+                        {totalcartQuantitye}
+                    </span>
+                </i>
+            </Link>
+        </>
     );
 }

@@ -9,13 +9,13 @@
     --button-color: #ffd814;
     --ser-color: #febd69;
     --hover-color: #f3a847;
-    --cart-color: #f08804;
     --form-border-color: #e77600;
     --border-input-color: #a6a6a6;
     --header: #131921;
 }
 * {
     text-transform: capitalize;
+    box-sizing: border-box;
 }
 main {
     flex: 1;
@@ -51,17 +51,18 @@ main {
     border: 2px solid var(--cart-color);
 }
 .header-search {
-    width: 65%;
+    width: 65vw;
 }
 .cart-count {
     color: var(--cart-color);
     font-size: 15pt;
 }
 .header-cart {
-    right: 9%;
-    bottom: 25%;
+    color: #fff;
 }
-
+.link-cart {
+    margin-right: 1vw;
+}
 /* end header section  */
 /* start home  */
 .top {
@@ -234,7 +235,11 @@ form button:hover {
     z-index: 100;
     width: 15%;
 }
-#sidebar-wrapper {
+.sidebar .navLink:hover {
+    padding-left: 1vw;
+    transition: all 0.3s ease-in-out;
+}
+/* #sidebar-wrapper {
     min-height: 100vh !important;
     width: 100vw;
     margin-left: -1rem;
@@ -242,5 +247,17 @@ form button:hover {
     -moz-transition: margin 0.25s ease-out;
     -o-transition: margin 0.25s ease-out;
     transition: margin 0.25s ease-out;
-}
+} */
 /* end Dashboard sideBar */
+/* start LogInButton */
+.LogInButton {
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 1vw;
+    cursor: pointer;
+}
+.LogInButton:hover {
+    color: var(--ser-color);
+}
+/* end LogInButton */

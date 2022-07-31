@@ -9,7 +9,7 @@ import CartPage from './pages/CartPage';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import { useState , useEffect  } from 'react';
+import { useState, useEffect } from 'react';
 import ForgotPassword from './pages/ForgotPassword';
 import PasswordReset from './pages/PasswordReset';
 import SideBar from './Components/SideBar/SideBar';
@@ -23,13 +23,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import About from './pages/About';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import EditProfileForm from './Components/EditProfileForm/EditProfileForm';
 
-function App ()
-{
-   useEffect(() => {
-     AOS.init();
-     AOS.refresh();
-   }, []);
+function App() {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   const [showNav, setShowNav] = useState(true);
   return (
     <Router>
@@ -37,7 +37,7 @@ function App ()
       <div className="d-flex flex-column main">
         {showNav && (
           <div>
-            <Header/>
+            <Header />
           </div>
         )}
         {showNav && <SideBar />}
@@ -66,6 +66,7 @@ function App ()
                 <Route path="DashProducts" element={<DashProducts />} />
                 <Route path="DashMain" element={<DashMain />} />
               </Route>
+              <Route element={<EditProfileForm funcNav={setShowNav} />} />
             </Routes>
           </Container>
         </main>
@@ -79,5 +80,4 @@ function App ()
     </Router>
   );
 }
-
 export default App;
