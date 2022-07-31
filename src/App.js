@@ -73,13 +73,13 @@ function App() {
                                     element={<DashProducts />}
                                 />
                                 <Route path="DashMain" element={<DashMain />} />
-                                <Route
-                                    path="/profile"
-                                    element={
-                                        <EditProfileForm funcNav={setShowNav} />
-                                    }
-                                />
                             </Route>
+                            <Route
+                                path="/profile"
+                                element={
+                                    <EditProfileForm funcNav={setShowNav} />
+                                }
+                            />
                         </Routes>
                     </Container>
                 </main>
