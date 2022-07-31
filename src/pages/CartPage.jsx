@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
@@ -42,9 +41,9 @@ const CartPage = () => {
     return (
         <div>
             <Helmet>
-                <title>Shoping Cart</title>
+                <title>Shopping Cart</title>
             </Helmet>
-            {/* <span>back to shoping</span> */}
+            {/* <span>back to shopping</span> */}
             <Row className="">
                 <Col md={8} className="">
                     {cart.cartItems.length === 0 ? (
@@ -66,7 +65,7 @@ const CartPage = () => {
                         </Col>
                     ) : (
                         <ListGroup>
-                            <h1>Shoping Cart</h1>
+                            <h1>Shopping Cart</h1>
                             {cart.cartItems?.map((pro) => (
                                 <ListGroup.Item key={pro.id}>
                                     <Row className="align-item-center ">
@@ -81,7 +80,6 @@ const CartPage = () => {
                                                 {pro.title}
                                             </Link>
                                         </Col>
-
                                         <Col md={3}>
                                             <Button
                                                 variant="light"
@@ -131,7 +129,7 @@ const CartPage = () => {
                                 <ListGroup.Item>
                                     <h3>
                                         total Cart Price : {cart.totalCartPrice}
-                                        ${" "}
+                                        $
                                         <Button
                                             disabled={
                                                 cart.cartItems.length === 0

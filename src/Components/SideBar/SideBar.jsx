@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
+import SidebarList from "./SidebarList";
 
 function Example() {
     const [show, setShow] = useState(false);
@@ -11,16 +13,23 @@ function Example() {
 
     return (
         <>
-            <div onClick={handleShow} className="sideBar1">
+            <div onClick={handleShow} className="sideBar-offcanvas">
                 <GiHamburgerMenu />
             </div>
             <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                <Offcanvas.Header
+                    closeButton
+                    closeLabel="white"
+                    className="sideBar-offcanvas-header"
+                >
+                    <Link to="/login">
+                        <Offcanvas.Title className="sideBar-offcanvas-header-title">
+                            Hello, Sign In
+                        </Offcanvas.Title>
+                    </Link>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the
-                    elements you have chosen. Like, text, images, lists, etc.
+                    <SidebarList />
                 </Offcanvas.Body>
             </Offcanvas>
         </>

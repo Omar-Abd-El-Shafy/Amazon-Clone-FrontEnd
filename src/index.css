@@ -6,12 +6,11 @@
     --ser-color: #febd69;
     --hover-color: #f3a847;
     --cart-color: #f08804;
-    --button-color: #ffd814;
-    --ser-color: #febd69;
-    --hover-color: #f3a847;
     --form-border-color: #e77600;
     --border-input-color: #a6a6a6;
     --header: #131921;
+    --sidebar-header-hover: #232f3e;
+    --sidebar-navs-hover: #eaeded;
 }
 * {
     text-transform: capitalize;
@@ -210,8 +209,8 @@ form button:hover {
     z-index: -1;
 }
 /* End of form */
-/* start sideBar */
-.sideBar1 {
+/* start sideBar home page */
+.sideBar-offcanvas {
     background-color: var(--header);
     color: #fff;
     display: inline-block;
@@ -222,7 +221,13 @@ form button:hover {
     border-radius: 5px;
     cursor: pointer;
 }
-/* end sideBar */
+.sideBar-offcanvas-header {
+    background-color: var(--ser-color);
+}
+.sideBar-offcanvas-header-title:hover {
+    color: var(--sidebar-header-hover) !important;
+}
+/* end sideBar home page*/
 /* start Dashboard sideBar */
 
 .sidebar {
@@ -239,15 +244,12 @@ form button:hover {
     padding-left: 1vw;
     transition: all 0.3s ease-in-out;
 }
-/* #sidebar-wrapper {
-    min-height: 100vh !important;
-    width: 100vw;
-    margin-left: -1rem;
-    -webkit-transition: margin 0.25s ease-out;
-    -moz-transition: margin 0.25s ease-out;
-    -o-transition: margin 0.25s ease-out;
-    transition: margin 0.25s ease-out;
-} */
+.sidebar-navs {
+}
+.sidebar-navs:hover {
+    background-color: var(--sidebar-navs-hover) !important;
+    color: #111 !important;
+}
 /* end Dashboard sideBar */
 /* start LogInButton */
 .LogInButton {
