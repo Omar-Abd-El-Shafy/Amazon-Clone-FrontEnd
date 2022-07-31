@@ -24,9 +24,9 @@ const Footer = () => {
             />
           </Link>
         </Col>
-        <Link to={'/About'}>
-          <Col style={{ marginTop: '14px' }}>about</Col>
-        </Link>
+        <Col style={{ marginTop: '14px' }}>
+          <Link className='text-white' to={'/About'}>about</Link>
+        </Col>
       </Row>
     </div>
   );
