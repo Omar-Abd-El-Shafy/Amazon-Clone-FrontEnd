@@ -5,15 +5,14 @@ const initialState = {
   status: null,
 };
 
-//action creater
+//action creater 
 export const productFetch = createAsyncThunk(
-  //action
+  //action type
   'prodacts/productFetch',
   //paylod
   async () => {
     const res = await axios.get('https://fakestoreapi.com/products');
-  console.log('res');
-        console.log(res);
+    console.log(res);
     return res?.data;
   }
 );
@@ -23,7 +22,6 @@ const ProductSlice = createSlice({
   name: 'prodacts',
   initialState,
   reducers: {},
-  //handel action type
 
 });
 

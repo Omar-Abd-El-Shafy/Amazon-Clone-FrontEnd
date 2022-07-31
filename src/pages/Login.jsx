@@ -29,6 +29,7 @@ export default function Login(props) {
     dispatch(login({ email: emailorphone, password }));
   };
   return (
+    <>
     <div>
       <div className="mb-3 text-center">
         <a href="/">
@@ -60,17 +61,11 @@ export default function Login(props) {
           onClick={loginn}
         />
       </form>
-      <div>
+      </div>
         <div className="new-amzn-con">
           <h5 className="new-to-amazon">New to Amazon?</h5>
-        </div>
-        <Link to="/signup" className="btn reg-btn d-block m-auto fw-normal">
-          Create your Amazon account
-        </Link>
-        <Link style={{ margin: "auto" }} to="/forgot-password">
-          forget Password
-        </Link>
       </div>
-    </div>
-  );
+    </>
+    
+    );
 }

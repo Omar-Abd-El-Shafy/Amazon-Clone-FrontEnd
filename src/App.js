@@ -16,12 +16,18 @@ import SideBar from "./Components/SideBar/SideBar";
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
 import DashMain from "./Components/Dashboard/DashMain";
+import Home from "./pages/Home";
+import { ToastContainer } from "react-toastify";
+import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import About from "./pages/About";
 import EditProfileForm from "./Components/EditProfileForm/EditProfileForm";
 
 function App() {
     const [showNav, setShowNav] = useState(true);
     return (
         <Router>
+            <ToastContainer transition={Flip} />
             <div className="d-flex flex-column main">
                 {showNav && (
                     <div>
@@ -30,15 +36,15 @@ function App() {
                 )}
                 {showNav && <SideBar />}
                 <main>
-                    <Container className="mt-3">
+                    <Container fluid className="mt-3">
                         <Routes>
+                            <Route path="/About" element={<About />} />
                             <Route path="/CartPage" element={<CartPage />} />
                             <Route
                                 path="/product/:id"
                                 element={<ProductDetails />}
                             />
-
-                            <Route path="/" element={<ProHome />} />
+                            <Route path="/" element={<Home />} />
                             <Route
                                 path="/login"
                                 element={<Login funcNav={setShowNav} />}
@@ -67,13 +73,13 @@ function App() {
                                     element={<DashProducts />}
                                 />
                                 <Route path="DashMain" element={<DashMain />} />
+                                <Route
+                                    path="/profile"
+                                    element={
+                                        <EditProfileForm funcNav={setShowNav} />
+                                    }
+                                />
                             </Route>
-                            <Route
-                                path="/profile"
-                                element={
-                                    <EditProfileForm funcNav={setShowNav} />
-                                }
-                            />
                         </Routes>
                     </Container>
                 </main>
