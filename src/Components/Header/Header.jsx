@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 
 function Header() {
     return (
-        <div className="">
-            <div className="Header d-flex align-items-center justify-content-between">
-                <Link to="/" style={{ cursor: "pointer" }}>
-                    <img src={logo} alt="logo" className="logo" />
-                </Link>
-                <Search />
-                <Cart />
-            </div>
+      <div className="">
+        <div className="Header fixed-top d-flex align-items-center justify-content-between">
+          <Link to="/" style={{ cursor: 'pointer' }}>
+            <img src={logo} alt="logo" className="logo" />
+          </Link>
+          <Search />
+          <Cart />
         </div>
+      </div>
     );
 }
 

@@ -6,7 +6,6 @@ export default function Cart() {
     const {totalcartQuantitye} = useSelector(
       (state) => state.cart
     );
-// console.log(quantity)
     return (
       <>
         <Link to="/CartPage" style={{ cursor: 'pointer' }}>

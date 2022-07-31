@@ -9,7 +9,7 @@ import CartPage from './pages/CartPage';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import { useState } from 'react';
+import { useState , useEffect  } from 'react';
 import ForgotPassword from './pages/ForgotPassword';
 import PasswordReset from './pages/PasswordReset';
 import SideBar from './Components/SideBar/SideBar';
@@ -21,8 +21,15 @@ import { ToastContainer } from 'react-toastify';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import About from './pages/About';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-function App() {
+function App ()
+{
+   useEffect(() => {
+     AOS.init();
+     AOS.refresh();
+   }, []);
   const [showNav, setShowNav] = useState(true);
   return (
     <Router>
@@ -30,12 +37,12 @@ function App() {
       <div className="d-flex flex-column main">
         {showNav && (
           <div>
-            <Header />
+            <Header/>
           </div>
         )}
         {showNav && <SideBar />}
         <main>
-          <Container fluid className="mt-3">
+          <Container fluid className="mt-5">
             <Routes>
               <Route path="/About" element={<About />} />
               <Route path="/CartPage" element={<CartPage />} />
