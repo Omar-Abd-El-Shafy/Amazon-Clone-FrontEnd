@@ -32,7 +32,7 @@ const Categorier = () => {
     <>
       <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
         {Categorie.map((item) => (
-          <CategoryItem item={item} />
+          <CategoryItem key={item.Id} item={item} />
         ))}
       </Row>
     </>

@@ -1,15 +1,16 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import Fliters from '../Components/Filtres/Fliters';
-import ProHome from './ProHome';
+import Products from '../Components/Products/Products';
 
 const CategoryPage = ( item ) =>
 {
   console.log(item)
   return (
     <Container>
+      
       <Fliters />
-      <ProHome />
+      <Products />
     </Container>
   );
 };

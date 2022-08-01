@@ -1,14 +1,14 @@
 import React from 'react';
-import MainCarousel from '../Components/home/Carousel';
-import Categorier from '../Components/home/Category';
-import ProHome from './ProHome';
+import Categorier from '../Components/Categories/Category';
+import MainCarousel from '../Components/Carousel/Carousel';
+import Products from '../Components/Products/Products';
 
 const Home = () => {
   return (
     <>
       <MainCarousel />
       <Categorier />
-      <ProHome  />
+      <Products />
     </>
   );
 };

@@ -65,15 +65,15 @@ main {
 /* end header section  */
 /* start home  */
 .top {
-    border-radius: 2rem;
+    border-radius: 1rem;
     -webkit-mask-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 1),
         rgba(0, 0, 0, 0)
     );
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    margin-bottom: -150px;
-    height: 80%;
+    /* margin-bottom: -150px; */
+    /* height: 80%; */
     object-fit: cover;
 }
 .carousel-control-next-icon,

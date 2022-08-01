@@ -1,13 +1,13 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer, { getTotal } from './cartSlice';
-import ProductsReducer, { productFetch } from './ProductSlice.js';
+// import ProductsReducer, { productFetch } from './ProductSlice.js';
 import { prodactsApi } from './prodactsApi';
 import userReducer from "./userSlice";
 import CategoryReducer, { CategoryFetch } from './CategorySlice';
 const store = configureStore({
   reducer: {
-    prodacts: ProductsReducer,
+    // prodacts: ProductsReducer,
     cart: cartReducer,
     Category: CategoryReducer,
     user: userReducer,
@@ -17,7 +17,7 @@ const store = configureStore({
     getDefaultMiddleware().concat(prodactsApi.middleware),
 
 });
-store.dispatch(productFetch());
+// store.dispatch(productFetch());
 store.dispatch(getTotal());
 store.dispatch(CategoryFetch());
 export default store;

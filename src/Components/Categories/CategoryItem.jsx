@@ -7,7 +7,7 @@ const CategoryItem = ({ item }) => {
   return (
     <Col sm={6} md={4} lg={3} className="mb-3 ">
       <Card
-        className="shadow border-0 rounded-3 bg-info bg-opacity-10"
+        className="shadow border-0 rounded-5 bg-warning bg-opacity-10"
         style={{ height: '100%' }}
       >
         <Card.Body

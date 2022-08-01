@@ -1,34 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/amazon_logo.png';
-import { Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <div
+    <Container
+      fluid
       style={{ maxWidth: '100%' }}
-      className="bg-dark d-flex  justify-between text-white"
+      className="bg-dark text-white align-item-center justify-content-center"
     >
       <Row
-        className="align-item-center w-100  align-items-center;
+        className="align-item-center justify-content-around ;
     "
       >
         <Col>
           <Link to="/">
             <img
-              style={{ width: '120px', marginLeft: '5rem' }}
+              style={{ width: '120px' }}
               className="p-3"
               src={logo}
               alt={logo}
             />
           </Link>
         </Col>
-        <Col style={{ marginTop: '14px' }}>
-          <Link className='text-white' to={'/About'}>about</Link>
+        <Col style={{ marginTop: '1rem' }}>
+          <Link className="text-white" to={'/About'}>
+            about
+          </Link>
+        </Col>
+        <Col style={{ marginTop: '1rem' }}>
+          Social
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 
