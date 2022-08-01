@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <MainCarousel />
       <Categorier />
-      <ProHome />
+      <ProHome  />
     </>
   );
 };

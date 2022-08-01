@@ -94,7 +94,7 @@ function ProductDetails() {
                 </Row>
               </ListGroup>
               <ListGroup>
-                <Quantity product={product} />
+                {/* <Quantity product={product} /> */}
               </ListGroup>
               <ListGroup>
                 <div className="d-grid">

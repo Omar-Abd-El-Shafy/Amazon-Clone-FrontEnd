@@ -12,7 +12,7 @@ export const productFetch = createAsyncThunk(
   //paylod
   async () => {
     const res = await axios.get('https://fakestoreapi.com/products');
-    console.log(res);
+    // console.log(res);
     return res?.data;
   }
 );

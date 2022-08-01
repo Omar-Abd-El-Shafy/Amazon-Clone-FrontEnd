@@ -1,4 +1,4 @@
-import ProHome from './pages/ProHome';
+// import ProHome from './pages/ProHome';
 import ProductDetails from './pages/ProductDetails';
 import BackTop from './Components/backTop/BackTop';
 import Login from './pages/Login';
@@ -24,6 +24,7 @@ import About from './pages/About';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import EditProfileForm from './Components/EditProfileForm/EditProfileForm';
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
   useEffect(() => {
@@ -46,8 +47,9 @@ function App() {
             <Routes>
               <Route path="/About" element={<About />} />
               <Route path="/CartPage" element={<CartPage />} />
+              <Route path="/products/category/:id" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
               <Route path="/login" element={<Login funcNav={setShowNav} />} />
               <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
               <Route

@@ -60,6 +60,7 @@ function ProHome() {
                   >
                     <Link to={`/product/${product.id}`}>
                       <Card.Title>{product.title}</Card.Title>
+                      <Card.Title>{product.title}</Card.Title>
                     </Link>
                     <Rating
                       rating={product.rating.rate}

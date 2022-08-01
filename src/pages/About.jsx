@@ -3,7 +3,7 @@ import { about } from '../data';
 import { Helmet } from 'react-helmet-async';
 
 import Card from 'react-bootstrap/Card';
-console.log(about);
+// console.log(about);
 const About = () =>
 {
  

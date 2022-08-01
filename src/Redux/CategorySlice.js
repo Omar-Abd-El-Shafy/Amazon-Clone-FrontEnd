@@ -12,7 +12,7 @@ export const CategoryFetch = createAsyncThunk(
   //paylod
   async () => {
     const res = await axios.get('https://fakestoreapi.com/products/categories');
-    console.log(res);
+    // console.log(res);
 
     return res?.data;
   }
