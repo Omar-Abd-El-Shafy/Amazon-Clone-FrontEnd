@@ -30,50 +30,45 @@ export default function Login(props) {
   //   dispatch(login({ email: emailorphone, password }));
   // };
   return (
-    <div>
-      <div className="mb-3 text-center">
-        <a href="/">
-          <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
-        </a>
-      </div>
-      <form>
-        <h2 className="mb-3 text-center">Sign-In</h2>
-        <label htmlFor="name">Email or mobile phone number</label>
-        <input
-          type="text"
-          id="name"
-          placeholder=""
-          value={emailorphone}
-          onChange={(e) => setEmailorphone(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder=""
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="button"
-          value="Login"
-          className="btn btn-warning"
-          onClick={() => {
-            dispatch(login({ email: emailorphone, password }));
-          }}
-        />
-      </form>
+    <>
       <div>
-        <div className="new-amzn-con">
-          <h5 className="new-to-amazon">New to Amazon?</h5>
+        <div className="mb-3 text-center">
+          <a href="/">
+            <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
+          </a>
         </div>
-        <Link to="/signup" className="btn reg-btn d-block m-auto fw-normal">
-          Create your Amazon account
-        </Link>
-        <Link style={{ margin: "auto" }} to="/forgot-password">
-          forget Password
-        </Link>
+        <form>
+          <h2 className="mb-3 text-center">Sign-In</h2>
+          <label htmlFor="name">Email or mobile phone number</label>
+          <input
+            type="text"
+            id="name"
+            placeholder=""
+            value={emailorphone}
+            onChange={(e) => setEmailorphone(e.target.value)}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder=""
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type="button"
+            value="Login"
+            className="btn btn-warning"
+            onClick={loginn}
+          />
+        </form>
       </div>
-    </div>
+      <div className="new-amzn-con">
+        <h5 className="new-to-amazon">New to Amazon?</h5>
+      </div>
+      <Link to="/signup" className="btn reg-btn d-block m-auto fw-normal">
+        Create your Amazon account
+      </Link>
+    </>
   );
 }

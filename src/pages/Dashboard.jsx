@@ -1,7 +1,6 @@
 import React from "react";
 import DashSidebar from "../Components/Dashboard/DashSidebar";
 import { Col, Row } from "react-bootstrap";
-import DashMain from "../Components/Dashboard/DashMain";
 import { Outlet } from "react-router-dom";
 
 const Users = (props) => {
