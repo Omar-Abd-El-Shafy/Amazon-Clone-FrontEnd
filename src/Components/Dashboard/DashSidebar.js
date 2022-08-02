@@ -23,7 +23,7 @@ const DashSidebar = () => {
                     <Link
                         to="DashMain"
                         element={<DashMain />}
-                        className="d-block text-white m-4"
+                        className="d-block text-white m-4 navLink"
                     >
                         Dashboard
                     </Link>
@@ -32,7 +32,7 @@ const DashSidebar = () => {
                     <Link
                         to="DashProducts"
                         element={<DashProducts />}
-                        className="d-block text-white m-4"
+                        className="d-block text-white m-4 navLink"
                     >
                         Products
                     </Link>

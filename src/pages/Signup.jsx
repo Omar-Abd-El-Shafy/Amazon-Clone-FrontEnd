@@ -6,6 +6,7 @@ import { register } from "../Redux/userSlice";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
 export default function Registration(props) {
+  props.funcNav(false);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -13,7 +14,6 @@ export default function Registration(props) {
     password: "",
     confirm_password: "",
   });
-
   const [errors, setErrors] = useState({
     nameError: "",
     emailError: "",
@@ -90,6 +90,8 @@ export default function Registration(props) {
     handleValidation(e.target.id, e.target.value);
   };
 
+  //const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   function checkProperties(obj) {
@@ -115,7 +117,7 @@ export default function Registration(props) {
 
   return (
     <>
-      <div>
+      <div className="mt-4">
         <div className="mb-3 text-center">
           <a href="/">
             <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />

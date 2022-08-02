@@ -6,20 +6,27 @@ const Quantity = ({ product }) => {
   const quantity = (e) => {
     setQty(e.target.value);
   };
-  console.log('product');
-  console.log(product.rating.count);
+
   return (
     <Row>
       <Col className="select">
         <label>QTY</label>
-        {/* <Form.Select style={{width:'fit-content', padding:"0 .5rem"}} value={Qty} onChange={quantity} size="lg">
-          {[...Array(product.rating.count).keys()].map((x) => (
-            <option key={x + 1} value={x + 1}></option>
-          ))}
-        </Form.Select> */}
+
+        <Form.Select
+          style={{ width: 'fit-content', padding: '0 .5rem' }}
+          value={Qty}
+          onChange={quantity}
+          size="lg"
+        >
+          
+        </Form.Select>
       </Col>
     </Row>
   );
 };
 
 export default Quantity;
+
+// {[...Array(product.rating.count).keys()].map((x) => (
+//                     <option key={x + 1} value={x + 1}></option>
+//                   ))}
