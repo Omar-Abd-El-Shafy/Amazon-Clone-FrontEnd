@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 //import styles from "./styles.module.css";
 
 const ForgotPassword = () => {
+  const [valid, setValid] = useState(false);
+
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
   let [emailError, setEmailError] = useState(null);
+
+  const checkProperties = useCallback(() => {
+    if (emailError !== null) return false;
+
+    return true;
+  }, [emailError]);
+
+  useEffect(() => {
+    setValid(checkProperties());
+  }, [emailError, checkProperties]);
 
   const handleValidation = (field, value) => {
     if (field === "email") {
@@ -29,19 +41,21 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const url = `http://localhost:3333/user/forgotPassword`;
-      const { data } = await axios.post(url, { email });
-      setMsg(data.message);
-      setError("");
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-        setMsg("");
+    if (valid) {
+      try {
+        const url = `http://localhost:3333/user/forgotPassword`;
+        const { data } = await axios.post(url, { email });
+        setMsg(data.message);
+        setError("");
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.status >= 400 &&
+          error.response.status <= 500
+        ) {
+          setError(error.response.data.message);
+          setMsg("");
+        }
       }
     }
   };

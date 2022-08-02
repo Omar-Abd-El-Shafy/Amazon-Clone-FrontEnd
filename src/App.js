@@ -16,6 +16,7 @@ import PasswordReset from "./pages/PasswordReset";
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
 import DashMain from "./Components/Dashboard/DashMain";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   const [showNav, setShowNav] = useState(true);
@@ -50,6 +51,7 @@ function App() {
               />
               <Route path="DashProducts" element={<DashProducts />} />
               <Route path="DashMain" element={<DashMain />} />
+              <Route path="/addProduct" element={<AddProduct />} />
             </Routes>
           </Container>
         </main>

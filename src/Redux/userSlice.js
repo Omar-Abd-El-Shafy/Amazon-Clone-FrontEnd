@@ -7,6 +7,8 @@ const initialState = {
   error: "",
 };
 // Generates pending, fulfilled and rejected action types
+// "https://amazon-clone-deploy.herokuapp.com/user/signup",
+
 export const login = createAsyncThunk("user/login", async (userData) => {
   const response = await axios.post(
     "http://localhost:3333/user/login",
@@ -15,6 +17,8 @@ export const login = createAsyncThunk("user/login", async (userData) => {
   return response.data;
 });
 ///////////////////////////////////////
+// "https://amazon-clone-deploy.herokuapp.com/user/register",
+
 export const register = createAsyncThunk("user/register", async (userData) => {
   const response = await axios.post(
     "http://localhost:3333/user/register",
