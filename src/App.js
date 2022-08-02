@@ -26,6 +26,7 @@ import "aos/dist/aos.css";
 import EditProfileForm from "./Components/EditProfileForm/EditProfileForm";
 import CategoryPage from "./pages/CategoryPage";
 import NoTFound from "./Components/notFound/NoTFound";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   useEffect(() => {
@@ -70,6 +71,8 @@ function App() {
                 <Route path="DashMain" element={<DashMain />} />
               </Route>
               <Route path="/profile" element={<EditProfileForm />} />
+              <Route path="/addProduct" element={<AddProduct />} />
+
               <Route path="*" element={<NoTFound />} />
             </Routes>
           </Container>

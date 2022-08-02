@@ -6,7 +6,6 @@ import { register } from "../Redux/userSlice";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
 export default function Registration(props) {
-  props.funcNav(false);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -101,8 +100,9 @@ export default function Registration(props) {
     return true;
   }
   useEffect(() => {
+    props.funcNav(false);
     setValid(checkProperties(errors));
-  }, [errors]);
+  }, [errors, props]);
 
   const registeer = () => {
     if (valid) {
@@ -126,7 +126,7 @@ export default function Registration(props) {
         <div className="mb-3">
           <form>
             <h2 className="mb-3 text-center">Create account</h2>
-            <label for="name">Your Name</label>
+            <label htmlFor="name">Your Name</label>
             <input
               type="text"
               id="name"
@@ -136,7 +136,7 @@ export default function Registration(props) {
             />
             <div className="text-danger mb-2">{errors.nameError}</div>
             {/* /////////////////////////////////////////////// */}
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
               id="email"
@@ -145,7 +145,7 @@ export default function Registration(props) {
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.emailError}</div>
-            <label for="phone">phone</label>
+            <label htmlFor="phone">phone</label>
             <input
               type="text"
               id="phone"
@@ -155,7 +155,7 @@ export default function Registration(props) {
             />
             <div className="text-danger mb-2">{errors.phoneError}</div>
             {/* ////////////////////////////////////////////////////////// */}
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
@@ -164,7 +164,7 @@ export default function Registration(props) {
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.passwordError}</div>
-            <label for="confirm_password">Confirm password</label>
+            <label htmlFor="confirm_password">Confirm password</label>
             <input
               type="password"
               id="confirm_password"
