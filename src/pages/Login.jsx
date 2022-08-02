@@ -8,7 +8,6 @@ import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 import { login } from "../Redux/userSlice";
 
 export default function Login(props) {
-  props.funcNav(false);
   const [emailorphone, setEmailorphone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -17,17 +16,19 @@ export default function Login(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    props.funcNav(false);
+
     if (loggedInUser) {
       console.log("user is loggedin");
       //navigate(`/${loggedInUser.name}/products`);
     } else {
       console.log(loggedInUser);
     }
-  }, [loggedInUser, navigate]);
+  }, [loggedInUser, navigate, props]);
 
-  const loginn = () => {
-    dispatch(login({ email: emailorphone, password }));
-  };
+  // const loginn = () => {
+  //   dispatch(login({ email: emailorphone, password }));
+  // };
   return (
     <div>
       <div className="mb-3 text-center">
@@ -37,7 +38,7 @@ export default function Login(props) {
       </div>
       <form>
         <h2 className="mb-3 text-center">Sign-In</h2>
-        <label for="name">Email or mobile phone number</label>
+        <label htmlFor="name">Email or mobile phone number</label>
         <input
           type="text"
           id="name"
@@ -45,7 +46,7 @@ export default function Login(props) {
           value={emailorphone}
           onChange={(e) => setEmailorphone(e.target.value)}
         />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
@@ -57,7 +58,9 @@ export default function Login(props) {
           type="button"
           value="Login"
           className="btn btn-warning"
-          onClick={loginn}
+          onClick={() => {
+            dispatch(login({ email: emailorphone, password }));
+          }}
         />
       </form>
       <div>

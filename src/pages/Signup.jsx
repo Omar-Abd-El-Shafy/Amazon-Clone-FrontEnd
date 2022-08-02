@@ -90,8 +90,6 @@ export default function Registration(props) {
     handleValidation(e.target.id, e.target.value);
   };
 
-  //const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   function checkProperties(obj) {
