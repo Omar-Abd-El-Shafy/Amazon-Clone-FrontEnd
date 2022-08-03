@@ -26,9 +26,9 @@ export default function Login(props) {
     }
   }, [loggedInUser, navigate, props]);
 
-  const loginn = () => {
-    dispatch(login({ email: emailorphone, password }));
-  };
+  // const loginn = () => {
+  //   dispatch(login({ email: emailorphone, password }));
+  // };
   return (
     <>
       <div>
