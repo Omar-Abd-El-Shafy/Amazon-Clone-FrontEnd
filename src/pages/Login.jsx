@@ -18,9 +18,9 @@ export default function Login(props) {
   useEffect(() => {
     props.funcNav(false);
 
-    if (loggedInUser) {
+    if (loggedInUser?.userName) {
       console.log("user is loggedin");
-      //navigate(`/${loggedInUser.name}/products`);
+      navigate(`/`);
     } else {
       console.log(loggedInUser);
     }

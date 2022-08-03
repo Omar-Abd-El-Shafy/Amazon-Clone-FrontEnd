@@ -51,7 +51,7 @@ function App() {
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/products/category/:id" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductDetails />} />
-              <Route exact path="/" element={<Home />} />
+              <Route exact path="/" element={<Home funcNav={setShowNav} />} />
               <Route path="/login" element={<Login funcNav={setShowNav} />} />
               <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
               <Route
