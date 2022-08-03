@@ -8,67 +8,70 @@ import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 import { login } from "../Redux/userSlice";
 
 export default function Login(props) {
-  const [emailorphone, setEmailorphone] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+    const [emailorphone, setEmailorphone] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    props.funcNav(false);
+    useEffect(() => {
+        props.funcNav(false);
+        if (loggedInUser?.userName) {
+            console.log("user is loggedin");
+            navigate(`/`);
+        } else {
+            console.log(loggedInUser);
+        }
+    }, [loggedInUser, navigate, props]);
 
-    if (loggedInUser?.userName) {
-      console.log("user is loggedin");
-      navigate(`/`);
-    } else {
-      console.log(loggedInUser);
-    }
-  }, [loggedInUser, navigate, props]);
-
-  // const loginn = () => {
-  //   dispatch(login({ email: emailorphone, password }));
-  // };
-  return (
-    <>
-      <div>
-        <div className="mb-3 text-center">
-          <a href="/">
-            <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
-          </a>
-        </div>
-        <form>
-          <h2 className="mb-3 text-center">Sign-In</h2>
-          <label htmlFor="name">Email or mobile phone number</label>
-          <input
-            type="text"
-            id="name"
-            placeholder=""
-            value={emailorphone}
-            onChange={(e) => setEmailorphone(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type="button"
-            value="Login"
-            className="btn btn-warning"
-            onClick={loginn}
-          />
-        </form>
-      </div>
-      <div className="new-amzn-con">
-        <h5 className="new-to-amazon">New to Amazon?</h5>
-      </div>
-      <Link to="/signup" className="btn reg-btn d-block m-auto fw-normal">
-        Create your Amazon account
-      </Link>
-    </>
-  );
+    const loginn = () => {
+        dispatch(login({ email: emailorphone, password }));
+    };
+    return (
+        <>
+            <div>
+                <div className="mb-3 text-center">
+                    <a href="/">
+                        <img
+                            src={logoMain}
+                            alt="logo-main"
+                            style={{ width: "103px" }}
+                        />
+                    </a>
+                </div>
+                <form>
+                    <h2 className="mb-3 text-center">Sign-In</h2>
+                    <label htmlFor="name">Email or mobile phone number</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder=""
+                        value={emailorphone}
+                        onChange={(e) => setEmailorphone(e.target.value)}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder=""
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        type="button"
+                        value="Login"
+                        className="btn btn-warning"
+                        onClick={loginn}
+                    />
+                </form>
+            </div>
+            <div className="new-amzn-con">
+                <h5 className="new-to-amazon">New to Amazon?</h5>
+            </div>
+            <Link to="/signup" className="btn reg-btn d-block m-auto fw-normal">
+                Create your Amazon account
+            </Link>
+        </>
+    );
 }

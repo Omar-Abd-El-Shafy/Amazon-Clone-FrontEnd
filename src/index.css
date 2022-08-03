@@ -263,3 +263,21 @@ form button:hover {
     color: var(--ser-color);
 }
 /* end LogInButton */
+/* start addProduct BTN  */
+#btnId .form-control {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1vw;
+    width: 100%;
+    margin-bottom: 0.5vw;
+    align-items: center;
+}
+.ErrorMessageTxt {
+    color: red;
+    font-size: smaller;
+}
+.checkboxStyle {
+    position: relative;
+    right: 120px !important;
+}
+/* end addProduct BTN  */
