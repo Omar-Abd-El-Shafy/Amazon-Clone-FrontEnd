@@ -1,12 +1,72 @@
 import { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PasswordReset = () => {
+  const navigate = useNavigate();
+  const [valid, setValid] = useState(false);
+
+  function checkProperties(obj) {
+    for (var key in obj) {
+      if (obj[key] !== null && obj[key] !== "") return false;
+    }
+    return true;
+  }
+
   const [validUrl, setValidUrl] = useState(false);
-  const [password, setPassword] = useState("");
+  //const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
+  //const [confirm_password, setConfirmPassword] = useState("");
+  const [userData, setUserData] = useState({
+    password: "",
+    confirm_password: "",
+  });
+  const [errors, setErrors] = useState({
+    passwordError: "",
+    confirmPasswordError: "",
+  });
+
+  useEffect(() => {
+    setValid(checkProperties(errors));
+  }, [errors]);
+
+  const handleValidation = (field, value) => {
+    if (field === "password") {
+      setErrors({
+        ...errors,
+        passwordError:
+          value.length === 0
+            ? "This field is required"
+            : !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+                value
+              )
+            ? "Not valid password"
+            : null,
+      });
+    } else if (field === "confirm_password") {
+      setErrors({
+        ...errors,
+        confirmPasswordError:
+          value.length === 0
+            ? "This field is required"
+            : value !== userData.password
+            ? "No matching"
+            : null,
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.id]: e.target.value,
+    });
+
+    handleValidation(e.target.id, e.target.value);
+  };
+
   const param = useParams();
   const url = `http://localhost:3333/user/password-reset/${param.id}/${param.token}`;
 
@@ -32,28 +92,33 @@ const PasswordReset = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        url,
-        { password },
-        {
-          headers: {
-            "x-access-token": param.token,
+    if (valid) {
+      e.preventDefault();
+      try {
+        const { data } = await axios.post(
+          url,
+          {
+            password: userData.password,
+            confirm_password: userData.confirm_password,
           },
+          {
+            headers: {
+              "x-access-token": param.token,
+            },
+          }
+        );
+        setMsg(data.message);
+        setError("");
+        navigate(`/login`);
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.status >= 400 &&
+          error.response.status <= 500
+        ) {
+          setError(error.response.data.message);
+          setMsg("");
         }
-      );
-      setMsg(data.message);
-      setError("");
-      //window.location = "/login";
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.errors[0].msg);
-
-        setMsg("");
       }
     }
   };
@@ -68,10 +133,26 @@ const PasswordReset = () => {
               type="password"
               placeholder="Password"
               name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              id="password"
+              onChange={handleChange}
+              value={userData.password}
               required
             />
+            <div className="text-danger mb-2">{errors.passwordError}</div>
+
+            <input
+              type="password"
+              placeholder="confirmPassword"
+              name="confirmPassword"
+              id="confirm_password"
+              onChange={handleChange}
+              value={userData.confirm_password}
+              required
+            />
+            <div className="text-danger mb-2">
+              {errors.confirmPasswordError}
+            </div>
+
             {error && <div>{error}</div>}
             {msg && <div>{msg}</div>}
             <button type="submit">Submit</button>
