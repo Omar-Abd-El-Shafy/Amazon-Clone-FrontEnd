@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 
-import { login } from "../Redux/userSlice";
-
+import { userSliceActions } from "../Redux/userSlice";
+export let tokenExpirationDate;
 export default function Login(props) {
   const [emailorphone, setEmailorphone] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +16,23 @@ export default function Login(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+
+    tokenExpirationDate = new Date(
+      storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 2
+    );
+    if (loggedInUser?.userToken) {
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          userId: loggedInUser?.id,
+          token: loggedInUser?.userToken,
+          name: loggedInUser?.userName,
+          expiration: tokenExpirationDate.toISOString(),
+        })
+      );
+    }
+
     props.funcNav(false);
 
     if (loggedInUser?.userName) {
@@ -26,9 +43,9 @@ export default function Login(props) {
     }
   }, [loggedInUser, navigate, props]);
 
-  // const loginn = () => {
-  //   dispatch(login({ email: emailorphone, password }));
-  // };
+  const loginn = () => {
+    dispatch(userSliceActions.login({ email: emailorphone, password }));
+  };
   return (
     <>
       <div>

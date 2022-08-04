@@ -9,7 +9,7 @@ import CartPage from "./pages/CartPage";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ForgotPassword from "./pages/ForgotPassword";
 import PasswordReset from "./pages/PasswordReset";
 import SideBar from "./Components/SideBar/SideBar";
@@ -27,12 +27,65 @@ import EditProfileForm from "./Components/EditProfileForm/EditProfileForm";
 import CategoryPage from "./pages/CategoryPage";
 import NoTFound from "./Components/notFound/NoTFound";
 import AddProduct from "./pages/AddProduct";
+import { useSelector, useDispatch } from "react-redux";
+import { userSliceActions } from "../src/Redux/userSlice";
+// import tokenExpirationDate from "../src/pages/Login";
+
+// let logoutTimer;
 
 function App() {
+  const dispatch = useDispatch();
+
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+
+  // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
+
+  // setTokenExpirationDatee(tokenExpirationDate);
+
   useEffect(() => {
     AOS.init();
     AOS.refresh();
-  }, []);
+
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (
+      storedData?.userId &&
+      storedData?.token &&
+      new Date(storedData.expiration) > new Date()
+    ) {
+      dispatch(
+        userSliceActions.setUser({
+          id: storedData.userId,
+          userName: storedData.name,
+          userToken: storedData.token,
+        })
+      );
+    }
+  }, [
+    dispatch,
+    loggedInUser?.id,
+    loggedInUser?.userName,
+    loggedInUser?.userToken,
+  ]);
+
+  // useEffect(() => {
+  //   if (loggedInUser?.userToken && tokenExpirationDate) {
+  //     const remainingTime =
+  //       tokenExpirationDate.getTime() - new Date().getTime();
+  //     logoutTimer = setTimeout(
+  //       dispatch(userSliceActions.logout()),
+  //       remainingTime
+  //     );
+  //   } else {
+  //     clearTimeout(logoutTimer);
+  //   }
+  // }, [dispatch, loggedInUser?.userToken]);
+
+  // AOS.init();
+  // AOS.refresh();
+
+  // userId: loggedInUser?.id,
+  // token: loggedInUser?.userToken,
+
   const [showNav, setShowNav] = useState(true);
   return (
     <Router>
