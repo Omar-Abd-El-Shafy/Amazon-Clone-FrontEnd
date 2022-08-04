@@ -51,7 +51,10 @@ const CartPage = () => {
                             <h1>
                                 Cart is Empty <MdOutlineRemoveShoppingCart />
                             </h1>
-                            <Button className=" py-2 px-4" variant="warning">
+                            <Button
+                                className="py-2 px-4 mt-4"
+                                variant="warning"
+                            >
                                 <Link
                                     style={{
                                         fontSize: "1.5rem",

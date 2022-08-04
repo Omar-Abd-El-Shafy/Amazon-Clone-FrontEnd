@@ -1,4 +1,3 @@
-// import ProHome from './pages/ProHome';
 import ProductDetails from "./pages/ProductDetails";
 import BackTop from "./Components/backTop/BackTop";
 import Login from "./pages/Login";
