@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
+import { api } from "../Redux/services";
 
 import { userSliceActions } from "../Redux/userSlice";
 export let tokenExpirationDate;
@@ -12,6 +13,7 @@ export default function Login(props) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const [login, response] = api.useLoginMutation();
 
   const dispatch = useDispatch();
 
@@ -45,6 +47,11 @@ export default function Login(props) {
 
   const loginn = () => {
     dispatch(userSliceActions.login({ email: emailorphone, password }));
+    // login({ email: emailorphone, password })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => console.log(error));
   };
   return (
     <>

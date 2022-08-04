@@ -25,7 +25,7 @@ import "aos/dist/aos.css";
 import EditProfileForm from "./Components/EditProfileForm/EditProfileForm";
 import CategoryPage from "./pages/CategoryPage";
 import NoTFound from "./Components/notFound/NoTFound";
-import AddProduct from "./pages/AddProduct";
+// import AddProduct from "./pages/AddProduct";
 import { useSelector, useDispatch } from "react-redux";
 import { userSliceActions } from "../src/Redux/userSlice";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -123,7 +123,7 @@ function App() {
                 <Route path="DashMain" element={<DashMain />} />
               </Route>
               <Route path="/profile" element={<EditProfileForm />} />
-              <Route path="/addProduct" element={<AddProduct />} />
+              {/* <Route path="/addProduct" element={<AddProduct />} /> */}
 
               <Route path="*" element={<NoTFound />} />
             </Routes>
