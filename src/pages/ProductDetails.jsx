@@ -17,16 +17,19 @@ import { useGetSingleProdactQuery } from '../Redux/prodactsApi';
 
 function ProductDetails() {
   const params = useParams();
-  const { id } = params;
+  const { _id } = params;
+  console.log(params);
   const {
     data: product,
     error,
     isLoading: loading,
-  } = useGetSingleProdactQuery(id);
+  } = useGetSingleProdactQuery(_id);
   const Dispatch = useDispatch();
   const handleAddToCart = (product) => {
     Dispatch(addToCart(product));
   };
+  console.log(product);
+
   return loading ? (
     <div
       style={{
@@ -43,11 +46,13 @@ function ProductDetails() {
   ) : (
     <div>
       <Row>
-        <Col md={5}>
+        <h1>{product._id}</h1>
+
+        {/* <Col md={5}>
           <img
             style={{ maxWidth: '100%' }}
-            src={product.image}
-            alt={product.title}
+            src={product.image_path}
+            alt={product.name}
             className="w-75"
           ></img>
         </Col>
@@ -55,13 +60,10 @@ function ProductDetails() {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
-                <title>{product.title}</title>
+                <title>{product.name}</title>
               </Helmet>
-              <h1 className="text-secondary">{product.title}</h1>
-              <Rating
-                rating={product.rating.rate}
-                Reviews={product.rating.count}
-              />
+              <h1 className="text-secondary">{product.name}</h1>
+              <Rating rating={product.rating} Reviews={product.reviews} />
             </ListGroup.Item>
             <ListGroup.Item>price :${product.price}</ListGroup.Item>
 
@@ -81,7 +83,7 @@ function ProductDetails() {
                 <Row className="align-items-center">
                   <Col>status:</Col>
                   <Col>
-                    {product.rating.count > 0 ? (
+                    {product.stock > 0 ? (
                       <Badge className=" text-success text-center m-1 p-1 ">
                         in stock
                       </Badge>
@@ -92,13 +94,11 @@ function ProductDetails() {
                     )}
                   </Col>
                 </Row>
-              </ListGroup>
-              <ListGroup>
-                {/* <Quantity product={product} /> */}
-              </ListGroup>
-              <ListGroup>
+              </ListGroup> */}
+        <ListGroup>{/* <Quantity product={product} /> */}</ListGroup>
+        {/* <ListGroup>
                 <div className="d-grid">
-                  {product.rating.count > 0 ? (
+                  {product.stock > 0 ? (
                     <Button
                       className="rounded-pill "
                       variant="warning"
@@ -118,7 +118,7 @@ function ProductDetails() {
               </ListGroup>
             </Card.Body>
           </Card>
-        </Col>
+        </Col> */}
       </Row>
     </div>
   );

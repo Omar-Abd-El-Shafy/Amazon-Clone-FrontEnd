@@ -1,80 +1,81 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 //import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { register } from "../Redux/userSlice";
-import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
-
+import { Link } from 'react-router-dom';
+import { register } from '../Redux/userSlice';
+import logoMain from '../assets/imgs/logo/Amazon-logo-main.png';
+import { Col, Container, Form, Row } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 export default function Registration(props) {
   const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirm_password: "",
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirm_password: '',
   });
   const [errors, setErrors] = useState({
-    nameError: "",
-    emailError: "",
-    phoneError: "",
-    passwordError: "",
-    confirmPasswordError: "",
+    nameError: '',
+    emailError: '',
+    phoneError: '',
+    passwordError: '',
+    confirmPasswordError: '',
   });
   const [valid, setValid] = useState(false);
 
   const handleValidation = (field, value) => {
     console.log(field, value);
 
-    if (field === "name") {
+    if (field === 'name') {
       setErrors({
         ...errors,
         nameError:
           value.length === 0
-            ? "This field is required"
+            ? 'This field is required'
             : !/^[a-z ,.'-]+$/i.test(value)
-            ? "Not valid name"
+            ? 'Not valid name'
             : null,
       });
-    } else if (field === "email") {
+    } else if (field === 'email') {
       setErrors({
         ...errors,
         emailError:
           value.length === 0
-            ? "This field is required"
+            ? 'This field is required'
             : !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-            ? "Not valid email"
+            ? 'Not valid email'
             : null,
       });
-    } else if (field === "phone") {
+    } else if (field === 'phone') {
       setErrors({
         ...errors,
         phoneError:
           value.length === 0
-            ? "This field is required"
+            ? 'This field is required'
             : !/^(012|010|011)[0-9]{8}$/.test(value)
-            ? "Not valid phone"
+            ? 'Not valid phone'
             : null,
       });
-    } else if (field === "password") {
+    } else if (field === 'password') {
       setErrors({
         ...errors,
         passwordError:
           value.length === 0
-            ? "This field is required"
+            ? 'This field is required'
             : !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
                 value
               )
-            ? "Not valid password"
+            ? 'Not valid password'
             : null,
       });
-    } else if (field === "confirm_password") {
+    } else if (field === 'confirm_password') {
       setErrors({
         ...errors,
         confirmPasswordError:
           value.length === 0
-            ? "This field is required"
+            ? 'This field is required'
             : value !== userData.password
-            ? "No matching"
+            ? 'No matching'
             : null,
       });
     }
@@ -93,7 +94,7 @@ export default function Registration(props) {
 
   function checkProperties(obj) {
     for (var key in obj) {
-      if (obj[key] !== null && obj[key] !== "") return false;
+      if (obj[key] !== null && obj[key] !== '') return false;
     }
     return true;
   }
@@ -114,18 +115,21 @@ export default function Registration(props) {
   };
 
   return (
-    <>
-      <div className="mt-4">
-        <div className="mb-3 text-center">
-          <a href="/">
-            <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
-          </a>
-        </div>
-        <div className="mb-3">
-          <form>
-            <h2 className="mb-3 text-center">Create account</h2>
-            <label htmlFor="name">Your Name</label>
-            <input
+    <Container style={{ maxWidth: '600px' }}>
+      <Row className="mb-3 text-center ">
+        <Link to="/">
+          <img src={logoMain} alt="logo-main" style={{ width: '103px' }} />
+        </Link>
+      </Row>
+      <Row className="justify-content-center">
+        <Form
+          className="border border-1 py-2 px-3 "
+          style={{ maxWidth: '80%' }}
+        >
+          <h3 className="mb-3 text-center">Create account</h3>
+          <Form.Group>
+            <Form.Label htmlFor="name">Your Name</Form.Label>
+            <Form.Control
               type="text"
               id="name"
               placeholder="First and last name"
@@ -133,62 +137,85 @@ export default function Registration(props) {
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.nameError}</div>
-            {/* /////////////////////////////////////////////// */}
-            <label htmlFor="email">Email</label>
-            <input
+          </Form.Group>
+          {/* /////////////////////////////////////////////// */}
+          <Form.Group>
+            <Form.Label htmlFor="email">Email</Form.Label>
+            <Form.Control
               type="text"
               id="email"
-              placeholder=""
+              placeholder="example@ex.com"
               value={userData.email}
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.emailError}</div>
-            <label htmlFor="phone">phone</label>
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Label htmlFor="phone">phone</Form.Label>
+            <Form.Control
               type="text"
               id="phone"
-              placeholder=""
+              placeholder="01xxxxxxxxx"
               value={userData.phone}
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.phoneError}</div>
-            {/* ////////////////////////////////////////////////////////// */}
-            <label htmlFor="password">Password</label>
-            <input
+          </Form.Group>
+          {/* ////////////////////////////////////////////////////////// */}
+          <Form.Group>
+            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Control
               type="password"
               id="password"
-              placeholder=""
+              placeholder="Password"
               value={userData.password}
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">{errors.passwordError}</div>
-            <label htmlFor="confirm_password">Confirm password</label>
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Label htmlFor="confirm_password">Confirm password</Form.Label>
+            <Form.Control
               type="password"
               id="confirm_password"
-              placeholder=""
+              placeholder=" Confirm Password"
               value={userData.confirm_password}
               onChange={(e) => handleChange(e)}
             />
             <div className="text-danger mb-2">
               {errors.confirmPasswordError}
             </div>
-
-            <input
-              className="btn btn-warning"
-              type="button"
-              value="Register"
-              onClick={registeer}
-            />
-            <p>
-              <span>Already have an account? </span>
-              <Link to="/login" className="text-info">
+          </Form.Group>
+          <Button
+            className="form-btn"
+            style={{
+              background: '#f0c14b',
+              borderColor: '#a88734 #9c7e31 #846a29',
+              marginTop: '20px',
+            }}
+            type="submit"
+            value="Register"
+            onClick={registeer}
+          >
+            Register
+          </Button>
+          <Col className="m-3 text-center">
+            <span>Already have an account? </span>
+            <Link to="/login">
+              <Button
+                className="form-btn"
+                style={{
+                  width: 'fit-content',
+                  background: '#e7e9ec',
+                  borderColor: '#adb1b8 #a2a6ac #8d9096',
+                }}
+              >
                 Sign-in
-              </Link>
-            </p>
-          </form>
-        </div>
-      </div>
-    </>
+              </Button>
+            </Link>
+          </Col>
+        </Form>
+      </Row>
+    </Container>
   );
 }

@@ -2,25 +2,21 @@ import React from 'react';
 import '../../index.css';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
-import { Helmet } from 'react-helmet-async';
 import { Row } from 'react-bootstrap';
-
 
 import { useGetAllProdactsQuery } from '../../Redux/prodactsApi';
 import ProductsItem from './ProductsItem';
-function ProHome() {
+import { useSelector } from 'react-redux';
+function ProHome({ cat, sort, filter }) {
+  // console.log(cat ,sort, filter );
   const {
     data: products,
     error,
     isLoading: loading,
   } = useGetAllProdactsQuery();
-
- 
+  console.log(products);
   return (
     <>
-      <Helmet>
-        <title>Amazon</title>
-      </Helmet>
       <h1>Feather Products</h1>
       <div className="products">
         {loading ? (
@@ -29,8 +25,8 @@ function ProHome() {
           <Error variant="danger">{error}</Error>
         ) : (
           <Row>
-            {products.map((product) => (
-              <ProductsItem key={product.id} product={product} />
+            {products.slice(0, 8).map((product) => (
+              <ProductsItem key={product._id} product={product} />
             ))}
           </Row>
         )}
