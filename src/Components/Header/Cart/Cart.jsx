@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
-    // const total = cartItems.reduce((a, b) => a + b.price * b.quantity, 0);
     return (
         <>
             <Link to="/CartPage" style={{ cursor: "pointer" }}>
