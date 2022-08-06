@@ -88,31 +88,37 @@ export const Categorie = [
     Id: 1,
     Img: 'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2022/February/DashboardCards/Fuji_dash_dress_2X._SY608_CB626369146_.jpg',
     Title: 'dress',
+    cat: 'dress',
   },
   {
     Id: 2,
     Img: 'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_Electronics_2x._SY608_CB432774322_.jpg',
     Title: ' electronic',
+    cat: 'electronic',
   },
   {
     Id: 3,
     Img: 'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2022/February/DashboardCards/GW_CONS_AUS_HPC_HPCEssentials_CatCard_Desktop2x._SY608_CB627424361_.jpg',
     Title: 'Health & Personal Care',
+    cat: 'Health',
   },
   {
     Id: 4,
     Img: 'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_Beauty_2x._SY608_CB432774344_.jpg',
     Title: 'Beauty picks',
+    cat: 'Beauty',
   },
   {
     Id: 5,
     Img: ' https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/September/DashboardCards/Fuji_Dash_Pets_2X._SY608_CB639746708_.jpg',
-    Title: ' Create with strip lights',
+    Title: ' Shop Pet supplies',
+    cat: 'Pet',
   },
   {
     Id: 6,
     Img: 'https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_Beauty_2x._SY608_CB432774344_.jpg',
-    Title: ' Shop Pet supplies',
+    Title: ' Shop Beauty supplies',
+    cat: 'supplies',
   },
 ];
 export const popular = [
@@ -250,7 +256,6 @@ export const about = [
       'We are committed to and invested in sustainability because it’s a win all around—it’s good for the planet, for business, for our customers, and for our communities.',
     img: 'https://assets.aboutamazon.com/dims4/default/1c43f1f/2147483647/strip/true/crop/2000x1126+0+206/resize/1320x743!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2F57%2F98%2Fcba52fed4b868e1b71c8c99b6942%2F20191112rivianamazon-blog-04.JPG',
   },
-  
 ];
 
 export default products;

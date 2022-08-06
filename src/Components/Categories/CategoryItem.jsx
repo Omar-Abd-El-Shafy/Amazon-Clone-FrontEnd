@@ -12,15 +12,18 @@ const CategoryItem = ({ item }) => {
       >
         <Card.Body
           style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              textAlign: 'center',
-              borderRadius: '18px',
-            }}
-            >
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            textAlign: 'center',
+            borderRadius: '18px',
+          }}
+        >
           <Card.Title className="fw-bold text-capitalize">
+            <Helmet>
+              <title>{item.cat}</title>
+            </Helmet>
             {item.Title}
           </Card.Title>
           <Card.Img
@@ -29,7 +32,7 @@ const CategoryItem = ({ item }) => {
             style={{ height: '18rem', width: '100%', objectFit: 'cover' }}
           />
         </Card.Body>
-        <Link className="btn " to={`/products/category/${item.Title}`}>
+        <Link className="btn " to={`/products/category/${item.cat}`}>
           <small className="text-primary fs-6 cat-btn">show more </small>
         </Link>
       </Card>

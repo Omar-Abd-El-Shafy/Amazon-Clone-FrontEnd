@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import CategoryItem from './CategoryItem.jsx';
 
 const Categorier = () => {
-  console.log(Categorie);
+  // console.log(Categorie);
   // const Category = useSelector((state) => state.Category);
 
   // const {

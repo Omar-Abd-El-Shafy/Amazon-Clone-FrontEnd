@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
-// import { api } from "../Redux/services";
+import { api } from "../Redux/services";
+import Button from "react-bootstrap/Button";
 
 import { userSliceActions } from "../Redux/userSlice";
 export let tokenExpirationDate;
@@ -54,45 +56,64 @@ export default function Login(props) {
     //   .catch((error) => console.log(error));
   };
   return (
-    <>
-      <div>
-        <div className="mb-3 text-center">
-          <a href="/">
-            <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
-          </a>
-        </div>
-        <form>
-          <h2 className="mb-3 text-center">Sign-In</h2>
-          <label htmlFor="name">Email or mobile phone number</label>
-          <input
-            type="text"
-            id="name"
-            placeholder=""
-            value={emailorphone}
-            onChange={(e) => setEmailorphone(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type="button"
-            value="Login"
-            className="btn btn-warning"
-            onClick={loginn}
-          />
-        </form>
-      </div>
-      <div className="new-amzn-con">
-        <h5 className="new-to-amazon">New to Amazon?</h5>
-      </div>
-      <Link to="/signup" className="btn reg-btn d-block m-auto fw-normal">
-        Create your Amazon account
-      </Link>
-    </>
+    <Container style={{ maxWidth: "600px" }}>
+      <Row className="mb-3 text-center">
+        <Link to="/">
+          <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
+        </Link>
+      </Row>
+      <Row className="justify-content-center">
+        <Form style={{ maxWidth: "80%" }}>
+          <h3 className="mb-3 text-start">Sign-In</h3>
+          <Form.Group>
+            <Form.Label htmlFor="name">Email or mobile phone number</Form.Label>
+            <Form.Control
+              type="email"
+              id="name"
+              required
+              value={emailorphone}
+              onChange={(e) => setEmailorphone(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Control
+              type="password"
+              id="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <div className="mb-3 ">
+            <Button
+              className="form-btn"
+              style={{
+                background: "#f0c14b",
+                borderColor: "#a88734 #9c7e31 #846a29",
+                marginTop: "20px",
+              }}
+              onClick={loginn}
+              type="submit"
+            >
+              Sign In
+            </Button>
+          </div>
+          <Col className="mb-3 text-center">New to Amazon ?{"  "}</Col>
+          <Link to="/signup">
+            {"  "}
+            <Button
+              className="form-btn"
+              style={{
+                background: "#e7e9ec",
+                borderColor: "#adb1b8 #a2a6ac #8d9096",
+              }}
+            >
+              Create your Amazon account
+            </Button>
+          </Link>
+        </Form>
+      </Row>
+    </Container>
   );
 }
