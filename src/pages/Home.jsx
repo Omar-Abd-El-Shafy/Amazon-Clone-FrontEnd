@@ -6,7 +6,7 @@ import Products from "../Components/Products/Products";
 const Home = (props) => {
   useEffect(() => {
     props.funcNav(true);
-  }, []);
+  }, [props]);
   return (
     <>
       <MainCarousel />

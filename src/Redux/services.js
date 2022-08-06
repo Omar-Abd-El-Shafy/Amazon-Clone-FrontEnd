@@ -23,5 +23,3 @@ export const api = createApi({
     }),
   }),
 });
-
-// export const {useGetBooksAPi} = booksApi
