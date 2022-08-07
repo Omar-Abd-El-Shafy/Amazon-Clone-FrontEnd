@@ -7,6 +7,7 @@
     --button-color: #ffd814;
     --border-input-color: #a6a6a6;
     --header: #131921;
+    --footer: #232f3e;
     --sidebar-header-hover: #232f3e;
     --sidebar-navs-hover: #eaeded;
 }
@@ -77,6 +78,23 @@ main {
     margin-right: 1vw;
 }
 /* end header section  */
+/* start footer section  */
+.footer {
+    background-color: var(--footer);
+    /* height: 15vh; */
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    color: #fff;
+    height: 15vh;
+}
+.footer-links ul {
+    list-style: none;
+}
+/* end footer section  */
 /* start home  */
 .top {
     border-radius: 1rem;
