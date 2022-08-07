@@ -7,6 +7,7 @@ import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 import LogInButton from "./LoginButton/LoginButton";
 import { Link } from "react-router-dom";
+import Sidebar from "../SideBar/SideBar";
 
 function Header() {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
@@ -15,6 +16,7 @@ function Header() {
   return (
     <div className="">
       <div className="Header fixed-top d-flex align-items-center justify-content-between">
+      <Sidebar/>
         <Link to="/" style={{ cursor: "pointer" }}>
           <img src={logo} alt="logo" className="logo" />
         </Link>
