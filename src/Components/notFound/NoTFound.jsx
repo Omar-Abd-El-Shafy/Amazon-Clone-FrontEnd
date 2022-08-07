@@ -1,7 +1,7 @@
 import React from "react";
+import NotFoundImage from "../../assets/imgs/logo/Not-Found.png";
 import Container from "react-bootstrap/esm/Container";
 import { Link } from "react-router-dom";
-import NotFoundImage from "../../assets/imgs/logo/Not-Found.png";
 const NoTFound = () => {
     return (
         <Container>

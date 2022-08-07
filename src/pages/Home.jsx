@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Categorier from "../Components/Categories/Category";
 import MainCarousel from "../Components/Carousel/Carousel";
+import Categorier from "../Components/Categories/Category";
 import Products from "../Components/Products/Products";
 import { Helmet } from 'react-helmet-async';
 

@@ -1,10 +1,11 @@
 import React from 'react';
+import { useGetSingleProdactQuery } from '../Redux/prodactsApi';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Rating from '../Components/Rating/Rating';
 import Loading from '../Components/Loading/Loading';
 import Error from '../Components/Error/Error';
-import { useParams } from 'react-router-dom';
 import { addToCart } from '../Redux/cartSlice';
-import { useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import Card from 'react-bootstrap/Card';
 import { Row } from 'react-bootstrap';
@@ -12,23 +13,21 @@ import { Col } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import Quantity from '../Components/quantity/Quantity';
-import { useGetSingleProdactQuery } from '../Redux/prodactsApi';
 
 function ProductDetails() {
   const params = useParams();
-  const { _id } = params;
-  console.log(params);
+  const { id } = params;
+  // console.log(params);
   const {
     data: product,
     error,
     isLoading: loading,
-  } = useGetSingleProdactQuery(_id);
+  } = useGetSingleProdactQuery(id);
   const Dispatch = useDispatch();
   const handleAddToCart = (product) => {
     Dispatch(addToCart(product));
   };
-  console.log(product);
+  // console.log(product);
 
   return loading ? (
     <div
@@ -42,17 +41,15 @@ function ProductDetails() {
       <Loading />
     </div>
   ) : error ? (
-    <Error variant="danger">{error}</Error>
+    <Error variant="danger">{error.message}</Error>
   ) : (
     <div>
       <Row>
-        <h1>{product._id}</h1>
-
-        {/* <Col md={5}>
+        <Col md={5}>
           <img
             style={{ maxWidth: '100%' }}
-            src={product.image_path}
-            alt={product.name}
+            src={product.image}
+            alt={product.title}
             className="w-75"
           ></img>
         </Col>
@@ -60,10 +57,13 @@ function ProductDetails() {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
-                <title>{product.name}</title>
+                <title>{product.title}</title>
               </Helmet>
-              <h1 className="text-secondary">{product.name}</h1>
-              <Rating rating={product.rating} Reviews={product.reviews} />
+              <h1 className="text-secondary">{product.title}</h1>
+              <Rating
+                rating={product.rating.rate}
+                Reviews={product.rating.rate}
+              />
             </ListGroup.Item>
             <ListGroup.Item>price :${product.price}</ListGroup.Item>
 
@@ -83,7 +83,7 @@ function ProductDetails() {
                 <Row className="align-items-center">
                   <Col>status:</Col>
                   <Col>
-                    {product.stock > 0 ? (
+                    {product.rating.count > 0 ? (
                       <Badge className=" text-success text-center m-1 p-1 ">
                         in stock
                       </Badge>
@@ -94,11 +94,11 @@ function ProductDetails() {
                     )}
                   </Col>
                 </Row>
-              </ListGroup> */}
-        <ListGroup>{/* <Quantity product={product} /> */}</ListGroup>
-        {/* <ListGroup>
+              </ListGroup>
+              <ListGroup>{/* <Quantity product={product} /> */}</ListGroup>
+              <ListGroup>
                 <div className="d-grid">
-                  {product.stock > 0 ? (
+                  {product.rating.count > 0 ? (
                     <Button
                       className="rounded-pill "
                       variant="warning"
@@ -118,7 +118,7 @@ function ProductDetails() {
               </ListGroup>
             </Card.Body>
           </Card>
-        </Col> */}
+        </Col>
       </Row>
     </div>
   );

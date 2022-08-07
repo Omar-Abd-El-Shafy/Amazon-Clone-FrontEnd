@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import SidebarList from "./SidebarList";
+import { Link } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
-import SidebarList from "./SidebarList";
 
 function Example() {
     const [show, setShow] = useState(false);

@@ -1,7 +1,7 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import DashSidebar from "../Components/Dashboard/DashSidebar";
 import { Col, Row } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
 
 const Users = (props) => {
     props.funcNav(false);

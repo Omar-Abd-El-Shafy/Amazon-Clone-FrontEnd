@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-//import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 import { register } from '../Redux/userSlice';
 import logoMain from '../assets/imgs/logo/Amazon-logo-main.png';
+import { Link } from 'react-router-dom';
+//import { useNavigate } from "react-router-dom";
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 export default function Registration(props) {

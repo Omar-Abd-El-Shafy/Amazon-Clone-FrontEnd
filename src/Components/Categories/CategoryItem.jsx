@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Col } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 
-const CategoryItem = ({ item }) => {
+const CategoryItem = ( { item } ) =>
+{
+  // console.log(item)
   return (
     <Col sm={6} md={4} lg={3} className="mb-3 ">
       <Card
@@ -22,17 +24,17 @@ const CategoryItem = ({ item }) => {
         >
           <Card.Title className="fw-bold text-capitalize">
             <Helmet>
-              <title>{item.cat}</title>
+              <title>{item}</title>
             </Helmet>
-            {item.Title}
+            {item}
           </Card.Title>
           <Card.Img
             variant="top"
-            src={item.Img}
+            src={item}
             style={{ height: '18rem', width: '100%', objectFit: 'cover' }}
           />
         </Card.Body>
-        <Link className="btn " to={`/products/category/${item.cat}`}>
+        <Link className="btn " to={`/products/category/${item}`}>
           <small className="text-primary fs-6 cat-btn">show more </small>
         </Link>
       </Card>

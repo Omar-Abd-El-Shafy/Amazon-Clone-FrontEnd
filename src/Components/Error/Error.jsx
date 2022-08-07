@@ -1,11 +1,10 @@
 import Alert from 'react-bootstrap/Alert';
 
-function Error ( props )
-{
-  console.log(props.childern)
+function Error(error) {
+
   return (
-    <Alert className="m-auto" variant={props.variant || 'info'}>
-      {props.childern}
+    <Alert className="m-auto" variant={error.variant || 'info'}>
+      {error.message}
     </Alert>
   );
 }

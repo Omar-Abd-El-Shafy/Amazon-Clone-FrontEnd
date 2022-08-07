@@ -1,10 +1,10 @@
 import React from 'react';
 import '../index.css';
 import { useDispatch } from 'react-redux';
-import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
 import {
   addToCart,
   clearcart,

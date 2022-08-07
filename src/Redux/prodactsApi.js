@@ -3,20 +3,23 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const prodactsApi = createApi({
   reducerPath: 'prodactsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: ' https://amazon-clone-deploy.herokuapp.com/',
+    baseUrl: 'https://fakestoreapi.com/',
   }),
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
-      query: () => 'product',
+      query: () => 'products',
     }),
     getSingleProdact: builder.query({
-      query: (_id) => `product/one/${_id}`,
+      query: (id) => `products/${id}`,
     }),
     getAllCategories: builder.query({
-      query: () => '/product/category',
+      query: () => `products/categories`,
+    }),
+    getProdactCategories: builder.query({
+      query: (id) => `products/category/${id}`,
     }),
     getdepartment: builder.query({
-      query: () => `products/department`,
+      query: (_id) => `product/department`,
     }),
   }),
 });
@@ -24,5 +27,8 @@ export const {
   useGetAllProdactsQuery,
   useGetSingleProdactQuery,
   useGetAllCategoriesQuery,
-  
+  useGetProdactCategoriesQuery
 } = prodactsApi;
+
+
+

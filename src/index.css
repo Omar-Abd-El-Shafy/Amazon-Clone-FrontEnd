@@ -87,13 +87,6 @@ main {
 }
 /* end home  */
 /* pro section  */
-main {
-  flex: 1;
-}
-.main {
-  min-height: 100vh;
-}
-
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -131,7 +124,9 @@ a:hover {
   background-color: #445569;
 }
 /* end of backTop */
-/* Form */
+/* --------------------------------------------------------- */
+/* user */
+/*log in Form */
 
 .form-btn:hover {
   background-color: var(--sec-color);
@@ -143,7 +138,10 @@ a:hover {
   width: 100%;
   box-shadow: rgb(255 255 255 / 60%) 0px 1px 0px inset;
 }
-/* End of form */
+/* End of log in form */
+
+/* ------------------------------------------- */
+/* admin  */
 /* start sideBar home page */
 .sideBar-offcanvas {
   background-color: var(--header);
@@ -216,3 +214,6 @@ a:hover {
   right: 120px !important;
 }
 /* end addProduct BTN  */
+
+/* Dropdown-ButtonGroup*/
+
