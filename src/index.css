@@ -24,7 +24,7 @@ main {
 /* header section  */
 
 .Header {
-  background-color: var(--header);
+  background-color: #131921;
   height: 60px;
 }
 .logo {
@@ -38,21 +38,31 @@ main {
 }
 
 .searchIcon {
-  background-color: var(--sec-color) !important;
+  background-color: #febd69 !important;
 }
 .searchIcon:hover {
-  background-color: var(--main) !important;
+  background-color: #f3a847 !important;
 }
 .input-group input:focus {
   outline: none !important;
-  border: 2px solid var(--main);
+  border: 2px solid #f3a847;
+  box-shadow: 0 0 10px #f3a847;
 }
 .header-search {
-  width: 65vw;
+  width: 65%;
+}
+.cart {
+  position: relative;
+  margin: 0 10px;
 }
 .cart-count {
-  color: var(--main);
-  font-size: 15pt;
+  color: #f08804;
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  font-size: 20px;
+  z-index: 100;
+  font-weight: bold;
 }
 .header-cart {
   color: #fff;
@@ -216,4 +226,3 @@ a:hover {
 /* end addProduct BTN  */
 
 /* Dropdown-ButtonGroup*/
-

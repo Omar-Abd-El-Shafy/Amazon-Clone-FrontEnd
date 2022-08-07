@@ -1,5 +1,4 @@
 import React from "react";
-import "./Header.css";
 import { useSelector, useDispatch } from "react-redux";
 import { userSliceActions } from "../../Redux/userSlice.js";
 import logo from "../../assets/amazon_logo.png";
