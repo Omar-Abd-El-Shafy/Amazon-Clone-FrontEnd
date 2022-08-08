@@ -1,9 +1,8 @@
 import React from 'react'
+import CheckOut from '../Components/Stripe/CheckOut';
 
 const Checkout = () => {
-  return (
-    <div>Checkout</div>
-  )
+  return <CheckOut />;
 }
 
 export default Checkout
