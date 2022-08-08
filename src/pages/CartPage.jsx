@@ -14,6 +14,9 @@ import {
 } from "../Redux/cartSlice";
 import { useEffect } from "react";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus } from "react-icons/ai";
+import { IoTrashOutline } from "react-icons/io5";
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -85,29 +88,29 @@ const CartPage = () => {
                                         </Col>
                                         <Col md={3}>
                                             <Button
-                                                className="bg-warning bg-opacity-10"
+                                                className="bg-warning bg-opacity-10 rounded-pill px-2 py-0 border border-1 m-2"
                                                 variant="light"
                                                 onClick={() =>
                                                     HandelDecrease(pro)
                                                 }
                                             >
-                                                <i className="fas fa-minus "></i>
-                                            </Button>{" "}
+                                                <AiOutlineMinus />
+                                            </Button>
                                             <strong className="border border-1 rounded-2 py-1 px-2 bg-warning bg-opacity-10">
                                                 {pro.cartQuantity}
-                                            </strong>{" "}
+                                            </strong>
                                             <Button
                                                 disabled={
                                                     pro.rating.count ===
                                                     pro.cartQuantity
                                                 }
                                                 variant="light"
-                                                className="bg-warning bg-opacity-10"
+                                                className="bg-warning bg-opacity-10 rounded-pill px-2 py-0 border border-1 m-2"
                                                 onClick={() =>
                                                     Handelincrease(pro)
                                                 }
                                             >
-                                                <i className="fas fa-plus"></i>
+                                                <AiOutlinePlus />
                                             </Button>
                                         </Col>
                                         <Col md={3} className="fw-bold fs-4">
@@ -115,13 +118,13 @@ const CartPage = () => {
                                         </Col>
                                         <Col md={2} className="fw-bold fs-4">
                                             <Button
-                                                className="bg-warning bg-opacity-10"
+                                                className="bg-warning bg-opacity-10 rounded  border border-1 m-2"
                                                 variant="light"
                                                 onClick={() =>
                                                     HandelRemove(pro)
                                                 }
                                             >
-                                                <i className="fas fa-trash"></i>
+                                                <IoTrashOutline />
                                             </Button>
                                         </Col>
                                     </Row>
