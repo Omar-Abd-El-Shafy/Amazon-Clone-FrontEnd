@@ -14,8 +14,8 @@ export default function AddProduct() {
   const [files, setFiles] = useState({});
 
   useEffect(() => {
-    console.log("item", item);
-  }, [item]);
+    console.log("files", files);
+  }, [files]);
 
   const schema = yup.object().shape({
     department: yup.string().required("Required Field"),
@@ -24,7 +24,7 @@ export default function AddProduct() {
     description: yup.string().required("Required Field"),
     price: yup.number().required("Required Field"),
     stock: yup.number().required("Required Field"),
-    images: yup.string().required("Required Field"),
+    // images: yup.string().required("Required Field"),
     cod: yup.boolean().required("Required Field"),
     brand: yup.string().required("Required Field"),
     weigth: yup.number().required("Required Field"),
@@ -32,8 +32,8 @@ export default function AddProduct() {
 
   const lookup = {
     "": [],
-    "Option 1": [
-      "Option 1 - Choice 1",
+    "62e46ccdd282c036e6947f18": [
+      "62e02d48bd5c5569a70d79b5", //1
       "Option 1 - Choice 2",
       "Option 1 - Choice 3",
     ],
@@ -66,7 +66,7 @@ export default function AddProduct() {
               description: "",
               price: "",
               stock: "",
-              images: "",
+
               cod: "",
               brand: "",
               weigth: "",
@@ -77,20 +77,36 @@ export default function AddProduct() {
 
               formData.append("brand", values.brand);
               formData.append("category", values.category);
-              formData.append("cod", values.cod);
+              // formData.append("cod", values.cod);
               formData.append("department", values.department);
               formData.append("description", values.description);
-              formData.append("images", files);
+              formData.append("img", files);
               formData.append("price", values.price);
-              formData.append("productName", values.productName);
+              formData.append("name", values.productName);
               formData.append("stock", values.stock);
-              formData.append("weigth", values.weigth);
+              formData.append("weight", values.weigth);
 
               for (var pair of formData.entries()) {
-                console.log(pair[0] + ", " + pair[1]);
+                console.log(pair[0] + ", " + pair[1] + typeof pair[1]);
               }
+              const headers = {
+                "Contet-Type": "multipart/form-data",
+                "Access-Control-Allow-Origin": "*",
+              };
+              axios
+                .post(
+                  "https://amazon-clone-deploy.herokuapp.com/product",
 
-              axios.post("http://localhost:3333/product/add", formData);
+                  formData,
+
+                  { headers }
+                )
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             }}
           >
             {({ setFieldValue }) => (
@@ -111,7 +127,7 @@ export default function AddProduct() {
                     <option value="" disabled>
                       Select an option
                     </option>
-                    <option value="Option 1">Option 1</option>
+                    <option value="62e46ccdd282c036e6947f18">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
                   </Field>
@@ -179,8 +195,9 @@ export default function AddProduct() {
                     multiple
                     accept="image/png, image/jpeg"
                     onChange={(e) => {
-                      setFieldValue("images", e.target.value);
-                      setFiles(e.target.files);
+                      setFiles(e.target.files[0]);
+                      console.log(files);
+                      console.log(e);
                     }}
                   />
                   <div className="ErrorMessageTxt">
