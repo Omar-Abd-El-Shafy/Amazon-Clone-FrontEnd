@@ -1,26 +1,34 @@
-import React from "react";
+import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { GoSearch } from 'react-icons/go';
+import { Form, FormControl, InputGroup } from 'react-bootstrap';
 
 function Search() {
-    return (
-        <div className="header-search">
-            <div className="input-group">
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder=""
-                    aria-label=""
-                    aria-describedby="button-addon2"
-                />
-                <button
-                    className="btn searchIcon"
-                    type="button"
-                    id="button-addon2"
-                >
-                    <i className="fa-solid fa-magnifying-glass "></i>
-                </button>
-            </div>
-        </div>
-    );
+  const [query, setQuery] = useState('');
+  const navigate = useNavigate();
+  const handelSubmet = (e) => {
+    e.preventDefault();
+  };
+  return (
+    <Form className="header-search" onSubmit={handelSubmet}>
+      <InputGroup className="input-group">
+        <FormControl
+          className="form-control"
+          onChange={(e) => setQuery(e.target.value)}
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search Prodaucts"
+          aria-label="Search Prodaucts"
+          aria-describedby="button-search"
+        />
+        <button className="btn searchIcon " type="submit" id="button-search">
+          <GoSearch className="fw-bolder fs-5" />
+        </button>
+      </InputGroup>
+    </Form>
+  );
 }
 
 export default Search;

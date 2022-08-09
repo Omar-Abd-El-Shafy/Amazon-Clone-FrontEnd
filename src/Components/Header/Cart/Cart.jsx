@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
@@ -8,11 +9,12 @@ export default function Cart() {
     return (
         <>
             <Link to="/CartPage" style={{ cursor: "pointer" }}>
-                <i className="fa-solid fa-solid fa-basket-shopping fs-2 header-cart text-white">
-                    <span className="cart-count ms-sm-1 me-3 font-monospace">
+                <div className="cart">
+                    <span className="cart-count ms-sm-1 mt-1 me-3 font-monospace">
                         {cartItems.length}
                     </span>
-                </i>
+                    <RiShoppingCartLine className="fa-solid fs-3 me-4 text-white cart-img" />
+                </div>
             </Link>
         </>
     );

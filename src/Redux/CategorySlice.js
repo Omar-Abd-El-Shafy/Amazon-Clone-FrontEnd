@@ -11,10 +11,12 @@ export const CategoryFetch = createAsyncThunk(
   'Category/categoryFetch',
   //paylod
   async () => {
-    const res = await axios.get('https://fakestoreapi.com/products/categories');
+    await axios
+      .get('https://fakestoreapi.com/products/categories')
+      .then((res) => {
+        return res?.data;
+      }).catch((err)=>{console.log(err)})
     // console.log(res);
-
-    return res?.data;
   }
 );
 
@@ -22,6 +24,18 @@ const categorySlice = createSlice({
   name: 'Category',
   initialState,
   reducers: {},
+  extraReducers: {
+    [CategoryFetch.pending]: (state, action) => {
+      state.status = 'pending';
+    },
+    [CategoryFetch.fulfilled]: (state, action) => {
+      state.status = 'sucess';
+      state.product = action.payload;
+    },
+    [CategoryFetch.rejected]: (state, action) => {
+      state.status = 'error';
+    },
+  },
 });
 
 export default categorySlice.reducer;

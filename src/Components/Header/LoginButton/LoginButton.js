@@ -7,7 +7,7 @@ export default function LogInButton() {
         <>
             <Link to="/login">
                 <div className="LogInButton">
-                    <FiLogIn size={30} color="#FFF" />
+                    {/* <FiLogIn size={20} color="#FFF" /> */}
                     <span style={{ fontSize: 18 }}> Login</span>
                 </div>
             </Link>

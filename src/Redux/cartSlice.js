@@ -22,7 +22,7 @@ const cartSlice = createSlice({
         //if 0  qantity increase not indexs
         state.cartItems[itamindex].cartQuantity += 1;
         toast.info(` increased ${state.cartItems[itamindex].title} quantity`, {
-          position: 'bottom-left',
+         
           autoClose: '1000',
           theme: 'colored',
         });
@@ -30,7 +30,7 @@ const cartSlice = createSlice({
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
         toast.success(`${action.payload.title} added to cart`, {
-          position: 'bottom-left',
+         
           autoClose: '1000',
           theme: 'colored',
         });
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
       state.cartItems = elemints;
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       toast.error(`${action.payload.title} removed to cart`, {
-        position: 'bottom-left',
+       
         autoClose: '1000',
         theme: 'colored',
       });
@@ -60,7 +60,7 @@ const cartSlice = createSlice({
       if (state.cartItems[itamindex].cartQuantity > 1) {
         state.cartItems[itamindex].cartQuantity -= 1;
         toast.warning(`${action.payload.title} decrease to cart`, {
-          position: 'bottom-left',
+          
           autoClose: '1000',
           theme: 'colored',
         });
@@ -71,7 +71,6 @@ const cartSlice = createSlice({
         console.log(elemints);
         state.cartItems = elemints;
         toast.error(`${action.payload.title} removed to cart`, {
-          position: 'bottom-left',
           autoClose: '1000',
           theme: 'colored',
         });
@@ -82,7 +81,6 @@ const cartSlice = createSlice({
     clearcart(state, action) {
       state.cartItems = [];
       toast.error(` cart cleared`, {
-        position: 'bottom-left',
         autoClose: '1000',
         theme: 'colored',
         

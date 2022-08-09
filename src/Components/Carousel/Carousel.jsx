@@ -1,7 +1,7 @@
 import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import { Slider } from '../../data';
 import '../../index.css';
+import { Slider } from '../../data';
+import Carousel from 'react-bootstrap/Carousel';
 const MainCarousel = () => {
   return (
     <Carousel
@@ -34,14 +34,3 @@ const MainCarousel = () => {
 };
 
 export default MainCarousel;
-
-// {
-//   Slider.map((slide) => (
-//     <img
-//       key={slide.id}
-//       className="d-block w-100 top"
-//       src={slide.img}
-//       alt="First slide"
-//     />
-//   ));
-// }

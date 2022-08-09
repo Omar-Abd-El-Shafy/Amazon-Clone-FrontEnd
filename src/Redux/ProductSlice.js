@@ -1,28 +1,41 @@
-// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
-// const initialState = {
-//   products: [],
-//   status: null,
-// };
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+const initialState = {
+  status: null,
+  products: [],
+  cat: [],
+  sort: {},
+  filter: {},
+};
 
-// //action creater 
-// export const productFetch = createAsyncThunk(
-//   //action type
-//   'prodacts/productFetch',
-//   //paylod
-//   async () => {
-//     const res = await axios.get('https://fakestoreapi.com/products');
-//     // console.log(res);
-//     return res?.data;
-//   }
-// );
+//action creater
+export const productFetch = createAsyncThunk(
+  //action type
+  'prodacts/productFetch',
+  //paylod
+  async (cat) => {
+    await axios
+      .get(
+        cat
+          ? `https://fakestoreapi.com/products/category/${cat}`
+          : `https://fakestoreapi.com/products`
+      )
+      .then((res) => {
+        console.log(res);
+        return res?.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // console.log(res);
+  }
+);
 
+const ProductSlice = createSlice({
+  name: 'prodacts',
+  initialState,
+  reducers: {},
+});
 
-// const ProductSlice = createSlice({
-//   name: 'prodacts',
-//   initialState,
-//   reducers: {},
-
-// });
-
-// export default ProductSlice.reducer;
+export default ProductSlice.reducer;
