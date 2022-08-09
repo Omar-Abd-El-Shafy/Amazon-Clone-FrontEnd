@@ -13,7 +13,7 @@ const store = configureStore({
     Category: CategoryReducer,
     user: userReducer,
     [prodactsApi.reducerPath]: prodactsApi.reducer,
-    [api.reducerPath]: api.reducer,
+    // [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([prodactsApi.middleware, api.middleware]),

@@ -73,9 +73,9 @@ const PasswordReset = () => {
   useEffect(() => {
     const verifyUrl = async () => {
       try {
-        await axios.post(
+        await axios.get(
           url,
-          { type: "resetStart" },
+
           {
             headers: {
               "x-access-token": param.token,
