@@ -8,7 +8,6 @@ const store = configureStore({
     cart: cartReducer,
     user: userReducer,
     [prodactsApi.reducerPath]: prodactsApi.reducer,
-    // [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([prodactsApi.middleware, api.middleware]),

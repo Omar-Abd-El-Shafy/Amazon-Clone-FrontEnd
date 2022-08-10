@@ -27,7 +27,7 @@ function ProductDetails() {
   const handleAddToCart = (product) => {
     Dispatch(addToCart(product));
   };
-  // console.log(product);
+  console.log(product);
 
   return loading ? (
     <div
@@ -43,13 +43,13 @@ function ProductDetails() {
   ) : error ? (
     <Error variant="danger">{error.message}</Error>
   ) : (
-    <div>
+    <div className="text-capitalize">
       <Row>
         <Col md={5}>
           <img
             style={{ maxWidth: '100%' }}
-            src={product.image}
-            alt={product.title}
+            src={product.image_path[0]}
+            alt={product.name}
             className="w-75"
           ></img>
         </Col>
@@ -57,22 +57,21 @@ function ProductDetails() {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
-                <title>{product.title}</title>
+                <title>{product.name}</title>
               </Helmet>
-              <h1 className="text-secondary">{product.title}</h1>
-              <Rating
-                rating={product.rating.rate}
-                Reviews={product.rating.rate}
-              />
+              <h1 className="text-secondary">{product.name}</h1>
+              <Rating rating={product.rating} Reviews={product.rating} />
             </ListGroup.Item>
-            <ListGroup.Item>price :${product.price}</ListGroup.Item>
+            <ListGroup.Item className="text-danger fw-bolder">
+              price :${product.price}
+            </ListGroup.Item>
 
             <ListGroup.Item>
               products Description :<p>{product.description}</p>
             </ListGroup.Item>
             <ListGroup.Item>
               price:
-              <span style={{ color: 'red' }}>${product.price}</span>
+              <span className="text-danger fw-bolder">${product.price}</span>
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -83,7 +82,7 @@ function ProductDetails() {
                 <Row className="align-items-center">
                   <Col>status:</Col>
                   <Col>
-                    {product.rating.count > 0 ? (
+                    {product.stock > 0 ? (
                       <Badge className=" text-success text-center m-1 p-1 ">
                         in stock
                       </Badge>
@@ -98,7 +97,7 @@ function ProductDetails() {
               <ListGroup>{/* <Quantity product={product} /> */}</ListGroup>
               <ListGroup>
                 <div className="d-grid">
-                  {product.rating.count > 0 ? (
+                  {product.stock > 0 ? (
                     <Button
                       className="rounded-pill "
                       variant="warning"

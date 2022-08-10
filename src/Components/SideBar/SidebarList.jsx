@@ -45,16 +45,15 @@ function SidebarList() {
         <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
           {category.map((item) => (
             <Nav.Link
-              href={`/products/category/${item}`}
+              href={`/products/category/${item._id}`}
               className="sidebar-navs d-flex justify-content-between"
             >
-              {item}
+              {item.name}
               <IoIosArrowForward />
             </Nav.Link>
           ))}
         </Row>
       )}
-      
     </Nav>
   );
 }

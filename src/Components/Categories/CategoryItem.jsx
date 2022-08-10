@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 
 const CategoryItem = ( { item } ) =>
 {
-  // console.log(item)
+  console.log(item)
   return (
     <Col sm={6} md={4} lg={3} className="mb-3 ">
       <Card
@@ -24,17 +24,17 @@ const CategoryItem = ( { item } ) =>
         >
           <Card.Title className="fw-bold text-capitalize">
             <Helmet>
-              <title>{item}</title>
+              <title>{item.name}</title>
             </Helmet>
-            {item}
+            {item.name}
           </Card.Title>
-          <Card.Img
+          {/* <Card.Img
             variant="top"
             src={item}
             style={{ height: '18rem', width: '100%', objectFit: 'cover' }}
-          />
+          /> */}
         </Card.Body>
-        <Link className="btn " to={`/products/category/${item}`}>
+        <Link className="btn " to={`/products/category/${item._id}`}>
           <small className="text-primary fs-6 cat-btn">show more </small>
         </Link>
       </Card>

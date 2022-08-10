@@ -20,7 +20,7 @@ const Categorier = () => {
     isError:error,
     isLoading: loading,
   } = useGetAllCategoriesQuery();
-  // console.log(category )
+  console.log(category )
   
   // const [ catg, setcatg ] = useState( [] );
   // useEffect(() => {
@@ -40,7 +40,7 @@ const Categorier = () => {
       ) : (
         <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
           {category.map((item) => (
-            <CategoryItem key={item.id} item={item} />
+            <CategoryItem key={item._id} item={item} />
           ))}
         </Row>
       )}

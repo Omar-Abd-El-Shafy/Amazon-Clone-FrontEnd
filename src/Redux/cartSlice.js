@@ -15,24 +15,19 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const itamindex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       //check if item in cart -1 not exect 0 exect
       if (itamindex >= 0) {
         //if 0  qantity increase not indexs
         state.cartItems[itamindex].cartQuantity += 1;
-        toast.info(` increased ${state.cartItems[itamindex].title} quantity`, {
-         
-          autoClose: '1000',
-          theme: 'colored',
+        toast.info(` increased ${state.cartItems[itamindex].name} quantity`, {
+
         });
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        toast.success(`${action.payload.title} added to cart`, {
-         
-          autoClose: '1000',
-          theme: 'colored',
+        toast.success(`${action.payload.name} added to cart`, {
         });
       }
       //store at local storage
@@ -41,38 +36,33 @@ const cartSlice = createSlice({
     //remove from cart
     removeFromCart(state, action) {
       const elemints = state.cartItems.filter(
-        (pro) => pro.id !== action.payload.id
+        (pro) => pro._id !== action.payload._id
       );
       console.log(elemints);
       state.cartItems = elemints;
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-      toast.error(`${action.payload.title} removed to cart`, {
+      toast.error(`${action.payload.name} removed to cart`, {
        
-        autoClose: '1000',
-        theme: 'colored',
       });
     },
     //decrease
     decreaseCartItem(state, action) {
       const itamindex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       if (state.cartItems[itamindex].cartQuantity > 1) {
         state.cartItems[itamindex].cartQuantity -= 1;
-        toast.warning(`${action.payload.title} decrease to cart`, {
-          
-          autoClose: '1000',
-          theme: 'colored',
+        toast.warning(`${action.payload.name} decrease to cart`, {
+
         });
       } else if (state.cartItems[itamindex].cartQuantity === 1) {
         const elemints = state.cartItems.filter(
-          (pro) => pro.id !== action.payload.id
+          (pro) => pro._id !== action.payload._id
         );
         console.log(elemints);
         state.cartItems = elemints;
-        toast.error(`${action.payload.title} removed to cart`, {
-          autoClose: '1000',
-          theme: 'colored',
+        toast.error(`${action.payload.name} removed to cart`, {
+    
         });
         localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       }
@@ -81,8 +71,7 @@ const cartSlice = createSlice({
     clearcart(state, action) {
       state.cartItems = [];
       toast.error(` cart cleared`, {
-        autoClose: '1000',
-        theme: 'colored',
+     
         
       });
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));

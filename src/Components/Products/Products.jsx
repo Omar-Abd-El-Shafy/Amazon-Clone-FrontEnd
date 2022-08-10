@@ -21,7 +21,7 @@ function ProHome({ cat, sort, filters }) {
     isLoading: loading,
   } = useGetAllProdactsQuery();
 
-  // console.log(products);
+console.log(products);
   //   const [filterdPro, setFilters] = useState([]);
   //   useEffect(() => {
   //     cat &&
@@ -68,13 +68,13 @@ function ProHome({ cat, sort, filters }) {
             {cat
               ? cat.map((product) => (
                   <>
-                    <ProductsItem key={product.id} product={product} />
+                    <ProductsItem key={product._id} product={product} />
                   </>
                 ))
               : products
                   .slice(0, 8)
                   .map((product) => (
-                    <ProductsItem key={product.id} product={product} />
+                    <ProductsItem key={product._id} product={product} />
                   ))}
           </Row>
         )}

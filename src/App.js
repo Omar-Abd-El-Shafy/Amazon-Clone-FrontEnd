@@ -32,7 +32,6 @@ import ProductDetails from './pages/ProductDetails';
 import NoTFound from './Components/notFound/NoTFound';
 import About from './pages/About';
 import CartPage from './pages/CartPage';
-// import Checkout from './pages/Checkout';
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -122,7 +121,6 @@ function App() {
               <Route path="/products/category/:id" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/CartPage" element={<CartPage />} />
-              {/* <Route path="/Checkout" element={<Checkout />} /> */}
               <Route path="/About" element={<About />} />
               //////////////////////////Admin///////////////////////
               <Route

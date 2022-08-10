@@ -19,7 +19,7 @@ const CategoryPage = ( item ) =>
     data: cat,
     error,
     isLoading: loading, } = useGetProdactCategoriesQuery(id)
-  // console.log(cat)
+  console.log(cat)
   // const location = useLocation();
   // const cat = location.pathname.split('/')[3];
   const [filter, setFilter] = useState({});
