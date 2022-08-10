@@ -11,7 +11,7 @@
   --sidebar-navs-hover: #eaeded;
 }
 * {
-  text-transform: capitalize;
+ 
   box-sizing: border-box;
 }
 main {
@@ -225,4 +225,12 @@ a:hover {
 }
 /* end addProduct BTN  */
 
-/* Dropdown-ButtonGroup*/
+/* CheckoutSteps*/
+.CheckoutSteps > div {
+  border-bottom: .2rem solid var(--sidebar-navs-hover);
+}
+.CheckoutSteps > div.active {
+  border-bottom: .2rem solid var(--main);
+  color: var(--main);
+}
+/*  */

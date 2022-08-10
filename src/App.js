@@ -23,7 +23,7 @@ import BackTop from './Components/backTop/BackTop';
 //pages
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Profile from './Components/user/Profile';
+import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
 import PasswordReset from './pages/PasswordReset';
 import Home from './pages/Home';
@@ -32,6 +32,9 @@ import ProductDetails from './pages/ProductDetails';
 import NoTFound from './Components/notFound/NoTFound';
 import About from './pages/About';
 import CartPage from './pages/CartPage';
+import ShippingAdress from './pages/ShippingAdress';
+import Payment from './pages/Payment';
+import PlaceOrder from './pages/PlaceOrder';
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -104,7 +107,7 @@ function App() {
         )}
         {showNav && <SideBar />}
         <main>
-          <Container fluid className="mt-5">
+          <Container fluid className="mt-5 text-capitalize">
             <Routes>
               <Route exact path="/" element={<Home funcNav={setShowNav} />} />
               <Route path="/login" element={<Login funcNav={setShowNav} />} />
@@ -121,6 +124,9 @@ function App() {
               <Route path="/products/category/:id" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/CartPage" element={<CartPage />} />
+              <Route path="/ShippingAdress" element={<ShippingAdress />} />
+              <Route path="/Payment" element={<Payment />} />
+              <Route path="/PlaceOrder" element={<PlaceOrder />} />
               <Route path="/About" element={<About />} />
               //////////////////////////Admin///////////////////////
               <Route

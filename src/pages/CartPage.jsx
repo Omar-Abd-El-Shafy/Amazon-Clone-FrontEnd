@@ -138,7 +138,7 @@ const CartPage = () => {
                 </ListGroup.Item>
                 <ListGroup.Item></ListGroup.Item>
                 <ListGroup.Item>
-                  <Link to={'/Checkout'}>
+                  <Link to={'/ShippingAdress'}>
                     <div className="d-grid">
                       <Button
                         disabled={cart.cartItems.length === 0}
