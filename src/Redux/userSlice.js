@@ -11,7 +11,7 @@ const initialState = {
 
 export const login = createAsyncThunk("user/login", async (userData) => {
   const response = await axios.post(
-    "http://localhost:3333/user/login",
+    "https://amazon-clone-deploy.herokuapp.com/user/login",
     userData
   );
   return response.data;
@@ -21,7 +21,7 @@ export const login = createAsyncThunk("user/login", async (userData) => {
 
 export const register = createAsyncThunk("user/register", async (userData) => {
   const response = await axios.post(
-    "http://localhost:3333/user/register",
+    "https://amazon-clone-deploy.herokuapp.com/user/register",
     userData
   );
   return response.data;

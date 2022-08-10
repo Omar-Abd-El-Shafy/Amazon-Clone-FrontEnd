@@ -47,7 +47,8 @@ export default function Login(props) {
     }
   }, [loggedInUser, navigate, props]);
 
-  const loginn = () => {
+  const loginn = (e) => {
+    e.preventDefault();
     dispatch(userSliceActions.login({ email: emailorphone, password }));
     // login({ email: emailorphone, password })
     //   .then((response) => {
@@ -56,16 +57,16 @@ export default function Login(props) {
     //   .catch((error) => console.log(error));
   };
   return (
-    <Container style={{ maxWidth: '600px' }}>
+    <Container style={{ maxWidth: "600px" }}>
       <Row className="mb-3 text-center">
         <Link to="/">
-          <img src={logoMain} alt="logo-main" style={{ width: '103px' }} />
+          <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
         </Link>
       </Row>
       <Row className="justify-content-center">
         <Form
           className="border border-1 py-2 px-3 "
-          style={{ maxWidth: '80%' }}
+          style={{ maxWidth: "80%" }}
         >
           <h3 className="mb-3 text-start">Sign-In</h3>
           <Form.Group>
@@ -92,9 +93,9 @@ export default function Login(props) {
             <Button
               className="form-btn"
               style={{
-                background: '#f0c14b',
-                borderColor: '#a88734 #9c7e31 #846a29',
-                marginTop: '20px',
+                background: "#f0c14b",
+                borderColor: "#a88734 #9c7e31 #846a29",
+                marginTop: "20px",
               }}
               onClick={loginn}
               type="submit"
@@ -102,14 +103,14 @@ export default function Login(props) {
               Sign In
             </Button>
           </div>
-          <Col className="mb-3 text-center">New to Amazon ?{'  '}</Col>
+          <Col className="mb-3 text-center">New to Amazon ?{"  "}</Col>
           <Link to="/signup">
-            {'  '}
+            {"  "}
             <Button
               className="form-btn"
               style={{
-                background: '#e7e9ec',
-                borderColor: '#adb1b8 #a2a6ac #8d9096',
+                background: "#e7e9ec",
+                borderColor: "#adb1b8 #a2a6ac #8d9096",
               }}
             >
               Create your Amazon account

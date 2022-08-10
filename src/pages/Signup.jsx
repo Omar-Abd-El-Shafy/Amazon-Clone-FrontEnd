@@ -1,81 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from '../Redux/userSlice';
-import logoMain from '../assets/imgs/logo/Amazon-logo-main.png';
-import { Link } from 'react-router-dom';
-//import { useNavigate } from "react-router-dom";
-import { Col, Container, Form, Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../Redux/userSlice";
+import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Col, Container, Form, Row } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 export default function Registration(props) {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirm_password: '',
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirm_password: "",
   });
   const [errors, setErrors] = useState({
-    nameError: '',
-    emailError: '',
-    phoneError: '',
-    passwordError: '',
-    confirmPasswordError: '',
+    nameError: "",
+    emailError: "",
+    phoneError: "",
+    passwordError: "",
+    confirmPasswordError: "",
   });
   const [valid, setValid] = useState(false);
 
   const handleValidation = (field, value) => {
     console.log(field, value);
 
-    if (field === 'name') {
+    if (field === "name") {
       setErrors({
         ...errors,
         nameError:
           value.length === 0
-            ? 'This field is required'
+            ? "This field is required"
             : !/^[a-z ,.'-]+$/i.test(value)
-            ? 'Not valid name'
+            ? "Not valid name"
             : null,
       });
-    } else if (field === 'email') {
+    } else if (field === "email") {
       setErrors({
         ...errors,
         emailError:
           value.length === 0
-            ? 'This field is required'
+            ? "This field is required"
             : !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-            ? 'Not valid email'
+            ? "Not valid email"
             : null,
       });
-    } else if (field === 'phone') {
+    } else if (field === "phone") {
       setErrors({
         ...errors,
         phoneError:
           value.length === 0
-            ? 'This field is required'
+            ? "This field is required"
             : !/^(012|010|011)[0-9]{8}$/.test(value)
-            ? 'Not valid phone'
+            ? "Not valid phone"
             : null,
       });
-    } else if (field === 'password') {
+    } else if (field === "password") {
       setErrors({
         ...errors,
         passwordError:
           value.length === 0
-            ? 'This field is required'
+            ? "This field is required"
             : !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
                 value
               )
-            ? 'Not valid password'
+            ? "Not valid password"
             : null,
       });
-    } else if (field === 'confirm_password') {
+    } else if (field === "confirm_password") {
       setErrors({
         ...errors,
         confirmPasswordError:
           value.length === 0
-            ? 'This field is required'
+            ? "This field is required"
             : value !== userData.password
-            ? 'No matching'
+            ? "No matching"
             : null,
       });
     }
@@ -94,7 +95,7 @@ export default function Registration(props) {
 
   function checkProperties(obj) {
     for (var key in obj) {
-      if (obj[key] !== null && obj[key] !== '') return false;
+      if (obj[key] !== null && obj[key] !== "") return false;
     }
     return true;
   }
@@ -108,23 +109,23 @@ export default function Registration(props) {
       dispatch(register({ ...userData }));
       console.log({ ...userData });
 
-      // navigate(`/${userData.name}/products`);
+      navigate(`/login`);
     } else {
       console.log(valid);
     }
   };
 
   return (
-    <Container style={{ maxWidth: '600px' }}>
+    <Container style={{ maxWidth: "600px" }}>
       <Row className="mb-3 text-center ">
         <Link to="/">
-          <img src={logoMain} alt="logo-main" style={{ width: '103px' }} />
+          <img src={logoMain} alt="logo-main" style={{ width: "103px" }} />
         </Link>
       </Row>
       <Row className="justify-content-center">
         <Form
           className="border border-1 py-2 px-3 "
-          style={{ maxWidth: '80%' }}
+          style={{ maxWidth: "80%" }}
         >
           <h3 className="mb-3 text-center">Create account</h3>
           <Form.Group>
@@ -189,9 +190,9 @@ export default function Registration(props) {
           <Button
             className="form-btn"
             style={{
-              background: '#f0c14b',
-              borderColor: '#a88734 #9c7e31 #846a29',
-              marginTop: '20px',
+              background: "#f0c14b",
+              borderColor: "#a88734 #9c7e31 #846a29",
+              marginTop: "20px",
             }}
             type="submit"
             value="Register"
@@ -205,9 +206,9 @@ export default function Registration(props) {
               <Button
                 className="form-btn"
                 style={{
-                  width: 'fit-content',
-                  background: '#e7e9ec',
-                  borderColor: '#adb1b8 #a2a6ac #8d9096',
+                  width: "fit-content",
+                  background: "#e7e9ec",
+                  borderColor: "#adb1b8 #a2a6ac #8d9096",
                 }}
               >
                 Sign-in
