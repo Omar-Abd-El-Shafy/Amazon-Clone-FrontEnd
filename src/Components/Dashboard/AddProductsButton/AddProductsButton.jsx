@@ -32,8 +32,8 @@ export default function AddProduct() {
 
   const lookup = {
     "": [],
-    "Option 1": [
-      "Option 1 - Choice 1",
+    "62e46ccdd282c036e6947f18": [
+      "62e02d48bd5c5569a70d79b5",
       "Option 1 - Choice 2",
       "Option 1 - Choice 3",
     ],
@@ -73,6 +73,7 @@ export default function AddProduct() {
             }}
             validationSchema={schema}
             onSubmit={(values) => {
+              const filess = Array.from(files || []);
               const formData = new FormData();
 
               formData.append("brand", values.brand);
@@ -80,17 +81,18 @@ export default function AddProduct() {
               formData.append("cod", values.cod);
               formData.append("department", values.department);
               formData.append("description", values.description);
-              formData.append("images", files);
+              formData.append("image_path", filess);
               formData.append("price", values.price);
-              formData.append("productName", values.productName);
+              formData.append("name", values.productName);
               formData.append("stock", values.stock);
-              formData.append("weigth", values.weigth);
+              formData.append("weight", values.weigth);
 
-              for (var pair of formData.entries()) {
-                console.log(pair[0] + ", " + pair[1]);
-              }
+              console.log(filess);
 
-              axios.post("http://localhost:3333/product/add", formData);
+              axios.post(
+                "https://amazon-clone-deploy.herokuapp.com/product/",
+                formData
+              );
             }}
           >
             {({ setFieldValue }) => (
@@ -111,7 +113,7 @@ export default function AddProduct() {
                     <option value="" disabled>
                       Select an option
                     </option>
-                    <option value="Option 1">Option 1</option>
+                    <option value="62e46ccdd282c036e6947f18">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
                   </Field>
