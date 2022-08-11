@@ -22,8 +22,6 @@ const CartPage = () => {
     const dispatch = useDispatch();
     //accces to cart state
     const cart = useSelector((state) => state.cart);
-    console.log(cart);
-    //get totoal
     useEffect(() => {
         dispatch(getTotal());
     }, [cart, dispatch]);
