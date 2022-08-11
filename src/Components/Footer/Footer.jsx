@@ -1,41 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/amazon_logo.png';
-import { Container, Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../assets/amazon_logo.png";
 
 const Footer = () => {
-  return (
-    <Container
-      fluid
-      style={{ maxWidth: '100%' }}
-      className="bg-dark text-white align-item-center justify-content-center"
-    >
-      <Row
-        className="align-item-center justify-content-around ;
-    "
-      >
-        <Col>
-          <Link to="/">
-            <img
-              style={{ width: '120px' }}
-              className="p-3"
-              src={logo}
-              alt={logo}
-            />
-          </Link>
-        </Col>
-        <Col style={{ marginTop: '1rem' }}>
-          <Link className="text-white" to={'/About'}>
-            about
-          </Link>
-        </Col>
-        <Col style={{ marginTop: '1rem' }}>
-          Social
-        </Col>
-      </Row>
-    </Container>
-  );
+    return (
+        <div className="footer">
+            <div className="footer-content">
+                <div className="footer-logo">
+                    <Link to="/">
+                        <img src={logo} alt="logo" style={{ width: 100 }} />
+                    </Link>
+                </div>
+                <div className="footer-links">
+                    <ul>
+                        <li>
+                            <Link to="/" className="text-white">
+                                Contact Us
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <div className="footer-links">
+                    <ul>
+                        <li>
+                            <Link to="/about" className="text-white">
+                                About
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="text-white pb-3 text-center">
+                © 1996-2022, Amazon.com, Inc. or its affiliates
+            </div>
+        </div>
+    );
 };
 
 export default Footer;

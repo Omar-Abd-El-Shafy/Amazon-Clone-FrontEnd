@@ -42,14 +42,15 @@ import PlaceOrder from "./pages/PlaceOrder";
 // let logoutTimer;
 
 function App() {
-  const dispatch = useDispatch();
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
-  // setTokenExpirationDatee(tokenExpirationDate);
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
+    const dispatch = useDispatch();
+    const loggedInUser = useSelector((state) => state.user.loggedInUser);
+    // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
+    // setTokenExpirationDatee(tokenExpirationDate);
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
 
+<<<<<<< HEAD
     const storedData = JSON.parse(localStorage.getItem("userData"));
     if (
       storedData?.user._id &&
@@ -64,86 +65,135 @@ function App() {
     loggedInUser?.user.name,
     loggedInUser?.token,
   ]);
+=======
+        const storedData = JSON.parse(localStorage.getItem("userData"));
+        if (
+            storedData?.userId &&
+            storedData?.token &&
+            new Date(storedData.expiration) > new Date()
+        ) {
+            dispatch(
+                userSliceActions.setUser({
+                    id: storedData.userId,
+                    userName: storedData.name,
+                    userToken: storedData.token,
+                })
+            );
+        }
+    }, [
+        dispatch,
+        loggedInUser?.id,
+        loggedInUser?.userName,
+        loggedInUser?.userToken,
+    ]);
+>>>>>>> 4f0a016dac97c381a21e8703fcf4cd1363d71ae1
 
-  // useEffect(() => {
-  //   if (loggedInUser?.userToken && tokenExpirationDate) {
-  //     const remainingTime =
-  //       tokenExpirationDate.getTime() - new Date().getTime();
-  //     logoutTimer = setTimeout(
-  //       dispatch(userSliceActions.logout()),
-  //       remainingTime
-  //     );
-  //   } else {
-  //     clearTimeout(logoutTimer);
-  //   }
-  // }, [dispatch, loggedInUser?.userToken]);
+    // useEffect(() => {
+    //   if (loggedInUser?.userToken && tokenExpirationDate) {
+    //     const remainingTime =
+    //       tokenExpirationDate.getTime() - new Date().getTime();
+    //     logoutTimer = setTimeout(
+    //       dispatch(userSliceActions.logout()),
+    //       remainingTime
+    //     );
+    //   } else {
+    //     clearTimeout(logoutTimer);
+    //   }
+    // }, [dispatch, loggedInUser?.userToken]);
 
-  // AOS.init();
-  // AOS.refresh();
+    // AOS.init();
+    // AOS.refresh();
 
-  // userId: loggedInUser?.id,
-  // token: loggedInUser?.userToken,
+    // userId: loggedInUser?.id,
+    // token: loggedInUser?.userToken,
 
-  const [showNav, setShowNav] = useState(true);
-  return (
-    <Router>
-      <ToastContainer
-        autoClose="1000"
-        theme="colored"
-        position="bottom-left"
-        transition={Flip}
-      />
-      <div className="d-flex flex-column main">
-        {showNav && (
-          <div>
-            <Header />
-          </div>
-        )}
-        {showNav && <SideBar />}
-        <main>
-          <Container fluid className="mt-5 text-capitalize">
-            <Routes>
-              <Route exact path="/" element={<Home funcNav={setShowNav} />} />
-              <Route path="/login" element={<Login funcNav={setShowNav} />} />
-              <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route
-                path="/forgot-password"
-                element={<ForgotPassword funcNav={setShowNav} />}
-              />
-              <Route
-                path="/password-reset/:id/:token"
-                element={<PasswordReset />}
-              />
-              <Route path="/products/category/:id" element={<CategoryPage />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/CartPage" element={<CartPage />} />
-              <Route path="/ShippingAdress" element={<ShippingAdress />} />
-              <Route path="/Payment" element={<Payment />} />
-              <Route path="/PlaceOrder" element={<PlaceOrder />} />
-              <Route path="/About" element={<About />} />
-              //////////////////////////Admin///////////////////////
-              <Route
-                path="/dashboard"
-                element={<Dashboard funcNav={setShowNav} />}
-              >
-                <Route index element={<DashMain />} />
-                <Route path="DashProducts" element={<DashProducts />} />
-                <Route path="DashMain" element={<DashMain />} />
-              </Route>
-              {/* <Route path="/addProduct" element={<AddProduct />} /> */}
-              <Route path="*" element={<NoTFound />} />
-            </Routes>
-          </Container>
-        </main>
-        {showNav && (
-          <footer>
-            <BackTop />
-            <Footer />
-          </footer>
-        )}
-      </div>
-    </Router>
-  );
+    const [showNav, setShowNav] = useState(true);
+    return (
+        <Router>
+            <ToastContainer
+                autoClose="1000"
+                theme="colored"
+                position="bottom-left"
+                transition={Flip}
+            />
+            <div className="d-flex flex-column main">
+                {showNav && (
+                    <div>
+                        <Header />
+                    </div>
+                )}
+                {showNav && <SideBar />}
+                <main>
+                    <Container fluid className="mt-5 text-capitalize">
+                        <Routes>
+                            <Route
+                                exact
+                                path="/"
+                                element={<Home funcNav={setShowNav} />}
+                            />
+                            <Route
+                                path="/login"
+                                element={<Login funcNav={setShowNav} />}
+                            />
+                            <Route
+                                path="/signup"
+                                element={<Signup funcNav={setShowNav} />}
+                            />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route
+                                path="/forgot-password"
+                                element={
+                                    <ForgotPassword funcNav={setShowNav} />
+                                }
+                            />
+                            <Route
+                                path="/password-reset/:id/:token"
+                                element={<PasswordReset />}
+                            />
+                            <Route
+                                path="/products/category/:id"
+                                element={<CategoryPage />}
+                            />
+                            <Route
+                                path="/product/:id"
+                                element={<ProductDetails />}
+                            />
+                            <Route path="/CartPage" element={<CartPage />} />
+                            <Route
+                                path="/ShippingAdress"
+                                element={<ShippingAdress />}
+                            />
+                            <Route path="/Payment" element={<Payment />} />
+                            <Route
+                                path="/PlaceOrder"
+                                element={<PlaceOrder />}
+                            />
+                            <Route path="/About" element={<About />} />
+                            {/* //////////////////////////Admin/////////////////////// */}
+                            <Route
+                                path="/dashboard"
+                                element={<Dashboard funcNav={setShowNav} />}
+                            >
+                                <Route index element={<DashMain />} />
+                                <Route
+                                    path="DashProducts"
+                                    element={<DashProducts />}
+                                />
+                                <Route path="DashMain" element={<DashMain />} />
+                            </Route>
+                            {/* <Route path="/addProduct" element={<AddProduct />} /> */}
+                            <Route path="*" element={<NoTFound />} />
+                        </Routes>
+                    </Container>
+                </main>
+                {showNav && (
+                    <footer>
+                        <BackTop />
+                        <Footer />
+                    </footer>
+                )}
+            </div>
+        </Router>
+    );
 }
 export default App;

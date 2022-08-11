@@ -7,11 +7,13 @@ import Cart from "./Cart/Cart";
 import LogInButton from "./LoginButton/LoginButton";
 import { Link } from "react-router-dom";
 import Sidebar from "../SideBar/SideBar";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 function Header() {
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const dispatch = useDispatch();
+    const loggedInUser = useSelector((state) => state.user.loggedInUser);
+    const dispatch = useDispatch();
 
+<<<<<<< HEAD
   return (
     <div className="">
       <div className="Header fixed-top d-flex align-items-center justify-content-between">
@@ -41,6 +43,44 @@ function Header() {
       </div>
     </div>
   );
+=======
+    return (
+        <div className="">
+            <div className="Header fixed-top d-flex align-items-center justify-content-between">
+                <Sidebar />
+                <Link to="/" style={{ cursor: "pointer" }}>
+                    <img src={logo} alt="logo" className="logo" />
+                </Link>
+                <Search />
+                {loggedInUser?.userName ? (
+                    <>
+                        <Link to="/profile">
+                            <span style={{ color: "white", cursor: "pointer" }}>
+                                {loggedInUser.userName}
+                            </span>
+                        </Link>
+                        <button
+                            className="btn btn-outline-warning"
+                            onClick={() => {
+                                dispatch(userSliceActions.logout());
+                            }}
+                        >
+                            logout
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <LogInButton />
+                    </>
+                )}
+                <Link to="/dashboard">
+                    <MdAdminPanelSettings className="text-white admin-icon" />
+                </Link>
+                <Cart />
+            </div>
+        </div>
+    );
+>>>>>>> 4f0a016dac97c381a21e8703fcf4cd1363d71ae1
 }
 
 export default Header;
