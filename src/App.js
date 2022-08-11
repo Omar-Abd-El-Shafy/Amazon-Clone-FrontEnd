@@ -1,40 +1,40 @@
 //admin
-import Dashboard from './pages/Dashboard';
-import DashProducts from './Components/Dashboard/DashProducts';
-import DashMain from './Components/Dashboard/DashMain';
+import Dashboard from "./pages/Dashboard";
+import DashProducts from "./Components/Dashboard/DashProducts";
+import DashMain from "./Components/Dashboard/DashMain";
 //style
-import { Container } from 'react-bootstrap';
-import './index.css';
-import 'react-toastify/dist/ReactToastify.css';
-import 'aos/dist/aos.css';
+import { Container } from "react-bootstrap";
+import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
+import "aos/dist/aos.css";
 //depend
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
-import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
-import { userSliceActions } from '../src/Redux/userSlice';
-import AOS from 'aos';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { userSliceActions } from "../src/Redux/userSlice";
+import AOS from "aos";
 //componants
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
-import SideBar from './Components/SideBar/SideBar';
-import BackTop from './Components/backTop/BackTop';
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import SideBar from "./Components/SideBar/SideBar";
+import BackTop from "./Components/backTop/BackTop";
 //pages
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Profile from './pages/Profile';
-import ForgotPassword from './pages/ForgotPassword';
-import PasswordReset from './pages/PasswordReset';
-import Home from './pages/Home';
-import CategoryPage from './pages/CategoryPage';
-import ProductDetails from './pages/ProductDetails';
-import NoTFound from './Components/notFound/NoTFound';
-import About from './pages/About';
-import CartPage from './pages/CartPage';
-import ShippingAdress from './pages/ShippingAdress';
-import Payment from './pages/Payment';
-import PlaceOrder from './pages/PlaceOrder';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
+import PasswordReset from "./pages/PasswordReset";
+import Home from "./pages/Home";
+import CategoryPage from "./pages/CategoryPage";
+import ProductDetails from "./pages/ProductDetails";
+import NoTFound from "./Components/notFound/NoTFound";
+import About from "./pages/About";
+import CartPage from "./pages/CartPage";
+import ShippingAdress from "./pages/ShippingAdress";
+import Payment from "./pages/Payment";
+import PlaceOrder from "./pages/PlaceOrder";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -50,25 +50,19 @@ function App() {
     AOS.init();
     AOS.refresh();
 
-    const storedData = JSON.parse(localStorage.getItem('userData'));
+    const storedData = JSON.parse(localStorage.getItem("userData"));
     if (
-      storedData?.userId &&
+      storedData?.user._id &&
       storedData?.token &&
       new Date(storedData.expiration) > new Date()
     ) {
-      dispatch(
-        userSliceActions.setUser({
-          id: storedData.userId,
-          userName: storedData.name,
-          userToken: storedData.token,
-        })
-      );
+      dispatch(userSliceActions.setUser(storedData));
     }
   }, [
     dispatch,
-    loggedInUser?.id,
-    loggedInUser?.userName,
-    loggedInUser?.userToken,
+    loggedInUser?.user._id,
+    loggedInUser?.user.name,
+    loggedInUser?.token,
   ]);
 
   // useEffect(() => {

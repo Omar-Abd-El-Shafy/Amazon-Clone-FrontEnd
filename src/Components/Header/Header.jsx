@@ -15,14 +15,14 @@ function Header() {
   return (
     <div className="">
       <div className="Header fixed-top d-flex align-items-center justify-content-between">
-      <Sidebar/>
+        <Sidebar />
         <Link to="/" style={{ cursor: "pointer" }}>
           <img src={logo} alt="logo" className="logo" />
         </Link>
         <Search />
-        {loggedInUser?.userName ? (
+        {loggedInUser?.user.name ? (
           <>
-            <span style={{ color: "white" }}>{loggedInUser.userName}</span>
+            <span style={{ color: "white" }}>{loggedInUser.user.name}</span>
             <input
               type="button"
               onClick={() => {

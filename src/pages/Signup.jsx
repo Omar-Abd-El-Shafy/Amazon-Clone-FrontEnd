@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../Redux/userSlice";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 import { Link } from "react-router-dom";
@@ -23,6 +23,8 @@ export default function Registration(props) {
     confirmPasswordError: "",
   });
   const [valid, setValid] = useState(false);
+
+  const apierror = useSelector((state) => state.user.error);
 
   const handleValidation = (field, value) => {
     console.log(field, value);
@@ -99,17 +101,22 @@ export default function Registration(props) {
     }
     return true;
   }
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+
   useEffect(() => {
     props.funcNav(false);
     setValid(checkProperties(errors));
-  }, [errors, props]);
 
-  const registeer = () => {
+    if (loggedInUser && !apierror) {
+      navigate(`/login`);
+    }
+  }, [apierror, errors, loggedInUser, navigate, props]);
+
+  const registeer = (e) => {
+    e.preventDefault();
     if (valid) {
       dispatch(register({ ...userData }));
       console.log({ ...userData });
-
-      navigate(`/login`);
     } else {
       console.log(valid);
     }
@@ -200,6 +207,8 @@ export default function Registration(props) {
           >
             Register
           </Button>
+          {apierror && <div> there is an error !</div>}
+
           <Col className="m-3 text-center">
             <span>Already have an account? </span>
             <Link to="/login">

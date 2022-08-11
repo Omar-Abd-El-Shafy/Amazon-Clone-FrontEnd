@@ -15,7 +15,7 @@ export default function Login(props) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  // const [login, response] = api.useLoginMutation();
+  const error = useSelector((state) => state.user.error);
 
   const dispatch = useDispatch();
 
@@ -25,13 +25,11 @@ export default function Login(props) {
     tokenExpirationDate = new Date(
       storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 2
     );
-    if (loggedInUser?.userToken) {
+    if (loggedInUser?.token) {
       localStorage.setItem(
         "userData",
         JSON.stringify({
-          userId: loggedInUser?.id,
-          token: loggedInUser?.userToken,
-          name: loggedInUser?.userName,
+          ...loggedInUser,
           expiration: tokenExpirationDate.toISOString(),
         })
       );
@@ -39,17 +37,19 @@ export default function Login(props) {
 
     props.funcNav(false);
 
-    if (loggedInUser?.userName) {
+    if (loggedInUser?.user.name && !error) {
       console.log("user is loggedin");
       navigate(`/`);
     } else {
       console.log(loggedInUser);
     }
-  }, [loggedInUser, navigate, props]);
+  }, [error, loggedInUser, navigate, props]);
 
   const loginn = (e) => {
     e.preventDefault();
+
     dispatch(userSliceActions.login({ email: emailorphone, password }));
+
     // login({ email: emailorphone, password })
     //   .then((response) => {
     //     console.log(response);
@@ -102,6 +102,7 @@ export default function Login(props) {
             >
               Sign In
             </Button>
+            {error && <div> there is an error !</div>}
           </div>
           <Col className="mb-3 text-center">New to Amazon ?{"  "}</Col>
           <Link to="/signup">
