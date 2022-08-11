@@ -72,22 +72,29 @@ export default function AddProduct() {
               weigth: "",
             }}
             validationSchema={schema}
-            onSubmit={(values) => {
-              const filess = Array.from(files || []);
-              const formData = new FormData();
+            onSubmit={(values) => 
+              {
+                const formData = new FormData();
+
+
+                for(let i = 0 ; i < files.length; i++){
+                  formData.append('img',files[i])
+              }
+              if(!files) return; 
+              // const filess = Array.from(files);
 
               formData.append("brand", values.brand);
               formData.append("category", values.category);
               formData.append("cod", values.cod);
               formData.append("department", values.department);
               formData.append("description", values.description);
-              formData.append("image_path", filess);
+              // formData.append("img", files[0]);
               formData.append("price", values.price);
               formData.append("name", values.productName);
               formData.append("stock", values.stock);
               formData.append("weight", values.weigth);
 
-              console.log(filess);
+               console.log(files);
 
               axios.post(
                 "https://amazon-clone-deploy.herokuapp.com/product/",
