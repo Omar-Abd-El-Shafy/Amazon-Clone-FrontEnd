@@ -23,9 +23,11 @@ function Header() {
                 <Search />
                 {loggedInUser?.userName ? (
                     <>
-                        <span style={{ color: "white" }}>
-                            {loggedInUser.userName}
-                        </span>
+                        <Link to="/profile">
+                            <span style={{ color: "white", cursor: "pointer" }}>
+                                {loggedInUser.userName}
+                            </span>
+                        </Link>
                         <button
                             className="btn btn-outline-warning"
                             onClick={() => {
