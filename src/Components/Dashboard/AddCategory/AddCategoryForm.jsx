@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 
-export default function AddProduct() {
+export default function AddCategory() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -44,7 +44,7 @@ export default function AddProduct() {
   return (
     <>
       <Button variant="warning" onClick={handleShow}>
-        Create Product
+        Create Category
       </Button>
 
       <Modal
