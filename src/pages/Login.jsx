@@ -32,9 +32,7 @@ export default function Login(props) {
       localStorage.setItem(
         "userData",
         JSON.stringify({
-          userId: loggedInUser?.user._id,
-          token: loggedInUser?.token,
-          name: loggedInUser?.user.name,
+          ...loggedInUser,
           expiration: tokenExpirationDate.toISOString(),
         })
       );
