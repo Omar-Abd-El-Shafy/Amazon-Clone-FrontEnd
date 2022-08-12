@@ -13,37 +13,6 @@ function Header() {
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
     const dispatch = useDispatch();
 
-<<<<<<< HEAD
-  return (
-    <div className="">
-      <div className="Header fixed-top d-flex align-items-center justify-content-between">
-        <Sidebar />
-        <Link to="/" style={{ cursor: "pointer" }}>
-          <img src={logo} alt="logo" className="logo" />
-        </Link>
-        <Search />
-        {loggedInUser?.user.name ? (
-          <>
-            <span style={{ color: "white" }}>{loggedInUser.user.name}</span>
-            <input
-              type="button"
-              onClick={() => {
-                dispatch(userSliceActions.logout());
-              }}
-              value="logout"
-            />
-          </>
-        ) : (
-          <>
-            <LogInButton />
-          </>
-        )}
-
-        <Cart />
-      </div>
-    </div>
-  );
-=======
     return (
         <div className="">
             <div className="Header fixed-top d-flex align-items-center justify-content-between">
@@ -80,7 +49,6 @@ function Header() {
             </div>
         </div>
     );
->>>>>>> 4f0a016dac97c381a21e8703fcf4cd1363d71ae1
 }
 
 export default Header;

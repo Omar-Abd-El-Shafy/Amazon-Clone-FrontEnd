@@ -50,22 +50,6 @@ function App() {
         AOS.init();
         AOS.refresh();
 
-<<<<<<< HEAD
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (
-      storedData?.user._id &&
-      storedData?.token &&
-      new Date(storedData.expiration) > new Date()
-    ) {
-      dispatch(userSliceActions.setUser(storedData));
-    }
-  }, [
-    dispatch,
-    loggedInUser?.user._id,
-    loggedInUser?.user.name,
-    loggedInUser?.token,
-  ]);
-=======
         const storedData = JSON.parse(localStorage.getItem("userData"));
         if (
             storedData?.userId &&
@@ -86,7 +70,6 @@ function App() {
         loggedInUser?.userName,
         loggedInUser?.userToken,
     ]);
->>>>>>> 4f0a016dac97c381a21e8703fcf4cd1363d71ae1
 
     // useEffect(() => {
     //   if (loggedInUser?.userToken && tokenExpirationDate) {

@@ -10,23 +10,12 @@ const initialState = {
 // "https://amazon-clone-deploy.herokuapp.com/user/signup",
 
 export const login = createAsyncThunk("user/login", async (userData) => {
-<<<<<<< HEAD
-  const response = await axios
-    .post("https://amazon-clone-deploy.herokuapp.com/user/login", userData)
-    .then((res) => {
-      console.log(res.headers);
-      return res;
-    });
-
-  return response.data;
-=======
     const response = await axios.post(
         "https://amazon-clone-deploy.herokuapp.com/user/login",
         userData
     );
     console.log(response.data);
     return response.data;
->>>>>>> 4f0a016dac97c381a21e8703fcf4cd1363d71ae1
 });
 ///////////////////////////////////////
 // "https://amazon-clone-deploy.herokuapp.com/user/register",
