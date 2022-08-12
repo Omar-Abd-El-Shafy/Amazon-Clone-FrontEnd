@@ -28,6 +28,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import PasswordReset from "./pages/PasswordReset";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
+import Department from "./pages/Department";
 import ProductDetails from "./pages/ProductDetails";
 import NoTFound from "./Components/notFound/NoTFound";
 import About from "./pages/About";
@@ -35,6 +36,11 @@ import CartPage from "./pages/CartPage";
 import ShippingAdress from "./pages/ShippingAdress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
+import {
+    prodacDeailUrl,
+    ProdactCategoriesUrl,
+    SingledepartmentUrl,
+} from "./Redux/URL";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -133,25 +139,28 @@ function App() {
                                 path="/password-reset/:id/:token"
                                 element={<PasswordReset />}
                             />
+                            {/* /product?category=62e10691f51e881cae88cf9f */}
                             <Route
-                                path="/products/category/:id"
+                                path={`${ProdactCategoriesUrl}id`}
                                 element={<CategoryPage />}
                             />
                             <Route
-                                path="/product/:id"
+                                path={`${prodacDeailUrl}:id`}
                                 element={<ProductDetails />}
                             />
-                            <Route path="/CartPage" element={<CartPage />} />
                             <Route
-                                path="/ShippingAdress"
+                                path={`${SingledepartmentUrl}:id`}
+                                element={<Department />}
+                            />
+
+                            <Route path="CartPage" element={<CartPage />} />
+                            <Route
+                                path="ShippingAdress"
                                 element={<ShippingAdress />}
                             />
-                            <Route path="/Payment" element={<Payment />} />
-                            <Route
-                                path="/PlaceOrder"
-                                element={<PlaceOrder />}
-                            />
-                            <Route path="/About" element={<About />} />
+                            <Route path="Payment" element={<Payment />} />
+                            <Route path="PlaceOrder" element={<PlaceOrder />} />
+                            <Route path="About" element={<About />} />
                             {/* //////////////////////////Admin/////////////////////// */}
                             <Route
                                 path="/dashboard"

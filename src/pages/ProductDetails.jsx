@@ -27,7 +27,7 @@ function ProductDetails() {
     const handleAddToCart = (product) => {
         Dispatch(addToCart(product));
     };
-    // console.log(product);
+    console.log(product);
 
     return loading ? (
         <div
