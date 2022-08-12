@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../Redux/userSlice";
 import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 import { Link } from "react-router-dom";
