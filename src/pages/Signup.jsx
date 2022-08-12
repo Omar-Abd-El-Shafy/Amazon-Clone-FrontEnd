@@ -115,7 +115,8 @@ export default function Registration(props) {
     }
   }, [apierror, errors, loggedInUser, navigate, props]);
 
-  const registeer = () => {
+  const registeer = (e) => {
+    e.preventDefault();
     if (valid) {
       dispatch(register({ ...userData }));
       //   console.log({ ...userData });
