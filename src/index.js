@@ -9,11 +9,11 @@ import { HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
-  </Provider>
+    <Provider store={store}>
+        <HelmetProvider>
+            <App />
+        </HelmetProvider>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
