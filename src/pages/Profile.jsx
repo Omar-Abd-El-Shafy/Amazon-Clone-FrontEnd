@@ -1,65 +1,80 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react';
-import { IoSendOutline } from 'react-icons/io5';
+import { useSelector, useDispatch } from 'react-redux';
+import Loading from '../Components/Loading/Loading';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { Helmet } from 'react-helmet-async';
-import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
+function Profile() {
+  // const token = useSelector((state) => state.user.loggedInUser.token);
+  const user = useSelector((state) => state.user.loggedInUser.user);
+  const { loading, error } = useSelector((state) => state.user);
+  console.log(user);
+  const [name, setName] = useState('');
+  // const updateHandler = (e) => {
+  //   e.preventDefault();
+  //   dispatch(userSliceActions.update({ name }));
+  // };
 
-export default function Profile() {
-  // props.funcNav(false);
-  // const dispath = useDispatch()
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [pass, setPass] = useState();
   return (
     <Container style={{ maxWidth: '600px' }}>
-      <Helmet>user Profile</Helmet>
-      <h1 className="my-3"> User Profile</h1>
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Label className="mb-1 w-50 m-auto">Name</Form.Label>
-          <InputGroup>
-            <Form.Control
-              placeholder="user name"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-            />
-            <Button variant="warning" id="button-addon2">
-              <IoSendOutline />
-            </Button>
-          </InputGroup>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label className="mb-1 w-50 m-auto">email</Form.Label>
-          <InputGroup>
-            <Form.Control
-              placeholder="email"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-            />
-            <Button variant="warning" id="button-addon2">
-              <IoSendOutline />
-            </Button>
-          </InputGroup>
-        </Form.Group>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        error.message
+      ) : (
+        <>
+          <Helmet>{user.name}</Helmet>
 
-        <Form.Group className="mb-3">
-          <Form.Label className="mb-1 w-50 m-auto">password</Form.Label>
-          <InputGroup>
-            <Form.Control
-              placeholder="password"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-            />
-            <Button variant="warning" id="button-addon2">
-              <IoSendOutline />
-            </Button>
-          </InputGroup>
-        </Form.Group>
-        <Button type="submit" className="mb-3 bg-warning text-black border-0 ">
-          Update
-        </Button>
-      </Form>
+          <h1 className="my-3">hello {user.name} </h1>
+          <ListGroup>
+            <ListGroup.Item className="d-flex justify-content-between">
+              <ListGroup.Item style={{ border: 'none' }}>
+                user name : {user.name}
+              </ListGroup.Item>{' '}
+              <Button className="btn btn-outline-light border-0 bg-warning">
+                {' '}
+                Editt
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between">
+              <ListGroup.Item style={{ border: 'none' }}>
+                your email : {user.email}
+              </ListGroup.Item>{' '}
+              <Button className="btn btn-outline-light border-0 bg-warning">
+                {' '}
+                Editt
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between">
+              <ListGroup.Item style={{ border: 'none' }}>
+                your phone : {user.phone}
+              </ListGroup.Item>{' '}
+              <Button className="btn btn-outline-light border-0 bg-warning">
+                {' '}
+                Editt
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between">
+              <ListGroup.Item style={{ border: 'none' }}>
+                password :{' '}
+                <input
+                  className="border-0"
+                  type="password"
+                  disabled
+                  value={user.password}
+                ></input>
+              </ListGroup.Item>
+              <Button className="btn btn-outline-light border-0 bg-warning">
+                {' '}
+                Editt
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </>
+      )}
     </Container>
   );
 }
+
+export default Profile;
