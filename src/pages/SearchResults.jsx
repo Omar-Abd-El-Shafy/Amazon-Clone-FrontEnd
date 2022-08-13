@@ -50,19 +50,5 @@ export default function SearchResults() {
                 )}
             </Row>
         </div>
-        // <Row xs={1} md={2} className="g-4">
-        //     {Array.map((product, idx) => (
-        //         <Col key={product._id}>
-        //             <Card>
-        //                 <Card.Img variant="top" src={product.image_path[0]} />
-        //                 <Card.Body>
-        //                     <Card.Title>{product.name}</Card.Title>
-        //                     <Card.Text>{product.rating}</Card.Text>
-        //                     <Card.Text>{product.price}</Card.Text>
-        //                 </Card.Body>
-        //             </Card>
-        //         </Col>
-        //     ))}
-        // </Row>
     );
 }
