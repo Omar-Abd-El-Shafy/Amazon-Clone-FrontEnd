@@ -42,6 +42,9 @@ import {
     ProdactCategoriesUrl,
     SingledepartmentUrl,
 } from "./Redux/URL";
+import UpdateName from "./Components/user/UpdateName";
+import UpdatePhone from "./Components/user/UpdatePhone";
+import UpdateEmail from "./Components/user/UpdateEmail";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
