@@ -41,6 +41,9 @@ import {
   ProdactCategoriesUrl,
   SingledepartmentUrl,
 } from "./Redux/URL";
+import UpdateName from "./Components/user/UpdateName";
+import UpdatePhone from "./Components/user/UpdatePhone";
+import UpdateEmail from "./Components/user/UpdateEmail";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -113,6 +116,10 @@ function App() {
               <Route path="/login" element={<Login funcNav={setShowNav} />} />
               <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/UpdateName" element={<UpdateName />} />
+              <Route path="/UpdatePhone" element={<UpdatePhone />} />
+              <Route path="/UpdateEmail" element={<UpdateEmail />} />
+
               <Route
                 path="/forgot-password"
                 element={<ForgotPassword funcNav={setShowNav} />}
@@ -135,11 +142,11 @@ function App() {
                 element={<Department />}
               />
 
-              <Route path="CartPage" element={<CartPage />} />
-              <Route path="ShippingAdress" element={<ShippingAdress />} />
-              <Route path="Payment" element={<Payment />} />
-              <Route path="PlaceOrder" element={<PlaceOrder />} />
-              <Route path="About" element={<About />} />
+              <Route path="/CartPage" element={<CartPage />} />
+              <Route path="/ShippingAdress" element={<ShippingAdress />} />
+              <Route path="/Payment" element={<Payment />} />
+              <Route path="/PlaceOrder" element={<PlaceOrder />} />
+              <Route path="/About" element={<About />} />
               {/* //////////////////////////Admin/////////////////////// */}
               <Route
                 path="/dashboard"

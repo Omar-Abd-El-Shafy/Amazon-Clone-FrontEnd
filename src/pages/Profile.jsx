@@ -5,6 +5,8 @@ import Loading from '../Components/Loading/Loading';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import UpdateName from '../Components/user/UpdateName';
 function Profile() {
   // const token = useSelector((state) => state.user.loggedInUser.token);
   const user = useSelector((state) => state.user.loggedInUser.user);
@@ -32,28 +34,34 @@ function Profile() {
               <ListGroup.Item style={{ border: 'none' }}>
                 user name : {user.name}
               </ListGroup.Item>{' '}
-              <Button className="btn btn-outline-light border-0 bg-warning">
-                {' '}
-                Editt
-              </Button>
+              <Link to={'/UpdateName'}>
+                <Button className="btn btn-outline-light border-0 bg-warning">
+                  {' '}
+                  Editt
+                </Button>
+              </Link>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex justify-content-between">
               <ListGroup.Item style={{ border: 'none' }}>
                 your email : {user.email}
               </ListGroup.Item>{' '}
-              <Button className="btn btn-outline-light border-0 bg-warning">
-                {' '}
-                Editt
-              </Button>
+              <Link to={'/UpdateEmail'}>
+                <Button className="btn btn-outline-light border-0 bg-warning">
+                  {' '}
+                  Editt
+                </Button>
+              </Link>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex justify-content-between">
               <ListGroup.Item style={{ border: 'none' }}>
                 your phone : {user.phone}
               </ListGroup.Item>{' '}
-              <Button className="btn btn-outline-light border-0 bg-warning">
-                {' '}
-                Editt
-              </Button>
+              <Link to={'/UpdatePhone'}>
+                <Button className="btn btn-outline-light border-0 bg-warning">
+                  {' '}
+                  Editt
+                </Button>
+              </Link>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex justify-content-between">
               <ListGroup.Item style={{ border: 'none' }}>
