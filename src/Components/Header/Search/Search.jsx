@@ -17,7 +17,7 @@ function Search() {
             setData(res.data);
             console.log(res.data);
         };
-        if (query.length === 0 || query.length > 1) searchProducts();
+        if (query.length === 0 || query.length > 2) searchProducts();
     }, [query]);
 
     const navigate = useNavigate();
