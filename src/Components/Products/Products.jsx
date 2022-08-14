@@ -8,11 +8,13 @@ import ProductsItem from './ProductsItem';
 import Pages from '../Pagination/Pages';
 
 function ProHome({ cat }) {
-  console.log( cat )
   const [page, setPage] = useState(1);
   const { data, isLoading: loading, isFetching } = useGetAllProdactsQuery(page);
-  const products = data.products;
+  // const products = data.products;
+  console.log( cat )
   console.log('products');
+  console.log(data.page);
+  console.log(data.products);
   if (loading) {
     return (
       <div>
@@ -64,7 +66,7 @@ function ProHome({ cat }) {
     <>
       <h1>Products</h1>
       <div className="products">
-        <Row>
+        {/* <Row>
           {cat
             ? cat.slice(0, 8).map((product) => (
                 <>
@@ -76,7 +78,7 @@ function ProHome({ cat }) {
                 .map((product) => (
                   <ProductsItem key={product._id} product={product} />
                 ))}
-        </Row>
+        </Row> */}
 
         {/* <Pages />
         <button onClick={() => setPage(page - 1)} loading={isFetching}>

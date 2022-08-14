@@ -11,6 +11,7 @@ const Categorier = () => {
     isLoading: loading,
     isFetching,
   } = useGetAllCategoriesQuery();
+;
 if (loading) {
   return (
     <div>
