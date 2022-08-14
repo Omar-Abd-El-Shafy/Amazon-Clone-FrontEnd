@@ -12,9 +12,20 @@ export default function AddProduct() {
   const handleShow = () => setShow(true);
   const [item, setItem] = useState("");
   const [files, setFiles] = useState({});
+  const [departments, setDepartments] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    console.log("item", item);
+    axios
+      .get("https://amazon-clone-deploy.herokuapp.com/department")
+      .then((res) => setDepartments(res.data));
+  }, []);
+
+  useEffect(() => {
+    if(item)
+      axios
+        .get(`https://amazon-clone-deploy.herokuapp.com/category/dept/${item}`)
+        .then((res) => setCategories(res.data))
   }, [item]);
 
   const schema = yup.object().shape({
@@ -29,17 +40,6 @@ export default function AddProduct() {
     brand: yup.string().required("Required Field"),
     weigth: yup.number().required("Required Field"),
   });
-
-  const lookup = {
-    "": [],
-    "62e46ccdd282c036e6947f18": [
-      "62e02d48bd5c5569a70d79b5",
-      "Option 1 - Choice 2",
-      "Option 1 - Choice 3",
-    ],
-    "Option 2": ["Option 2 - Choice 1", "Option 2 - Choice 2"],
-    "Option 3": ["Option 3 - Choice 1"],
-  };
 
   return (
     <>
@@ -72,15 +72,13 @@ export default function AddProduct() {
               weigth: "",
             }}
             validationSchema={schema}
-            onSubmit={(values) => 
-              {
-                const formData = new FormData();
+            onSubmit={(values) => {
+              const formData = new FormData();
 
-
-                for(let i = 0 ; i < files.length; i++){
-                  formData.append('img',files[i])
+              for (let i = 0; i < files.length; i++) {
+                formData.append("img", files[i]);
               }
-              if(!files) return; 
+              if (!files) return;
               // const filess = Array.from(files);
 
               formData.append("brand", values.brand);
@@ -94,7 +92,7 @@ export default function AddProduct() {
               formData.append("stock", values.stock);
               formData.append("weight", values.weigth);
 
-               console.log(files);
+              // console.log(files);
 
               axios.post(
                 "https://amazon-clone-deploy.herokuapp.com/product/",
@@ -113,16 +111,16 @@ export default function AddProduct() {
                     as="select"
                     onChange={(e) => {
                       setItem(e.target.value);
-                      // console.log(e.target.value);
-                      // console.log(item);
                     }}
                   >
                     <option value="" disabled>
                       Select an option
                     </option>
-                    <option value="62e46ccdd282c036e6947f18">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
+                    {departments.map((dept) => (
+                      <option key={dept._id} value={dept._id}>
+                        {dept.name}
+                      </option>
+                    ))}
                   </Field>
                   <div className="ErrorMessageTxt">
                     <ErrorMessage name="department" />
@@ -135,13 +133,11 @@ export default function AddProduct() {
                     <option value="" disabled>
                       Please select an option
                     </option>
-                    {lookup[item].map((el, i) => {
-                      return (
-                        <option key={i} value={el}>
-                          {el}
-                        </option>
-                      );
-                    })}
+                    {categories.map((cate) => (
+                      <option key={cate._id} value={cate._id}>
+                        {cate.name}
+                      </option>
+                    ))}
                   </Field>
                   <div className="ErrorMessageTxt">
                     <ErrorMessage name="category" />
