@@ -8,7 +8,7 @@ import { Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 const ProductsItem = ({ product }) => {
-  // console.log(product);
+  console.log(product);
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));

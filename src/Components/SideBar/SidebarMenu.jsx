@@ -1,7 +1,7 @@
 import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useParams } from 'react-router-dom';
-import { useGetCategorydepartmentQuery } from '../../Redux/prodactsApi';
+import { useGetCategorydepartmentQuery } from '../../Redux/Api';
 
 const SidebarMenu = ({item}) => {
 
