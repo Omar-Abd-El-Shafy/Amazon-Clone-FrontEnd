@@ -1,28 +1,51 @@
 import React from 'react';
 
 import { userSliceActions } from '../../Redux/userSlice';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import axios from 'axios';
 
 const UpdateName = () => {
   const user = useSelector((state) => state.user.loggedInUser.user.name);
-//   const token = useSelector((state) => state.user.loggedInUser.token);
-//   const { loading, error } = useSelector((state) => state.user);
-//   console.log(token);
+  const token = useSelector((state) => state.user.loggedInUser.token);
+  // console.log(token);
   // props.funcNav(false);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [pass, setPass] = useState('');
-  console.log(name);
-  const updateHandler = (e) => {
-    e.preventDefault();
-    // dispatch(userSliceActions.update({ name }));
-  };
+  const [Newname, NewsetName] = useState('');
 
+  console.log(name);
+
+  // useEffect(() => {
+  //   const update = async () => {
+  //     try {
+  //       await axios
+  //       .put(
+  //         `https://amazon-clone-deploy.herokuapp.com/user/`,
+  //         { name },
+  //         {
+  //           headers: {
+  //             'x-access-token': token,
+  //           },
+  //         }
+  //         )
+  //         .then((res) => {
+  //           console.log(res.data.user.name);
+  //           // setName(res.data.user.name);
+  //         });
+  //       } catch (error) {}
+  //     };
+  //     update();
+  //   }, [name, token]);
+    const updateHandler = (e) => {
+      e.preventDefault();
+      // dispatch(userSliceActions.update({ name, token }));
+    };
+    
+  // console.log(updateHandler('name', 'token' ));
   return (
     <Container style={{ maxWidth: '600px' }}>
       <Form>

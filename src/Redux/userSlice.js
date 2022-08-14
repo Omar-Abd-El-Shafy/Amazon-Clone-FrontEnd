@@ -28,6 +28,28 @@ export const register = createAsyncThunk("user/register", async (userData) => {
     return response.data;
 });
 
+// update user 
+export const update = createAsyncThunk( 'user/update', async (  user ) =>
+{
+  console.log(user);
+  // try {
+  //       await axios.put(
+  //       `https://amazon-clone-deploy.herokuapp.com/user/`,
+  //       {user.name},
+  //       {
+  //         headers: {
+  //           'x-access-token':user.token,
+  //         },
+  //        }
+  //     ).then((res) => {
+  //           console.log(res.data);
+  //     console.log("update: "  );
+
+  // } catch ( error ) { }
+});
+
+
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -68,10 +90,25 @@ const userSlice = createSlice({
             state.loading = false;
             state.loggedInUser = null;
             state.error = action.error.message;
-        });
+        } );
+        //////////////
+           builder.addCase(update.pending, (state) => {
+             state.loading = true;
+           });
+           builder.addCase(update.fulfilled, (state, action) => {
+             state.loading = false;
+             state.loggedInUser = action.payload;
+             state.error = '';
+           });
+           builder.addCase(update.rejected, (state, action) => {
+             state.loading = false;
+             state.loggedInUser = null;
+             state.error = action.error.message;
+           });
     },
 });
 
 export const userSliceActions = { ...userSlice.actions, login, register };
 
 export default userSlice.reducer;
+// Nanousa24@

@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Col } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
-import { ProdactCategoriesUrl } from "../../Redux/URL";
-
 const CategoryItem = ({ item }) => {
 
     return (
@@ -34,7 +32,7 @@ const CategoryItem = ({ item }) => {
               style={{ height: '18rem', width: '100%', objectFit: 'cover' }}
             />
           </Card.Body>
-          <Link className="btn " to={`${ProdactCategoriesUrl}${item._id}`}>
+          <Link className="btn " to={`product?category=${item._id}`}>
             <small className="text-primary fs-6 cat-btn">show more </small>
           </Link>
         </Card>

@@ -17,8 +17,6 @@ import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
-import { prodacDeailUrl } from '../Redux/URL';
-
 const CartPage = () => {
   const dispatch = useDispatch();
   //accces to cart state
@@ -78,7 +76,7 @@ const CartPage = () => {
                         src={pro.image_path[0]}
                         alt={pro.name}
                       />{' '}
-                      <Link to={`${prodacDeailUrl}${pro._id}`}>{pro.name}</Link>
+                      <Link to={`/product/one/${pro._id}`}>{pro.name}</Link>
                     </Col>
                     <Col md={3}>
                       <Button

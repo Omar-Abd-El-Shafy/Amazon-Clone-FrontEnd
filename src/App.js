@@ -36,11 +36,6 @@ import CartPage from "./pages/CartPage";
 import ShippingAdress from "./pages/ShippingAdress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
-import {
-  prodacDeailUrl,
-  ProdactCategoriesUrl,
-  SingledepartmentUrl,
-} from "./Redux/URL";
 import UpdateName from "./Components/user/UpdateName";
 import UpdatePhone from "./Components/user/UpdatePhone";
 import UpdateEmail from "./Components/user/UpdateEmail";
@@ -129,20 +124,13 @@ function App() {
                 element={<PasswordReset />}
               />
               {/* /product?category=62e10691f51e881cae88cf9f */}
-              <Route
-                path={`${ProdactCategoriesUrl}id`}
-                element={<CategoryPage />}
-              />
-              <Route
-                path={`${prodacDeailUrl}:id`}
-                element={<ProductDetails />}
-              />
-              <Route
-                path={`${SingledepartmentUrl}:id`}
-                element={<Department />}
-              />
+              <Route path="CategoryPage=id" element={<CategoryPage />} />
+              <Route path="/product/one/:id" element={<ProductDetails />} />
+
+              <Route path={'department/:id'} element={<Department />} />
 
               <Route path="/CartPage" element={<CartPage />} />
+
               <Route path="/ShippingAdress" element={<ShippingAdress />} />
               <Route path="/Payment" element={<Payment />} />
               <Route path="/PlaceOrder" element={<PlaceOrder />} />
@@ -157,7 +145,7 @@ function App() {
                 <Route path="DashMain" element={<DashMain />} />
               </Route>
               {/* <Route path="/addProduct" element={<AddProduct />} /> */}
-              <Route path="*" element={<NoTFound />} />
+              {/* <Route path="*" element={<NoTFound />} /> */}
             </Routes>
           </Container>
         </main>
