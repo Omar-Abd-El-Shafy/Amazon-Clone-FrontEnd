@@ -246,11 +246,11 @@ a:hover {
 /* end addProduct BTN  */
 /* CheckoutSteps*/
 .CheckoutSteps > div {
-  border-bottom: .2rem solid var(--sidebar-navs-hover);
+    border-bottom: 0.2rem solid var(--sidebar-navs-hover);
 }
 .CheckoutSteps > div.active {
-  border-bottom: .2rem solid var(--main);
-  color: var(--main);
+    border-bottom: 0.2rem solid var(--main);
+    color: var(--main);
 }
 /*end CheckoutSteps  */
 /* passwordToggle*/
@@ -266,3 +266,13 @@ a:hover {
     width: 35px;
     height: 35px;
 }
+/* searchImg */
+.searchImg {
+    object-fit: contain;
+}
+.SearchCategory {
+    position: absolute;
+    top: 100px;
+    left: 1300px;
+}
+/* searchImg */

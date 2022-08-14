@@ -9,13 +9,13 @@ function Search() {
     const [query, setQuery] = useState("");
     const navigate = useNavigate();
 
-    const handelSubmet = (e) => {
+    const handelSubmit = (e) => {
         e.preventDefault();
         let path = "/searchResults";
         navigate(path + "/" + query);
     };
     return (
-        <Form className="header-search" onSubmit={handelSubmet}>
+        <Form className="header-search" onSubmit={handelSubmit}>
             <InputGroup className="input-group">
                 <FormControl
                     className="form-control"
@@ -23,8 +23,8 @@ function Search() {
                     type="text"
                     name="search"
                     id="search"
-                    placeholder="Search Prodaucts"
-                    aria-label="Search Prodaucts"
+                    placeholder="Search Products"
+                    aria-label="Search Products"
                     aria-describedby="button-search"
                 />
                 <button
