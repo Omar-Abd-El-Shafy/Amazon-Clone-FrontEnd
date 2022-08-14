@@ -29,10 +29,10 @@ export default function SearchResults() {
                     products.map((product) => {
                         return (
                             <Col key={product._id}>
-                                <Card>
+                                <Card className="h-100">
                                     <Card.Img
                                         variant="top"
-                                        className="img-fluid w-75 m-auto"
+                                        className="img-fluid w-75 h-100 m-auto"
                                         src={product.image_path[0]}
                                     />
                                     <hr />
