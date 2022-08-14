@@ -21,7 +21,6 @@ export default function SearchResults() {
             .then((res) => {
                 setProducts(res.data.products);
                 setError(null);
-                console.log(res.data.products);
             })
             .catch((err) => {
                 setError(err.message);
@@ -32,7 +31,10 @@ export default function SearchResults() {
     };
     return (
         <>
-            <h1>Search Results</h1>
+            <h3>
+                {products.length} Results for
+                <span className="paramSearch"> {param.search}</span>
+            </h3>
             <div className="SearchCategory">
                 <DropdownButton
                     as={ButtonGroup}
