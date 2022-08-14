@@ -7,22 +7,12 @@ import axios from "axios";
 
 function Search() {
     const [query, setQuery] = useState("");
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        // console.log(query);
-        const searchProducts = async () => {
-            const res = await axios.get(
-                `https://amazon-clone-deploy.herokuapp.com/product/search?name=${query}`
-            );
-            setData(res.data);
-            console.log(res.data);
-        };
-        if (query.length === 0 || query.length > 2) searchProducts();
-    }, [query]);
-
     const navigate = useNavigate();
+
     const handelSubmet = (e) => {
         e.preventDefault();
+        let path = "/searchResults";
+        navigate(path + "/" + query);
     };
     return (
         <Form className="header-search" onSubmit={handelSubmet}>

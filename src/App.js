@@ -36,6 +36,8 @@ import CartPage from "./pages/CartPage";
 import ShippingAdress from "./pages/ShippingAdress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
+import SearchResults from "./pages/SearchResults";
+
 import UpdateName from "./Components/user/UpdateName";
 import UpdatePhone from "./Components/user/UpdatePhone";
 import UpdateEmail from "./Components/user/UpdateEmail";
@@ -46,47 +48,47 @@ import UpdateEmail from "./Components/user/UpdateEmail";
 // let logoutTimer;
 
 function App() {
-  const dispatch = useDispatch();
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
-  // setTokenExpirationDatee(tokenExpirationDate);
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
+    const dispatch = useDispatch();
+    const loggedInUser = useSelector((state) => state.user.loggedInUser);
+    // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
+    // setTokenExpirationDatee(tokenExpirationDate);
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
 
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (
-      storedData?.user._id &&
-      storedData?.token &&
-      new Date(storedData.expiration) > new Date()
-    ) {
-      dispatch(userSliceActions.setUser(storedData));
-    }
-  }, [
-    dispatch,
-    loggedInUser?.user._id,
-    loggedInUser?.user.name,
-    loggedInUser?.token,
-  ]);
+        const storedData = JSON.parse(localStorage.getItem("userData"));
+        if (
+            storedData?.user._id &&
+            storedData?.token &&
+            new Date(storedData.expiration) > new Date()
+        ) {
+            dispatch(userSliceActions.setUser(storedData));
+        }
+    }, [
+        dispatch,
+        loggedInUser?.user._id,
+        loggedInUser?.user.name,
+        loggedInUser?.token,
+    ]);
 
-  // useEffect(() => {
-  //   if (loggedInUser?.userToken && tokenExpirationDate) {
-  //     const remainingTime =
-  //       tokenExpirationDate.getTime() - new Date().getTime();
-  //     logoutTimer = setTimeout(
-  //       dispatch(userSliceActions.logout()),
-  //       remainingTime
-  //     );
-  //   } else {
-  //     clearTimeout(logoutTimer);
-  //   }
-  // }, [dispatch, loggedInUser?.userToken]);
+    // useEffect(() => {
+    //   if (loggedInUser?.userToken && tokenExpirationDate) {
+    //     const remainingTime =
+    //       tokenExpirationDate.getTime() - new Date().getTime();
+    //     logoutTimer = setTimeout(
+    //       dispatch(userSliceActions.logout()),
+    //       remainingTime
+    //     );
+    //   } else {
+    //     clearTimeout(logoutTimer);
+    //   }
+    // }, [dispatch, loggedInUser?.userToken]);
 
-  // AOS.init();
-  // AOS.refresh();
+    // AOS.init();
+    // AOS.refresh();
 
-  // userId: loggedInUser?.id,
-  // token: loggedInUser?.userToken,
+    // userId: loggedInUser?.id,
+    // token: loggedInUser?.userToken,
 
   const [showNav, setShowNav] = useState(true);
   return (
@@ -128,7 +130,10 @@ function App() {
               <Route path="/product/one/:id" element={<ProductDetails />} />
 
               <Route path={'department/:id'} element={<Department />} />
-
+              <Route
+                path="/SearchResults/:search"
+                element={<SearchResults />}
+              />
               <Route path="/CartPage" element={<CartPage />} />
 
               <Route path="/ShippingAdress" element={<ShippingAdress />} />
