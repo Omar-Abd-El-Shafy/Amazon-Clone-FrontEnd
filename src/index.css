@@ -272,7 +272,10 @@ a:hover {
 }
 .SearchCategory {
     position: absolute;
-    top: 100px;
+    top: 110px;
     left: 1300px;
+}
+.searchColor Navbar {
+    color: #fff !important;
 }
 /* searchImg */

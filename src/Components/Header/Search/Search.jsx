@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 import { Form, FormControl, InputGroup } from "react-bootstrap";
-import axios from "axios";
 
 function Search() {
     const [query, setQuery] = useState("");

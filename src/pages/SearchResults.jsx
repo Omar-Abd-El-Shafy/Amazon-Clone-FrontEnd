@@ -5,15 +5,18 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 export default function SearchResults() {
     let param = useParams();
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
+    const [sortBy, setSortBy] = useState("");
     useEffect(() => {
         axios
             .get(
-                `https://amazon-clone-deploy.herokuapp.com/product/search?name=${param.search}`
+                `https://amazon-clone-deploy.herokuapp.com/product/search?name=${param.search}&sortBy=${sortBy}`
             )
             .then((res) => {
                 setProducts(res.data.products);
@@ -23,16 +26,32 @@ export default function SearchResults() {
             .catch((err) => {
                 setError(err.message);
             });
-    }, [param.search]);
+    }, [param.search, sortBy]);
+    const handleSelect = (e) => {
+        setSortBy(e);
+    };
     return (
         <>
             <h1>Search Results</h1>
             <div className="SearchCategory">
-                <Dropdown.Menu show>
-                    <Dropdown.Header>Search By Category</Dropdown.Header>
-                    <Dropdown.Item eventKey="2">Headphone</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">Camera & Phonto</Dropdown.Item>
-                </Dropdown.Menu>
+                <DropdownButton
+                    as={ButtonGroup}
+                    key="warning"
+                    id="dropdown-variants-warning"
+                    variant="warning"
+                    title="Sort By"
+                    onSelect={handleSelect}
+                >
+                    <Dropdown.Item eventKey="Price%3A%20Low%20to%20High">
+                        Price: Low to High
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey="Price%3A%20High%20to%20Low">
+                        Price: High to Low
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey="Avg.%20Customer%20review">
+                        Avg. Customer review
+                    </Dropdown.Item>
+                </DropdownButton>
             </div>
             <Row xs={1} md={4} className="g-4 mt-5">
                 {products && !error ? (
