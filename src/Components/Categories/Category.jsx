@@ -19,13 +19,11 @@ if (loading) {
   );
 }
 
-if (!category?.data) {
-  return <div>No products</div>;
-}
   return (
     <>
       
-        <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
+      <Row className="mt-4" style={ { marginRight: '0', marginLeft: ' 0' } }>
+        
           {category.map((item) => (
             <CategoryItem key={item._id} item={item} />
           ))}

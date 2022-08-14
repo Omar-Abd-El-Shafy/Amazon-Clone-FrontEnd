@@ -1,7 +1,7 @@
 import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useParams } from 'react-router-dom';
-import { useGetCategorydepartmentQuery } from '../../Redux/Api';
+import { useGetCategorydepartmentQuery } from '../../Redux/prodactsApi';
 
 const SidebarMenu = ({item}) => {
 
@@ -19,11 +19,10 @@ const SidebarMenu = ({item}) => {
       ) : (
         <NavDropdown id="nav-dropdown-dark-example" menuVariant="light">
           {category.map((cat) => (
-            <NavDropdown.Item href={`product/category/${cat._id}`}>
+            <NavDropdown.Item href={`product/search/category/${cat._id}`}>
               {cat.name}
             </NavDropdown.Item>
           ))}
-
         </NavDropdown>
       )}
     </>

@@ -18,12 +18,9 @@ const MainCarousel = () => {
       }}
     >
       {Slider.map((slide) => (
-        <Carousel.Item
-          key={slide.id}
-          style={{ objectFit: 'fill', width: '100%' }}
-        >
+        <Carousel.Item key={slide.id} style={{ objectFit: 'contain' }}>
           <img
-            style={{ objectFit: 'contain', width: '100%' }}
+            style={{ objectFit: 'fill', width: '100%' }}
             src={slide.img}
             alt="First slide"
           />

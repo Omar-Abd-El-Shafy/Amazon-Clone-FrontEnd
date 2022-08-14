@@ -41,7 +41,6 @@ import SearchResults from "./pages/SearchResults";
 import UpdateName from "./Components/user/UpdateName";
 import UpdatePhone from "./Components/user/UpdatePhone";
 import UpdateEmail from "./Components/user/UpdateEmail";
-import ProHome from "./Components/Products/Products";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -138,7 +137,6 @@ function App() {
                 element={<SearchResults />}
               />
               <Route path="/CartPage" element={<CartPage />} />
-              <Route path="/ProHome" element={<ProHome />} />
               <Route path="/ShippingAdress" element={<ShippingAdress />} />
               <Route path="/Payment" element={<Payment />} />
               <Route path="/PlaceOrder" element={<PlaceOrder />} />

@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import {
   useGetAllCategoriesQuery,
   useGetdAlldepartmentQuery,
-} from '../../Redux/Api';
+} from '../../Redux/prodactsApi';
 import SidebarMenu from './SidebarMenu';
 import Loading from '../Loading/Loading';
 function SidebarList() {
@@ -22,9 +22,7 @@ function SidebarList() {
     );
   }
 
-  if (!department?.data) {
-    return <div>No products</div>;
-  }
+
 
   return (
     <Nav defaultActiveKey="/home" className="flex-column">

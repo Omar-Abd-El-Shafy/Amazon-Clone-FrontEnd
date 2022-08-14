@@ -21,9 +21,6 @@ function ProHome({ cat }) {
     );
   }
 
-  if (!data?.data) {
-    return <div>No products</div>;
-  }
 
 
   // const products = data.products;

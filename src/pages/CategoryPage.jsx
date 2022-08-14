@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetProdactCategoriesQuery } from '../Redux/Api';
+import { useGetProdactCategoriesQuery } from '../Redux/prodactsApi';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Products from '../Components/Products/Products';

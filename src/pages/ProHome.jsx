@@ -27,9 +27,6 @@ function ProHome() {
     );
   }
 
-  if (!products?.data) {
-    return <div>No products</div>;
-  }
 
   //  const Dispatch = useDispatch();
   //  const handleAddToCart = () => {
