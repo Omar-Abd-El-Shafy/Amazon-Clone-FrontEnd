@@ -25,7 +25,7 @@ const Home = (props) => {
       </Helmet>
       <MainCarousel />
       <Categorier />
-      <Products />
+      {/* <Products /> */}
     </>
   );
 };
