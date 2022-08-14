@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../index.css';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 import { Row } from 'react-bootstrap';
-import { useGetAllProdactsQuery } from '../../Redux/prodactsApi';
+import { useGetAllProdactsQuery } from '../../Redux/Api';
 import ProductsItem from './ProductsItem';
+import Pages from '../Pagination/Pages';
 
-function ProHome({ cat, sort, filters }) {
-  const {
-    data: products,
-    error,
-    isLoading: loading,
-  } = useGetAllProdactsQuery();
+function ProHome({ cat }) {
+  console.log( cat )
+  const [page, setPage] = useState(1);
+  const { data, isLoading: loading, isFetching } = useGetAllProdactsQuery(page);
+  const products = data.products;
+  console.log('products');
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
+  if (!data?.data) {
+    return <div>No products</div>;
+  }
+
+
+  // const products = data.products;
+  // console.log(data);
+  //  console.log(products);
+  // console.log(products.products);
   //   const [filterdPro, setFilters] = useState([]);
   //   useEffect(() => {
   //     cat &&
@@ -48,27 +65,29 @@ function ProHome({ cat, sort, filters }) {
 
   return (
     <>
-      <h1>Result</h1>
+      <h1>Products</h1>
       <div className="products">
-        {loading ? (
-          <Loading />
-        ) : error ? (
-          <Error error={error} variant="danger" />
-        ) : (
-          <Row>
-            {cat
-              ? cat.map((product) => (
-                  <>
-                    <ProductsItem key={product._id} product={product} />
-                  </>
-                ))
-              : products
-                  .slice(0, 8)
-                  .map((product) => (
-                    <ProductsItem key={product._id} product={product} />
-                  ))}
-          </Row>
-        )}
+        <Row>
+          {cat
+            ? cat.slice(0, 8).map((product) => (
+                <>
+                  <ProductsItem key={product._id} product={product} />
+                </>
+              ))
+            : products
+                .slice(0, 8)
+                .map((product) => (
+                  <ProductsItem key={product._id} product={product} />
+                ))}
+        </Row>
+
+        {/* <Pages />
+        <button onClick={() => setPage(page - 1)} loading={isFetching}>
+          Previous
+        </button>
+        <button onClick={() => setPage(page + 1)} loading={isFetching}>
+          Next
+        </button> */}
       </div>
     </>
   );

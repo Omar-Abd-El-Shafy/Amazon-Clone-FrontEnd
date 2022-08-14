@@ -6,38 +6,45 @@ import Container from 'react-bootstrap/Container';
 import {
   useGetAllCategoriesQuery,
   useGetdAlldepartmentQuery,
-} from '../../Redux/prodactsApi';
+} from '../../Redux/Api';
 import SidebarMenu from './SidebarMenu';
+import Loading from '../Loading/Loading';
 function SidebarList() {
   const {
     data: department,
-    isError,
-    error,
-    isLoading: loading,
+     isLoading: loading, isFetching
   } = useGetdAlldepartmentQuery();
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
+  if (!department?.data) {
+    return <div>No products</div>;
+  }
+
   return (
     <Nav defaultActiveKey="/home" className="flex-column">
       <h5>Shop By department</h5>
-      {loading ? (
-        <div>department ....</div>
-      ) : error ? (
-        { error }
-      ) : (
-        <>
-          {department.map((item) => (
-            <Navbar bg="light">
-              <Container fluid>
-                <Navbar.Brand key={item._id}>{item.name}</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbar-dark-example" />
-                <Navbar.Collapse id="navbar-dark-example">
-                  <Nav>
-                    <SidebarMenu item={item} />
-                  </Nav>
-                </Navbar.Collapse>
-              </Container>
-            </Navbar>
-          ))}
-          {/* 
+
+      <>
+        {department.map((item) => (
+          <Navbar bg="light">
+            <Container fluid>
+              <Navbar.Brand key={item._id}>{item.name}</Navbar.Brand>
+              <Navbar.Toggle aria-controls="navbar-dark-example" />
+              <Navbar.Collapse id="navbar-dark-example">
+                <Nav>
+                  <SidebarMenu item={item} />
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        ))}
+        {/* 
           
             
               {
@@ -57,8 +64,7 @@ function SidebarList() {
               }
            
            */}
-        </>
-      )}
+      </>
 
       {/* <h5>Shop By department</h5>
       {loading ? (

@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const prodactsApi = createApi({
-  reducerPath: 'prodactsApi',
+export const Api = createApi({
+  reducerPath: 'Api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://amazon-clone-deploy.herokuapp.com/',
   }),
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
-      query: () => 'product',
+      query: (page = 1) => `product?page=${page}`,
     }),
     getSingleProdact: builder.query({
       query: (id) => `product/one/${id}`,
@@ -16,11 +16,11 @@ export const prodactsApi = createApi({
       query: () => `category`,
     }),
     getProdactCategories: builder.query({
-      query: (id) => {
+      query: (id, page = 1) => {
         console.log('category' + id);
         return {
           method: 'GET',
-          url: `product?category=${id}`,
+          url: `/product/search?page=${page}&category=${id}`,
         };
       },
     }),
@@ -39,4 +39,4 @@ export const {
   useGetProdactCategoriesQuery,
   useGetdAlldepartmentQuery,
   useGetCategorydepartmentQuery,
-} = prodactsApi;
+} = Api;

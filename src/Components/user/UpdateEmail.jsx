@@ -6,13 +6,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const UpdateEmail = () => {
   const user = useSelector((state) => state.user.loggedInUser.user.email);
   //   const token = useSelector((state) => state.user.loggedInUser.token);
   //   const { loading, error } = useSelector((state) => state.user);
   //   console.log(token);
-    console.log(user);
+  console.log(user);
   // props.funcNav(false);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -26,8 +28,19 @@ const UpdateEmail = () => {
 
   return (
     <Container style={{ maxWidth: '600px' }}>
+      <Row>
+        <Link to={'/profile'}>
+          <h1>
+            back to your account {'  '}
+            <RiArrowGoBackFill />
+          </h1>
+        </Link>
+        <hr />
+      </Row>
       <Form>
-        <Helmet><title>Edit profoil information </title></Helmet>
+        <Helmet>
+          <title>Edit profoil information </title>
+        </Helmet>
         <h4 className="text-dark"> Change your email</h4>
         <Form.Text className="text-muted">
           If you want to change the name associated with your Amazon customer

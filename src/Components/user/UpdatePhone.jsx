@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { RiArrowGoBackFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 const UpdatePhone = () => {
   const user = useSelector((state) => state.user.loggedInUser.user.phone);
@@ -24,6 +26,15 @@ const UpdatePhone = () => {
 
   return (
     <Container style={{ maxWidth: '600px' }}>
+      <Row>
+        <Link to={'/profile'}>
+          <h1>
+            back to your account {'  '}
+            <RiArrowGoBackFill />
+          </h1>
+        </Link>
+        <hr />
+      </Row>
       <Form>
         <Helmet>
           <title>Edit profoil information </title>

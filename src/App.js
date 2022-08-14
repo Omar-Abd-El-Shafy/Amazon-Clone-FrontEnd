@@ -41,6 +41,7 @@ import SearchResults from "./pages/SearchResults";
 import UpdateName from "./Components/user/UpdateName";
 import UpdatePhone from "./Components/user/UpdatePhone";
 import UpdateEmail from "./Components/user/UpdateEmail";
+import ProHome from "./Components/Products/Products";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -116,7 +117,6 @@ function App() {
               <Route path="/UpdateName" element={<UpdateName />} />
               <Route path="/UpdatePhone" element={<UpdatePhone />} />
               <Route path="/UpdateEmail" element={<UpdateEmail />} />
-
               <Route
                 path="/forgot-password"
                 element={<ForgotPassword funcNav={setShowNav} />}
@@ -125,17 +125,20 @@ function App() {
                 path="/password-reset/:id/:token"
                 element={<PasswordReset />}
               />
+              {/* /product/search?category=gg */}
               {/* /product?category=62e10691f51e881cae88cf9f */}
-              <Route path="/product/category/:id" element={<CategoryPage />} />
+              <Route
+                path="/product/search/category/:id"
+                element={<CategoryPage />}
+              />
               <Route path="/product/one/:id" element={<ProductDetails />} />
-
               <Route path={'department/:id'} element={<Department />} />
               <Route
                 path="/SearchResults/:search"
                 element={<SearchResults />}
               />
               <Route path="/CartPage" element={<CartPage />} />
-
+              <Route path="/ProHome" element={<ProHome />} />
               <Route path="/ShippingAdress" element={<ShippingAdress />} />
               <Route path="/Payment" element={<Payment />} />
               <Route path="/PlaceOrder" element={<PlaceOrder />} />

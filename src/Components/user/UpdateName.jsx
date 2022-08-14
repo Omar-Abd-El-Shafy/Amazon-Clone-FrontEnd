@@ -3,14 +3,15 @@ import React from 'react';
 import { userSliceActions } from '../../Redux/userSlice';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { IoSendOutline } from 'react-icons/io5';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const UpdateName = () => {
-  const user = useSelector((state) => state.user.loggedInUser.user.name);
-  const token = useSelector((state) => state.user.loggedInUser.token);
+  // const user = useSelector((state) => state.user.loggedInUser.user.name);
+  // const token = useSelector((state) => state.user.loggedInUser.token);
   // console.log(token);
   // props.funcNav(false);
   const dispatch = useDispatch();
@@ -40,14 +41,23 @@ const UpdateName = () => {
   //     };
   //     update();
   //   }, [name, token]);
-    const updateHandler = (e) => {
-      e.preventDefault();
-      // dispatch(userSliceActions.update({ name, token }));
-    };
-    
+  const updateHandler = (e) => {
+    e.preventDefault();
+    // dispatch(userSliceActions.update({ name, token }));
+  };
+
   // console.log(updateHandler('name', 'token' ));
   return (
     <Container style={{ maxWidth: '600px' }}>
+      <Row>
+        <Link to={'/profile'}>
+          <h1>
+            back to your account {'  '}
+            <RiArrowGoBackFill />
+          </h1>
+        </Link>
+        <hr />
+      </Row>
       <Form>
         <Helmet>
           <title>Edit profoil information </title>
@@ -63,7 +73,7 @@ const UpdateName = () => {
           <Form.Label>user Name</Form.Label>
           <Form.Control
             type="email"
-            placeholder={user}
+            // placeholder={user}
             onChange={(e) => setName(e.target.value)}
           />
           <Button
