@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const Updatepass = () => {
   const user = useSelector((state) => state.user.loggedInUser.user.password);
@@ -25,6 +27,15 @@ const Updatepass = () => {
 
   return (
     <Container style={{ maxWidth: '600px' }}>
+      <Row>
+        <Link to={'/profile'}>
+          <h1>
+            back to your account {'  '}
+            <RiArrowGoBackFill />
+          </h1>
+        </Link>
+        <hr />
+      </Row>
       <Form>
         <Helmet>
           <title>Edit profoil information </title>

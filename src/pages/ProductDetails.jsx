@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetSingleProdactQuery } from "../Redux/prodactsApi";
+import { useGetSingleProdactQuery } from '../Redux/prodactsApi';
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Rating from "../Components/Rating/Rating";

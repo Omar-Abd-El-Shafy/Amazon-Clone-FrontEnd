@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import { Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import UpdateName from '../Components/user/UpdateName';
+import Error from '../Components/Error/Error';
 function Profile() {
   // const token = useSelector((state) => state.user.loggedInUser.token);
   const user = useSelector((state) => state.user.loggedInUser.user);
@@ -17,14 +18,24 @@ function Profile() {
   //   e.preventDefault();
   //   dispatch(userSliceActions.update({ name }));
   // };
+if (loading) {
+  return (
+    <div>
+      <Loading />
+    </div>
+  );
+}
+if (error) {
+  return (
+    <div>
+      <Error error={error.message} />
+    </div>
+  );
+}
 
   return (
     <Container style={{ maxWidth: '600px' }}>
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        error.message
-      ) : (
+      
         <>
           <Helmet>{user.name}</Helmet>
 
@@ -80,7 +91,7 @@ function Profile() {
             </ListGroup.Item>
           </ListGroup>
         </>
-      )}
+     
     </Container>
   );
 }
