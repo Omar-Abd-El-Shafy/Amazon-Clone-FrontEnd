@@ -29,8 +29,8 @@ function Profile() {
           <Helmet>{user.name}</Helmet>
 
           <h1 className="my-3">hello {user.name} </h1>
-          <ListGroup>
-            <ListGroup.Item className="d-flex justify-content-between">
+          <ListGroup className="border border-4 rounded-5">
+            <ListGroup.Item className="d-flex justify-content-between border border-1">
               <ListGroup.Item style={{ border: 'none' }}>
                 user name : {user.name}
               </ListGroup.Item>{' '}

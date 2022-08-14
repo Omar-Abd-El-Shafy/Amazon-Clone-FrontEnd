@@ -7,7 +7,6 @@ import { Helmet } from "react-helmet-async";
 import Card from "react-bootstrap/Card";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { prodacDeailUrl } from "../../Redux/URL";
 
 const ProductsItem = ({ product }) => {
     // console.log(product);
@@ -21,7 +20,7 @@ const ProductsItem = ({ product }) => {
           className="shadow border-0 rounded-5 bg-warning bg-opacity-10"
           style={{ height: '100%' }}
         >
-          <Link to={`${prodacDeailUrl}${product._id}`}>
+          <Link to={`/product/one/${product._id}`}>
             <img
               className="card-img-top p-3"
               src={product.image_path[1]}
@@ -38,7 +37,7 @@ const ProductsItem = ({ product }) => {
               borderRadius: '18px',
             }}
           >
-            <Link to={`${prodacDeailUrl}${product._id}`}>
+            <Link to={`/product/one/${product._id}`}>
               <Helmet>{product.name}</Helmet>
               <Card.Title>{product.name}</Card.Title>
               <span className="text-secondary">{product.category.name}</span>

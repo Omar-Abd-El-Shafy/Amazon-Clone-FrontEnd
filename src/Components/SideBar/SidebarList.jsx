@@ -1,8 +1,13 @@
 import { Row } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import { IoIosArrowForward } from 'react-icons/io';
-import { useGetAllCategoriesQuery, useGetdAlldepartmentQuery } from '../../Redux/prodactsApi';
-import { SingledepartmentUrl, ProdactCategoriesUrl } from '../../Redux/URL';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Container from 'react-bootstrap/Container';
+import {
+  useGetAllCategoriesQuery,
+  useGetdAlldepartmentQuery,
+} from '../../Redux/prodactsApi';
+import SidebarMenu from './SidebarMenu';
 function SidebarList() {
   const {
     data: department,
@@ -10,10 +15,6 @@ function SidebarList() {
     error,
     isLoading: loading,
   } = useGetdAlldepartmentQuery();
-
-  const { data: category } = useGetAllCategoriesQuery();
-
-
   return (
     <Nav defaultActiveKey="/home" className="flex-column">
       <h5>Shop By department</h5>
@@ -22,30 +23,53 @@ function SidebarList() {
       ) : error ? (
         { error }
       ) : (
-        <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
+        <>
           {department.map((item) => (
-            <Nav.Link
-              key={item._id}
-              href={`${SingledepartmentUrl}${item._id}`}
-              className="sidebar-navs d-flex justify-content-between"
-            >
-              {item.name}
-              <IoIosArrowForward />
-            </Nav.Link>
+            <Navbar bg="light">
+              <Container fluid>
+                <Navbar.Brand key={item._id}>{item.name}</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbar-dark-example" />
+                <Navbar.Collapse id="navbar-dark-example">
+                  <Nav>
+                    <SidebarMenu item={item} />
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
           ))}
-        </Row>
+          {/* 
+          
+            
+              {
+                
+                  
+                  <NavDropdown.Item href="#action/3.2">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    Something
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">
+                    Separated link
+                  </NavDropdown.Item>
+                
+              }
+           
+           */}
+        </>
       )}
-      <h5>Shop By Category</h5>
+
+      {/* <h5>Shop By department</h5>
       {loading ? (
-        <div>Category ....</div>
-      ) : isError ? (
+        <div>department ....</div>
+      ) : error ? (
         { error }
       ) : (
         <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
-          {category.map((item) => (
+          {department.map((item) => (
             <Nav.Link
-              key={item._id}
-              href={`${ProdactCategoriesUrl}${item._id}`}
+              href={`department/${item._id}`}
               className="sidebar-navs d-flex justify-content-between"
             >
               {item.name}
@@ -53,7 +77,7 @@ function SidebarList() {
             </Nav.Link>
           ))}
         </Row>
-      )}
+      )} */}
     </Nav>
   );
 }

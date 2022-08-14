@@ -37,11 +37,7 @@ import ShippingAdress from "./pages/ShippingAdress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import SearchResults from "./pages/SearchResults";
-import {
-    prodacDeailUrl,
-    ProdactCategoriesUrl,
-    SingledepartmentUrl,
-} from "./Redux/URL";
+
 import UpdateName from "./Components/user/UpdateName";
 import UpdatePhone from "./Components/user/UpdatePhone";
 import UpdateEmail from "./Components/user/UpdateEmail";
@@ -94,99 +90,78 @@ function App() {
     // userId: loggedInUser?.id,
     // token: loggedInUser?.userToken,
 
-    const [showNav, setShowNav] = useState(true);
-    return (
-        <Router>
-            <ToastContainer
-                autoClose="1000"
-                theme="colored"
-                position="bottom-left"
-                transition={Flip}
-            />
-            <div className="d-flex flex-column main">
-                {showNav && (
-                    <div>
-                        <Header />
-                    </div>
-                )}
-                {showNav && <SideBar />}
-                <main>
-                    <Container fluid className="mt-5 text-capitalize">
-                        <Routes>
-                            <Route
-                                exact
-                                path="/"
-                                element={<Home funcNav={setShowNav} />}
-                            />
-                            <Route
-                                path="/login"
-                                element={<Login funcNav={setShowNav} />}
-                            />
-                            <Route
-                                path="/signup"
-                                element={<Signup funcNav={setShowNav} />}
-                            />
-                            <Route path="/profile" element={<Profile />} />
-                            <Route
-                                path="/forgot-password"
-                                element={
-                                    <ForgotPassword funcNav={setShowNav} />
-                                }
-                            />
-                            <Route
-                                path="/password-reset/:id/:token"
-                                element={<PasswordReset />}
-                            />
-                            {/* /product?category=62e10691f51e881cae88cf9f */}
-                            <Route
-                                path={`${ProdactCategoriesUrl}id`}
-                                element={<CategoryPage />}
-                            />
-                            <Route
-                                path={`${prodacDeailUrl}:id`}
-                                element={<ProductDetails />}
-                            />
-                            <Route
-                                path={`${SingledepartmentUrl}:id`}
-                                element={<Department />}
-                            />
-                            <Route
-                                path="/SearchResults/:search"
-                                element={<SearchResults />}
-                            />
-                            <Route path="CartPage" element={<CartPage />} />
-                            <Route
-                                path="ShippingAdress"
-                                element={<ShippingAdress />}
-                            />
-                            <Route path="Payment" element={<Payment />} />
-                            <Route path="PlaceOrder" element={<PlaceOrder />} />
-                            <Route path="About" element={<About />} />
-                            {/* //////////////////////////Admin/////////////////////// */}
-                            <Route
-                                path="/dashboard"
-                                element={<Dashboard funcNav={setShowNav} />}
-                            >
-                                <Route index element={<DashMain />} />
-                                <Route
-                                    path="DashProducts"
-                                    element={<DashProducts />}
-                                />
-                                <Route path="DashMain" element={<DashMain />} />
-                            </Route>
-                            {/* <Route path="/addProduct" element={<AddProduct />} /> */}
-                            <Route path="*" element={<NoTFound />} />
-                        </Routes>
-                    </Container>
-                </main>
-                {showNav && (
-                    <footer>
-                        <BackTop />
-                        <Footer />
-                    </footer>
-                )}
-            </div>
-        </Router>
-    );
+  const [showNav, setShowNav] = useState(true);
+  return (
+    <Router>
+      <ToastContainer
+        autoClose="1000"
+        theme="colored"
+        position="bottom-left"
+        transition={Flip}
+      />
+      <div className="d-flex flex-column main">
+        {showNav && (
+          <div>
+            <Header />
+          </div>
+        )}
+        {showNav && <SideBar />}
+        <main>
+          <Container fluid className="mt-5 text-capitalize">
+            <Routes>
+              <Route exact path="/" element={<Home funcNav={setShowNav} />} />
+              <Route path="/login" element={<Login funcNav={setShowNav} />} />
+              <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/UpdateName" element={<UpdateName />} />
+              <Route path="/UpdatePhone" element={<UpdatePhone />} />
+              <Route path="/UpdateEmail" element={<UpdateEmail />} />
+
+              <Route
+                path="/forgot-password"
+                element={<ForgotPassword funcNav={setShowNav} />}
+              />
+              <Route
+                path="/password-reset/:id/:token"
+                element={<PasswordReset />}
+              />
+              {/* /product?category=62e10691f51e881cae88cf9f */}
+              <Route path="CategoryPage=id" element={<CategoryPage />} />
+              <Route path="/product/one/:id" element={<ProductDetails />} />
+
+              <Route path={'department/:id'} element={<Department />} />
+              <Route
+                path="/SearchResults/:search"
+                element={<SearchResults />}
+              />
+              <Route path="/CartPage" element={<CartPage />} />
+
+              <Route path="/ShippingAdress" element={<ShippingAdress />} />
+              <Route path="/Payment" element={<Payment />} />
+              <Route path="/PlaceOrder" element={<PlaceOrder />} />
+              <Route path="/About" element={<About />} />
+              {/* //////////////////////////Admin/////////////////////// */}
+              <Route
+                path="/dashboard"
+                element={<Dashboard funcNav={setShowNav} />}
+              >
+                <Route index element={<DashMain />} />
+                <Route path="DashProducts" element={<DashProducts />} />
+                <Route path="DashMain" element={<DashMain />} />
+              </Route>
+              {/* <Route path="/addProduct" element={<AddProduct />} /> */}
+              {/* <Route path="*" element={<NoTFound />} /> */}
+            </Routes>
+          </Container>
+        </main>
+        {showNav && (
+          <footer>
+            <BackTop />
+            <Footer />
+          </footer>
+        )}
+      </div>
+    </Router>
+  );
 }
 export default App;

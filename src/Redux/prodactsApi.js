@@ -19,16 +19,16 @@ export const prodactsApi = createApi({
       query: (id) => {
         console.log('category' + id);
         return {
-          url: `product?category=${id}`,
           method: 'GET',
+          url: `product?category=${id}`,
         };
       },
     }),
     getdAlldepartment: builder.query({
       query: () => `department`,
     }),
-    getSingledepartment: builder.query({
-      query: (id) => `department/${id}`,
+    getCategorydepartment: builder.query({
+      query: (id) => `category/dept/${id}`,
     }),
   }),
 });
@@ -38,5 +38,5 @@ export const {
   useGetAllCategoriesQuery,
   useGetProdactCategoriesQuery,
   useGetdAlldepartmentQuery,
-  useGetSingledepartmentQuery,
+  useGetCategorydepartmentQuery,
 } = prodactsApi;
