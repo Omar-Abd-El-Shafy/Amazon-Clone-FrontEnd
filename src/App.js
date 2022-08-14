@@ -126,7 +126,7 @@ function App() {
                 element={<PasswordReset />}
               />
               {/* /product?category=62e10691f51e881cae88cf9f */}
-              <Route path="CategoryPage=id" element={<CategoryPage />} />
+              <Route path="/product/category/:id" element={<CategoryPage />} />
               <Route path="/product/one/:id" element={<ProductDetails />} />
 
               <Route path={'department/:id'} element={<Department />} />

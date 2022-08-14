@@ -4,7 +4,6 @@ import CategoryItem from './CategoryItem.jsx';
 import Error from '../Error/Error';
 import Loading from '../Loading/Loading';
 import { Row } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
 
 const Categorier = () => {
   const {

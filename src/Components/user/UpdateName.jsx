@@ -49,6 +49,10 @@ const UpdateName = () => {
   return (
     <Container style={{ maxWidth: '600px' }}>
       <Form>
+        <Helmet>
+          <title>Edit profoil information </title>
+        </Helmet>
+
         <h4 className="text-dark"> Change your name</h4>
         <Form.Text className="text-muted">
           If you want to change the name associated with your Amazon customer

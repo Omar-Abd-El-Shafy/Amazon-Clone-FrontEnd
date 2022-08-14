@@ -6,6 +6,7 @@ import Products from '../Components/Products/Products';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Loading from '../Components/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 const CategoryPage = (item) => {
   const param = useParams();
   const { id } = param;
@@ -16,7 +17,7 @@ const CategoryPage = (item) => {
     data: cat,
   } = useGetProdactCategoriesQuery(id);
   console.log('cat');
-  console.log(cat);
+  console.log(cat.name);
 
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
@@ -31,81 +32,86 @@ const CategoryPage = (item) => {
 
   return (
     <>
-      { loding ? ( <Loading /> ) : isError ? ( error.error ) : (
-       
+      {loding ? (
+        <Loading />
+      ) : isError ? (
+        error.error
+      ) : (
         <Container>
-      <Container>
-        <Row>
-          <h1>{cat.name}</h1>
-        </Row>
-        <Col className=" d-flex justify-content-between  filter">
-          {/* <Button variant="transparent">Sort by</Button> */}
-          <Dropdown as={ButtonGroup} className="align-items-center">
-            <span className="mx-2 fw-bold">Sort by :</span>
-            <Dropdown.Toggle
-              split
-              // variant="transparent"
-              // id="dropdown btn-group"
-              as="select"
-              style={{
-                outline: 'none',
-                padding: '.150rem .150rem',
-                cursor: 'pointer',
-                backgroundColer: 'transparent',
-                border: '2px solid #dee2e6',
-                borderRadius: '.4rem',
-                color: '#212529',
-              }}
-              name="sort"
-              onChange={(e) => setSort(e.target.value)}
-            >
-              <Dropdown.Item value="newest" as="option">
-                newest
-              </Dropdown.Item>
-              <Dropdown.Item value="asc" as="option">
-                Price: Low to High
-              </Dropdown.Item>
-              <Dropdown.Item value="desc" as="option">
-                Price: High to Low
-              </Dropdown.Item>
-              <Dropdown.Item value="Review" as="option">
-                Avg. Customer Review
-              </Dropdown.Item>
-            </Dropdown.Toggle>
-          </Dropdown>
+          <Container>
+            <Row>
+              <Helmet>
+                <title>{cat.name}</title>
+              </Helmet>
 
-          <Dropdown as={ButtonGroup} className="align-item-center">
-            <span className="mx-2 fw-bold">filters :</span>
-            <Dropdown.Toggle
-              split
-              // variant="transparent"
-              // id="dropdown btn-group"
-              as="select"
-              style={{
-                outline: 'none',
-                padding: '.150rem .150rem',
-                cursor: 'pointer',
-                backgroundColer: 'transparent',
-                border: '2px solid #dee2e6',
-                borderRadius: '.4rem',
-                color: '#212529',
-              }}
-              name="Filters"
-              onChange={handelFilters}
-            >
-              <Dropdown.Item as="option">Rating</Dropdown.Item>
-              <Dropdown.Item as="option">Rating</Dropdown.Item>
-              <Dropdown.Item as="option">Rating</Dropdown.Item>
-            </Dropdown.Toggle>
-          </Dropdown>
-        </Col>
-      </Container>
-      <Products cat={cat} filters={filter} sort={sort} />
-    </Container>
-        
+              <h1>{cat.name}</h1>
+            </Row>
+            <Col className=" d-flex justify-content-between  filter">
+              {/* <Button variant="transparent">Sort by</Button> */}
+              <Dropdown as={ButtonGroup} className="align-items-center">
+                <span className="mx-2 fw-bold">Sort by :</span>
+                <Dropdown.Toggle
+                  split
+                  // variant="transparent"
+                  // id="dropdown btn-group"
+                  as="select"
+                  style={{
+                    outline: 'none',
+                    padding: '.150rem .150rem',
+                    cursor: 'pointer',
+                    backgroundColer: 'transparent',
+                    border: '2px solid #dee2e6',
+                    borderRadius: '.4rem',
+                    color: '#212529',
+                  }}
+                  name="sort"
+                  onChange={(e) => setSort(e.target.value)}
+                >
+                  <Dropdown.Item value="newest" as="option">
+                    newest
+                  </Dropdown.Item>
+                  <Dropdown.Item value="asc" as="option">
+                    Price: Low to High
+                  </Dropdown.Item>
+                  <Dropdown.Item value="desc" as="option">
+                    Price: High to Low
+                  </Dropdown.Item>
+                  <Dropdown.Item value="Review" as="option">
+                    Avg. Customer Review
+                  </Dropdown.Item>
+                </Dropdown.Toggle>
+              </Dropdown>
+
+              <Dropdown as={ButtonGroup} className="align-item-center">
+                <span className="mx-2 fw-bold">filters :</span>
+                <Dropdown.Toggle
+                  split
+                  // variant="transparent"
+                  // id="dropdown btn-group"
+                  as="select"
+                  style={{
+                    outline: 'none',
+                    padding: '.150rem .150rem',
+                    cursor: 'pointer',
+                    backgroundColer: 'transparent',
+                    border: '2px solid #dee2e6',
+                    borderRadius: '.4rem',
+                    color: '#212529',
+                  }}
+                  name="Filters"
+                  onChange={handelFilters}
+                >
+                  <Dropdown.Item as="option">Rating</Dropdown.Item>
+                  <Dropdown.Item as="option">Rating</Dropdown.Item>
+                  <Dropdown.Item as="option">Rating</Dropdown.Item>
+                </Dropdown.Toggle>
+              </Dropdown>
+            </Col>
+          </Container>
+          <Products cat={cat} filters={filter} sort={sort} />
+        </Container>
       )}
-    
-      </>
+    </>
   );
 };
 

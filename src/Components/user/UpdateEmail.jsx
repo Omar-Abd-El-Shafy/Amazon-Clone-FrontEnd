@@ -27,7 +27,8 @@ const UpdateEmail = () => {
   return (
     <Container style={{ maxWidth: '600px' }}>
       <Form>
-        <h4 className="text-dark"> Change your name</h4>
+        <Helmet><title>Edit profoil information </title></Helmet>
+        <h4 className="text-dark"> Change your email</h4>
         <Form.Text className="text-muted">
           If you want to change the name associated with your Amazon customer
           account, you may do so below. Be sure to click the Save Changes button

@@ -7,7 +7,7 @@ const placeOrder = () => {
   return (
     <Container style={{ maxWidth: '600px' }}>
       <CheckoutSteps step1 step2 step3 step4 />
-      <Helmet>Shipping Adress</Helmet>
+      <Helmet>place Order</Helmet>
       <h1 className="my-3">Place Order</h1>
     </Container>
   );
