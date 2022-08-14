@@ -25,7 +25,7 @@ export default function SearchResults() {
                 setError(null);
             })
             .catch((err) => {
-                setError(err.message);
+                setError(`No products found for ${param.search}`);
             });
     }, [param.search, sortBy]);
     const handleSelect = (e) => {
