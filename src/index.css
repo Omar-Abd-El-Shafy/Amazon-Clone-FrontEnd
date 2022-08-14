@@ -269,11 +269,17 @@ a:hover {
 /* searchImg */
 .searchImg {
     object-fit: contain;
+    height: 45vh;
 }
 .SearchCategory {
     position: absolute;
     top: 110px;
-    left: 1300px;
+    left: 90vw;
+}
+@media screen and (max-width: 768px) {
+    .SearchCategory {
+        left: 75vw;
+    }
 }
 .paramSearch {
     color: var(--main);
