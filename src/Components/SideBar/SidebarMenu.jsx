@@ -22,7 +22,7 @@ const SidebarMenu = ({ item }) => {
                 <NavDropdown id="nav-dropdown-dark-example" menuVariant="light">
                     {category.map((cat) => (
                         <NavDropdown.Item
-                            href={`product/search/category/${cat._id}`}
+                            href={`product/category/${cat._id}`}
                         >
                             {cat.name}
                         </NavDropdown.Item>

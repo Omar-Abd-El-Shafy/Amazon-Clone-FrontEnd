@@ -127,7 +127,7 @@ function App() {
               {/* /product/search?category=gg */}
               {/* /product?category=62e10691f51e881cae88cf9f */}
               <Route
-                path="/product/search/category/:id"
+                path="/product/category/:id"
                 element={<CategoryPage />}
               />
               <Route path="/product/one/:id" element={<ProductDetails />} />

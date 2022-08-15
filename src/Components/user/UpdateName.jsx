@@ -10,8 +10,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const UpdateName = () => {
-  // const user = useSelector((state) => state.user.loggedInUser.user.name);
-  // const token = useSelector((state) => state.user.loggedInUser.token);
+  const user = useSelector((state) => state.user.loggedInUser.user.name);
+  const token = useSelector((state) => state.user.loggedInUser.token);
   // console.log(token);
   // props.funcNav(false);
   const dispatch = useDispatch();
@@ -20,27 +20,27 @@ const UpdateName = () => {
 
   console.log(name);
 
-  // useEffect(() => {
-  //   const update = async () => {
-  //     try {
-  //       await axios
-  //       .put(
-  //         `https://amazon-clone-deploy.herokuapp.com/user/`,
-  //         { name },
-  //         {
-  //           headers: {
-  //             'x-access-token': token,
-  //           },
-  //         }
-  //         )
-  //         .then((res) => {
-  //           console.log(res.data.user.name);
-  //           // setName(res.data.user.name);
-  //         });
-  //       } catch (error) {}
-  //     };
-  //     update();
-  //   }, [name, token]);
+  useEffect(() => {
+    const update = async () => {
+      try {
+        await axios
+        .put(
+          `https://amazon-clone-deploy.herokuapp.com/user/`,
+          {name: name },
+          {
+            headers: {
+              'x-access-token': token,
+            },
+          }
+          )
+          .then((res) => {
+            console.log(res);
+            // setName(res.data.user.name);
+          });
+        } catch (error) {}
+      };
+      update();
+    }, [name, token]);
   const updateHandler = (e) => {
     e.preventDefault();
     // dispatch(userSliceActions.update({ name, token }));
@@ -73,7 +73,7 @@ const UpdateName = () => {
           <Form.Label>user Name</Form.Label>
           <Form.Control
             type="email"
-            // placeholder={user}
+            placeholder={user}
             onChange={(e) => setName(e.target.value)}
           />
           <Button

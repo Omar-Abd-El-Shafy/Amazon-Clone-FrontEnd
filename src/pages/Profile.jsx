@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import UpdateName from '../Components/user/UpdateName';
 import Error from '../Components/Error/Error';
 function Profile() {
-  // const token = useSelector((state) => state.user.loggedInUser.token);
+  const token = useSelector((state) => state.user.loggedInUser.token);
   const user = useSelector((state) => state.user.loggedInUser.user);
   const { loading, error } = useSelector((state) => state.user);
   console.log(user);
