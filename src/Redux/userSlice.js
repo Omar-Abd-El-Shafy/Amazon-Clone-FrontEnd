@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import token from "../Components/user/UpdateName";
 const initialState = {
     loading: false,
     loggedInUser: null,
@@ -28,28 +28,25 @@ export const register = createAsyncThunk("user/register", async (userData) => {
     return response.data;
 });
 
-// update user 
-export const update = createAsyncThunk( 'user/update', async (  user ) =>
-{
-  console.log(user);
-  // try {
-  //       await axios.put(
-  //       `https://amazon-clone-deploy.herokuapp.com/user/`,
-  //       {user.name},
-  //       {
-  //         headers: {
-  //           'x-access-token':user.token,
-  //         },
-  //        }
-  //     ).then((res) => {
-  //           console.log(res.data);
-  //     console.log("update: "  );
-
-  // } catch ( error ) { }
+// update user
+export const updateUser = createAsyncThunk("user", async (userData) => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+    const response = await axios
+        .put("https://amazon-clone-deploy.herokuapp.com/user", userData, {
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": `${token}`,
+            },
+        })
+        .then((response) => {
+            console.log(response.data.user.name);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    return response.data;
 });
-
-
-
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -90,25 +87,31 @@ const userSlice = createSlice({
             state.loading = false;
             state.loggedInUser = null;
             state.error = action.error.message;
-        } );
+        });
         //////////////
-           builder.addCase(update.pending, (state) => {
-             state.loading = true;
-           });
-           builder.addCase(update.fulfilled, (state, action) => {
-             state.loading = false;
-             state.loggedInUser = action.payload;
-             state.error = '';
-           });
-           builder.addCase(update.rejected, (state, action) => {
-             state.loading = false;
-             state.loggedInUser = null;
-             state.error = action.error.message;
-           });
+        builder.addCase(updateUser.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+            console.log(action.payload);
+            state.loading = false;
+            state.loggedInUser = action.payload;
+            state.error = "";
+        });
+        builder.addCase(updateUser.rejected, (state, action) => {
+            state.loading = false;
+            state.loggedInUser = null;
+            state.error = action.error.message;
+        });
     },
 });
 
-export const userSliceActions = { ...userSlice.actions, login, register };
+export const userSliceActions = {
+    ...userSlice.actions,
+    login,
+    register,
+    updateUser,
+};
 
 export default userSlice.reducer;
 // Nanousa24@
