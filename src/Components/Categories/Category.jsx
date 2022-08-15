@@ -6,30 +6,24 @@ import Loading from '../Loading/Loading';
 import { Row } from 'react-bootstrap';
 
 const Categorier = () => {
-  const {
-    data: category,
-    isLoading: loading,
-    isFetching,
-  } = useGetAllCategoriesQuery();
-;
-if (loading) {
-  return (
-    <div>
-      <Loading />
-    </div>
-  );
-}
+  const { data: category, isLoading } = useGetAllCategoriesQuery();
+
 
   return (
     <>
-      
-      <Row className="mt-4" style={ { marginRight: '0', marginLeft: ' 0' } }>
-        
-          {category.map((item) => (
-            <CategoryItem key={item._id} item={item} />
-          ))}
-        </Row>
-   
+      {isLoading ? (
+        <div>
+          <Loading />
+        </div>
+      ) : (
+        <>
+          <Row className="mt-4" style={{ marginRight: '0', marginLeft: ' 0' }}>
+            {category.map((item) => (
+              <CategoryItem key={item._id} item={item} />
+            ))}
+          </Row>
+        </>
+      )}
     </>
   );
 };

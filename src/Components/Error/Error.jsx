@@ -4,7 +4,7 @@ function Error(error) {
 
   return (
     <Alert className="m-auto" variant={error.variant || 'info'}>
-      {error.message}
+      {error}
     </Alert>
   );
 }

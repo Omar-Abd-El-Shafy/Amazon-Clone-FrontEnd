@@ -5,9 +5,10 @@ export const Api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://amazon-clone-deploy.herokuapp.com/',
   }),
+
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
-      query: (page = 1) => `product?page=${page}`,
+      query: () => `product`,
     }),
     getSingleProdact: builder.query({
       query: (id) => `product/one/${id}`,
@@ -16,11 +17,13 @@ export const Api = createApi({
       query: () => `category`,
     }),
     getProdactCategories: builder.query({
-      query: (id, page = 1) => {
+      query: (id) => {
         console.log('category' + id);
         return {
           method: 'GET',
-          url: `/product/search?page=${page}&category=${id}`,
+          // product?page=1&category=22
+          // /product/search?category=122
+          url: `/product?category=${id}`,
         };
       },
     }),

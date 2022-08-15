@@ -29,7 +29,7 @@ const CategoryItem = ({ item }) => {
             style={{ height: '18rem', width: '100%', objectFit: 'cover' }}
           />
         </Card.Body>
-        <Link className="btn " to={`product/search/category/${item._id}`}>
+        <Link className="btn " to={`product/category/${item._id}`}>
           <small className="text-primary fs-6 cat-btn">show more </small>
         </Link>
       </Card>

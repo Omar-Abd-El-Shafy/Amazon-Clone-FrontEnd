@@ -32,7 +32,7 @@ export const products = [
   {
     productsId: 3,
     productsName: 'nike shorts',
-    productsDescription: 'shorts',
+    productsDescription: '}',
     price: 20,
     quantity: 60,
     imagePath: 'assets/p3.jpg',
