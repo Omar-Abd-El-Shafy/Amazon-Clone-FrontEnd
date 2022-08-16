@@ -273,7 +273,7 @@ a:hover {
 }
 .SearchCategory {
     position: absolute;
-    top: 110px;
+    top: 90px;
     left: 90vw;
 }
 @media screen and (max-width: 768px) {
