@@ -12,12 +12,7 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 const UpdateEmail = () => {
     const [email, setEmail] = useState("");
     const token = useSelector((state) => state.user.loggedInUser?.token);
-    const userinfo = useSelector((state) => state.user.loggedInUser);
     const navigate = useNavigate();
-    if (!userinfo) {
-        navigate("/login");
-    }
-    const { user } = userinfo;
     const dispatch = useDispatch();
     const updateHandler = (e) => {
         e.preventDefault();
@@ -58,7 +53,6 @@ const UpdateEmail = () => {
                     <Form.Label>user email</Form.Label>
                     <Form.Control
                         type="email"
-                        placeholder={user.email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <Button

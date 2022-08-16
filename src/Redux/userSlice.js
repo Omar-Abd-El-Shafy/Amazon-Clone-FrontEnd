@@ -1,11 +1,14 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-//import token from "../Components/user/UpdateName";
+import tokenExpirationDate from "../pages/Login";
 const initialState = {
     loading: false,
     loggedInUser: null,
     error: "",
 };
+
+const storedData = JSON.parse(localStorage.getItem("userData"));
+
 // Generates pending, fulfilled and rejected action types
 // "https://amazon-clone-deploy.herokuapp.com/user/signup",
 
@@ -35,17 +38,29 @@ export const updateUser = createAsyncThunk("user", async (userData) => {
         email: userData.email,
         phone: userData.phone,
     };
-    console.log(userData);
-    const response = await axios.put(
-        "https://amazon-clone-deploy.herokuapp.com/user",
-        bodyParameters,
-        {
+    //console.log(userData);
+    const response = await axios
+        .put("https://amazon-clone-deploy.herokuapp.com/user", bodyParameters, {
             headers: {
                 // "Content-Type": "application/json",
                 "x-access-token": `${userData.token}`,
             },
-        }
-    );
+        })
+        .then((response) => {
+            console.log("hhddd");
+            localStorage.setItem(
+                "userData",
+                JSON.stringify({
+                    user: response.data.user,
+                    token: userData.token,
+                    expiration: storedData?.expiration,
+                })
+            );
+            return response;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     return response.data;
 });
 
@@ -112,6 +127,20 @@ const userSlice = createSlice({
             state.error = action.error.message;
         });
         //////////////
+
+        builder.addCase(updateUser.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+            state.loading = false;
+            state.loggedInUser.user = action.payload.user;
+            state.error = "";
+        });
+        builder.addCase(updateUser.rejected, (state, action) => {
+            state.loading = false;
+            state.loggedInUser = null;
+            state.error = action.error.message;
+        });
     },
 });
 
@@ -124,4 +153,3 @@ export const userSliceActions = {
 };
 
 export default userSlice.reducer;
-// Nanousa24@

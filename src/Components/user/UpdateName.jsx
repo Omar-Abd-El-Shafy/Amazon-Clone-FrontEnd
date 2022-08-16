@@ -12,12 +12,7 @@ import { toast } from "react-toastify";
 const UpdateName = () => {
     const [name, setName] = useState("");
     const token = useSelector((state) => state.user.loggedInUser?.token);
-    const userinfo = useSelector((state) => state.user.loggedInUser);
     const navigate = useNavigate();
-    if (!userinfo) {
-        navigate("/login");
-    }
-    const { user } = userinfo;
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,7 +54,7 @@ const UpdateName = () => {
                     <Form.Label>user Name</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder={user.name}
+                        // placeholder={user.name}
                         onChange={(e) => setName(e.target.value)}
                     />
                     <Button

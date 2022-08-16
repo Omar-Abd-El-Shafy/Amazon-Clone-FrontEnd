@@ -13,12 +13,7 @@ import { useEffect } from "react";
 const UpdatePhone = () => {
     const [phone, setphone] = useState("");
     const token = useSelector((state) => state.user.loggedInUser?.token);
-    const userinfo = useSelector((state) => state.user.loggedInUser);
     const navigate = useNavigate();
-    if (!userinfo) {
-        navigate("/login");
-    }
-    const { user } = userinfo;
     const dispatch = useDispatch();
 
     const updateHandler = (e) => {
@@ -61,7 +56,6 @@ const UpdatePhone = () => {
                     <Form.Label>user phone</Form.Label>
                     <Form.Control
                         type="number"
-                        placeholder={user.phone}
                         onChange={(e) => setphone(e.target.value)}
                     />
                     <Button

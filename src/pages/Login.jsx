@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 // import { api } from "../Redux/services";
-import { BiShow, BiHide } from 'react-icons/bi';
+import { BiShow, BiHide } from "react-icons/bi";
 import { userSliceActions } from "../Redux/userSlice";
 export let tokenExpirationDate;
 export default function Login(props) {
@@ -45,7 +45,7 @@ export default function Login(props) {
         } else {
             console.log("user is NOT logged in");
         }
-    }, [loggedInUser, navigate, props]);
+    }, [error, loggedInUser, navigate, props]);
 
     const loginn = (e) => {
         e.preventDefault();
@@ -120,7 +120,12 @@ export default function Login(props) {
                         >
                             Sign In
                         </Button>
-                        {error && <div> there is an error !</div>}
+                        {error && (
+                            <div className="text-danger mt-2">
+                                {" "}
+                                there is an error !
+                            </div>
+                        )}
                     </div>
                     <Col className="mb-3 text-center">
                         New to Amazon ?{"  "}

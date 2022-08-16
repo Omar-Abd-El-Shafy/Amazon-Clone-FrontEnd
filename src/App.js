@@ -51,47 +51,47 @@ import Favourite from "./pages/Favourite";
 // let logoutTimer;
 
 function App() {
-    const dispatch = useDispatch();
-    const loggedInUser = useSelector((state) => state.user.loggedInUser);
-    // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
-    // setTokenExpirationDatee(tokenExpirationDate);
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
+  // setTokenExpirationDatee(tokenExpirationDate);
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
 
-        const storedData = JSON.parse(localStorage.getItem("userData"));
-        if (
-            storedData?.user._id &&
-            storedData?.token &&
-            new Date(storedData.expiration) > new Date()
-        ) {
-            dispatch(userSliceActions.setUser(storedData));
-        }
-    }, [
-        dispatch,
-        loggedInUser?.user._id,
-        loggedInUser?.user.name,
-        loggedInUser?.token,
-    ]);
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (
+      storedData?.user._id &&
+      storedData?.token &&
+      new Date(storedData.expiration) > new Date()
+    ) {
+      dispatch(userSliceActions.setUser(storedData));
+    }
+  }, [
+    dispatch,
+    loggedInUser?.user._id,
+    loggedInUser?.user.name,
+    loggedInUser?.token,
+  ]);
 
-    // useEffect(() => {
-    //   if (loggedInUser?.userToken && tokenExpirationDate) {
-    //     const remainingTime =
-    //       tokenExpirationDate.getTime() - new Date().getTime();
-    //     logoutTimer = setTimeout(
-    //       dispatch(userSliceActions.logout()),
-    //       remainingTime
-    //     );
-    //   } else {
-    //     clearTimeout(logoutTimer);
-    //   }
-    // }, [dispatch, loggedInUser?.userToken]);
+  // useEffect(() => {
+  //   if (loggedInUser?.userToken && tokenExpirationDate) {
+  //     const remainingTime =
+  //       tokenExpirationDate.getTime() - new Date().getTime();
+  //     logoutTimer = setTimeout(
+  //       dispatch(userSliceActions.logout()),
+  //       remainingTime
+  //     );
+  //   } else {
+  //     clearTimeout(logoutTimer);
+  //   }
+  // }, [dispatch, loggedInUser?.userToken]);
 
-    // AOS.init();
-    // AOS.refresh();
+  // AOS.init();
+  // AOS.refresh();
 
-    // userId: loggedInUser?.id,
-    // token: loggedInUser?.userToken,
+  // userId: loggedInUser?.id,
+  // token: loggedInUser?.userToken,
 
   const [showNav, setShowNav] = useState(true);
   return (
@@ -134,7 +134,7 @@ function App() {
               {/* /product?category=62e10691f51e881cae88cf9f */}
               <Route path="/product/category/:id" element={<CategoryPage />} />
               <Route path="/product/one/:id" element={<ProductDetails />} />
-              <Route path={'department/:id'} element={<Department />} />
+              <Route path={"department/:id"} element={<Department />} />
               <Route
                 path="/SearchResults/:search"
                 element={<SearchResults />}
