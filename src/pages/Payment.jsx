@@ -3,25 +3,32 @@ import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
 import { Container, Form, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import { savepayment } from '../Redux/paymentSlice';
 
 const Payment = () => {
-  const [ payment, setPayment ] = useState( '' );
+  const pay = useSelector((state) => state.payment.payment);
   const Shipping = useSelector((state) => state.shipping.userAdress);
-  console.log(Shipping);
+  const [payment, setPayment] = useState(pay||' ');
+  console.log(pay);
+  // console.log(Shipping);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handelSubmit = (e) => {
     e.preventDefault();
-    navigate('/placeOrder');
+    dispatch(savepayment({payment}));
+    navigate('/PlaceOrder');
   };
   const userinfo = useSelector((state) => state.user.loggedInUser);
   useEffect(() => {
     if (!userinfo) {
       navigate('/login');
-    }
+    } 
   }, [userinfo, navigate]);
+
   return (
     <Container style={{ maxWidth: '600px' }}>
       <CheckoutSteps step1 step2 step3 />

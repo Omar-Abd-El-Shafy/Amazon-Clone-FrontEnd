@@ -3,11 +3,13 @@ import cartReducer, { getTotal } from "./cartSlice";
 import { Api } from './Api';
 import userReducer from "./userSlice";
 import shippingReducer from "./shippingSlice";
+import paymentReducer from './paymentSlice';
 const store = configureStore({
   reducer: {
     cart: cartReducer,
     user: userReducer,
     shipping: shippingReducer,
+    payment:paymentReducer,
     [Api.reducerPath]: Api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

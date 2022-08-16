@@ -1,0 +1,30 @@
+import React from 'react';
+import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
+import { Container, Row } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { RiArrowGoBackFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
+
+const placeOrder = () =>
+{
+  
+  return (
+    <Container style={{ maxWidth: '600px' }}>
+      <CheckoutSteps step1 step2 step3 step4 />
+      <Row className="mt-4">
+        <Link to={'/Payment'}>
+          <h6>
+            Change your selected payment{'  '}
+            <RiArrowGoBackFill />
+          </h6>
+        </Link>
+        <hr />
+      </Row>
+      <Helmet>place Order</Helmet>
+      <h1 className="my-3">Place Order</h1>
+    </Container>
+  );
+};
+
+export default placeOrder;
