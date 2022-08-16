@@ -37,11 +37,16 @@ const CartPage = () => {
   const Handelclear = () => {
     dispatch(clearcart());
   };
-
   const navigate = useNavigate();
-if (!cart.cartItems.length === 0) {
-  navigate('/ShippingAdress');
-}
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+
+  const HandelCheckOut = () => {
+    if (!userinfo) {
+      navigate('/login');
+    } else {
+      navigate('/ShippingAdress');
+    }
+  };
 
   return (
     <Container>
@@ -85,19 +90,19 @@ if (!cart.cartItems.length === 0) {
                     </Col>
                     <Col md={3}>
                       <Button
-                        className="bg-warning bg-opacity-10  px-2 py-0 border border-1 m-2"
+                        className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                         variant="light"
                         onClick={() => HandelDecrease(pro)}
                       >
                         <AiOutlineMinus />
                       </Button>
-                      <strong className="border border-1 rounded-2 py-1 px-2 bg-warning bg-opacity-10">
+                      <strong className=" rounded-2 py-1 px-2 bg-warning bg-opacity-10">
                         {pro.cartQuantity}
                       </strong>
                       <Button
                         disabled={pro.rating.count === pro.cartQuantity}
                         variant="light"
-                        className="bg-warning bg-opacity-10  px-2 py-0 border border-1 m-2"
+                        className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                         onClick={() => Handelincrease(pro)}
                       >
                         <AiOutlinePlus />
@@ -142,6 +147,7 @@ if (!cart.cartItems.length === 0) {
                 <ListGroup.Item>
                   <div className="d-grid">
                     <Button
+                      onClick={() => HandelCheckOut()}
                       disabled={cart.cartItems.length === 0}
                       variant="warning"
                     >

@@ -14,20 +14,26 @@ const ShippingAdress = () => {
   const [country, setCountry] = useState('');
   const [Phone, setPhone] = useState('');
   const navigate = useNavigate();
+  const userinfo = useSelector((state) => state.user.loggedInUser);
   //func
+  if (!userinfo) {
+    navigate('/login');
+  }
   const ShippingAdress = useSelector((state) => state.shipping);
   const dispatch = useDispatch();
   console.log(ShippingAdress);
- 
+
   const handelSubmit = (e) => {
     e.preventDefault();
 
     dispatch(saveShipping({ fullName, adress, city, country, Phone }));
-
-    
-    navigate('/Payment');
+    if (!userinfo) {
+      navigate('/login');
+    } else {
+      navigate('/Payment');
+    }
   };
-console.log(fullName,adress);
+  console.log(fullName, adress);
   return (
     <Container style={{ maxWidth: '600px' }}>
       <CheckoutSteps step1 step2 />
