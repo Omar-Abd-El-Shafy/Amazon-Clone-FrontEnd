@@ -21,7 +21,7 @@ function Header() {
           <img src={logo} alt="logo" className="logo" />
         </Link>
         <Search />
-        {loggedInUser?.user.name ? (
+        {loggedInUser?.user?.name ? (
           <>
             <Link to="/profile">
               <span style={{ color: "white", cursor: "pointer" }}>

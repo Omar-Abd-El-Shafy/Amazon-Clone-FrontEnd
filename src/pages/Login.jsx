@@ -29,6 +29,7 @@ export default function Login(props) {
       storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 2
     );
     if (loggedInUser?.token) {
+      // localStorage.removeItem("userData");
       localStorage.setItem(
         "userData",
         JSON.stringify({
@@ -46,7 +47,7 @@ export default function Login(props) {
     } else {
       console.log("user is NOT logged in");
     }
-  }, [loggedInUser, navigate, props]);
+  }, [error, loggedInUser, navigate, props]);
 
   const loginn = (e) => {
     e.preventDefault();

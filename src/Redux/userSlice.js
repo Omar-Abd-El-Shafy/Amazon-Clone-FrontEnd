@@ -1,11 +1,14 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-//import token from "../Components/user/UpdateName";
+import tokenExpirationDate from "../pages/Login";
 const initialState = {
   loading: false,
   loggedInUser: null,
   error: "",
 };
+
+const storedData = JSON.parse(localStorage.getItem("userData"));
+
 // Generates pending, fulfilled and rejected action types
 // "https://amazon-clone-deploy.herokuapp.com/user/signup",
 
@@ -32,22 +35,32 @@ export const register = createAsyncThunk("user/register", async (userData) => {
 export const updateUser = createAsyncThunk("user", async (userData) => {
   // const storedData = JSON.parse(localStorage.getItem("userData"));
   console.log(userData);
-  const response = await axios.put(
-    "https://amazon-clone-deploy.herokuapp.com/user",
-    { name: userData.name },
-    {
-      headers: {
-        // "Content-Type": "application/json",
-        "x-access-token": `${userData.token}`,
-      },
-    }
-  );
-  // .then((response) => {
-  //   console.log(response.data.user.name);
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
+  const response = await axios
+    .put(
+      "https://amazon-clone-deploy.herokuapp.com/user",
+      { name: userData.name },
+      {
+        headers: {
+          // "Content-Type": "application/json",
+          "x-access-token": `${userData.token}`,
+        },
+      }
+    )
+    .then((response) => {
+      console.log("hhddd");
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          user: response.data.user,
+          token: userData.token,
+          expiration: storedData.expiration,
+        })
+      );
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return response.data;
 });
 const userSlice = createSlice({
@@ -96,9 +109,10 @@ const userSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(updateUser.fulfilled, (state, action) => {
-      console.log(action.payload);
+      //console.log(action.payload.user.name);
       state.loading = false;
       state.loggedInUser.user.name = action.payload.user.name;
+      //console.log(state.loggedInUser.user.name);
       state.error = "";
     });
     builder.addCase(updateUser.rejected, (state, action) => {
