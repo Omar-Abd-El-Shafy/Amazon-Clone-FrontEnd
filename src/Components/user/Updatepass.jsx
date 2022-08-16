@@ -1,13 +1,13 @@
 import React from "react";
-
-import { userSliceActions } from '../../Redux/userSlice';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { BiShow, BiHide } from 'react-icons/bi';
-import { Helmet } from 'react-helmet-async';
-import { Button, Container, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { RiArrowGoBackFill } from 'react-icons/ri';
+import { toast } from "react-toastify";
+import { userSliceActions } from "../../Redux/userSlice";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { BiShow, BiHide } from "react-icons/bi";
+import { Helmet } from "react-helmet-async";
+import { Button, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 const Updatepass = () => {
     const [password, setPassword] = useState("");
@@ -32,6 +32,15 @@ const Updatepass = () => {
                 confirm_password,
             })
         );
+        toast.success(`Password updated Successfully`, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     };
     return (
         <Container style={{ maxWidth: "600px" }}>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { toast } from "react-toastify";
 import { userSliceActions } from "../../Redux/userSlice";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,6 +22,15 @@ const UpdateEmail = () => {
     const updateHandler = (e) => {
         e.preventDefault();
         dispatch(userSliceActions.updateUser({ email, token }));
+        toast.success(`Email updated Successfully`, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     };
 
     return (
