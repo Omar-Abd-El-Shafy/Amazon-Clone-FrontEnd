@@ -9,7 +9,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Link } from 'react-router-dom';
 import Rating from '../Components/Rating/Rating';
-import Products from '../Components/Products/Products';
+import ProductsItem from '../Components/Products/ProductsItem';
 
 export default function SearchResults() {
   let param = useParams();
@@ -58,12 +58,16 @@ export default function SearchResults() {
           </Dropdown.Item>
         </DropdownButton>
       </div>
-      
-        {products && !error ? (<Products/>
+      <Row >
+        {products && !error ? (
+          products.map((product) => {
+            return <ProductsItem product={product} />;
+          })
         ) : (
           <h1 className="w-50 m-auto">{error}</h1>
         )}
-      
+        
+      </Row>
     </>
   );
 }
