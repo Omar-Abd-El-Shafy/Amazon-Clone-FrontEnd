@@ -38,7 +38,7 @@ export const updateUser = createAsyncThunk("user", async (userData) => {
     email: userData.email,
     phone: userData.phone,
   };
-  console.log(userData);
+  //console.log(userData);
   const response = await axios
     .put("https://amazon-clone-deploy.herokuapp.com/user", bodyParameters, {
       headers: {
@@ -127,6 +127,20 @@ const userSlice = createSlice({
       state.error = action.error.message;
     });
     //////////////
+
+    builder.addCase(updateUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.loggedInUser.user.name = action.payload.user.name;
+      state.error = "";
+    });
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.loading = false;
+      state.loggedInUser = null;
+      state.error = action.error.message;
+    });
   },
 });
 
