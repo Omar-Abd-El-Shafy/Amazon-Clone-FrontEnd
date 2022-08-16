@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 // import { api } from "../Redux/services";
-import { BiShow } from "react-icons/bi";
-import { BiHide } from "react-icons/bi";
+import { BiShow, BiHide } from "react-icons/bi";
 import { userSliceActions } from "../Redux/userSlice";
 export let tokenExpirationDate;
 export default function Login(props) {
@@ -29,7 +28,6 @@ export default function Login(props) {
       storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 2
     );
     if (loggedInUser?.token) {
-      // localStorage.removeItem("userData");
       localStorage.setItem(
         "userData",
         JSON.stringify({
@@ -73,7 +71,7 @@ export default function Login(props) {
         >
           <h3 className="mb-3 text-start">Sign-In</h3>
           <Form.Group>
-            <Form.Label htmlFor="name">Email or mobile phone number</Form.Label>
+            <Form.Label htmlFor="name">Please enter your Email</Form.Label>
             <Form.Control
               type="email"
               id="name"

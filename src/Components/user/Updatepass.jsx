@@ -1,70 +1,111 @@
-import React from 'react';
-
-import { userSliceActions } from '../../Redux/userSlice';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { IoSendOutline } from 'react-icons/io5';
-import { Helmet } from 'react-helmet-async';
-import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { RiArrowGoBackFill } from 'react-icons/ri';
+import React from "react";
+import { toast } from "react-toastify";
+import { userSliceActions } from "../../Redux/userSlice";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { BiShow, BiHide } from "react-icons/bi";
+import { Helmet } from "react-helmet-async";
+import { Button, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 const Updatepass = () => {
-  const user = useSelector((state) => state.user.loggedInUser.user.password);
-  //   const token = useSelector((state) => state.user.loggedInUser.token);
-  //   const { loading, error } = useSelector((state) => state.user);
-  //   console.log(token);
-  // props.funcNav(false);
-  const dispatch = useDispatch();
-  const [password, setPassword] = useState('');
-  //   const [email, setEmail] = useState('');
-  //   const [pass, setPass] = useState('');
-  console.log(password);
-  const updateHandler = (e) => {
-    e.preventDefault();
-    // dispatch(userSliceActions.update({ name }));
-  };
+    const [password, setPassword] = useState("");
+    const [confirm_password, setConfirmPassword] = useState("");
+    console.log(confirm_password);
+    console.log(password);
+    const [isRevealedPassword, setIsRevealedPassword] = useState(false);
+    const token = useSelector((state) => state.user.loggedInUser?.token);
+    const userinfo = useSelector((state) => state.user.loggedInUser);
+    const navigate = useNavigate();
+    if (!userinfo) {
+        navigate("/login");
+    }
+    const { user } = userinfo;
+    const dispatch = useDispatch();
+    const updateHandler = (e) => {
+        e.preventDefault();
+        dispatch(
+            userSliceActions.updateUserPassword({
+                password,
+                token,
+                confirm_password,
+            })
+        );
+        toast.success(`Password updated Successfully`, {
+            position: "bottom-left",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    };
+    return (
+        <Container style={{ maxWidth: "600px" }}>
+            <Row>
+                <Link to={"/profile"}>
+                    <h1>
+                        back to your account {"  "}
+                        <RiArrowGoBackFill />
+                    </h1>
+                </Link>
+                <hr />
+            </Row>
+            <Form>
+                <Helmet>
+                    <title>Edit profile information </title>
+                </Helmet>
 
-  return (
-    <Container style={{ maxWidth: '600px' }}>
-      <Row>
-        <Link to={'/profile'}>
-          <h1>
-            back to your account {'  '}
-            <RiArrowGoBackFill />
-          </h1>
-        </Link>
-        <hr />
-      </Row>
-      <Form>
-        <Helmet>
-          <title>Edit profoil information </title>
-        </Helmet>
+                <h4 className="text-dark"> Change your password</h4>
+                <Form.Text className="text-muted">
+                    If you want to change the password associated with your
+                    Amazon customer account, you may do so below. Be sure to
+                    click the Save Changes button when you are done.
+                </Form.Text>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>user password</Form.Label>
+                    <Form.Control
+                        type={isRevealedPassword ? "text" : "password"}
+                        placeholder={user.password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <Form.Text className="text-dark">
+                        <div
+                            className="passwordToggleUpdatePass"
+                            variant="outline-dark"
+                            onClick={() =>
+                                setIsRevealedPassword(!isRevealedPassword)
+                            }
+                        >
+                            {isRevealedPassword ? <BiHide /> : <BiShow />}
+                        </div>
+                    </Form.Text>
+                    <Form.Label>Confirm password</Form.Label>
+                    <Form.Control
+                        type={"password"}
+                        placeholder={user.password}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <Form.Text className="text-dark">
+                        <div
+                            className="passwordToggleUpdatePass"
+                            variant="outline-dark"
+                        ></div>
+                    </Form.Text>
 
-        <h4 className="text-dark"> Change your name</h4>
-        <Form.Text className="text-muted">
-          If you want to change the password associated with your Amazon
-          customer account, you may do so below. Be sure to click the Save
-          Changes button when you are done.
-        </Form.Text>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>user password</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder={user}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            onClick={updateHandler}
-            className="mt-2 "
-            variant="warning"
-            type="submit"
-          >
-            Save changes
-          </Button>
-        </Form.Group>
-      </Form>
-    </Container>
-  );
+                    <Button
+                        onClick={updateHandler}
+                        className="mt-2 "
+                        variant="warning"
+                        type="submit"
+                    >
+                        Save changes
+                    </Button>
+                </Form.Group>
+            </Form>
+        </Container>
+    );
 };
 export default Updatepass;

@@ -1,23 +1,38 @@
 import React from "react";
 
 import { userSliceActions } from "../../Redux/userSlice";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { Helmet } from "react-helmet-async";
-import { Button, Container, Form, InputGroup, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateName = () => {
-  const token = useSelector((state) => state.user.loggedInUser?.token);
-  const dispatch = useDispatch();
-
   const [name, setName] = useState("");
+  const token = useSelector((state) => state.user.loggedInUser?.token);
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const navigate = useNavigate();
+  if (!userinfo) {
+    navigate("/login");
+  }
+  const { user } = userinfo;
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
-    console.log("hh");
     e.preventDefault();
     dispatch(userSliceActions.updateUser({ name, token }));
+    toast.success(`Name updated Successfully`, {
+      position: "bottom-left",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
+
   return (
     <Container style={{ maxWidth: "600px" }}>
       <Row>
@@ -44,7 +59,7 @@ const UpdateName = () => {
           <Form.Label>user Name</Form.Label>
           <Form.Control
             type="text"
-            // placeholder={user}
+            placeholder={user.name}
             onChange={(e) => setName(e.target.value)}
           />
           <Button

@@ -20,9 +20,9 @@ const ProductsItem = ({ product }) => {
         style={{ height: '100%' }}
       >
         <Link to={`/product/one/${product._id}`}>
-          <img
+          <Card.Img
             className="card-img-top p-3"
-            src={product.image_path[1]}
+            src={product.image_path[0]}
             alt={product.name}
           />
         </Link>
@@ -54,12 +54,7 @@ const ProductsItem = ({ product }) => {
               Add to Cart
             </Button>
           ) : (
-            <Button
-              variant="secondary"
-              onClick={() => handleAddToCart(product)}
-            >
-              Add to Cart
-            </Button>
+            <Button disabled variant="secondary">Add to Cart</Button>
           )}
         </Card.Body>
       </Card>

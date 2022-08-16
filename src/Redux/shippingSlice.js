@@ -1,21 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
+const initialState = {
+  userAdress: localStorage.getItem('shipping')
+    ? JSON.parse(localStorage.getItem('shipping'))
+    : {
+        fullName: '',
+        adress: '',
+        city: '',
+        country: '',
+        phone: '',
+      },
+};
 
 const shippingSlice = createSlice({
   name: 'shipping',
-  initialState: {
-    fullName: ' ',
-    adress: ' ',
-    city: ' ',
-    country: ' ',
-    Phone: ' ',
-  },
+  initialState,
   reducers: {
     saveShipping: (state, action) => {
-      state.fullName = action.payload.fullName;
-      state.adress = action.payload.adress;
-      state.city = action.payload.city;
-      state.country = action.payload.country;
-      state.Phone = action.payload.Phone;
+      state.userAdress.fullName = action.payload.fullName;
+      state.userAdress.adress = action.payload.adress;
+      state.userAdress.city = action.payload.city;
+      state.userAdress.country = action.payload.country;
+      state.userAdress.phone = action.payload.phone;
+      //store at local storage
+      localStorage.setItem('shipping', JSON.stringify(state.userAdress));
     },
   },
 });

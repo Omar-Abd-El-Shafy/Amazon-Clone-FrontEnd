@@ -24,6 +24,10 @@ import BackTop from "./Components/backTop/BackTop";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
+import UpdateName from "./Components/user/UpdateName";
+import UpdatePhone from "./Components/user/UpdatePhone";
+import UpdateEmail from "./Components/user/UpdateEmail";
+import Updatepass from './Components/user/Updatepass';
 import ForgotPassword from "./pages/ForgotPassword";
 import PasswordReset from "./pages/PasswordReset";
 import Home from "./pages/Home";
@@ -38,9 +42,6 @@ import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import SearchResults from "./pages/SearchResults";
 
-import UpdateName from "./Components/user/UpdateName";
-import UpdatePhone from "./Components/user/UpdatePhone";
-import UpdateEmail from "./Components/user/UpdateEmail";
 
 // import AddProduct from "./pages/AddProduct";
 // import tokenExpirationDate from "../src/pages/Login";
@@ -114,6 +115,7 @@ function App() {
               <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/UpdateName" element={<UpdateName />} />
+              <Route path="/Updatepass" element={<Updatepass />} />
               <Route path="/UpdatePhone" element={<UpdatePhone />} />
               <Route path="/UpdateEmail" element={<UpdateEmail />} />
               <Route

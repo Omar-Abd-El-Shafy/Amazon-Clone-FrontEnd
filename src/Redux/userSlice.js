@@ -33,19 +33,19 @@ export const register = createAsyncThunk("user/register", async (userData) => {
 
 // update user
 export const updateUser = createAsyncThunk("user", async (userData) => {
-  // const storedData = JSON.parse(localStorage.getItem("userData"));
+  const bodyParameters = {
+    name: userData.name,
+    email: userData.email,
+    phone: userData.phone,
+  };
   console.log(userData);
   const response = await axios
-    .put(
-      "https://amazon-clone-deploy.herokuapp.com/user",
-      { name: userData.name },
-      {
-        headers: {
-          // "Content-Type": "application/json",
-          "x-access-token": `${userData.token}`,
-        },
-      }
-    )
+    .put("https://amazon-clone-deploy.herokuapp.com/user", bodyParameters, {
+      headers: {
+        // "Content-Type": "application/json",
+        "x-access-token": `${userData.token}`,
+      },
+    })
     .then((response) => {
       console.log("hhddd");
       localStorage.setItem(
@@ -63,6 +63,28 @@ export const updateUser = createAsyncThunk("user", async (userData) => {
     });
   return response.data;
 });
+
+//update password
+export const updateUserPassword = createAsyncThunk("user", async (userData) => {
+  console.log(userData);
+  const response = await axios.put(
+    "https://amazon-clone-deploy.herokuapp.com/user/password",
+    {
+      password: userData.password,
+      confirm_password: userData.confirm_password,
+    },
+    {
+      headers: {
+        // "Content-Type": "application/json",
+        "x-access-token": `${userData.token}`,
+      },
+    }
+  );
+
+  return response.data;
+});
+
+//////////
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -105,21 +127,6 @@ const userSlice = createSlice({
       state.error = action.error.message;
     });
     //////////////
-    builder.addCase(updateUser.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(updateUser.fulfilled, (state, action) => {
-      //console.log(action.payload.user.name);
-      state.loading = false;
-      state.loggedInUser.user.name = action.payload.user.name;
-      //console.log(state.loggedInUser.user.name);
-      state.error = "";
-    });
-    builder.addCase(updateUser.rejected, (state, action) => {
-      state.loading = false;
-      state.loggedInUser = null;
-      state.error = action.error.message;
-    });
   },
 });
 
@@ -128,6 +135,7 @@ export const userSliceActions = {
   login,
   register,
   updateUser,
+  updateUserPassword,
 };
 
 export default userSlice.reducer;
