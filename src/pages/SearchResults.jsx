@@ -58,7 +58,7 @@ export default function SearchResults() {
           </Dropdown.Item>
         </DropdownButton>
       </div>
-      <Row >
+      <Row>
         {products && !error ? (
           products.map((product) => {
             return <ProductsItem product={product} />;
@@ -66,7 +66,6 @@ export default function SearchResults() {
         ) : (
           <h1 className="w-50 m-auto">{error}</h1>
         )}
-        
       </Row>
     </>
   );

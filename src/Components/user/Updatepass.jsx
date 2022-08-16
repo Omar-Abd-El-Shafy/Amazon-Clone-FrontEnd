@@ -5,25 +5,27 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
-import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const Updatepass = () => {
-  const [ password, setPassword ] = useState( '' );
+  const [password, setPassword] = useState('');
   console.log(password);
-const token = useSelector((state) => state.user.loggedInUser?.token);
-const userinfo = useSelector((state) => state.user.loggedInUser);
-const navigate = useNavigate();
-if (!userinfo) {
-  navigate('/login');
-}
-const { user } = userinfo;
-const dispatch = useDispatch();
-const updateHandler = (e) => {
-  e.preventDefault();
-  dispatch(userSliceActions.updateUserPassword({ password, token }));
-};
+  const token = useSelector((state) => state.user.loggedInUser?.token);
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const navigate = useNavigate();
+  if (!userinfo) {
+    navigate('/login');
+  }
+  const { user } = userinfo;
+  const dispatch = useDispatch();
+
+  const updateHandler = (e) => {
+    e.preventDefault();
+    dispatch(userSliceActions.updateUserPassword({ password, token }));
+  };
+
   return (
     <Container style={{ maxWidth: '600px' }}>
       <Row>
@@ -54,7 +56,7 @@ const updateHandler = (e) => {
             placeholder={user.password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          
+
           <Button
             onClick={updateHandler}
             className="mt-2 "
