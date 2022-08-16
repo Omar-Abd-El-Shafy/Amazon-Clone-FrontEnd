@@ -23,7 +23,7 @@ import BackTop from "./Components/backTop/BackTop";
 //pages
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Profile from "./pages/Profile";
+import EditProfile from './pages/EditProfile';
 import UpdateName from "./Components/user/UpdateName";
 import UpdatePhone from "./Components/user/UpdatePhone";
 import UpdateEmail from "./Components/user/UpdateEmail";
@@ -41,6 +41,8 @@ import ShippingAdress from "./pages/ShippingAdress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import SearchResults from "./pages/SearchResults";
+import User from "./pages/User";
+import Favourite from "./pages/Favourite";
 
 
 // import AddProduct from "./pages/AddProduct";
@@ -112,8 +114,10 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home funcNav={setShowNav} />} />
               <Route path="/login" element={<Login funcNav={setShowNav} />} />
+              <Route path="/User" element={<User />} />
               <Route path="/signup" element={<Signup funcNav={setShowNav} />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/EditProfile" element={<EditProfile />} />
+              <Route path="/Favourite" element={<Favourite />} />
               <Route path="/UpdateName" element={<UpdateName />} />
               <Route path="/Updatepass" element={<Updatepass />} />
               <Route path="/UpdatePhone" element={<UpdatePhone />} />
@@ -150,7 +154,7 @@ function App() {
                 <Route path="DashMain" element={<DashMain />} />
               </Route>
               {/* <Route path="/addProduct" element={<AddProduct />} /> */}
-              {/* <Route path="*" element={<NoTFound />} /> */}
+              <Route path="*" element={<NoTFound />} />
             </Routes>
           </Container>
         </main>

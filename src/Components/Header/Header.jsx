@@ -17,14 +17,14 @@ function Header() {
     <div className="">
       <div className="Header fixed-top d-flex align-items-center justify-content-between">
         <Sidebar />
-        <Link to="/" style={{ cursor: "pointer" }}>
+        <Link to="/" style={{ cursor: 'pointer' }}>
           <img src={logo} alt="logo" className="logo" />
         </Link>
         <Search />
         {loggedInUser?.user.name ? (
           <>
-            <Link to="/profile">
-              <span style={{ color: "white", cursor: "pointer" }}>
+            <Link to="/User">
+              <span style={{ color: 'white', cursor: 'pointer' }}>
                 {loggedInUser.user.name}
               </span>
             </Link>
