@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const UpdatePhone = () => {
   const [phone, setphone] = useState('');
@@ -18,7 +19,8 @@ const UpdatePhone = () => {
    navigate('/login');
  }
  const { user } = userinfo;
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  
  const updateHandler = (e) => {
    e.preventDefault();
    dispatch(userSliceActions.updateUser({ phone, token }));

@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -37,6 +37,11 @@ const CartPage = () => {
   const Handelclear = () => {
     dispatch(clearcart());
   };
+
+  const navigate = useNavigate();
+if (!cart.cartItems.length === 0) {
+  navigate('/ShippingAdress');
+}
 
   return (
     <Container>
@@ -135,16 +140,14 @@ const CartPage = () => {
                 </ListGroup.Item>
                 <ListGroup.Item></ListGroup.Item>
                 <ListGroup.Item>
-                  <Link to={'/ShippingAdress'}>
-                    <div className="d-grid">
-                      <Button
-                        disabled={cart.cartItems.length === 0}
-                        variant="warning"
-                      >
-                        Check out
-                      </Button>
-                    </div>
-                  </Link>
+                  <div className="d-grid">
+                    <Button
+                      disabled={cart.cartItems.length === 0}
+                      variant="warning"
+                    >
+                      Check out
+                    </Button>
+                  </div>
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>

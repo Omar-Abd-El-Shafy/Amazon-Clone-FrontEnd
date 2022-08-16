@@ -10,7 +10,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const Updatepass = () => {
-  const [password, setPassword] = useState('');
+  const [ password, setPassword ] = useState( '' );
+  console.log(password);
 const token = useSelector((state) => state.user.loggedInUser?.token);
 const userinfo = useSelector((state) => state.user.loggedInUser);
 const navigate = useNavigate();
@@ -21,7 +22,7 @@ const { user } = userinfo;
 const dispatch = useDispatch();
 const updateHandler = (e) => {
   e.preventDefault();
-  dispatch(userSliceActions.updateUser({ password, token }));
+  dispatch(userSliceActions.updateUserPassword({ password, token }));
 };
   return (
     <Container style={{ maxWidth: '600px' }}>
