@@ -3,7 +3,7 @@ import React from "react";
 import { userSliceActions } from '../../Redux/userSlice';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { IoSendOutline } from 'react-icons/io5';
+import { BiShow, BiHide } from 'react-icons/bi';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
