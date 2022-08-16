@@ -33,6 +33,16 @@ export const Api = createApi({
     getCategorydepartment: builder.query({
       query: (id) => `category/dept/${id}`,
     }),
+    addProduct: builder.mutation({
+      query: ({token, body}) => ({
+        url: `product`,
+        method: 'POST',
+        headers: {
+          'x-access-token': `${token}`
+        },
+        body
+      })
+    })
   }),
 });
 export const {
@@ -42,4 +52,5 @@ export const {
   useGetProdactCategoriesQuery,
   useGetdAlldepartmentQuery,
   useGetCategorydepartmentQuery,
+  useAddProductMutation
 } = Api;
