@@ -12,6 +12,8 @@ import { BiShow, BiHide } from "react-icons/bi";
 
 const Updatepass = () => {
     const [password, setPassword] = useState("");
+    const [confirm_password, setConfirmPassword] = useState("");
+    console.log(confirm_password);
     console.log(password);
     const [isRevealedPassword, setIsRevealedPassword] = useState(false);
     const token = useSelector((state) => state.user.loggedInUser?.token);
@@ -24,7 +26,13 @@ const Updatepass = () => {
     const dispatch = useDispatch();
     const updateHandler = (e) => {
         e.preventDefault();
-        dispatch(userSliceActions.updateUserPassword({ password, token }));
+        dispatch(
+            userSliceActions.updateUserPassword({
+                password,
+                token,
+                confirm_password,
+            })
+        );
     };
     return (
         <Container style={{ maxWidth: "600px" }}>
@@ -39,7 +47,7 @@ const Updatepass = () => {
             </Row>
             <Form>
                 <Helmet>
-                    <title>Edit profoil information </title>
+                    <title>Edit profile information </title>
                 </Helmet>
 
                 <h4 className="text-dark"> Change your password</h4>
@@ -52,7 +60,6 @@ const Updatepass = () => {
                     <Form.Label>user password</Form.Label>
                     <Form.Control
                         type={isRevealedPassword ? "text" : "password"}
-                        // Nanousa23@
                         placeholder={user.password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
@@ -67,6 +74,19 @@ const Updatepass = () => {
                             {isRevealedPassword ? <BiHide /> : <BiShow />}
                         </div>
                     </Form.Text>
+                    <Form.Label>Confirm password</Form.Label>
+                    <Form.Control
+                        type={"password"}
+                        placeholder={user.password}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <Form.Text className="text-dark">
+                        <div
+                            className="passwordToggleUpdatePass"
+                            variant="outline-dark"
+                        ></div>
+                    </Form.Text>
+
                     <Button
                         onClick={updateHandler}
                         className="mt-2 "
