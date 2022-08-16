@@ -6,24 +6,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 
+// props.funcNav(false);
 const UpdateEmail = () => {
-  const user = useSelector((state) => state.user.loggedInUser.user.email);
-  //   const token = useSelector((state) => state.user.loggedInUser.token);
-  //   const { loading, error } = useSelector((state) => state.user);
-  //   console.log(token);
-  console.log(user);
-  // props.funcNav(false);
-  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  //   const [email, setEmail] = useState('');
-  //   const [pass, setPass] = useState('');
-  console.log(email);
+  const token = useSelector((state) => state.user.loggedInUser?.token);
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const navigate = useNavigate();
+  if (!userinfo) {
+    navigate('/login');
+  }
+  const { user } = userinfo;
+  const dispatch = useDispatch();
   const updateHandler = (e) => {
     e.preventDefault();
-    // dispatch(userSliceActions.update({ name }));
+    dispatch(userSliceActions.updateUser({ email, token }));
   };
 
   return (
@@ -51,7 +50,7 @@ const UpdateEmail = () => {
           <Form.Label>user email</Form.Label>
           <Form.Control
             type="email"
-            placeholder={user}
+            placeholder={user.email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Button

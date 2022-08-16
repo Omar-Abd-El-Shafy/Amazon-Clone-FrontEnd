@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 // import { api } from "../Redux/services";
-import { BiShow } from "react-icons/bi";
-import { BiHide } from "react-icons/bi";
+import { BiShow, BiHide } from 'react-icons/bi';
 import { userSliceActions } from "../Redux/userSlice";
 export let tokenExpirationDate;
 export default function Login(props) {
