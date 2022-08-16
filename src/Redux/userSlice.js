@@ -16,7 +16,8 @@ export const login = createAsyncThunk('user/login', async (userData) => {
   );
   console.log(response.data);
   return response.data;
-});
+} );
+
 ///////////////////////////////////////
 // "https://amazon-clone-deploy.herokuapp.com/user/register",
 
