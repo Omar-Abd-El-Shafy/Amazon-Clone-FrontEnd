@@ -7,22 +7,22 @@ import { IoSendOutline } from 'react-icons/io5';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import { RiArrowGoBackFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UpdatePhone = () => {
-  const user = useSelector((state) => state.user.loggedInUser.user.phone);
-  //   const token = useSelector((state) => state.user.loggedInUser.token);
-  //   const { loading, error } = useSelector((state) => state.user);
-  //   console.log(token);
-  // props.funcNav(false);
-  const dispatch = useDispatch();
-
-    const [phone, setphone] = useState('');
-  console.log(phone);
-  const updateHandler = (e) => {
-    e.preventDefault();
-    // dispatch(userSliceActions.update({ name }));
-  };
+  const [phone, setphone] = useState('');
+ const token = useSelector((state) => state.user.loggedInUser?.token);
+ const userinfo = useSelector((state) => state.user.loggedInUser);
+ const navigate = useNavigate();
+ if (!userinfo) {
+   navigate('/login');
+ }
+ const { user } = userinfo;
+ const dispatch = useDispatch();
+ const updateHandler = (e) => {
+   e.preventDefault();
+   dispatch(userSliceActions.updateUser({ phone, token }));
+ };
 
   return (
     <Container style={{ maxWidth: '600px' }}>
@@ -50,7 +50,7 @@ const UpdatePhone = () => {
           <Form.Label>user phone</Form.Label>
           <Form.Control
             type="number"
-            placeholder={user}
+            placeholder={user.phone}
             onChange={(e) => setphone(e.target.value)}
           />
           <Button

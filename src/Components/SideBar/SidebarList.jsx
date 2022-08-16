@@ -3,6 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
+import Accordion from 'react-bootstrap/Accordion';
+
 import {
   useGetAllCategoriesQuery,
   useGetdAlldepartmentQuery,
@@ -23,17 +25,12 @@ function SidebarList() {
           <h5>Shop By department</h5>
 
           {department.map((item) => (
-            <Navbar bg="light">
-              <Container fluid>
-                <Navbar.Brand key={item._id}>{item.name}</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbar-dark-example" />
-                <Navbar.Collapse id="navbar-dark-example">
-                  <Nav>
-                    <SidebarMenu item={item} />
-                  </Nav>
-                </Navbar.Collapse>
-              </Container>
-            </Navbar>
+            <Accordion >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header key={item._id}>{item.name}</Accordion.Header>
+                <SidebarMenu item={item} />
+              </Accordion.Item>
+            </Accordion>
           ))}
         </Nav>
       )}

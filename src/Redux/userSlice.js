@@ -30,24 +30,27 @@ export const register = createAsyncThunk("user/register", async (userData) => {
 
 // update user
 export const updateUser = createAsyncThunk("user", async (userData) => {
+  const bodyParameters = {
+    name: userData.name,
+    email: userData.email,
+    password: userData.password,
+    phone: userData.phone,
+  };
   // const storedData = JSON.parse(localStorage.getItem("userData"));
   console.log(userData);
   const response = await axios.put(
-    "https://amazon-clone-deploy.herokuapp.com/user",
-    { name: userData.name },
+    'https://amazon-clone-deploy.herokuapp.com/user',
+    
+      bodyParameters,
+    
     {
       headers: {
         // "Content-Type": "application/json",
-        "x-access-token": `${userData.token}`,
+        'x-access-token': `${userData.token}`,
       },
     }
   );
-  // .then((response) => {
-  //   console.log(response.data.user.name);
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
+ 
   return response.data;
 });
 const userSlice = createSlice({
