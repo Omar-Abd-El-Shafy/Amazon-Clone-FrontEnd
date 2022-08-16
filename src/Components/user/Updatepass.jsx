@@ -16,12 +16,7 @@ const Updatepass = () => {
     console.log(password);
     const [isRevealedPassword, setIsRevealedPassword] = useState(false);
     const token = useSelector((state) => state.user.loggedInUser?.token);
-    const userinfo = useSelector((state) => state.user.loggedInUser);
     const navigate = useNavigate();
-    if (!userinfo) {
-        navigate("/login");
-    }
-    const { user } = userinfo;
     const dispatch = useDispatch();
     const updateHandler = (e) => {
         e.preventDefault();
@@ -68,7 +63,6 @@ const Updatepass = () => {
                     <Form.Label>user password</Form.Label>
                     <Form.Control
                         type={isRevealedPassword ? "text" : "password"}
-                        placeholder={user.password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <Form.Text className="text-dark">
@@ -85,7 +79,6 @@ const Updatepass = () => {
                     <Form.Label>Confirm password</Form.Label>
                     <Form.Control
                         type={"password"}
-                        placeholder={user.password}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <Form.Text className="text-dark">
