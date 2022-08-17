@@ -4,8 +4,12 @@ import Modal from "react-bootstrap/Modal";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { useGetdAlldepartmentQuery } from "../../../Redux/Api";
+import {
+  useAddCategoryMutation,
+  useGetdAlldepartmentQuery,
+} from "../../../Redux/Api";
 
 export default function AddCategory() {
   const [show, setShow] = useState(false);
@@ -15,8 +19,7 @@ export default function AddCategory() {
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const { data: departments } = useGetdAlldepartmentQuery();
-
-  const [item, setItem] = useState("");
+  const [addCategory, { isError }] = useAddCategoryMutation();
 
   // useEffect(() => {
   //   console.log("item", item);
@@ -51,19 +54,40 @@ export default function AddCategory() {
             }}
             validationSchema={schema}
             onSubmit={(values) => {
-              console.log(values);
-              axios.post(
-                "https://amazon-clone-deploy.herokuapp.com/category/",
-                {
+              addCategory({
+                token: loggedInUser.token,
+                body: {
                   department: values.department,
                   name: values.name,
                 },
-                {
-                  headers: {
-                    "x-access-token": loggedInUser.token,
-                  },
-                }
-              );
+              })
+                .unwrap()
+                .then((fulfilled) =>  {
+                  toast.success(`Category Added Successfully`, {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                })
+                .catch((rejected) => console.error(rejected.data));
+
+              // console.log(values);
+              // axios.post(
+              //   "https://amazon-clone-deploy.herokuapp.com/category/",
+              //   {
+              //     department: values.department,
+              //     name: values.name,
+              //   },
+              //   {
+              //     headers: {
+              //       "x-access-token": loggedInUser.token,
+              //     },
+              //   }
+              // );
             }}
           >
             {({ setFieldValue }) => (

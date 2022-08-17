@@ -26,17 +26,7 @@ export default function AddProduct() {
   });
   const [addProduct, { isSuccess }] = useAddProductMutation();
 
-  if (isSuccess) {
-    toast.success(`Product Added Successfully`, {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }
+ 
 
   const schema = yup.object().shape({
     department: yup.string().required("Required Field"),
@@ -100,7 +90,31 @@ export default function AddProduct() {
               formData.append("stock", values.stock);
               formData.append("weight", values.weigth);
 
-              addProduct({ token, body: formData });
+              addProduct({ token, body: formData }).unwrap()
+              .then((fulfilled) =>  {
+                toast.success(`Product Added Successfully`, {
+                  position: "bottom-center",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+              })
+              .catch((rejected) => console.error(rejected.data));
+
+              // if (isSuccess) {
+              //   toast.success(`Product Added Successfully`, {
+              //     position: "bottom-center",
+              //     autoClose: 3000,
+              //     hideProgressBar: false,
+              //     closeOnClick: true,
+              //     pauseOnHover: true,
+              //     draggable: true,
+              //     progress: undefined,
+              //   });
+              // }
             }}
           >
             {({ setFieldValue }) => (
