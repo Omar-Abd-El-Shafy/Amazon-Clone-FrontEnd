@@ -100,7 +100,7 @@ const CartPage = () => {
                         {pro.cartQuantity}
                       </strong>
                       <Button
-                        disabled={pro.rating.count === pro.cartQuantity}
+                        disabled={pro.stoke === pro.cartQuantity}
                         variant="light"
                         className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                         onClick={() => Handelincrease(pro)}
@@ -109,7 +109,7 @@ const CartPage = () => {
                       </Button>
                     </Col>
                     <Col md={3} className="fw-bold fs-4">
-                      ${pro.cartQuantity * pro.price}
+                      {pro.cartQuantity * pro.price} EGP
                     </Col>
                     <Col md={2} className="fw-bold fs-4">
                       <Button
@@ -132,7 +132,7 @@ const CartPage = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    total Cart Price : {cart.totalCartPrice}$
+                    total Cart Price : {cart.totalCartPrice} EGP
                     <Button
                       disabled={cart.cartItems.length === 0}
                       className="d-block mt-2 ms-auto"

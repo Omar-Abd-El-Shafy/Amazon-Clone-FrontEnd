@@ -118,15 +118,11 @@ function ProductDetails() {
               <Rating rating={product.rating} Reviews={product.rating} />
             </ListGroup.Item>
             <ListGroup.Item className="text-danger fw-bolder">
-              price :${product.price}
+              price :{product.price} EGP
             </ListGroup.Item>
 
             <ListGroup.Item>
               products Description :<p>{product.description}</p>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              price:
-              <span className="text-danger fw-bolder">${product.price}</span>
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -147,9 +143,14 @@ function ProductDetails() {
                       </Badge>
                     )}
                   </Col>
+                  <ListGroup.Item className='border-0' >
+                    price:
+                    <span className="text-danger fw-bolder">
+                     {product.price} EGP
+                    </span>
+                  </ListGroup.Item>
                 </Row>
               </ListGroup>
-              <ListGroup>{/* <Quantity product={product} /> */}</ListGroup>
               <ListGroup>
                 <div className="d-grid">
                   {product.stock > 0 ? (
@@ -161,12 +162,7 @@ function ProductDetails() {
                       Add to Cart
                     </Button>
                   ) : (
-                    <Button
-                      variant="secondary"
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      Add to Cart
-                    </Button>
+                    <Button variant="secondary">out of stock</Button>
                   )}
                 </div>
               </ListGroup>

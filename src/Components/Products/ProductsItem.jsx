@@ -13,6 +13,7 @@ const ProductsItem = ({ product }) => {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
+
   return (
     <Col sm={6} md={4} lg={3} className="mb-3 ">
       <Card
@@ -26,6 +27,7 @@ const ProductsItem = ({ product }) => {
             alt={product.name}
           />
         </Link>
+
         <Card.Body
           style={{
             display: 'flex',
@@ -38,23 +40,26 @@ const ProductsItem = ({ product }) => {
         >
           <Link to={`/product/one/${product._id}`}>
             <Card.Title>{product.name}</Card.Title>
-            <span className="text-secondary">{product.category.name}</span>
+            {/* <span className="text-secondary">{product.category.name}</span> */}
           </Link>
           <Rating rating={product.rating} Reviews={product.rating} />
+
           <Card.Text
             style={{
               fontSize: '28px',
               fontWeight: '400',
             }}
           >
-            ${product.price}
+            EGP {product.price}
           </Card.Text>
           {product.stock > 0 ? (
             <Button variant="warning" onClick={() => handleAddToCart(product)}>
               Add to Cart
             </Button>
           ) : (
-            <Button disabled variant="secondary">Add to Cart</Button>
+            <Button disabled variant="secondary">
+              out of stock
+            </Button>
           )}
         </Card.Body>
       </Card>
