@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import axios from "axios";
+import {
+  useAddProductMutation,
+  useGetCategorydepartmentQuery,
+  useGetdAlldepartmentQuery,
+} from "../../../Redux/Api";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function AddProduct() {
   const [show, setShow] = useState(false);
@@ -12,21 +18,25 @@ export default function AddProduct() {
   const handleShow = () => setShow(true);
   const [item, setItem] = useState("");
   const [files, setFiles] = useState({});
-  const [departments, setDepartments] = useState([]);
-  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://amazon-clone-deploy.herokuapp.com/department")
-      .then((res) => setDepartments(res.data));
-  }, []);
+  const token = useSelector((state) => state.user.loggedInUser?.token);
+  const { data: departments } = useGetdAlldepartmentQuery();
+  const { data: categories } = useGetCategorydepartmentQuery(item, {
+    skip: item ? false : true,
+  });
+  const [addProduct, { isSuccess }] = useAddProductMutation();
 
-  useEffect(() => {
-    if(item)
-      axios
-        .get(`https://amazon-clone-deploy.herokuapp.com/category/dept/${item}`)
-        .then((res) => setCategories(res.data))
-  }, [item]);
+  if (isSuccess) {
+    toast.success(`Product Added Successfully`, {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   const schema = yup.object().shape({
     department: yup.string().required("Required Field"),
@@ -79,25 +89,18 @@ export default function AddProduct() {
                 formData.append("img", files[i]);
               }
               if (!files) return;
-              // const filess = Array.from(files);
 
               formData.append("brand", values.brand);
               formData.append("category", values.category);
               formData.append("cod", values.cod);
               formData.append("department", values.department);
               formData.append("description", values.description);
-              // formData.append("img", files[0]);
               formData.append("price", values.price);
               formData.append("name", values.productName);
               formData.append("stock", values.stock);
               formData.append("weight", values.weigth);
 
-              // console.log(files);
-
-              axios.post(
-                "https://amazon-clone-deploy.herokuapp.com/product/",
-                formData
-              );
+              addProduct({ token, body: formData });
             }}
           >
             {({ setFieldValue }) => (
@@ -116,7 +119,7 @@ export default function AddProduct() {
                     <option value="" disabled>
                       Select an option
                     </option>
-                    {departments.map((dept) => (
+                    {departments?.map((dept) => (
                       <option key={dept._id} value={dept._id}>
                         {dept.name}
                       </option>
@@ -133,7 +136,7 @@ export default function AddProduct() {
                     <option value="" disabled>
                       Please select an option
                     </option>
-                    {categories.map((cate) => (
+                    {categories?.map((cate) => (
                       <option key={cate._id} value={cate._id}>
                         {cate.name}
                       </option>
