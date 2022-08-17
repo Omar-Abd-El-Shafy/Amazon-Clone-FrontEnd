@@ -5,16 +5,19 @@ export const Api = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "https://amazon-clone-deploy.herokuapp.com/",
     }),
+    tagTypes: ["Product", "Department", "Category"],
 
     endpoints: (builder) => ({
         getAllProdacts: builder.query({
             query: () => `product`,
+            providesTags: ["Product"],
         }),
         getSingleProdact: builder.query({
             query: (id) => `product/one/${id}`,
         }),
         getAllCategories: builder.query({
             query: () => `category`,
+            providesTags: ["Category"],
         }),
         getProdactCategories: builder.query({
             query: (id) => {
@@ -26,6 +29,7 @@ export const Api = createApi({
                     url: `/product?category=${id}`,
                 };
             },
+            providesTags: ["Product"],
         }),
         getdAlldepartment: builder.query({
             query: () => `department`,
@@ -51,6 +55,17 @@ export const Api = createApi({
                     "x-access-token": `${token}`,
                 },
             }),
+            invalidatesTags: ["Product"],
+        }),
+        deleteCategory: builder.mutation({
+            query: ({ token, id }) => ({
+                url: `category/${id}`,
+                method: "DELETE",
+                headers: {
+                    "x-access-token": `${token}`,
+                },
+            }),
+            invalidatesTags: ["Category"],
         }),
     }),
 });
@@ -63,4 +78,5 @@ export const {
     useGetCategorydepartmentQuery,
     useAddProductMutation,
     useDeleteProductMutation,
+    useDeleteCategoryMutation,
 } = Api;
