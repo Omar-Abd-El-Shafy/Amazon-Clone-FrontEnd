@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const Api = createApi({
-  reducerPath: 'Api',
+  reducerPath: "Api",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://amazon-clone-deploy.herokuapp.com/',
+    baseUrl: "https://amazon-clone-deploy.herokuapp.com/",
   }),
+  tagTypes: ["Product", "Department", "Category"],
 
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
@@ -15,12 +16,13 @@ export const Api = createApi({
     }),
     getAllCategories: builder.query({
       query: () => `category`,
+      providesTags: ["Category"],
     }),
     getProdactCategories: builder.query({
       query: (id) => {
-        console.log('category' + id);
+        console.log("category" + id);
         return {
-          method: 'GET',
+          method: "GET",
           // product?page=1&category=22
           // /product/search?category=122
           url: `/product?category=${id}`,
@@ -34,15 +36,25 @@ export const Api = createApi({
       query: (id) => `category/dept/${id}`,
     }),
     addProduct: builder.mutation({
-      query: ({token, body}) => ({
+      query: ({ token, body }) => ({
         url: `product`,
-        method: 'POST',
+        method: "POST",
         headers: {
-          'x-access-token': `${token}`
+          "x-access-token": `${token}`,
         },
-        body
-      })
-    })
+        body,
+      }),
+    }),
+    deleteCategory: builder.mutation({
+      query: ({ token, id }) => ({
+        url: `category/${id}`,
+        method: "DELETE",
+        headers: {
+          "x-access-token": `${token}`,
+        },
+      }),
+      invalidatesTags: ["Category"],
+    }),
   }),
 });
 export const {
@@ -52,5 +64,6 @@ export const {
   useGetProdactCategoriesQuery,
   useGetdAlldepartmentQuery,
   useGetCategorydepartmentQuery,
-  useAddProductMutation
+  useAddProductMutation,
+  useDeleteCategoryMutation,
 } = Api;
