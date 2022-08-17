@@ -1,38 +1,57 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+
 const initialState = {
   favouriteItems: localStorage.getItem('favouriteItems')
     ? JSON.parse(localStorage.getItem('favouriteItems'))
     : [],
+  counter: 0,
 };
 
-const cartSlice = createSlice({
+export const favouriteListSlice = createSlice({
   name: 'favourite',
   initialState,
   reducers: {
-    addTfavourite(state, action) {
-      const itamindex = state.cartItems.findIndex(
-        (item) => item._id === action.payload._id
+    addToFavourites: (state, action) => {
+      /**
+       * if the entered movie id is found then don't add to favourite.
+       * if its not found,add it the the favourite list state
+       */
+      let isFavourite = state.favouriteItems.findIndex(
+        (pro) => pro._id === action.payload._id
       );
-      if (itamindex >= 0) {
-        state.favouriteItems = action.payload.favourite;
-        toast.info(
-          `  ${state.favouriteItems[itamindex].name} addTfavourite`,
-          {}
-        );
+      if (isFavourite === -1) {
+        state.favouriteItems.push({ ...action.payload, favourite: true });
+        state.counter += 1;
+        toast.info(`${action.payload.name} add to Favourites`, {});
       }
-    },
-    removeFromCart(state, action) {
-      const elemints = state.favouriteItems.filter(
-        (fav) => fav._id !== action.payload._id
-      );
-      console.log(elemints);
-      state.favouriteItems = elemints;
       localStorage.setItem(
         'favouriteItems',
         JSON.stringify(state.favouriteItems)
       );
-      toast.error(`${action.payload.name} removed from favourite`, {});
+    },
+    removeFromFavourites: (state, action) => {
+      /**
+       * if the entered movie id is found in favourite, filter the list array
+       * with this movie id and return a new list doesn't contain the favourite one
+       */
+      let newFavouriteListAfterRemoving = state.favouriteItems.filter(
+        (fav) => fav._id !== action.payload
+      );
+
+      state.favouriteItems = newFavouriteListAfterRemoving;
+      state.counter -= 1;
+      toast.error(`${action.payload.name} remove From Favourites`, {});
+      localStorage.setItem(
+        'favouriteItems',
+        JSON.stringify(state.favouriteItems)
+      );
     },
   },
 });
+
+// Action creators are generated for each case reducer function
+export const { addToFavourites, removeFromFavourites } =
+  favouriteListSlice.actions;
+
+export default favouriteListSlice.reducer;

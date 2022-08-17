@@ -14,6 +14,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 
 function ProductDetails() {
   const params = useParams();
@@ -28,8 +32,20 @@ function ProductDetails() {
   const handleAddToCart = (product) => {
     Dispatch(addToCart(product));
   };
-  console.log(product);
+  const navigate = useNavigate();
 
+  console.log(product);
+  const [like, setLike] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const saveShow = (product) => {
+    if (userinfo) {
+      setLike(!like);
+      setSaved(product);
+    } else {
+      navigate('/login');
+    }
+  };
   return loading ? (
     <div>
       <Loading />
@@ -39,13 +55,31 @@ function ProductDetails() {
   ) : (
     <div className="text-capitalize">
       <Row>
+        {' '}
+        <h5
+          onClick={() => {
+            saveShow(product);
+          }}
+        >
+          {like ? (
+            <FaHeart
+              className="text-danger"
+              onClick={() => Dispatch(removeFromFavourites(product))}
+            />
+          ) : (
+            <FaRegHeart
+              className=" text-black"
+              onClick={() => Dispatch(addToFavourites(product))}
+            />
+          )}
+        </h5>
         <Col md={5}>
           <img
             style={{ maxWidth: '100%' }}
             src={Selectedimg || product.image_path[0]}
             alt={product.name}
             className="w-75"
-          ></img>
+          />
         </Col>
         <Col md={3}>
           <ListGroup variant="flush">
