@@ -1,30 +1,44 @@
-import React from 'react';
-import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
-import { Container, Row } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { RiArrowGoBackFill } from 'react-icons/ri';
-import { useSelector } from 'react-redux';
-
-const placeOrder = () =>
-{
-  
-  return (
-    <Container style={{ maxWidth: '600px' }}>
-      <CheckoutSteps step1 step2 step3 step4 />
-      <Row className="mt-4">
-        <Link to={'/Payment'}>
-          <h6>
-            Change your selected payment{'  '}
-            <RiArrowGoBackFill />
-          </h6>
-        </Link>
-        <hr />
-      </Row>
-      <Helmet>place Order</Helmet>
-      <h1 className="my-3">Place Order</h1>
-    </Container>
-  );
+import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+const initialState = {
+  favouriteItems: localStorage.getItem('favouriteItems')
+    ? JSON.parse(localStorage.getItem('favouriteItems'))
+    : [],
 };
 
-export default placeOrder;
+const favouriteSlice = createSlice({
+  name: 'favourite',
+  initialState,
+  reducers: {
+    addTfavourite(state, action) {
+      const itamindex = state.favouriteItems.findIndex(
+        (item) => item._id === action.payload._id
+      );
+      //check if item in cart -1 not exect 0 exect
+      if (itamindex >= 0) {
+        //if 0  qantity increase not indexs
+        state.favouriteItems[itamindex].cartQuantity += 1;
+        toast.info(
+          ` increased ${state.favouriteItems[itamindex].name} quantity`,
+          {}
+        );
+        localStorage.setItem('favouriteItems', JSON.stringify(state.favouriteItems));
+      } else {
+       const elemints = state.favouriteItems.filter(
+         (pro) => pro._id !== action.payload._id
+       );
+       console.log(elemints);
+       state.favouriteItems = elemints;
+       localStorage.setItem(
+         'favouriteItems',
+         JSON.stringify(state.favouriteItems)
+       );
+       toast.error(`${action.payload.name} removed to cart`, {});
+        
+      }
+      // store at local storage
+    },
+  },
+});
+export default favouriteSlice.reducer;
+export const {addTfavourite,removeFromfavourite} = favouriteSlice.actions

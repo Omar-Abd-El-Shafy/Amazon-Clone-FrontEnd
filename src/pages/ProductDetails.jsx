@@ -1,118 +1,125 @@
-import React from "react";
-import {
-    useDeleteProductMutation,
-    useGetSingleProdactQuery,
-} from "../Redux/Api";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Rating from "../Components/Rating/Rating";
-import Loading from "../Components/Loading/Loading";
-import Error from "../Components/Error/Error";
-import { addToCart } from "../Redux/cartSlice";
-import { Helmet } from "react-helmet-async";
-import Card from "react-bootstrap/Card";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import ListGroup from "react-bootstrap/ListGroup";
-import Badge from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
-import { useState } from "react";
-import { IoTrashOutline } from "react-icons/io5";
-import { toast } from "react-toastify";
+import React from 'react';
+import { useGetSingleProdactQuery } from '../Redux/Api';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import Rating from '../Components/Rating/Rating';
+import Loading from '../Components/Loading/Loading';
+import Error from '../Components/Error/Error';
+import { addToCart } from '../Redux/cartSlice';
+import { Helmet } from 'react-helmet-async';
+import Card from 'react-bootstrap/Card';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Badge from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 
 function ProductDetails() {
-    const params = useParams();
-    const { id } = params;
-    const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-    // console.log(loggedInUser.user.role);
-    const [Selectedimg, SetSelectedImg] = useState();
-    const navigate = useNavigate();
-    const {
-        data: product,
-        error,
-        isLoading: loading,
-    } = useGetSingleProdactQuery(id);
-    const Dispatch = useDispatch();
-    const handleAddToCart = (product) => {
-        Dispatch(addToCart(product));
-    };
-    console.log(product);
-    // create deleteProduct function
-    //   const deleteProduct = () => {
-    //       console.log("deleteProduct");
-    // };
-    const [deleteProduct, { isError }] = useDeleteProductMutation();
-    if (loading) {
-        return <Loading />;
+  const params = useParams();
+  const { id } = params;
+  const [Selectedimg, SetSelectedImg] = useState();
+  const {
+    data: product,
+    error,
+    isLoading: loading,
+  } = useGetSingleProdactQuery(id);
+  const Dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    Dispatch(addToCart(product));
+  };
+  const navigate = useNavigate();
+
+  console.log(product);
+  const [like, setLike] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const saveShow = (product) => {
+    if (userinfo) {
+      setLike(!like);
+      setSaved(product);
+    } else {
+      navigate('/login');
     }
-    if (error) {
-        return <Error />;
-    }
-    if (!product) {
-        return null;
-    }
-    return loading ? (
-        <div>
-            <Loading />
-        </div>
-    ) : error ? (
-        <Error variant="danger">{error.message}</Error>
-    ) : (
-        <div className="text-capitalize">
-            <Row>
-                <Col md={5}>
-                    <img
-                        style={{ maxWidth: "100%" }}
-                        src={Selectedimg || product.image_path[0]}
-                        alt={product.name}
-                        className="w-75"
-                    ></img>
-                </Col>
-                <Col md={3}>
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>
-                            <Helmet>
-                                <title>{product.name}</title>
-                            </Helmet>
-                            <h1 className="text-secondary">{product.name}</h1>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <Row xs={1} md={2} className="">
-                                {product.image_path.map((x) => (
-                                    <Col key={x}>
-                                        <Card className="border-0">
-                                            <Button
-                                                className="p-0"
-                                                type="button"
-                                                variant="light"
-                                                onClick={() => {
-                                                    SetSelectedImg(x);
-                                                }}
-                                            >
-                                                <Card.Img
-                                                    variant="topp"
-                                                    src={x}
-                                                    alt="product"
-                                                    style={{
-                                                        width: "50px",
-                                                        maxWidth: "50px",
-                                                    }}
-                                                ></Card.Img>
-                                            </Button>
-                                        </Card>
-                                    </Col>
-                                ))}
-                            </Row>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <Rating
-                                rating={product.rating}
-                                Reviews={product.rating}
-                            />
-                        </ListGroup.Item>
-                        <ListGroup.Item className="text-danger fw-bolder">
-                            price :${product.price}
-                        </ListGroup.Item>
+  };
+  return loading ? (
+    <div>
+      <Loading />
+    </div>
+  ) : error ? (
+    <Error variant="danger">{error.message}</Error>
+  ) : (
+    <div className="text-capitalize">
+      <Row>
+        {' '}
+        <h5
+          onClick={() => {
+            saveShow(product);
+          }}
+        >
+          {like ? (
+            <FaHeart
+              className="text-danger"
+              onClick={() => Dispatch(removeFromFavourites(product))}
+            />
+          ) : (
+            <FaRegHeart
+              className=" text-black"
+              onClick={() => Dispatch(addToFavourites(product))}
+            />
+          )}
+        </h5>
+        <Col md={5}>
+          <img
+            style={{ maxWidth: '100%' }}
+            src={Selectedimg || product.image_path[0]}
+            alt={product.name}
+            className="w-75"
+          />
+        </Col>
+        <Col md={3}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <Helmet>
+                <title>{product.name}</title>
+              </Helmet>
+              <h1 className="text-secondary">{product.name}</h1>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Row xs={1} md={2} className="">
+                {product.image_path.map((x) => (
+                  <Col>
+                    <Card className="border-0">
+                      <Button
+                        className="p-0"
+                        type="button"
+                        variant="light"
+                        onClick={() => {
+                          SetSelectedImg(x);
+                        }}
+                      >
+                        <Card.Img
+                          variant="topp"
+                          src={x}
+                          alt="product"
+                          style={{ width: '50px', maxWidth: '50px' }}
+                        ></Card.Img>
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Rating rating={product.rating} Reviews={product.rating} />
+            </ListGroup.Item>
+            <ListGroup.Item className="text-danger fw-bolder">
+              price :{product.price} EGP
+            </ListGroup.Item>
 
                         <ListGroup.Item>
                             products Description :<p>{product.description}</p>
@@ -209,6 +216,7 @@ function ProductDetails() {
             </Row>
         </div>
     );
+>>>>>>> 26ad06985df393e8191dff7aae2dc5334efaab39
 }
 
 export default ProductDetails;

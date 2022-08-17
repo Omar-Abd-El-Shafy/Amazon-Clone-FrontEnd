@@ -38,8 +38,10 @@ const ShippingAdress = () => {
     }
   };
   return (
-    <Container style={{ maxWidth: '600px' }}>
+    <Container>
+
       <CheckoutSteps step1 step2 />
+    <Container style={{ maxWidth: '600px' }}>
       <Row className='mt-4'>
         <Link to={'/'}>
           <h5>
@@ -71,7 +73,7 @@ const ShippingAdress = () => {
             placeholder={Shipping.adress}
             onChange={(e) => setAdress(e.target.value)}
             required
-          />
+            />
         </Form.Group>
         <Form.Group className="mb-3" controlId="phone">
           <Form.Label>Phone number</Form.Label>
@@ -79,7 +81,7 @@ const ShippingAdress = () => {
             placeholder={Shipping.phone}
             onChange={(e) => setPhone(e.target.value)}
             required
-          />
+            />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="City">
@@ -111,6 +113,7 @@ const ShippingAdress = () => {
         {/* </Link> */}
       </div>
     </Container>
+          </Container>
   );
 };
 
