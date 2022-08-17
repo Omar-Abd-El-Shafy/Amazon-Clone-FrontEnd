@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useGetdAlldepartmentQuery } from "../../../Redux/Api";
 
 export default function AddCategory() {
   const [show, setShow] = useState(false);
@@ -13,6 +14,7 @@ export default function AddCategory() {
   const handleShow = () => setShow(true);
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const { data: departments } = useGetdAlldepartmentQuery();
 
   const [item, setItem] = useState("");
 
@@ -38,7 +40,7 @@ export default function AddCategory() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New Product</Modal.Title>
+          <Modal.Title>Add New Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Formik
@@ -73,7 +75,12 @@ export default function AddCategory() {
                     <option value="" disabled>
                       Select an option
                     </option>
-                    <option value="62e46ccdd282c036e6947f18">
+                    {departments?.map((dept) => (
+                      <option key={dept._id} value={dept._id}>
+                        {dept.name}
+                      </option>
+                    ))}
+                    {/* <option value="62e46ccdd282c036e6947f18">
                       Electronics
                     </option>
                     <option value="62e46cf6d282c036e6947f1b">Computers</option>
@@ -84,7 +91,7 @@ export default function AddCategory() {
                     <option value="62e46d35d282c036e6947f24">Books</option>
                     <option value="62f94e6e339d76c5360ee133">
                       Men's Fashion
-                    </option>
+                    </option> */}
                   </Field>
                   <div className="ErrorMessageTxt">
                     <ErrorMessage name="department" />

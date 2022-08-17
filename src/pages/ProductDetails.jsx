@@ -121,57 +121,102 @@ function ProductDetails() {
               price :{product.price} EGP
             </ListGroup.Item>
 
-            <ListGroup.Item>
-              products Description :<p>{product.description}</p>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={3}>
-          <Card>
-            <Card.Body>
-              <ListGroup variant="flush">
-                <Row className="align-items-center">
-                  <Col>status:</Col>
-                  <Col>
-                    {product.stock > 0 ? (
-                      <Badge className=" text-success text-center m-1 p-1 ">
-                        in stock
-                      </Badge>
-                    ) : (
-                      <Badge className=" text-danger text-center m-1 p-1 ">
-                        out of stock
-                      </Badge>
-                    )}
-                  </Col>
-                  <ListGroup.Item className='border-0' >
-                    price:
-                    <span className="text-danger fw-bolder">
-                     {product.price} EGP
-                    </span>
-                  </ListGroup.Item>
-                </Row>
-              </ListGroup>
-              <ListGroup>
-                <div className="d-grid">
-                  {product.stock > 0 ? (
-                    <Button
-                      className="rounded-pill "
-                      variant="warning"
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      Add to Cart
-                    </Button>
-                  ) : (
-                    <Button variant="secondary">out of stock</Button>
-                  )}
-                </div>
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </div>
-  );
+                        <ListGroup.Item>
+                            products Description :<p>{product.description}</p>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            price:
+                            <span className="text-danger fw-bolder">
+                                ${product.price}
+                            </span>
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Col>
+                <Col md={3}>
+                    <Card>
+                        <Card.Body>
+                            <ListGroup variant="flush">
+                                <Row className="align-items-center">
+                                    <Col>status:</Col>
+                                    <Col>
+                                        {product.stock > 0 ? (
+                                            <Badge className=" text-success text-center m-1 p-1 ">
+                                                in stock
+                                            </Badge>
+                                        ) : (
+                                            <Badge className=" text-danger text-center m-1 p-1 ">
+                                                out of stock
+                                            </Badge>
+                                        )}
+                                    </Col>
+                                </Row>
+                            </ListGroup>
+                            <ListGroup>
+                                {/* <Quantity product={product} /> */}
+                            </ListGroup>
+                            <ListGroup>
+                                <div className="d-grid">
+                                    {product.stock > 0 ? (
+                                        <Button
+                                            className="rounded-pill "
+                                            variant="warning"
+                                            onClick={() =>
+                                                handleAddToCart(product)
+                                            }
+                                        >
+                                            Add to Cart
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="secondary"
+                                            onClick={() =>
+                                                handleAddToCart(product)
+                                            }
+                                        >
+                                            Add to Cart
+                                        </Button>
+                                    )}
+                                </div>
+                            </ListGroup>
+                        </Card.Body>
+                    </Card>
+                    <>
+                        {loggedInUser?.user.role === true ? (
+                            <Button
+                                className="rounded-pill mt-3 d-block ms-auto"
+                                variant="danger"
+                                onClick={() => {
+                                    console.log(product._id);
+                                    deleteProduct({
+                                        token: loggedInUser.token,
+                                        id: product._id,
+                                    });
+                                    if (!isError) {
+                                        toast.success(
+                                            `Product Deleted Successfully`,
+                                            {
+                                                position: "bottom-left",
+                                                autoClose: 3000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                            }
+                                        );
+                                        navigate("/");
+                                    }
+                                }}
+                            >
+                                <IoTrashOutline />
+                            </Button>
+                        ) : null}
+                    </>
+                </Col>
+            </Row>
+        </div>
+    );
+>>>>>>> 26ad06985df393e8191dff7aae2dc5334efaab39
 }
 
 export default ProductDetails;

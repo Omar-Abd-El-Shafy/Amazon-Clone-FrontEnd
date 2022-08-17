@@ -1,11 +1,11 @@
-import React from 'react';
-import { addToCart } from '../../Redux/cartSlice';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Rating from '../Rating/Rating';
-import Card from 'react-bootstrap/Card';
-import { Col } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import React from "react";
+import { addToCart } from "../../Redux/cartSlice";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import Rating from "../Rating/Rating";
+import Card from "react-bootstrap/Card";
+import { Col } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const ProductsItem = ({ product }) => {
   // console.log(product);
