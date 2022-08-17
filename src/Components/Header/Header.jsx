@@ -10,45 +10,47 @@ import Sidebar from "../SideBar/SideBar";
 import { MdAdminPanelSettings } from "react-icons/md";
 
 function Header() {
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const dispatch = useDispatch();
+    const loggedInUser = useSelector((state) => state.user?.loggedInUser);
+    const dispatch = useDispatch();
 
-  return (
-    <div className="">
-      <div className="Header fixed-top d-flex align-items-center justify-content-between">
-        <Sidebar />
-        <Link to="/" style={{ cursor: 'pointer' }}>
-          <img src={logo} alt="logo" className="logo" />
-        </Link>
-        <Search />
-        {loggedInUser?.user?.name ? (
-          <>
-            <Link to="/User">
-              <span style={{ color: 'white', cursor: 'pointer' }}>
-                {loggedInUser.user.name}
-              </span>
-            </Link>
-            <button
-              className="btn btn-outline-warning"
-              onClick={() => {
-                dispatch(userSliceActions.logout());
-              }}
-            >
-              logout
-            </button>
-          </>
-        ) : (
-          <>
-            <LogInButton />
-          </>
-        )}
-        <Link to="/dashboard">
-          <MdAdminPanelSettings className="text-white admin-icon" />
-        </Link>
-        <Cart />
-      </div>
-    </div>
-  );
+    return (
+        <div className="">
+            <div className="Header fixed-top d-flex align-items-center justify-content-between">
+                <Sidebar />
+                <Link to="/" style={{ cursor: "pointer" }}>
+                    <img src={logo} alt="logo" className="logo" />
+                </Link>
+                <Search />
+                {loggedInUser?.user?.name ? (
+                    <>
+                        <Link to="/User">
+                            <span style={{ color: "white", cursor: "pointer" }}>
+                                {loggedInUser.user.name}
+                            </span>
+                        </Link>
+                        <button
+                            className="btn btn-outline-warning"
+                            onClick={() => {
+                                dispatch(userSliceActions.logout());
+                            }}
+                        >
+                            logout
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <LogInButton />
+                    </>
+                )}
+                {loggedInUser?.user.role === true ? (
+                    <Link to="/admin">
+                        <MdAdminPanelSettings className="text-white admin-icon" />
+                    </Link>
+                ) : null}
+                <Cart />
+            </div>
+        </div>
+    );
 }
 
 export default Header;
