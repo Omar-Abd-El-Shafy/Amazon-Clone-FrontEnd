@@ -43,7 +43,7 @@ function Header() {
                     </>
                 )}
                 {loggedInUser?.user.role === true ? (
-                    <Link to="/admin">
+                    <Link to="/dashboard">
                         <MdAdminPanelSettings className="text-white admin-icon" />
                     </Link>
                 ) : null}
