@@ -58,7 +58,7 @@ export default function SearchResults() {
                     </Dropdown.Item>
                 </DropdownButton>
             </div>
-            <Row>
+            <Row className="mt-4">
                 {products && !error ? (
                     products.map((product) => {
                         return <ProductsItem product={product} />;
