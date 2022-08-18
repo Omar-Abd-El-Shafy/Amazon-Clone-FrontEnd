@@ -7,8 +7,10 @@ const initialState = {
     error: "",
 };
 
-const storedData = JSON.parse(localStorage.getItem("userData"));
-
+// const storeData = JSON.parse(localStorage.getItem("userData"));
+// console.log(storeData);
+const storedData = localStorage.getItem("userData");
+// console.log(storedData);
 // Generates pending, fulfilled and rejected action types
 // "https://amazon-clone-deploy.herokuapp.com/user/signup",
 
@@ -48,14 +50,11 @@ export const updateUser = createAsyncThunk("user", async (userData) => {
         })
         .then((response) => {
             console.log("hhddd");
-            localStorage.setItem(
-                "userData",
-                JSON.stringify({
-                    user: response.data.user,
-                    token: userData.token,
-                    expiration: storedData?.expiration,
-                })
-            );
+            localStorage.setItem("userData", {
+                user: response.data.user,
+                token: userData.token,
+                expiration: storedData?.expiration,
+            });
             return response;
         })
         .catch((error) => {
