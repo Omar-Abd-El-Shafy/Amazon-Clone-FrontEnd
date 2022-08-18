@@ -8,7 +8,7 @@ import ProductsItem from '../Components/Products/ProductsItem';
 
 const Favourite = () => {
   const navigate = useNavigate();
-  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const userinfo = useSelector((state) => state.user?.loggedInUser);
   const fav = useSelector((state) => state.favourite.favouriteItems);
   console.log(fav);
   useEffect(() => {

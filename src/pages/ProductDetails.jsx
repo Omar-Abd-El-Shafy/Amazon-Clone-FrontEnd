@@ -1,62 +1,70 @@
-import React from "react";
+import React from 'react';
 import {
   useDeleteProductMutation,
   useGetSingleProdactQuery,
-} from "../Redux/Api";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Rating from "../Components/Rating/Rating";
-import Loading from "../Components/Loading/Loading";
-import Error from "../Components/Error/Error";
-import { addToCart } from "../Redux/cartSlice";
-import { Helmet } from "react-helmet-async";
-import Card from "react-bootstrap/Card";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import ListGroup from "react-bootstrap/ListGroup";
-import Badge from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
-import { useState } from "react";
-import { IoTrashOutline } from "react-icons/io5";
-import { toast } from "react-toastify";
+  useAddToCartMutation,
+} from '../Redux/Api';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Rating from '../Components/Rating/Rating';
+import Loading from '../Components/Loading/Loading';
+import Error from '../Components/Error/Error';
+import { addToCart } from '../Redux/cartSlice';
+import { Helmet } from 'react-helmet-async';
+import Card from 'react-bootstrap/Card';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Badge from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
+import { IoTrashOutline } from 'react-icons/io5';
+import { toast } from 'react-toastify';
 
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { addToFavourites, removeFromFavourites } from "../Redux/favouriteSlice";
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 
 function ProductDetails() {
   const params = useParams();
   const { id } = params;
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-  // console.log(loggedInUser.user.role);
   const [Selectedimg, SetSelectedImg] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [addProduct] = useAddToCartMutation();
+  //get all product
   const {
     data: product,
     error,
     isLoading: loading,
   } = useGetSingleProdactQuery(id);
-  const Dispatch = useDispatch();
+  //addProduct
+  let Qty = 1;
   const handleAddToCart = (product) => {
-    Dispatch(addToCart(product));
+    if (loggedInUser) {
+      // addProduct({
+      //   token: loggedInUser.token,
+      //   body: { quantity: Qty + 1, product_id: product._id },
+      // });
+      dispatch(addToCart(product));
+    } else {
+      navigate('/login');
+    }
   };
-  console.log(product);
-  // create deleteProduct function
-  //   const deleteProduct = () => {
-  //       console.log("deleteProduct");
-  // };
-  const [deleteProduct, { isError }] = useDeleteProductMutation();
-
+  //fav
   const [like, setLike] = useState(false);
   const [saved, setSaved] = useState(false);
-  const userinfo = useSelector((state) => state.user.loggedInUser);
   const saveShow = (product) => {
-    if (userinfo) {
+    if (loggedInUser) {
       setLike(!like);
       setSaved(product);
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   };
+
+  //delete Product
+  const [deleteProduct, { isError }] = useDeleteProductMutation();
 
   if (!product) {
     return null;
@@ -71,7 +79,7 @@ function ProductDetails() {
   ) : (
     <div className="text-capitalize">
       <Row>
-        {" "}
+        {' '}
         <h5
           onClick={() => {
             saveShow(product);
@@ -80,18 +88,18 @@ function ProductDetails() {
           {like ? (
             <FaHeart
               className="text-danger"
-              onClick={() => Dispatch(removeFromFavourites(product))}
+              onClick={() => dispatch(removeFromFavourites(product))}
             />
           ) : (
             <FaRegHeart
               className=" text-black"
-              onClick={() => Dispatch(addToFavourites(product))}
+              onClick={() => dispatch(addToFavourites(product))}
             />
           )}
         </h5>
         <Col md={5}>
           <img
-            style={{ maxWidth: "100%" }}
+            style={{ maxWidth: '100%' }}
             src={Selectedimg || product.image_path[0]}
             alt={product.name}
             className="w-75"
@@ -123,8 +131,8 @@ function ProductDetails() {
                           src={x}
                           alt="product"
                           style={{
-                            width: "50px",
-                            maxWidth: "50px",
+                            width: '50px',
+                            maxWidth: '50px',
                           }}
                         ></Card.Img>
                       </Button>
@@ -199,7 +207,7 @@ function ProductDetails() {
                   });
                   if (!isError) {
                     toast.success(`Product Deleted Successfully`, {
-                      position: "bottom-left",
+                      position: 'bottom-left',
                       autoClose: 3000,
                       hideProgressBar: false,
                       closeOnClick: true,
@@ -207,7 +215,7 @@ function ProductDetails() {
                       draggable: true,
                       progress: undefined,
                     });
-                    navigate("/");
+                    navigate('/');
                   }
                 }}
               >
