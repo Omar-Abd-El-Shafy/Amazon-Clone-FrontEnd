@@ -7,8 +7,10 @@ const initialState = {
   error: '',
 };
 
-const storedData = localStorage.getItem('userData');
-
+// const storeData = JSON.parse(localStorage.getItem("userData"));
+// console.log(storeData);
+const storedData = localStorage.getItem("userData");
+// console.log(storedData);
 // Generates pending, fulfilled and rejected action types
 // "https://amazon-clone-deploy.herokuapp.com/user/signup",
 
@@ -32,33 +34,33 @@ export const register = createAsyncThunk('user/register', async (userData) => {
 });
 
 // update user
-export const updateUser = createAsyncThunk('user', async (userData) => {
-  const bodyParameters = {
-    name: userData.name,
-    email: userData.email,
-    phone: userData.phone,
-  };
-  //console.log(userData);
-  const response = await axios
-    .put('https://amazon-clone-deploy.herokuapp.com/user', bodyParameters, {
-      headers: {
-        // "Content-Type": "application/json",
-        'x-access-token': `${userData.token}`,
-      },
-    })
-    .then((response) => {
-      console.log('hhddd');
-      localStorage.setItem('userData', {
-        user: response.data.user,
-        token: userData.token,
-        expiration: storedData?.expiration,
-      });
-      return response;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  return response.data;
+export const updateUser = createAsyncThunk("user", async (userData) => {
+    const bodyParameters = {
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone,
+    };
+    //console.log(userData);
+    const response = await axios
+        .put("https://amazon-clone-deploy.herokuapp.com/user", bodyParameters, {
+            headers: {
+                // "Content-Type": "application/json",
+                "x-access-token": `${userData.token}`,
+            },
+        })
+        .then((response) => {
+            console.log("hhddd");
+            localStorage.setItem("userData", {
+                user: response.data.user,
+                token: userData.token,
+                expiration: storedData?.expiration,
+            });
+            return response;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    return response.data;
 });
 
 //update password
