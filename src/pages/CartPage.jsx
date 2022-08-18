@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import {
-  addToCart,
   clearcart,
   decreaseCartItem,
   getTotal,
@@ -17,14 +16,17 @@ import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
-import { useGetUserCartQuery, useRemoveFromCartMutation } from '../Redux/Api';
+import { useGetUserCartQuery, useRemoveFromCartMutation, useAddToCartMutation } from '../Redux/Api';
 const CartPage = () => {
   const navigate = useNavigate();
-  const userinfo = useSelector((state) => state.user.loggedInUser);
-  const token = userinfo.token;
+  // const userinfo = useSelector((state) => state.user.loggedInUser);
+  // const token = userinfo.token;
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
   const [removeProduct] = useRemoveFromCartMutation();
-  const { data, isloding, isError, error } = useGetUserCartQuery(token);
+  const [addToCart] = useAddToCartMutation();
+
+  const { data, isloding, isError, error } = useGetUserCartQuery(loggedInUser.token);
   console.log(data);
 
 
@@ -46,13 +48,21 @@ const CartPage = () => {
     dispatch(decreaseCartItem(pro));
   };
   const Handelincrease = (pro) => {
-    dispatch(addToCart(pro));
+    // dispatch(addToCart(pro));
+    addToCart({
+      token: loggedInUser.token,
+      body: {
+        product_id: pro._id
+      },
+    })
+
+
   };
   const Handelclear = () => {
     dispatch(clearcart());
   };
   const HandelCheckOut = () => {
-    if (!userinfo) {
+    if (!loggedInUser) {
       navigate('/login');
     } else {
       navigate('/ShippingAdress');
