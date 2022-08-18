@@ -20,7 +20,7 @@ const DashSidebar = () => {
                         />
                     </Navbar.Brand>
                 </Container>
-                <Nav.Item>
+                {/* <Nav.Item>
                     <Link
                         to="DashMain"
                         element={<DashMain />}
@@ -28,7 +28,7 @@ const DashSidebar = () => {
                     >
                         Dashboard
                     </Link>
-                </Nav.Item>
+                </Nav.Item> */}
                 <Nav.Item>
                     <Link
                         to="DashProducts"

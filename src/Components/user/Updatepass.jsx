@@ -36,6 +36,7 @@ const Updatepass = () => {
             draggable: true,
             progress: undefined,
         });
+        navigate("/EditProfile");
     };
     return (
         <Container style={{ maxWidth: "600px" }}>

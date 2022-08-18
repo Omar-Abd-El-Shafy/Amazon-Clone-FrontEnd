@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Rating from '../Components/Rating/Rating';
 import Loading from '../Components/Loading/Loading';
 import Error from '../Components/Error/Error';
-import { addToCart } from '../Redux/cartSlice';
+// import { addToCart } from '../Redux/cartSlice';
 import { Helmet } from 'react-helmet-async';
 import Card from 'react-bootstrap/Card';
 import { ListGroupItem, Row } from 'react-bootstrap';
@@ -41,15 +41,24 @@ function ProductDetails() {
     isLoading: loading,
   } = useGetSingleProdactQuery(id);
   //addProduct
-  const [addProduct] = useAddToCartMutation();
+  const [addToCart] = useAddToCartMutation();
   let Qty = 1;
   const handleAddToCart = (product) => {
+    // flag = 0 means decrease , 1 means add
     if (loggedInUser) {
+      addToCart({
+        token: loggedInUser.token,
+        body: {
+          product_id: product._id,
+          flag: 1
+        },
+      })
+  
       // addProduct({
       //   token: loggedInUser.token,
       //   body: { quantity: Qty + 1, product_id: product._id },
       // });
-      dispatch(addToCart(product));
+      // dispatch(addToCart(product));
     } else {
       navigate('/login');
     }

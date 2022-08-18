@@ -26,6 +26,7 @@ const UpdateName = () => {
             draggable: true,
             progress: undefined,
         });
+        navigate("/EditProfile");
     };
 
     return (

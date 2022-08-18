@@ -26,6 +26,7 @@ const UpdateEmail = () => {
             draggable: true,
             progress: undefined,
         });
+        navigate("/EditProfile");
     };
 
     return (

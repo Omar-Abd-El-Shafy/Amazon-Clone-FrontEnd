@@ -23,20 +23,27 @@ const CartPage = () => {
   // const token = userinfo.token;
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
 
-  const [removeProduct] = useRemoveFromCartMutation();
-  const [addToCart] = useAddToCartMutation();
 
-  
-  
+
+
   const dispatch = useDispatch();
   //accces to cart state
   const cart = useSelector((state) => state.cart);
   useEffect(() => {
-    dispatch(getTotal());
-  }, [cart, dispatch]);
+    // dispatch(getTotal());
+  });
+
+
+  //getcart from database
+  const { data: cartData, isLoading, isError, error } = useGetUserCartQuery(loggedInUser.token);
+
+
+  
+  console.log("cart data logiing ")
+  console.log(cartData)
+  console.log("cart products")
   //fanc
-  // const { data, isloding, isError, error } = useGetUserCartQuery(loggedInUser.token);
-  // console.log(data);
+  const [removeProduct] = useRemoveFromCartMutation();
   const HandelRemove = (pro) => {
     // removeProduct({
     //   token: loggedInUser.token,
@@ -44,16 +51,20 @@ const CartPage = () => {
     // });
     dispatch(removeFromCart(pro));
   };
-  
+
+  const [addToCart] = useAddToCartMutation();
   const HandelDecrease = (pro) => {
-    // addToCart({
-    //   token: loggedInUser.token,
-    //   body: {
-    //     product_id: pro._id,
-    //     flag: 0
-    //   },
-    // })
-    dispatch(decreaseCartItem(pro));
+    addToCart({
+      token: loggedInUser.token,
+      body: {
+        product_id: pro._id,
+        flag: 0
+      },
+    })
+
+
+
+    // dispatch(decreaseCartItem(pro));
   };
   const Handelincrease = (pro) => {
     // dispatch(addToCart(pro));
@@ -82,13 +93,14 @@ const CartPage = () => {
 
   return (
     <Container>
+      {isLoading && <h1>loading...</h1>}
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
       {/* <span>back to shopping</span> */}
       <Row className="align-items-center;">
         <Col md={8} className="">
-          {cart.cartItems.length === 0 ? (
+          {cartData.products.length === 0 ? (
             <Col>
               <h1>
                 Cart is Empty <MdOutlineRemoveShoppingCart />
@@ -108,15 +120,15 @@ const CartPage = () => {
           ) : (
             <ListGroup>
               <h1>Shopping Cart</h1>
-              {cart.cartItems?.map((pro) => (
+              {cartData.products.map((pro) => (
                 <ListGroup.Item key={pro.product_id}>
                   <Row className="align-item-center ">
                     <Col md={4}>
                       <img
                         className="img-fluid rounded cart-img"
                         style={{ height: '70px' }}
-                        src={pro.image_path[0]}
-                        alt={pro.name}
+                        src={pro.product_id.image_path[0]}
+                        alt={pro.product_id.name}
                       />{' '}
                       <Link to={`/product/one/${pro._id}`}>{pro.name}</Link>
                     </Col>

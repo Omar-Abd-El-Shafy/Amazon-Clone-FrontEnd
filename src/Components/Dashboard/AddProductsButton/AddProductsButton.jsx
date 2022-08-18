@@ -41,11 +41,7 @@ export default function AddProduct() {
 
     return (
         <>
-            <Button
-                variant="warning"
-                onClick={handleShow}
-                style={{ width: "140px" }}
-            >
+            <Button variant="warning" onClick={handleShow} className="crudBtn">
                 Create Product
             </Button>
 
