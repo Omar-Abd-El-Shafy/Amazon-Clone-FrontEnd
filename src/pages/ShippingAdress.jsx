@@ -22,10 +22,7 @@ const ShippingAdress = () =>
   const [city, setCity] = useState(Shipping.city || ' ');
   const [state, setState] = useState(Shipping.city || ' ');
   const [ zipCode, setZipCode ] = useState( Shipping.city || ' ' );
-  
 
-  const [adress, setAdress] = useState(Shipping.adress || ' ');
-  const [country, setCountry] = useState(Shipping.country || ' ');
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   console.log(Shipping);
   
