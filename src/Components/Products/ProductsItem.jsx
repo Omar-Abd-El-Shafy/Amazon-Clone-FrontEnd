@@ -1,17 +1,34 @@
 import React from "react";
 import { addToCart } from "../../Redux/cartSlice";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Rating from "../Rating/Rating";
 import Card from "react-bootstrap/Card";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { useAddToCartMutation } from "../../Redux/Api";
+import Reviews from "../Reviews/Reviews";
 
 const ProductsItem = ({ product }) => {
   // console.log(product);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  
+  //addProduct
+  const [ addProduct ] = useAddToCartMutation();
+  const loggedInUser = useSelector((state) => state.user?.loggedInUser);
+  let Qty = 1;
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    if (loggedInUser) {
+      // addProduct({
+      //   token: loggedInUser.token,
+      //   body: { quantity: Qty + 1, product_id: product._id },
+      // });
+      dispatch(addToCart(product));
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -42,8 +59,8 @@ const ProductsItem = ({ product }) => {
             <Card.Title>{product.name}</Card.Title>
             {/* <span className="text-secondary">{product.category.name}</span> */}
           </Link>
-          <Rating rating={product.rating} Reviews={product.rating} />
-
+          <Rating rating={product.rating} />
+          {/* <Reviews Reviews={product.rating} /> */}
           <Card.Text
             style={{
               fontSize: '28px',

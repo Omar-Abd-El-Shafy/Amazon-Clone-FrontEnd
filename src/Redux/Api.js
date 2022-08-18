@@ -1,35 +1,35 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const Api = createApi({
-  reducerPath: "Api",
+  reducerPath: 'Api',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://amazon-clone-deploy.herokuapp.com/",
+    baseUrl: 'https://amazon-clone-deploy.herokuapp.com/',
   }),
-  tagTypes: ["Product", "Department", "Category"],
+  tagTypes: ['Product', 'Department', 'Category'],
 
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
       query: () => `product`,
-      providesTags: ["Product"],
+      providesTags: ['Product'],
     }),
     getSingleProdact: builder.query({
       query: (id) => `product/one/${id}`,
     }),
+
     getAllCategories: builder.query({
       query: () => `category`,
-      providesTags: ["Category"],
+      providesTags: ['Category'],
     }),
     getProdactCategories: builder.query({
       query: (id) => {
-        console.log("category" + id);
         return {
-          method: "GET",
+          url: `/product?category=${id}`,
+          method: 'GET',
           // product?page=1&category=22
           // /product/search?category=122
-          url: `/product?category=${id}`,
         };
       },
-      providesTags: ["Product"],
+      providesTags: ['Product'],
     }),
     getdAlldepartment: builder.query({
       query: () => `department`,
@@ -37,58 +37,106 @@ export const Api = createApi({
     getCategorydepartment: builder.query({
       query: (id) => `category/dept/${id}`,
     }),
-    addProduct: builder.mutation({
+    //Review
+    addReview: builder.mutation({
       query: ({ token, body }) => ({
-        url: `product`,
-        method: "POST",
+        url: `review`,
+        method: 'POST',
         headers: {
-          "x-access-token": `${token}`,
+          'x-access-token': `${token}`,
         },
         body,
       }),
-      invalidatesTags: ["Product"],
+    }),
+    allProductReviews: builder.query({
+      query: (id) => `review/product/${id}`,
+    }),
+    //cart
+    addToCart: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `cart/incItem`,
+        method: 'PUT',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
+    }),
+    getUserCart: builder.query({
+      query: (token) => ({
+        url: `cart`,
+        method: 'GET',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+      }),
+      invalidatesTags: ['Product'],
+    }),
+    removeFromCart: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `removeItem`,
+        method: 'PUT',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
+    }),
+    //admin
+    addProduct: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `product`,
+        method: 'POST',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
     }),
     deleteProduct: builder.mutation({
       query: ({ token, id }) => ({
         url: `product/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          "x-access-token": `${token}`,
+          'x-access-token': `${token}`,
         },
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ['Product'],
     }),
     addCategory: builder.mutation({
       query: ({ token, body }) => ({
         url: `category`,
-        method: "POST",
+        method: 'POST',
         headers: {
-          "x-access-token": `${token}`,
+          'x-access-token': `${token}`,
         },
         body,
       }),
-      invalidatesTags: ["Category"],
+      invalidatesTags: ['Category'],
     }),
     deleteCategory: builder.mutation({
       query: ({ token, id }) => ({
         url: `category/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          "x-access-token": `${token}`,
+          'x-access-token': `${token}`,
         },
       }),
-      invalidatesTags: ["Category"],
+      invalidatesTags: ['Category'],
     }),
     updateCategory: builder.mutation({
       query: ({ token, body }) => ({
         url: `category`,
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "x-access-token": `${token}`,
+          'x-access-token': `${token}`,
         },
         body,
       }),
-      invalidatesTags: ["Category"],
+      invalidatesTags: ['Category'],
     }),
   }),
 });
@@ -103,5 +151,10 @@ export const {
   useDeleteProductMutation,
   useDeleteCategoryMutation,
   useAddCategoryMutation,
+  useAddToCartMutation,
+  useGetUserCartQuery,
+  useRemoveFromCartMutation,
   useUpdateCategoryMutation,
+  useAddReviewMutation,
+  useAllProductReviewsQuery,
 } = Api;
