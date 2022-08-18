@@ -30,7 +30,7 @@ const CartPage = () => {
 
   const dispatch = useDispatch();
   //accces to cart state
-  const cart = useSelector((state) => state.cart);
+  // const cart = useSelector((state) => state.cart);
   useEffect(() => {
     // dispatch(getTotal());
   });
@@ -41,6 +41,7 @@ const CartPage = () => {
     isLoading,
     isError,
     error,
+    isFetching,
   } = useGetUserCartQuery(loggedInUser.token);
 
   console.log('cart data logiing ');
@@ -49,13 +50,13 @@ const CartPage = () => {
   //fanc
   const [removeProduct] = useRemoveFromCartMutation();
   const HandelRemove = (pro) => {
-    // removeProduct({
-    //   token: loggedInUser.token,
-    //   body: { product_id: pro._id },
-    // });
-    dispatch(removeFromCart(pro));
+    removeProduct({
+      token: loggedInUser.token,
+      body: { product_id: pro.product_id },
+    });
+    // dispatch(removeFromCart(pro));
   };
-
+  // price;
   const [addToCart] = useAddToCartMutation();
   const HandelDecrease = (pro) => {
     addToCart({
@@ -75,13 +76,13 @@ const CartPage = () => {
     addToCart({
       token: loggedInUser.token,
       body: {
-        product_id: pro._id,
+        product_id: pro.product_id._id,
         flag: 1,
       },
     });
   };
   const Handelclear = () => {
-    dispatch(clearcart());
+    // dispatch(clearcart());
   };
   const HandelCheckOut = () => {
     if (!loggedInUser) {
@@ -100,12 +101,12 @@ const CartPage = () => {
         <div>
           <Loading />
         </div>
-      ) : (
+      ) : cartData ? (
         <>
           {/* <span>back to shopping</span> */}
           <Row className="align-items-center;">
             <Col md={8} className="">
-              {cartData.products.length === 0 ? (
+              {cartData.length === 0 ? (
                 <Col>
                   <h1>
                     Cart is Empty <MdOutlineRemoveShoppingCart />
@@ -125,8 +126,8 @@ const CartPage = () => {
               ) : (
                 <ListGroup>
                   <h1>Shopping Cart</h1>
-                  {cartData.products.map((pro) => (
-                    <ListGroup.Item key={pro.product_id}>
+                  {cartData?.products.map((pro) => (
+                    <ListGroup.Item key={pro.product_id._id}>
                       <Row className="align-item-center ">
                         <Col md={4}>
                           <img
@@ -135,7 +136,9 @@ const CartPage = () => {
                             src={pro.product_id.image_path[0]}
                             alt={pro.product_id.name}
                           />{' '}
-                          <Link to={`/product/one/${pro._id}`}>{pro.name}</Link>
+                          <Link to={`/product/one/${pro.product_id._id}`}>
+                            {pro.product_id.name}
+                          </Link>
                         </Col>
                         <Col md={3}>
                           <Button
@@ -146,10 +149,10 @@ const CartPage = () => {
                             <AiOutlineMinus />
                           </Button>
                           <strong className=" rounded-2 py-1 px-2 bg-warning bg-opacity-10">
-                            {pro.cartQuantity}
+                            {pro.quantity}
                           </strong>
                           <Button
-                            disabled={pro.stoke === pro.cartQuantity}
+                            disabled={pro.product_id.stock === pro.quantity}
                             variant="light"
                             className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                             onClick={() => Handelincrease(pro)}
@@ -158,7 +161,7 @@ const CartPage = () => {
                           </Button>
                         </Col>
                         <Col md={3} className="fw-bold fs-4">
-                          {pro.cartQuantity * pro.price} EGP
+                          {pro.quantity * pro.product_id.price} EGP
                         </Col>
                         <Col md={2} className="fw-bold fs-4">
                           <Button
@@ -181,12 +184,12 @@ const CartPage = () => {
                   <ListGroup variant="flush">
                     <ListGroup.Item>
                       <h3>
-                        total Cart Price : {cart.totalCartPrice} EGP
+                        total Cart Price : {cartData?.bill} EGP
                         <Button
-                          disabled={cart.cartItems.length === 0}
+                          disabled={cartData?.products.length === 0}
                           className="d-block mt-2 ms-auto"
                           variant="danger"
-                          onClick={() => Handelclear(cart.cartItems)}
+                          // onClick={() => Handelclear(cart.cartItems)}
                         >
                           Clear
                         </Button>
@@ -197,7 +200,7 @@ const CartPage = () => {
                       <div className="d-grid">
                         <Button
                           onClick={() => HandelCheckOut()}
-                          disabled={cart.cartItems.length === 0}
+                          disabled={cartData?.products.length === 0}
                           variant="warning"
                         >
                           Check out
@@ -210,7 +213,7 @@ const CartPage = () => {
             </Col>
           </Row>
         </>
-      )}
+      ) : null}
     </Container>
   );
 };
