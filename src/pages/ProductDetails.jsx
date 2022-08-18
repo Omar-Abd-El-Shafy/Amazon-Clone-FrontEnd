@@ -12,7 +12,7 @@ import Error from '../Components/Error/Error';
 import { addToCart } from '../Redux/cartSlice';
 import { Helmet } from 'react-helmet-async';
 import Card from 'react-bootstrap/Card';
-import { Row } from 'react-bootstrap';
+import { ListGroupItem, Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/ListGroup';
@@ -23,6 +23,7 @@ import { toast } from 'react-toastify';
 
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
+import Reviews from '../Components/Reviews/Reviews';
 
 function ProductDetails() {
   const params = useParams();
@@ -144,8 +145,9 @@ function ProductDetails() {
             <ListGroup.Item>
               <Rating rating={product.rating} Reviews={product.rating} />
             </ListGroup.Item>
-            <ListGroup.Item className="text-danger fw-bolder">
-              price :{product.price} EGP
+            <ListGroup.Item>
+              price:
+              <span className="text-danger fw-bolder">{product.price} EGP</span>
             </ListGroup.Item>
             <ListGroup.Item>
               products Description :<p>{product.description}</p>
@@ -191,6 +193,9 @@ function ProductDetails() {
                     <Button variant="secondary">out of stock</Button>
                   )}
                 </div>
+                <ListGroupItem className='border-0 mt-2'>
+                  {/* <Reviews /> */}
+                </ListGroupItem>
               </ListGroup>
             </Card.Body>
           </Card>

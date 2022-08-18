@@ -15,16 +15,7 @@ export const Api = createApi({
     getSingleProdact: builder.query({
       query: (id) => `product/one/${id}`,
     }),
-    addReview: builder.mutation({
-      query: ({ token, body }) => ({
-        url: ``,
-        method: 'POST',
-        headers: {
-          'x-access-token': `${token}`,
-        },
-        body,
-      }),
-    }),
+
     getAllCategories: builder.query({
       query: () => `category`,
       providesTags: ['Category'],
@@ -46,6 +37,21 @@ export const Api = createApi({
     getCategorydepartment: builder.query({
       query: (id) => `category/dept/${id}`,
     }),
+    //Review
+    addReview: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `review`,
+        method: 'POST',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+    }),
+    allProductReviews: builder.query({
+      query: (id) => `review/product/${id}`,
+    }),
+    //cart
     addToCart: builder.mutation({
       query: ({ token, body }) => ({
         url: `cart/incItem`,
@@ -150,4 +156,5 @@ export const {
   useRemoveFromCartMutation,
   useAddReviewMutation,
   useUpdateCategoryMutation,
+  useAllProductReviewsQuery,
 } = Api;

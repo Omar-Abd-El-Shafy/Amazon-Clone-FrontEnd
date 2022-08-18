@@ -60,7 +60,7 @@ const ProductsItem = ({ product }) => {
             {/* <span className="text-secondary">{product.category.name}</span> */}
           </Link>
           <Rating rating={product.rating} />
-          <Reviews Reviews={product.rating} />
+          {/* <Reviews Reviews={product.rating} /> */}
           <Card.Text
             style={{
               fontSize: '28px',
