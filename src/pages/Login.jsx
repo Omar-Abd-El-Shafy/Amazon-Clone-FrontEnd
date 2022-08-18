@@ -25,7 +25,7 @@ export default function Login(props) {
         const storedData = JSON.parse(localStorage.getItem("userData"));
 
         tokenExpirationDate = new Date(
-            storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 2
+            storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 240
         );
         if (loggedInUser?.token) {
             localStorage.setItem(
