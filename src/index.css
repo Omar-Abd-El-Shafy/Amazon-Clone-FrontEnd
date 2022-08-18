@@ -290,4 +290,15 @@ a:hover {
 .paramSearch {
     color: var(--main);
 }
+.dashProducts {
+    background-image: url("./assets/imgs/Product-Development-01-01-1200x840-1-1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 50vh;
+    width: 30vw;
+    position: relative;
+    left: 50vw;
+    top: 20vh;
+}
 /* searchImg */

@@ -37,6 +37,15 @@ const DashSidebar = () => {
                         Products
                     </Link>
                 </Nav.Item>
+                <Nav.Item>
+                    <Link
+                        to="DashProducts"
+                        element={<DashProducts />}
+                        className="d-block text-white m-4 navLink"
+                    >
+                        Users
+                    </Link>
+                </Nav.Item>
             </Nav>
         </>
     );
