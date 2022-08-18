@@ -17,15 +17,11 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useGetUserCartQuery, useRemoveFromCartMutation, useAddToCartMutation } from '../Redux/Api';
-//
 const CartPage = () => {
   const navigate = useNavigate();
   // const userinfo = useSelector((state) => state.user.loggedInUser);
   // const token = userinfo.token;
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-  const { data: cartData, isLoading, isError, error } = useGetUserCartQuery(loggedInUser.token);
-  const [addToCart] = useAddToCartMutation();
-  const [removeProduct] = useRemoveFromCartMutation();
 
 
 
@@ -39,17 +35,24 @@ const CartPage = () => {
 
 
   //getcart from database
+  const { data: cartData, isLoading, isError, error } = useGetUserCartQuery(loggedInUser.token);
 
 
-
+  
   console.log("cart data logiing ")
   console.log(cartData)
+  console.log("cart products")
   //fanc
+  const [removeProduct] = useRemoveFromCartMutation();
   const HandelRemove = (pro) => {
-
+    // removeProduct({
+    //   token: loggedInUser.token,
+    //   body: { product_id: pro._id },
+    // });
     dispatch(removeFromCart(pro));
   };
 
+  const [addToCart] = useAddToCartMutation();
   const HandelDecrease = (pro) => {
     addToCart({
       token: loggedInUser.token,
@@ -90,7 +93,7 @@ const CartPage = () => {
 
   return (
     <Container>
-      {isLoading && <h1>loading..</h1>}
+      {isLoading && <h1>loading...</h1>}
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
@@ -117,8 +120,8 @@ const CartPage = () => {
           ) : (
             <ListGroup>
               <h1>Shopping Cart</h1>
-              {cartData.products?.map((pro) => (
-                <ListGroup.Item key={pro}>
+              {cartData.products.map((pro) => (
+                <ListGroup.Item key={pro.product_id}>
                   <Row className="align-item-center ">
                     <Col md={4}>
                       <img
@@ -127,7 +130,7 @@ const CartPage = () => {
                         src={pro.product_id.image_path[0]}
                         alt={pro.product_id.name}
                       />{' '}
-                      <Link to={`/product/one/${pro.product_id._id}`}>{pro.product_id.name}</Link>
+                      <Link to={`/product/one/${pro._id}`}>{pro.name}</Link>
                     </Col>
                     <Col md={3}>
                       <Button
@@ -141,7 +144,7 @@ const CartPage = () => {
                         {pro.cartQuantity}
                       </strong>
                       <Button
-                        disabled={pro.product_id.stock === pro.quantity}
+                        disabled={pro.stoke === pro.cartQuantity}
                         variant="light"
                         className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                         onClick={() => Handelincrease(pro)}
@@ -150,7 +153,7 @@ const CartPage = () => {
                       </Button>
                     </Col>
                     <Col md={3} className="fw-bold fs-4">
-                      {pro.quantity * pro.product_id.price} EGP
+                      {pro.cartQuantity * pro.price} EGP
                     </Col>
                     <Col md={2} className="fw-bold fs-4">
                       <Button
@@ -173,12 +176,12 @@ const CartPage = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    total Cart Price : {cartData.bill} EGP
+                    total Cart Price : {cart.totalCartPrice} EGP
                     <Button
-                      disabled={cartData.products.length === 0}
+                      disabled={cart.cartItems.length === 0}
                       className="d-block mt-2 ms-auto"
                       variant="danger"
-                      onClick={() => Handelclear(cartData.products)}
+                      onClick={() => Handelclear(cart.cartItems)}
                     >
                       Clear
                     </Button>
@@ -189,7 +192,7 @@ const CartPage = () => {
                   <div className="d-grid">
                     <Button
                       onClick={() => HandelCheckOut()}
-                      disabled={cartData.products.length === 0}
+                      disabled={cart.cartItems.length === 0}
                       variant="warning"
                     >
                       Check out
