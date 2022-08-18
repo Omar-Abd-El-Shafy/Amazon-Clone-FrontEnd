@@ -16,26 +16,35 @@ const ShippingAdress = () => {
   const [city, setCity] = useState(Shipping.city || ' ');
   const [country, setCountry] = useState(Shipping.country || ' ');
   const [phone, setPhone] = useState(Shipping.phone || ' ');
-  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
   console.log(Shipping);
   
+//   "building": 100,
+//   "street": 9,
+//   "city": "El-Mokkattam",
+//   "state": "Cairo",
+//   "zipCode": 11571,
+//   "phone": 1012345678
+
+// }
+  console.log(loggedInUser);
   //func
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!userinfo) {
-      navigate('/login');
-    }
-  }, [userinfo, navigate]);
+  // useEffect(() => {
+  //   if (!loggedInUser) {
+  //     navigate('/login');
+  //   }
+  // }, [loggedInUser, navigate]);
   const dispatch = useDispatch();
 
   const handelSubmit = (e) => {
     e.preventDefault();
     dispatch(saveShipping({ fullName, adress, city, country, phone }));
-    if (!userinfo) {
-      navigate('/login');
-    } else {
-      navigate('/Payment');
-    }
+    // if (!loggedInUser) {
+    //   navigate('/login');
+    // } else {
+    //   navigate('/Payment');
+    // }
   };
   return (
     <Container>

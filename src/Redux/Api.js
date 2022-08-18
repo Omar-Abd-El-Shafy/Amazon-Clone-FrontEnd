@@ -47,9 +47,23 @@ export const Api = createApi({
         },
         body,
       }),
+      invalidatesTags: ['Product'],
     }),
     allProductReviews: builder.query({
       query: (id) => `review/product/${id}`,
+      providesTags: ['Product'],
+    }),
+    //address
+    addaddress: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `address`,
+        method: 'POST',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
     }),
     //cart
     addToCart: builder.mutation({

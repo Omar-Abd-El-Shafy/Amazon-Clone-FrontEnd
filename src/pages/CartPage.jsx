@@ -26,10 +26,8 @@ const CartPage = () => {
   const [removeProduct] = useRemoveFromCartMutation();
   const [addToCart] = useAddToCartMutation();
 
-  const { data, isloding, isError, error } = useGetUserCartQuery(loggedInUser.token);
-  console.log(data);
-
-
+  
+  
   const dispatch = useDispatch();
   //accces to cart state
   const cart = useSelector((state) => state.cart);
@@ -37,6 +35,8 @@ const CartPage = () => {
     dispatch(getTotal());
   }, [cart, dispatch]);
   //fanc
+  // const { data, isloding, isError, error } = useGetUserCartQuery(loggedInUser.token);
+  // console.log(data);
   const HandelRemove = (pro) => {
     // removeProduct({
     //   token: loggedInUser.token,
@@ -45,17 +45,14 @@ const CartPage = () => {
     dispatch(removeFromCart(pro));
   };
   const HandelDecrease = (pro) => {
-    addToCart({
-      token: loggedInUser.token,
-      body: {
-        product_id: pro._id,
-        flag: 0
-      },
-    })
-
-
-
-    // dispatch(decreaseCartItem(pro));
+    // addToCart({
+    //   token: loggedInUser.token,
+    //   body: {
+    //     product_id: pro._id,
+    //     flag: 0
+    //   },
+    // })
+    dispatch(decreaseCartItem(pro));
   };
   const Handelincrease = (pro) => {
     // dispatch(addToCart(pro));
