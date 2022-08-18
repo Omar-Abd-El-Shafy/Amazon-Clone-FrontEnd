@@ -21,7 +21,7 @@ const CartPage = () => {
   const navigate = useNavigate();
   // const userinfo = useSelector((state) => state.user.loggedInUser);
   // const token = userinfo.token;
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const loggedInUser = useSelector((state) => state.user?.loggedInUser);
 
   const [removeProduct] = useRemoveFromCartMutation();
   const [addToCart] = useAddToCartMutation();
@@ -45,14 +45,27 @@ const CartPage = () => {
     dispatch(removeFromCart(pro));
   };
   const HandelDecrease = (pro) => {
-    dispatch(decreaseCartItem(pro));
-  };
-  const Handelincrease = (pro) => {
-    // dispatch(addToCart(pro));
     addToCart({
       token: loggedInUser.token,
       body: {
-        product_id: pro._id
+        product_id: pro._id,
+        flag: 0
+      },
+    })
+
+
+
+    // dispatch(decreaseCartItem(pro));
+  };
+  const Handelincrease = (pro) => {
+    // dispatch(addToCart(pro));
+    // note add to cart depends on flag if flag = 1 it will add, if flag = 0 it will subtract
+
+    addToCart({
+      token: loggedInUser.token,
+      body: {
+        product_id: pro._id,
+        flag: 1
       },
     })
 
