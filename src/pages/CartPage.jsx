@@ -17,7 +17,17 @@ import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
+import { useGetUserCartQuery, useRemoveFromCartMutation } from '../Redux/Api';
 const CartPage = () => {
+  const navigate = useNavigate();
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const token = userinfo.token;
+
+  const [removeProduct] = useRemoveFromCartMutation();
+  const { data, isloding, isError, error } = useGetUserCartQuery(token);
+  console.log(data);
+
+
   const dispatch = useDispatch();
   //accces to cart state
   const cart = useSelector((state) => state.cart);
@@ -26,6 +36,10 @@ const CartPage = () => {
   }, [cart, dispatch]);
   //fanc
   const HandelRemove = (pro) => {
+    // removeProduct({
+    //   token: loggedInUser.token,
+    //   body: { product_id: pro._id },
+    // });
     dispatch(removeFromCart(pro));
   };
   const HandelDecrease = (pro) => {
@@ -37,9 +51,6 @@ const CartPage = () => {
   const Handelclear = () => {
     dispatch(clearcart());
   };
-  const navigate = useNavigate();
-  const userinfo = useSelector((state) => state.user.loggedInUser);
-
   const HandelCheckOut = () => {
     if (!userinfo) {
       navigate('/login');
@@ -100,7 +111,7 @@ const CartPage = () => {
                         {pro.cartQuantity}
                       </strong>
                       <Button
-                        disabled={pro.rating.count === pro.cartQuantity}
+                        disabled={pro.stoke === pro.cartQuantity}
                         variant="light"
                         className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                         onClick={() => Handelincrease(pro)}
@@ -109,7 +120,7 @@ const CartPage = () => {
                       </Button>
                     </Col>
                     <Col md={3} className="fw-bold fs-4">
-                      ${pro.cartQuantity * pro.price}
+                      {pro.cartQuantity * pro.price} EGP
                     </Col>
                     <Col md={2} className="fw-bold fs-4">
                       <Button
@@ -132,7 +143,7 @@ const CartPage = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    total Cart Price : {cart.totalCartPrice}$
+                    total Cart Price : {cart.totalCartPrice} EGP
                     <Button
                       disabled={cart.cartItems.length === 0}
                       className="d-block mt-2 ms-auto"

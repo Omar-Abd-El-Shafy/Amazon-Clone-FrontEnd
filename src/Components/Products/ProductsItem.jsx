@@ -1,18 +1,36 @@
-import React from 'react';
-import { addToCart } from '../../Redux/cartSlice';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Rating from '../Rating/Rating';
-import Card from 'react-bootstrap/Card';
-import { Col } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import React from "react";
+import { addToCart } from "../../Redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Rating from "../Rating/Rating";
+import Card from "react-bootstrap/Card";
+import { Col } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import { useAddToCartMutation } from "../../Redux/Api";
+import Reviews from "../Reviews/Reviews";
 
 const ProductsItem = ({ product }) => {
   // console.log(product);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const [ addProduct ] = useAddToCartMutation();
+  const loggedInUser = useSelector((state) => state.user?.loggedInUser);
+  
+  //addProduct
+  let Qty = 1;
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    if (loggedInUser) {
+      // addProduct({
+      //   token: loggedInUser.token,
+      //   body: { quantity: Qty + 1, product_id: product._id },
+      // });
+      dispatch(addToCart(product));
+    } else {
+      navigate('/login');
+    }
   };
+
   return (
     <Col sm={6} md={4} lg={3} className="mb-3 ">
       <Card
@@ -26,6 +44,7 @@ const ProductsItem = ({ product }) => {
             alt={product.name}
           />
         </Link>
+
         <Card.Body
           style={{
             display: 'flex',
@@ -38,23 +57,26 @@ const ProductsItem = ({ product }) => {
         >
           <Link to={`/product/one/${product._id}`}>
             <Card.Title>{product.name}</Card.Title>
-            <span className="text-secondary">{product.category.name}</span>
+            {/* <span className="text-secondary">{product.category.name}</span> */}
           </Link>
-          <Rating rating={product.rating} Reviews={product.rating} />
+          <Rating rating={product.rating} />
+          {/* <Reviews Reviews={product.rating} /> */}
           <Card.Text
             style={{
               fontSize: '28px',
               fontWeight: '400',
             }}
           >
-            ${product.price}
+            EGP {product.price}
           </Card.Text>
           {product.stock > 0 ? (
             <Button variant="warning" onClick={() => handleAddToCart(product)}>
               Add to Cart
             </Button>
           ) : (
-            <Button disabled variant="secondary">Add to Cart</Button>
+            <Button disabled variant="secondary">
+              out of stock
+            </Button>
           )}
         </Card.Body>
       </Card>

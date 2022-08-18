@@ -14,9 +14,12 @@ const Footer = () => {
                 <div className="footer-links">
                     <ul>
                         <li>
-                            <Link to="/" className="text-white">
+                            <a
+                                href="mailto: abc@amazon.com"
+                                className="text-white"
+                            >
                                 Contact Us
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 </div>

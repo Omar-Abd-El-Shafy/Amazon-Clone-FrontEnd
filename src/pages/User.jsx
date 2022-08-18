@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 const User = () => {
+  const userinfo = useSelector((state) => state.user.loggedInUser);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!userinfo) {
+      navigate('/');
+    }
+  }, [userinfo, navigate]);
+
+  const { user } = userinfo;
+
   return (
     <Container>
       <Row>

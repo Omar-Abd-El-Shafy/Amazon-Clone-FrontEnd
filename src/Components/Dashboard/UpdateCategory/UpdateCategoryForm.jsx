@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import {
-  useAddCategoryMutation,
+  useGetAllCategoriesQuery,
   useGetdAlldepartmentQuery,
+  useUpdateCategoryMutation,
 } from "../../../Redux/Api";
 
-export default function AddCategory() {
+export default function UpdateCategory() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const { data: categories } = useGetAllCategoriesQuery();
   const { data: departments } = useGetdAlldepartmentQuery();
-  const [addCategory, { isError }] = useAddCategoryMutation();
-
-  // useEffect(() => {
-  //   console.log("item", item);
-  // }, [item]);
+  const [updateCategory, { isError }] = useUpdateCategoryMutation();
 
   const schema = yup.object().shape({
+    category: yup.string().required("Required Field"),
     department: yup.string().required("Required Field"),
     name: yup.string().required("Required Field"),
   });
@@ -33,7 +31,7 @@ export default function AddCategory() {
   return (
     <>
       <Button variant="warning" onClick={handleShow}>
-        Create Category
+        Update Category
       </Button>
 
       <Modal
@@ -43,27 +41,29 @@ export default function AddCategory() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New Category</Modal.Title>
+          <Modal.Title>Update Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Formik
             enableReinitialize
             initialValues={{
+              category: "",
               department: "",
               name: "",
             }}
             validationSchema={schema}
             onSubmit={(values) => {
-              addCategory({
-                token: loggedInUser.token,
+              updateCategory({
+                token: loggedInUser?.token,
                 body: {
+                  id: values.category,
                   department: values.department,
                   name: values.name,
                 },
               })
                 .unwrap()
-                .then((fulfilled) =>  {
-                  toast.success(`Category Added Successfully`, {
+                .then((fulfilled) => {
+                  toast.success(`Category updated Successfully`, {
                     position: "bottom-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -74,24 +74,38 @@ export default function AddCategory() {
                   });
                 })
                 .catch((rejected) => console.error(rejected.data));
-
-              // console.log(values);
-              // axios.post(
-              //   "https://amazon-clone-deploy.herokuapp.com/category/",
-              //   {
-              //     department: values.department,
-              //     name: values.name,
-              //   },
-              //   {
-              //     headers: {
-              //       "x-access-token": loggedInUser.token,
-              //     },
-              //   }
-              // );
             }}
           >
             {({ setFieldValue }) => (
               <Form id="btnId">
+                {/* category */}
+                <div className="form-control">
+                  <label htmlFor="category">category</label>
+                  <Field
+                    name="category"
+                    as="select"
+                    onChange={(e) => {
+                      setFieldValue("category", e.target.value);
+                      const cat = categories.find(
+                        (item) => item._id === e.target.value
+                      );
+                      setFieldValue("department", cat?.department._id);
+                      setFieldValue("name", cat?.name);
+                    }}
+                  >
+                    <option value="" disabled>
+                      Please select an option
+                    </option>
+                    {categories?.map((cate) => (
+                      <option key={cate._id} value={cate._id}>
+                        {cate.name}
+                      </option>
+                    ))}
+                  </Field>
+                  <div className="ErrorMessageTxt">
+                    <ErrorMessage name="category" />
+                  </div>
+                </div>
                 {/* department */}
                 <div className="form-control">
                   <label htmlFor="department">department</label>
@@ -104,18 +118,6 @@ export default function AddCategory() {
                         {dept.name}
                       </option>
                     ))}
-                    {/* <option value="62e46ccdd282c036e6947f18">
-                      Electronics
-                    </option>
-                    <option value="62e46cf6d282c036e6947f1b">Computers</option>
-                    <option value="62e46d0ad282c036e6947f1e">Smart Home</option>
-                    <option value="62e46d29d282c036e6947f21">
-                      Arts & Crafts
-                    </option>
-                    <option value="62e46d35d282c036e6947f24">Books</option>
-                    <option value="62f94e6e339d76c5360ee133">
-                      Men's Fashion
-                    </option> */}
                   </Field>
                   <div className="ErrorMessageTxt">
                     <ErrorMessage name="department" />

@@ -1,10 +1,10 @@
 import React from 'react'
-
-const Rating = ({rating,Reviews}) => {
+{/* <FontAwesomeIcon icon="fa-thin fa-alicorn" /> */}
+const Rating = ({rating}) => {
   return (
     <div className="">
       <span className="text-warning">
-        <i
+        < i
           className={
             rating >= 1
               ? 'fa fa-star'
@@ -58,7 +58,6 @@ const Rating = ({rating,Reviews}) => {
           }
         />
       </span>
-      <div> {Reviews} Reviews</div>
     </div>
   );
 }
