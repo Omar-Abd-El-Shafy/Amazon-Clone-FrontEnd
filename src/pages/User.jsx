@@ -13,9 +13,7 @@ const User = () => {
             navigate("/");
         }
     }, [userinfo, navigate]);
-
     const { user } = userinfo;
-
     return (
         <Container>
             <Row className="d-flex">

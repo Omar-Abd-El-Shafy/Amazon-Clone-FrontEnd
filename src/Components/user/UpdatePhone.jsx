@@ -28,6 +28,7 @@ const UpdatePhone = () => {
             draggable: true,
             progress: undefined,
         });
+        navigate("/EditProfile");
     };
 
     return (
@@ -35,7 +36,7 @@ const UpdatePhone = () => {
             <Row>
                 <Link to={"/profile"}>
                     <h1>
-                        back to your account {"  "}
+                        back to your account
                         <RiArrowGoBackFill />
                     </h1>
                 </Link>
