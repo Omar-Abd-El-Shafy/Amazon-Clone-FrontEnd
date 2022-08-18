@@ -14,10 +14,10 @@ const ProductsItem = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const [ addProduct ] = useAddToCartMutation();
-  const loggedInUser = useSelector((state) => state.user?.loggedInUser);
   
   //addProduct
+  const [ addProduct ] = useAddToCartMutation();
+  const loggedInUser = useSelector((state) => state.user?.loggedInUser);
   let Qty = 1;
   const handleAddToCart = (product) => {
     if (loggedInUser) {

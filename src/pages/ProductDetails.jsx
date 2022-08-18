@@ -24,6 +24,8 @@ import { toast } from 'react-toastify';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 import Reviews from '../Components/Reviews/Reviews';
+import AddReview from '../Components/Reviews/AddReview';
+import { Link } from 'react-router-dom';
 
 function ProductDetails() {
   const params = useParams();
@@ -32,7 +34,6 @@ function ProductDetails() {
   const [Selectedimg, SetSelectedImg] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [addProduct] = useAddToCartMutation();
   //get all product
   const {
     data: product,
@@ -40,6 +41,7 @@ function ProductDetails() {
     isLoading: loading,
   } = useGetSingleProdactQuery(id);
   //addProduct
+  const [addProduct] = useAddToCartMutation();
   let Qty = 1;
   const handleAddToCart = (product) => {
     if (loggedInUser) {
@@ -149,9 +151,9 @@ function ProductDetails() {
               price:
               <span className="text-danger fw-bolder">{product.price} EGP</span>
             </ListGroup.Item>
-            <ListGroup.Item>
+            {/* <ListGroup.Item>
               products Description :<p>{product.description}</p>
-            </ListGroup.Item>
+            </ListGroup.Item> */}
           </ListGroup>
         </Col>
         <Col md={3}>
@@ -193,12 +195,10 @@ function ProductDetails() {
                     <Button variant="secondary">out of stock</Button>
                   )}
                 </div>
-                <ListGroupItem className='border-0 mt-2'>
-                  {/* <Reviews /> */}
-                </ListGroupItem>
               </ListGroup>
             </Card.Body>
           </Card>
+
           <>
             {loggedInUser?.user.role === true ? (
               <Button
@@ -228,6 +228,25 @@ function ProductDetails() {
               </Button>
             ) : null}
           </>
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col>
+          <h4>products Description: </h4>
+          <p>{product.description}</p>
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col md={6}>
+          {/* <Link to="/AddReview">
+            <Button>Review this product</Button>
+          </Link> */}
+          <AddReview id={id} />
+        </Col>
+        <Col md={5}>
+          <Reviews id={id} />
         </Col>
       </Row>
     </div>
