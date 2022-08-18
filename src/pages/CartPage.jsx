@@ -44,6 +44,7 @@ const CartPage = () => {
     // });
     dispatch(removeFromCart(pro));
   };
+  
   const HandelDecrease = (pro) => {
     // addToCart({
     //   token: loggedInUser.token,

@@ -5,7 +5,7 @@ export const Api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://amazon-clone-deploy.herokuapp.com/',
   }),
-  tagTypes: ['Product', 'Department', 'Category'],
+  tagTypes: ['Product', 'Department', 'Category', 'Cart'],
 
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
@@ -75,7 +75,7 @@ export const Api = createApi({
         },
         body,
       }),
-      invalidatesTags: ['Product'],
+      invalidatesTags: ['Cart'],
     }),
     getUserCart: builder.query({
       query: (token) => ({
@@ -85,7 +85,7 @@ export const Api = createApi({
           'x-access-token': `${token}`,
         },
       }),
-      invalidatesTags: ['Product'],
+      providesTags: ['Cart'],
     }),
     removeFromCart: builder.mutation({
       query: ({ token, body }) => ({
@@ -96,7 +96,7 @@ export const Api = createApi({
         },
         body,
       }),
-      invalidatesTags: ['Product'],
+      invalidatesTags: ['Cart'],
     }),
     //admin
     addProduct: builder.mutation({
