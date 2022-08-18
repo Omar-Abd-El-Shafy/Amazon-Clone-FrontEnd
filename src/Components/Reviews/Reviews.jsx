@@ -15,9 +15,9 @@ const Reviews = ({ id }) => {
           <Loading />
         </div>
       ) : (
-        <Row>
-          {data.map((rev) => (
-            <>
+        <>
+        {data.map((rev) => (
+          <Row key={rev.user._id}>
               <h4>{rev.user.name}</h4>
               <p>
                 <Rating rating={rev.rating} />
@@ -26,9 +26,9 @@ const Reviews = ({ id }) => {
               <p>{rev.date}</p>
               <h6>{ rev.comment }</h6>
               <hr/>
-            </>
-          ))}
-        </Row>
+              </Row>
+              ))}
+              </>
       )}
     </Container>
   );
