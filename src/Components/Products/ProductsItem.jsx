@@ -16,16 +16,23 @@ const ProductsItem = ({ product }) => {
   
   
   //addProduct
-  const [ addProduct ] = useAddToCartMutation();
+  const [addToCart] = useAddToCartMutation();
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
   let Qty = 1;
   const handleAddToCart = (product) => {
     if (loggedInUser) {
+      addToCart({
+        token: loggedInUser.token,
+        body: {
+          product_id: product._id,
+          flag: 1
+        },
+      })
       // addProduct({
       //   token: loggedInUser.token,
       //   body: { quantity: Qty + 1, product_id: product._id },
       // });
-      dispatch(addToCart(product));
+      // dispatch(addToCart(product));
     } else {
       navigate('/login');
     }
