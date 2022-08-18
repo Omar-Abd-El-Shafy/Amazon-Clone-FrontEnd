@@ -1,27 +1,27 @@
-import React from 'react';
-import '../index.css';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
-import {
-  clearcart,
-  decreaseCartItem,
-  getTotal,
-  removeFromCart,
-} from '../Redux/cartSlice';
-import { useEffect } from 'react';
-import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { AiOutlineMinus } from 'react-icons/ai';
-import { IoTrashOutline } from 'react-icons/io5';
+import React from "react";
+import "../index.css";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
+// import {
+//   clearcart,
+//   decreaseCartItem,
+//   getTotal,
+//   removeFromCart,
+// } from '../Redux/cartSlice';
+import { useEffect } from "react";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus } from "react-icons/ai";
+import { IoTrashOutline } from "react-icons/io5";
 import {
   useGetUserCartQuery,
   useRemoveFromCartMutation,
   useAddToCartMutation,
-} from '../Redux/Api';
-import Loading from '../Components/Loading/Loading';
+} from "../Redux/Api";
+import Loading from "../Components/Loading/Loading";
 const CartPage = () => {
   const navigate = useNavigate();
   // const userinfo = useSelector((state) => state.user.loggedInUser);
@@ -36,17 +36,11 @@ const CartPage = () => {
   });
 
   //getcart from database
-  const {
-    data: cartData,
-    isLoading,
-    isError,
-    error,
-    isFetching,
-  } = useGetUserCartQuery(loggedInUser.token);
+  const { data: cartData, isLoading } = useGetUserCartQuery(loggedInUser.token);
 
-  console.log('cart data logiing ');
+  console.log("cart data logiing ");
   console.log(cartData);
-  console.log('cart products');
+  console.log("cart products");
   //fanc
   const [removeProduct] = useRemoveFromCartMutation();
   const HandelRemove = (pro) => {
@@ -84,20 +78,20 @@ const CartPage = () => {
       },
     });
   };
-  const Handelclear = () => {
-    // dispatch(clearcart());
-  };
+  // const Handelclear = () => {
+  //   // dispatch(clearcart());
+  // };
   const HandelCheckOut = () => {
     if (!loggedInUser) {
-      navigate('/login');
+      navigate("/login");
     } else {
-      navigate('/ShippingAdress');
+      navigate("/ShippingAdress");
     }
   };
 
   return (
     <Container>
-      {' '}
+      {" "}
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
@@ -107,7 +101,7 @@ const CartPage = () => {
         </div>
       ) : cartData ? (
         <>
-          {' '}
+          {" "}
           <Row className="align-items-center">
             <>
               {cartData.length === 0 ? (
@@ -119,8 +113,8 @@ const CartPage = () => {
                     <Button className="py-2 px-4 mt-4" variant="warning">
                       <Link
                         style={{
-                          fontSize: '1.5rem',
-                          fontweight: '500',
+                          fontSize: "1.5rem",
+                          fontweight: "500",
                         }}
                         to="/"
                       >
@@ -132,7 +126,7 @@ const CartPage = () => {
               ) : (
                 <>
                   <Col md={8}>
-                    {' '}
+                    {" "}
                     <ListGroup>
                       <h1>Shopping Cart</h1>
                       {cartData?.products.map((pro) => (
@@ -141,10 +135,10 @@ const CartPage = () => {
                           <Col md={4}>
                             <img
                               className="img-fluid rounded cart-img"
-                              style={{ height: '70px' }}
+                              style={{ height: "70px" }}
                               src={pro.product_id.image_path[0]}
                               alt={pro.product_id.name}
-                            />{' '}
+                            />{" "}
                             <Link to={`/product/one/${pro.product_id._id}`}>
                               {pro.product_id.name}
                             </Link>
@@ -187,7 +181,7 @@ const CartPage = () => {
                   </Col>
 
                   <Col md={4}>
-                    {' '}
+                    {" "}
                     <Card>
                       <Card.Body>
                         <ListGroup variant="flush">
