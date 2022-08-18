@@ -121,6 +121,17 @@ export const Api = createApi({
       }),
       invalidatesTags: ['Category'],
     }),
+    updateCategory: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `category`,
+        method: 'PUT',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Category'],
+    }),
   }),
 });
 export const {
@@ -138,4 +149,5 @@ export const {
   useGetUserCartQuery,
   useRemoveFromCartMutation,
   useAddReviewMutation,
+  useUpdateCategoryMutation,
 } = Api;
