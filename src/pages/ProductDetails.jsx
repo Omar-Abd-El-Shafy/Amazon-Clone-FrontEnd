@@ -164,11 +164,11 @@ function ProductDetails() {
                   <Col>status:</Col>
                   <Col>
                     {product.stock > 0 ? (
-                      <Badge className=" text-success text-center m-1 p-1 ">
+                      <Badge bg="success" className="text-center m-1 p-1 ">
                         in stock
                       </Badge>
                     ) : (
-                      <Badge className=" text-danger text-center m-1 p-1 ">
+                      <Badge bg="danger" className=" text-center m-1 p-1 ">
                         out of stock
                       </Badge>
                     )}
