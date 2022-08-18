@@ -78,7 +78,7 @@ export const Api = createApi({
     }),
     removeFromCart: builder.mutation({
       query: ({ token, body }) => ({
-        url: `removeItem`,
+        url: `cart/removeItem`,
         method: 'PUT',
         headers: {
           'x-access-token': `${token}`,
