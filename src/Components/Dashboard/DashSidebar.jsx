@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/imgs/logo/amazon_logo.png";
 import DashProducts from "./DashProducts";
 import DashMain from "./DashMain";
+import Users from "./Users";
 const DashSidebar = () => {
     return (
         <>
@@ -39,8 +40,8 @@ const DashSidebar = () => {
                 </Nav.Item>
                 <Nav.Item>
                     <Link
-                        to="DashProducts"
-                        element={<DashProducts />}
+                        to="Users"
+                        element={<Users />}
                         className="d-block text-white m-4 navLink"
                     >
                         Users

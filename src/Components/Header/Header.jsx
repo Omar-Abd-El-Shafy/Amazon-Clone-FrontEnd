@@ -42,7 +42,7 @@ function Header() {
                         <LogInButton />
                     </>
                 )}
-                {loggedInUser?.user.role === true ? (
+                {loggedInUser?.user?.role === true ? (
                     <Link to="/dashboard">
                         <MdAdminPanelSettings className="text-white admin-icon" />
                     </Link>

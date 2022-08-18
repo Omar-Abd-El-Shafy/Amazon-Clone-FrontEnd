@@ -27,7 +27,7 @@ function Sidebar() {
                     closeLabel="white"
                     className="sideBar-offcanvas-header"
                 >
-                    {loggedInUser?.user.name ? (
+                    {loggedInUser?.user?.name ? (
                         <>
                             <Link to="/user" onClick={handleClose}>
                                 <h2
