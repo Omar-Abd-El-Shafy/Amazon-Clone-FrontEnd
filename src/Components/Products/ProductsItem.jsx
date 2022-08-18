@@ -1,5 +1,5 @@
 import React from "react";
-import { addToCart } from "../../Redux/cartSlice";
+// import { addToCart } from "../../Redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Rating from "../Rating/Rating";

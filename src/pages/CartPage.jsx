@@ -17,34 +17,39 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useGetUserCartQuery, useRemoveFromCartMutation, useAddToCartMutation } from '../Redux/Api';
+//
 const CartPage = () => {
   const navigate = useNavigate();
   // const userinfo = useSelector((state) => state.user.loggedInUser);
   // const token = userinfo.token;
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-
-  const [removeProduct] = useRemoveFromCartMutation();
+  const { data: cartData, isLoading, isError, error } = useGetUserCartQuery(loggedInUser.token);
   const [addToCart] = useAddToCartMutation();
+  const [removeProduct] = useRemoveFromCartMutation();
 
-  const { data, isloding, isError, error } = useGetUserCartQuery(loggedInUser.token);
-  console.log(data);
+
 
 
   const dispatch = useDispatch();
   //accces to cart state
   const cart = useSelector((state) => state.cart);
   useEffect(() => {
-    dispatch(getTotal());
-  }, [cart, dispatch]);
+    // dispatch(getTotal());
+  });
+
+
+  //getcart from database
+
+
+
+  console.log("cart data logiing ")
+  console.log(cartData)
   //fanc
   const HandelRemove = (pro) => {
-    // removeProduct({
-    //   token: loggedInUser.token,
-    //   body: { product_id: pro._id },
-    // });
+
     dispatch(removeFromCart(pro));
   };
-  
+
   const HandelDecrease = (pro) => {
     addToCart({
       token: loggedInUser.token,
@@ -85,13 +90,14 @@ const CartPage = () => {
 
   return (
     <Container>
+      {isLoading && <h1>loading..</h1>}
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
       {/* <span>back to shopping</span> */}
       <Row className="align-items-center;">
         <Col md={8} className="">
-          {cart.cartItems.length === 0 ? (
+          {cartData.products.length === 0 ? (
             <Col>
               <h1>
                 Cart is Empty <MdOutlineRemoveShoppingCart />
@@ -111,17 +117,17 @@ const CartPage = () => {
           ) : (
             <ListGroup>
               <h1>Shopping Cart</h1>
-              {cart.cartItems?.map((pro) => (
-                <ListGroup.Item key={pro.product_id}>
+              {cartData.products?.map((pro) => (
+                <ListGroup.Item key={pro}>
                   <Row className="align-item-center ">
                     <Col md={4}>
                       <img
                         className="img-fluid rounded cart-img"
                         style={{ height: '70px' }}
-                        src={pro.image_path[0]}
-                        alt={pro.name}
+                        src={pro.product_id.image_path[0]}
+                        alt={pro.product_id.name}
                       />{' '}
-                      <Link to={`/product/one/${pro._id}`}>{pro.name}</Link>
+                      <Link to={`/product/one/${pro.product_id._id}`}>{pro.product_id.name}</Link>
                     </Col>
                     <Col md={3}>
                       <Button
@@ -135,7 +141,7 @@ const CartPage = () => {
                         {pro.cartQuantity}
                       </strong>
                       <Button
-                        disabled={pro.stoke === pro.cartQuantity}
+                        disabled={pro.product_id.stock === pro.quantity}
                         variant="light"
                         className="bg-warning bg-opacity-10  px-2 py-0  m-2"
                         onClick={() => Handelincrease(pro)}
@@ -144,7 +150,7 @@ const CartPage = () => {
                       </Button>
                     </Col>
                     <Col md={3} className="fw-bold fs-4">
-                      {pro.cartQuantity * pro.price} EGP
+                      {pro.quantity * pro.product_id.price} EGP
                     </Col>
                     <Col md={2} className="fw-bold fs-4">
                       <Button
@@ -167,12 +173,12 @@ const CartPage = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    total Cart Price : {cart.totalCartPrice} EGP
+                    total Cart Price : {cartData.bill} EGP
                     <Button
-                      disabled={cart.cartItems.length === 0}
+                      disabled={cartData.products.length === 0}
                       className="d-block mt-2 ms-auto"
                       variant="danger"
-                      onClick={() => Handelclear(cart.cartItems)}
+                      onClick={() => Handelclear(cartData.products)}
                     >
                       Clear
                     </Button>
@@ -183,7 +189,7 @@ const CartPage = () => {
                   <div className="d-grid">
                     <Button
                       onClick={() => HandelCheckOut()}
-                      disabled={cart.cartItems.length === 0}
+                      disabled={cartData.products.length === 0}
                       variant="warning"
                     >
                       Check out
