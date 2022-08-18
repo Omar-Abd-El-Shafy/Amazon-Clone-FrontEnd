@@ -154,7 +154,7 @@ export const {
   useAddToCartMutation,
   useGetUserCartQuery,
   useRemoveFromCartMutation,
-  useAddReviewMutation,
   useUpdateCategoryMutation,
+  useAddReviewMutation,
   useAllProductReviewsQuery,
 } = Api;

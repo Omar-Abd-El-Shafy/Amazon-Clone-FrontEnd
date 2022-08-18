@@ -75,7 +75,7 @@ const PasswordReset = () => {
       try {
         await axios.post(
           url,
-          { type: "resetStart" },
+          {},
           {
             headers: {
               "x-access-token": param.token,
