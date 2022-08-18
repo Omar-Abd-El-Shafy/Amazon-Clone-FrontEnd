@@ -47,10 +47,13 @@ export const Api = createApi({
         },
         body,
       }),
+      invalidatesTags: ['Product'],
     }),
     allProductReviews: builder.query({
       query: (id) => `review/product/${id}`,
+      providesTags: ['Product'],
     }),
+
     //cart
     addToCart: builder.mutation({
       query: ({ token, body }) => ({
@@ -83,6 +86,18 @@ export const Api = createApi({
         body,
       }),
       invalidatesTags: ['Cart'],
+    }),
+    //address
+    addaddress: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `address`,
+        method: 'POST',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
     }),
     //admin
     addProduct: builder.mutation({
@@ -157,4 +172,5 @@ export const {
   useUpdateCategoryMutation,
   useAddReviewMutation,
   useAllProductReviewsQuery,
+  useAddaddressMutation,
 } = Api;

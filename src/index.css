@@ -295,10 +295,15 @@ a:hover {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    height: 50vh;
-    width: 30vw;
+    height: 60vh;
+    width: 40vw;
     position: relative;
-    left: 50vw;
-    top: 10vh;
+    left: 40vw;
+    top: 3vh;
+}
+.crudBtn {
+    /* display: block; */
+    width: 15%;
+    margin-bottom: 5px;
 }
 /* searchImg */

@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const UpdateName = () => {
     const [name, setName] = useState("");
-    const token = useSelector((state) => state.user.loggedInUser?.token);
+    const token = useSelector((state) => state.user?.loggedInUser?.token);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleSubmit = (e) => {

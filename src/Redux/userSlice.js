@@ -83,19 +83,7 @@ export const updateUserPassword = createAsyncThunk("user", async (userData) => {
 
     return response.data;
 });
-// get all users
-export const getAllUsers = createAsyncThunk("user", async (userData) => {
-    const response = await axios.get(
-        "https://amazon-clone-deploy.herokuapp.com/user/allUsers",
-        {
-            headers: {
-                "x-access-token": `${userData.token}`,
-            },
-        }
-    );
-    console.log(response.data);
-    return response.data;
-});
+
 //////////
 const userSlice = createSlice({
     name: "user",
@@ -163,7 +151,6 @@ export const userSliceActions = {
     register,
     updateUser,
     updateUserPassword,
-    getAllUsers,
 };
 
 export default userSlice.reducer;
