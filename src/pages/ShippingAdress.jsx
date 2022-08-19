@@ -1,55 +1,48 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
-import { Helmet } from 'react-helmet-async';
-import { Container, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RiArrowGoBackFill } from 'react-icons/ri';
-import { useAddaddressMutation } from '../Redux/Api';
-import { saveShipping } from '../Redux/shippingSlice';
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
+import { Helmet } from "react-helmet-async";
+import { Container, Form, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { saveShipping } from "../Redux/shippingSlice";
 
 const ShippingAdress = () => {
   const Shipping = useSelector((state) => state.shipping.userAdress);
-  // const [fullName, setFullName] = useState(Shipping.fullName || ' ');
-  const [phone, setPhone] = useState(Shipping.phone || ' ');
-  const [street, setStreet] = useState(Shipping.street || ' ');
-  const [building, setBuilding] = useState(Shipping.building || ' ');
-  const [city, setCity] = useState(Shipping.city || ' ');
-  const [state, setState] = useState(Shipping.state || ' ');
-  const [zipCode, setZipCode] = useState(Shipping.zipCode || ' ');
-  const [country, setCountry] = useState(Shipping.country || ' ');
+  const [phone, setPhone] = useState(Shipping.phone || " ");
+  const [street, setStreet] = useState(Shipping.street || " ");
+  const [building, setBuilding] = useState(Shipping.building || " ");
+  const [city, setCity] = useState(Shipping.city || " ");
+  const [state, setState] = useState(Shipping.state || " ");
+  const [zipCode, setZipCode] = useState(Shipping.zipCode || " ");
+  const [country, setCountry] = useState(Shipping.country || " ");
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [Addaddress] = useAddaddressMutation();
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      saveShipping({ building, street, city, state, zipCode, phone, country })
-    );
-
-    // Addaddress({
-    //     token: loggedInUser.token,
-    //     body: { building, street, city, state, zipCode, phone },
-    // });
-    if (!loggedInUser) {
-      navigate('/login');
+    if (loggedInUser) {
+      dispatch(
+        saveShipping({ building, street, city, state, zipCode, phone, country })
+      );
+      navigate("/Payment");
     } else {
-      navigate('/Payment');
+      navigate("/login");
     }
   };
+
   return (
     <Container>
       <CheckoutSteps step1 step2 />
-      <Container style={{ maxWidth: '600px' }}>
+      <Container style={{ maxWidth: "600px" }}>
         <Row className="mt-4">
-          <Link to={'/'}>
+          <Link to={"/"}>
             <h5>
-              back to home {'  '}
+              back to home {"  "}
               <RiArrowGoBackFill />
             </h5>
           </Link>
