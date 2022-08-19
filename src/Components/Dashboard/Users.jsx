@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { userSliceActions } from "../../Redux/userSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Users() {
@@ -15,7 +14,6 @@ export default function Users() {
         navigate("/login");
     }
     const dispatch = useDispatch();
-    // dispatch(userSliceActions.getAllUsers({ token: loggedInUser.token }));
     // get all users
     const [users, setUsers] = useState([]);
     useEffect(() => {
@@ -36,7 +34,6 @@ export default function Users() {
                 console.log(err);
             });
     }, [loggedInUser.token]);
-    // let userList =
 
     return (
         <div className="container">
@@ -72,32 +69,3 @@ export default function Users() {
         </div>
     );
 }
-{
-    /* {users.map((user) => (
-                                <tr key={user.id}>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.role ? "Admin" : "User"}</td>
-                                    <td>
-                                        {loggedInUser.user.role === true ? (
-                                            <button
-                                                className="btn btn-danger"
-                                                onClick={() => {
-                                                    console.log(user.id);
-                                                }}
-                                            >
-                                                Delete
-                                            </button>
-                                        ) : null}
-                                    </td>
-                                </tr>
-                            ))} */
-}
-//     console.log(loggedInUser);
-//     return (
-//         <div>
-//             <h1>Users</h1>
-//             <h2>{loggedInUser.user.name}</h2>
-//         </div>
-//     );
-// }

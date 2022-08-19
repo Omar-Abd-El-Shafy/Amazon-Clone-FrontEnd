@@ -6,7 +6,6 @@ import logoMain from "../assets/imgs/logo/Amazon-logo-main.png";
 import { Link } from "react-router-dom";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-// import { api } from "../Redux/services";
 import { BiShow, BiHide } from "react-icons/bi";
 import { userSliceActions } from "../Redux/userSlice";
 export let tokenExpirationDate;
@@ -15,17 +14,15 @@ export default function Login(props) {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
-    // const [login, response] = api.useLoginMutation();
     const [isRevealedPassword, setIsRevealedPassword] = useState(false);
     const error = useSelector((state) => state.user.error);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem("userData"));
-
         tokenExpirationDate = new Date(
-            storedData?.expiration || new Date().getTime() + 1000 * 60 * 60 * 240
+            storedData?.expiration ||
+                new Date().getTime() + 1000 * 60 * 60 * 240
         );
         if (loggedInUser?.token) {
             localStorage.setItem(
@@ -36,7 +33,6 @@ export default function Login(props) {
                 })
             );
         }
-
         props.funcNav(false);
 
         if (loggedInUser?.user.name && !error) {
@@ -50,12 +46,6 @@ export default function Login(props) {
     const loginn = (e) => {
         e.preventDefault();
         dispatch(userSliceActions.login({ email: emailorphone, password }));
-
-        // login({ email: emailorphone, password })
-        //   .then((response) => {
-        //     console.log(response);
-        //   })
-        //   .catch((error) => console.log(error));
     };
     return (
         <Container style={{ maxWidth: "600px" }}>
