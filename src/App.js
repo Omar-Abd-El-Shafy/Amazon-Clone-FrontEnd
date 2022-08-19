@@ -3,7 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
 import Users from "./Components/Dashboard/Users";
 //style
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import "aos/dist/aos.css";
@@ -47,6 +47,7 @@ import AddReview from "./Components/Reviews/AddReview";
 import Categories from "./Components/Dashboard/Categories";
 import Stripe from "./pages/Stripe"
 import ShippingForm from "./pages/ShippingForm";
+import Search from "./Components/Header/Search/Search";
 
 function App() {
     const dispatch = useDispatch();
@@ -88,6 +89,12 @@ function App() {
           {showNav && <SideBar />}
           <main>
             <Container fluid className="mt-5 text-capitalize">
+              <Row
+                style={{ marginTop: '-27px', background: '#131921' }}
+                className="main-search mb-2 p-2"
+              >
+                <Search />
+              </Row>
               <Routes>
                 <Route exact path="/" element={<Home funcNav={setShowNav} />} />
                 <Route path="/login" element={<Login funcNav={setShowNav} />} />

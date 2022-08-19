@@ -51,7 +51,7 @@ export default function Stripe() {
   };
 
   return (
-    <Container>
+ 
       <div className="App">
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
@@ -59,6 +59,6 @@ export default function Stripe() {
           </Elements>
         )}
       </div>
-    </Container>
+
   );
 }
