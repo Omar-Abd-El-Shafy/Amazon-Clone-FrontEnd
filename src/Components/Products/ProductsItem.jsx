@@ -33,12 +33,12 @@ const ProductsItem = ({ product }) => {
     return (
         <Col sm={6} md={4} lg={3} className="mb-3 ">
             <Card
-                className="shadow border-0 rounded-5 bg-warning bg-opacity-10"
+                className="shadow border-0 rounded-5 bg-warning text-center bg-opacity-10 justify-content-center "
                 style={{ height: "100%" }}
             >
                 <Link to={`/product/one/${product._id}`}>
                     <Card.Img
-                        className="card-img-top p-3"
+                        className="card-img-top w-50 mt-3 "
                         src={product.image_path[0]}
                         alt={product.name}
                     />
@@ -49,7 +49,7 @@ const ProductsItem = ({ product }) => {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        justifyContent: "space-between",
+                        justifyContent: "space-around",
                         textAlign: "center",
                         borderRadius: "18px",
                     }}

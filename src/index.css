@@ -14,6 +14,7 @@
 * {
   box-sizing: border-box;
 }
+img{object-fit:contain;}
 main {
   flex: 1;
 }
