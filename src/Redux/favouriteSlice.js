@@ -14,7 +14,7 @@ export const favouriteListSlice = createSlice({
     reducers: {
         addToFavourites: (state, action) => {
             /**
-             * if the entered movie id is found then don't add to favourite.
+             * if the entered pro id is found then don't add to favourite.
              * if its not found,add it the the favourite list state
              */
             let isFavourite = state.favouriteItems.findIndex(
@@ -35,8 +35,8 @@ export const favouriteListSlice = createSlice({
         },
         removeFromFavourites: (state, action) => {
             /**
-             * if the entered movie id is found in favourite, filter the list array
-             * with this movie id and return a new list doesn't contain the favourite one
+             * if the entered pro id is found in favourite, filter the list array
+             * with this pro id and return a new list doesn't contain the favourite one
              */
             let newFavouriteListAfterRemoving = state.favouriteItems.filter(
                 (fav) => fav._id !== action.payload

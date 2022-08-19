@@ -97,7 +97,10 @@ export const Api = createApi({
         },
         body,
       }),
-    }),
+    } ),
+    getAdress: builder.query( {
+      query:({}),
+    })
     //admin
     addProduct: builder.mutation({
       query: ({ token, body }) => ({
