@@ -7,8 +7,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import {
   useGetAllCategoriesQuery,
-  useGetdAlldepartmentQuery,
-  useUpdateCategoryMutation,
+  useAddCategoryImageMutation,
 } from "../../../Redux/Api";
 
 export default function AddCategoryImage() {
@@ -16,25 +15,25 @@ export default function AddCategoryImage() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // const [file, setFile] = useState();
+  const [file, setFile] = useState();
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const { data: categories } = useGetAllCategoriesQuery();
   // const { data: departments } = useGetdAlldepartmentQuery();
-  const [updateCategory, { isError }] = useUpdateCategoryMutation();
+  const [AddCategoryImage, { isError }] = useAddCategoryImageMutation();
 
   const schema = yup.object().shape({
     category: yup.string().required("Required Field"),
     // department: yup.string().required("Required Field"),
     //name: yup.string().required("Required Field"),
-    image: yup.string().required("Required Field"),
+    img: yup.string().required("Required Field"),
   });
   //>>>>>>> e04e9b468c61ba286a6c09b8bc96d1923f18f1fb
 
   return (
     <>
       <Button variant="warning" onClick={handleShow} className="crudBtn">
-        Update Category
+        Add category image
       </Button>
 
       <Modal
@@ -51,21 +50,21 @@ export default function AddCategoryImage() {
             enableReinitialize
             initialValues={{
               category: "",
-              image: "",
+              img: "",
             }}
             validationSchema={schema}
             onSubmit={(values) => {
+              //console.log(values);
               const formData = new FormData();
 
-              formData.append("file", values.image);
-
+              formData.append("img", file[0]);
+              console.log(file);
               console.log(values);
-              updateCategory({
+              // console.log(JSON.stringify(formData));
+              AddCategoryImage({
                 token: loggedInUser?.token,
                 id: values.category,
-                body: {
-                  img: formData,
-                },
+                body: formData,
               })
                 .unwrap()
                 .then((fulfilled) => {
@@ -114,18 +113,18 @@ export default function AddCategoryImage() {
                 </div>
                 {/* images */}
                 <div className="form-control">
-                  <label htmlFor="image">images</label>
+                  <label htmlFor="img">image</label>
                   <Field
-                    name="image"
+                    name="img"
                     type="file"
                     accept="image/png, image/jpeg"
                     onChange={(e) => {
-                      setFieldValue("image", e.target.value);
-                      // setFile(e.target.files);
+                      setFieldValue("img", e.target.value);
+                      setFile(e.target.files);
                     }}
                   />
                   <div className="ErrorMessageTxt">
-                    <ErrorMessage name="images" />
+                    <ErrorMessage name="img" />
                   </div>
                 </div>
               </Form>
