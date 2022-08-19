@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
 import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RiArrowGoBackFill } from "react-icons/ri";
-import { number } from "yup";
-import { Button } from "bootstrap";
+
 
 const PlaceOrder = () => {
     const pay = useSelector((state) => state.payment.payment);

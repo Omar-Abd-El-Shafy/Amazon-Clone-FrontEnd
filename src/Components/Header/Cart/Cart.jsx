@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RiShoppingCartLine } from 'react-icons/ri';
 import { useGetUserCartQuery } from '../../../Redux/Api';
 
 export default function Cart() {
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  // const cart = useSelector((state) => state.cart);
+  // const { cartItems } = cart;
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
   const { data: cartData } = useGetUserCartQuery(loggedInUser?.token, {
     skip: loggedInUser ? false : true,
@@ -17,7 +17,6 @@ export default function Cart() {
      length = cartData.products.length;
     
 } else {length = 0 }
-  // console.log(cartData.products.length);
   return (
     <>
       <Link to="/CartPage" style={{ cursor: 'pointer' }}>

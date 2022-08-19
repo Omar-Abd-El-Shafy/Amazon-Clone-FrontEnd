@@ -6,7 +6,7 @@ import { Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RiArrowGoBackFill } from 'react-icons/ri';
-import { useAddaddressMutation } from '../Redux/Api';
+// import { useAddaddressMutation } from '../Redux/Api';
 import { saveShipping } from '../Redux/shippingSlice';
 
 const ShippingAdress = () => {
@@ -24,7 +24,7 @@ const ShippingAdress = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [Addaddress] = useAddaddressMutation();
+  // const [Addaddress] = useAddaddressMutation();
 
   const handelSubmit = (e) => {
     e.preventDefault();

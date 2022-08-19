@@ -5,7 +5,7 @@ import Loading from "../Loading/Loading";
 import Rating from "../Rating/Rating";
 
 const Reviews = ({ id }) => {
-    const { data, isLoading, isError } = useAllProductReviewsQuery(id);
+    const { data, isLoading } = useAllProductReviewsQuery(id);
     console.log(data);
     return (
         <Container>
