@@ -218,7 +218,7 @@ a:hover {
     height: 100vh;
     width: 15%;
 }
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1200px) {
     .sidebar {
        width: 25%
     }
