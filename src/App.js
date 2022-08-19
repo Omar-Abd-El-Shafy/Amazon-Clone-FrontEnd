@@ -1,7 +1,6 @@
 //admin
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
-import DashMain from "./Components/Dashboard/DashMain";
 import Users from "./Components/Dashboard/Users";
 //style
 import { Container } from "react-bootstrap";
@@ -10,10 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 import "aos/dist/aos.css";
 //depend
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { Flip } from "react-toastify";
 import { userSliceActions } from "../src/Redux/userSlice";
 import AOS from "aos";
 //componants
@@ -46,16 +45,9 @@ import User from "./pages/User";
 import Favourite from "./pages/Favourite";
 import AddReview from "./Components/Reviews/AddReview";
 
-// import AddProduct from "./pages/AddProduct";
-// import tokenExpirationDate from "../src/pages/Login";
-
-// let logoutTimer;
-
 function App() {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
-    // const [tokenExpirationDatee, setTokenExpirationDatee] = useState();
-    // setTokenExpirationDatee(tokenExpirationDate);
     useEffect(() => {
         AOS.init();
         AOS.refresh();
@@ -74,27 +66,8 @@ function App() {
         loggedInUser?.user?.name,
         loggedInUser?.token,
     ]);
-
-    // useEffect(() => {
-    //   if (loggedInUser?.userToken && tokenExpirationDate) {
-    //     const remainingTime =
-    //       tokenExpirationDate.getTime() - new Date().getTime();
-    //     logoutTimer = setTimeout(
-    //       dispatch(userSliceActions.logout()),
-    //       remainingTime
-    //     );
-    //   } else {
-    //     clearTimeout(logoutTimer);
-    //   }
-    // }, [dispatch, loggedInUser?.userToken]);
-
-    // AOS.init();
-    // AOS.refresh();
-
-    // userId: loggedInUser?.id,
-    // token: loggedInUser?.userToken,
-
     const [showNav, setShowNav] = useState(true);
+
     return (
         <Router>
             <ToastContainer
@@ -158,8 +131,6 @@ function App() {
                                 path="/password-reset/:id/:token"
                                 element={<PasswordReset />}
                             />
-                            {/* /product/search?category=gg */}
-                            {/* /product?category=62e10691f51e881cae88cf9f */}
                             <Route
                                 path="/product/category/:id"
                                 element={<CategoryPage />}
@@ -200,7 +171,6 @@ function App() {
                                 />
                                 <Route path="Users" element={<Users />} />
                             </Route>
-                            {/* <Route path="/addProduct" element={<AddProduct />} /> */}
                             <Route path="*" element={<NoTFound />} />
                         </Routes>
                     </Container>

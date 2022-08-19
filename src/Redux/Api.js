@@ -88,7 +88,7 @@ export const Api = createApi({
       invalidatesTags: ["Cart"],
     }),
     //address
-    addaddress: builder.mutation({
+    addAddress: builder.mutation({
       query: ({ token, body }) => ({
         url: `address`,
         method: "POST",
@@ -97,7 +97,6 @@ export const Api = createApi({
         },
         body,
       }),
-      invalidatesTags: ["Product"],
     }),
     //admin
     addProduct: builder.mutation({
@@ -166,6 +165,7 @@ export const Api = createApi({
     }),
   }),
 });
+
 export const {
   useGetAllProdactsQuery,
   useGetSingleProdactQuery,
@@ -183,5 +183,5 @@ export const {
   useUpdateCategoryMutation,
   useAddReviewMutation,
   useAllProductReviewsQuery,
-  useAddaddressMutation,
+  useAddAddressMutation,
 } = Api;

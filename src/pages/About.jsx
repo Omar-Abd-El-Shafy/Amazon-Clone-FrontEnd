@@ -1,8 +1,8 @@
 import React from "react";
 import { about } from "../data";
 import { Helmet } from "react-helmet-async";
-
 import Card from "react-bootstrap/Card";
+
 const About = () => {
     return (
         <div style={{ borderRadius: "1.5rem" }} className={""}>
