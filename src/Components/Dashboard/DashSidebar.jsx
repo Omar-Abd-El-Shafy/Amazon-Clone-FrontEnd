@@ -8,7 +8,7 @@ import Users from "./Users";
 const DashSidebar = () => {
     return (
         <>
-            <Nav className="col-md-12 d-none d-md-block sidebar">
+            <Nav className="col-md-12 d-none d-md-block sidebar ">
                 <Container className="mt-5">
                     <h3 className="DropdownHeader p-2">Products</h3>
                     <Nav.Item>
