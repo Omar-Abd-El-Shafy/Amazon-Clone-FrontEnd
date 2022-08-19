@@ -20,6 +20,7 @@ import Loading from '../Components/Loading/Loading';
 const CartPage = () => {
   const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
+  
   const { data: cartData, isLoading } = useGetUserCartQuery(loggedInUser.token);
   console.log(cartData);
   //function to remove item from cart
@@ -169,7 +170,8 @@ const CartPage = () => {
                         <ListGroup variant="flush">
                           <ListGroup.Item>
                             <h3>
-                              total Cart Price : {cartData?.bill} EGP
+                              Subtotal ( {cartData.products.length} items) :{' '}
+                              {cartData?.bill} EGP
                               {/* <Button
                                     onClick={()=>{handelClear(cartData);}}
                                 disabled={cartData?.products.length === 0}
@@ -183,12 +185,13 @@ const CartPage = () => {
                           <ListGroup.Item></ListGroup.Item>
                           <ListGroup.Item>
                             <div className="d-grid">
-                              <Button
+                                  <Button
+                                    className=' rounded-pill'
                                 onClick={() => HandelCheckOut()}
                                 disabled={cartData?.products.length === 0}
                                 variant="warning"
                               >
-                                Check out
+                                Proceed to Buy
                               </Button>
                             </div>
                           </ListGroup.Item>
