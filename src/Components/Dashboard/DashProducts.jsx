@@ -4,6 +4,7 @@ import AddCategory from "./AddCategory/AddCategoryForm";
 import DeleteCategory from "./DeleteCategory/DeleteCategoryForm";
 import productDevelopmentImg from "../../assets/imgs/Product-Development-01-01-1200x840-1-1.png";
 import UpdateCategory from "./UpdateCategory/UpdateCategoryForm";
+import AddCategoryImage from "./AddImageCategory/AddCategoryImage";
 export default function DashProducts() {
   return (
     <>
@@ -19,6 +20,9 @@ export default function DashProducts() {
         </div>
         <div>
           <DeleteCategory />
+        </div>
+        <div>
+          <AddCategoryImage />
         </div>
       </div>
       <img
