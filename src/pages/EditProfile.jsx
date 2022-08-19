@@ -10,7 +10,8 @@ import { toast } from "react-toastify";
 
 function EditProfile() {
     const navigate = useNavigate();
-    const userinfo = useSelector((state) => state.user.loggedInUser);
+    const userinfo = useSelector( ( state ) => state.user.loggedInUser );
+    console.log(userinfo);
     if (!userinfo) {
         navigate("/login");
     }

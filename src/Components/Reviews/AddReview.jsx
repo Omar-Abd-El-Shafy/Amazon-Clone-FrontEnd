@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 
 const AddReview = ({ id }) => {
     const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-    const [newReview, { isError }] = useAddReviewMutation();
+    const [newReview] = useAddReviewMutation();
     const navigate = useNavigate();
     const [rating, setRating] = useState();
     const [title, setTitle] = useState();

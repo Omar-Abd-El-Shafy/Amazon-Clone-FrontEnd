@@ -18,9 +18,9 @@ function SidebarList() {
                     <h5>Shop By department</h5>
 
                     {department.map((item) => (
-                        <Accordion>
+                        <Accordion key={item._id}>
                             <Accordion.Item eventKey="0">
-                                <Accordion.Header key={item._id}>
+                                <Accordion.Header>
                                     {item.name}
                                 </Accordion.Header>
                                 <SidebarMenu item={item} />

@@ -63,7 +63,7 @@ function ProductDetails() {
   };
   //fav
   const [like, setLike] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [ setSaved] = useState(false);
   const saveShow = (product) => {
     if (loggedInUser) {
       setLike(!like);
