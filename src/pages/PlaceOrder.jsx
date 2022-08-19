@@ -48,6 +48,7 @@ const PlaceOrder = () => {
 
           if (paymentMethod === "visa") {
             console.log("navigate to stripe payment page");
+            navigate("/Stripe", { state: { order_id: response.data[0]._id } });
           } else {
             console.log("navigate to order summary page");
           }

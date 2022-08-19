@@ -45,6 +45,7 @@ import User from "./pages/User";
 import Favourite from "./pages/Favourite";
 import AddReview from "./Components/Reviews/AddReview";
 import Categories from "./Components/Dashboard/Categories";
+import Stripe from "./pages/Stripe"
 
 function App() {
     const dispatch = useDispatch();
@@ -160,6 +161,8 @@ function App() {
                                 element={<PlaceOrder />}
                             />
                             <Route path="/About" element={<About />} />
+                            {/* //////////////////////////stripe payment/////////////////////// */}
+                            <Route path="/Stripe" element={<Stripe/>} />
                             {/* //////////////////////////Admin/////////////////////// */}
                             <Route
                                 path="/dashboard"
