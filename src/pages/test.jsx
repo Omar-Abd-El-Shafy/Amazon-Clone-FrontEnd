@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, Row } from 'react-bootstrap';
@@ -11,23 +11,26 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { useState } from 'react';
 
 const ShippingAdress = () => {
+  const [phone, setPhone] = useState(' ');
+  const [street, setStreet] = useState(' ');
+  const [building, setBuilding] = useState(' ');
+  const [city, setCity] = useState(' ');
+  const [state, setState] = useState(' ');
+  const [zipCode, setZipCode] = useState(' ');
+  const [country, setCountry] = useState(' ');
+
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const [oneAdaress, setOneAdress] = useState();
   const navigate = useNavigate();
-  console.log(oneAdaress);
-  useEffect(() => {
-    if (!loggedInUser) {
-      navigate('/login');
-    }
-  }, [loggedInUser, navigate]);
+
   const handelSubmit = (e) => {
     e.preventDefault();
     addAdress({
       token: loggedInUser.token,
-      body: oneAdaress,
+      body: { building, street, city, state, zipCode, phone, country },
     });
-    navigate('/Payment');
   };
+  console.log(building, street, city, state, zipCode, phone, country);
   const [addAdress] = useAddAddressMutation();
   const { data: adress } = useGetAdressQuery(loggedInUser.token);
   console.log(adress);
@@ -46,7 +49,7 @@ const ShippingAdress = () => {
         <Helmet>Shipping Address</Helmet>
         {adress ? (
           <Form className=" border border-1 rounded-3 p-2 mb-3">
-            <h5 className="">choose Shipping addresses</h5>
+            <h5 className="">Your addresses</h5>
             {adress.map((adress) => (
               <div
                 key={adress.createdAt}
@@ -57,13 +60,23 @@ const ShippingAdress = () => {
                   type="radio"
                   name="exampleRadios"
                   id={adress.createdAt}
-                  value={adress.fullAddress}
+                  value="option1"
                   checked
-                  onClick={(e) => setOneAdress(e.target.value)}
+                  onChange={(e) => setOneAdress(e.target.value)}
                   // className="p-2 m-3 adress-Check form-check-input"
                 />
                 <label className="form-check-label" for={adress.createdAt}>
-                  {adress.fullAddress}
+                  {`
+   ${adress.building},
+   ${adress.street},
+   ${adress.city},
+   ${adress.state},
+   ${adress.zipCode},
+   ${adress.country},
+   phone:${adress.phone},
+   
+  
+  `}
                 </label>
                 <Link to="/ShippingForm">
                   <Button

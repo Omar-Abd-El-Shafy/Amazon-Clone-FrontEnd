@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const Api = createApi({
   reducerPath: 'Api',
@@ -102,7 +102,7 @@ export const Api = createApi({
       query: (token) => ({
         url: `address`,
         method: 'GET',
-         headers: {
+        headers: {
           'x-access-token': `${token}`,
         },
       }),
@@ -194,4 +194,5 @@ export const {
   useAllProductReviewsQuery,
   useAddAddressMutation,
   useAddCategoryImageMutation,
+  useGetAdressQuery,
 } = Api;
