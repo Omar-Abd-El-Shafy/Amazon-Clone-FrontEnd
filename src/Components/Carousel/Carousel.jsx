@@ -13,8 +13,6 @@ const MainCarousel = () => {
                 maxHeight: "60vh",
                 maxWidth: "100%",
                 height: "inherit",
-                // marginTop: '10px',
-                // marginBottom: '10px',
             }}
         >
             {Slider.map((slide) => (

@@ -3,12 +3,10 @@ import { toast } from "react-toastify";
 import { userSliceActions } from "../../Redux/userSlice";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { IoSendOutline } from "react-icons/io5";
 import { Helmet } from "react-helmet-async";
-import { Button, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Container, Form, Row } from "react-bootstrap";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const UpdatePhone = () => {
     const [phone, setphone] = useState("");

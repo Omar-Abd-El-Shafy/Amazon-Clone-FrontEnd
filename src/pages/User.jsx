@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const User = () => {
     const userinfo = useSelector((state) => state.user.loggedInUser);
@@ -13,7 +13,7 @@ const User = () => {
             navigate("/");
         }
     }, [userinfo, navigate]);
-    const { user } = userinfo;
+    // const { user } = userinfo;
     return (
         <Container>
             <Row className="d-flex">

@@ -3,7 +3,6 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/imgs/logo/amazon_logo.png";
 import DashProducts from "./DashProducts";
-import DashMain from "./DashMain";
 import Users from "./Users";
 const DashSidebar = () => {
     return (
@@ -20,15 +19,6 @@ const DashSidebar = () => {
                         />
                     </Navbar.Brand>
                 </Container>
-                {/* <Nav.Item>
-                    <Link
-                        to="DashMain"
-                        element={<DashMain />}
-                        className="d-block text-white m-4 navLink"
-                    >
-                        Dashboard
-                    </Link>
-                </Nav.Item> */}
                 <Nav.Item>
                     <Link
                         to="DashProducts"
