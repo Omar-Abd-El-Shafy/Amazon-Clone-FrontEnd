@@ -26,7 +26,7 @@ export default function DeleteCategory() {
 
     return (
         <>
-            <Button variant="warning" onClick={handleShow} className="crudBtn">
+            <Button variant="danger" onClick={handleShow} className="crudBtn">
                 Delete Category
             </Button>
 
