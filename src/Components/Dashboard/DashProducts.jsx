@@ -6,9 +6,7 @@ import productDevelopmentImg from "../../assets/imgs/Product-Development-01-01-1
 import UpdateCategory from "./UpdateCategory/UpdateCategoryForm";
 import Products from "../Products/Products";
 import { useEffect } from "react";
-export default function DashProducts(props) {
-    // props.funcFoot(false);
-    console.log(props);
+export default function DashProducts() {
     return (
         <>
             <div className=" ">
