@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import {
@@ -20,11 +19,6 @@ export default function AddCategory() {
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
     const { data: departments } = useGetdAlldepartmentQuery();
     const [addCategory, { isError }] = useAddCategoryMutation();
-
-    // useEffect(() => {
-    //   console.log("item", item);
-    // }, [item]);
-
     const schema = yup.object().shape({
         department: yup.string().required("Required Field"),
         name: yup.string().required("Required Field"),
@@ -79,20 +73,6 @@ export default function AddCategory() {
                                 .catch((rejected) =>
                                     console.error(rejected.data)
                                 );
-
-                            // console.log(values);
-                            // axios.post(
-                            //   "https://amazon-clone-deploy.herokuapp.com/category/",
-                            //   {
-                            //     department: values.department,
-                            //     name: values.name,
-                            //   },
-                            //   {
-                            //     headers: {
-                            //       "x-access-token": loggedInUser.token,
-                            //     },
-                            //   }
-                            // );
                         }}
                     >
                         {({ setFieldValue }) => (
@@ -114,18 +94,6 @@ export default function AddCategory() {
                                                 {dept.name}
                                             </option>
                                         ))}
-                                        {/* <option value="62e46ccdd282c036e6947f18">
-                      Electronics
-                    </option>
-                    <option value="62e46cf6d282c036e6947f1b">Computers</option>
-                    <option value="62e46d0ad282c036e6947f1e">Smart Home</option>
-                    <option value="62e46d29d282c036e6947f21">
-                      Arts & Crafts
-                    </option>
-                    <option value="62e46d35d282c036e6947f24">Books</option>
-                    <option value="62f94e6e339d76c5360ee133">
-                      Men's Fashion
-                    </option> */}
                                     </Field>
                                     <div className="ErrorMessageTxt">
                                         <ErrorMessage name="department" />

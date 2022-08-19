@@ -1,7 +1,6 @@
 //admin
 import Dashboard from "./pages/Dashboard";
 import DashProducts from "./Components/Dashboard/DashProducts";
-import DashMain from "./Components/Dashboard/DashMain";
 import Users from "./Components/Dashboard/Users";
 //style
 import { Container } from "react-bootstrap";
@@ -10,10 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 import "aos/dist/aos.css";
 //depend
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { Flip } from "react-toastify";
 import { userSliceActions } from "../src/Redux/userSlice";
 import AOS from "aos";
 //componants
@@ -45,11 +44,6 @@ import SearchResults from "./pages/SearchResults";
 import User from "./pages/User";
 import Favourite from "./pages/Favourite";
 import AddReview from "./Components/Reviews/AddReview";
-
-// import AddProduct from "./pages/AddProduct";
-// import tokenExpirationDate from "../src/pages/Login";
-
-// let logoutTimer;
 
 function App() {
   const dispatch = useDispatch();

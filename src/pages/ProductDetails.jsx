@@ -9,10 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Rating from '../Components/Rating/Rating';
 import Loading from '../Components/Loading/Loading';
 import Error from '../Components/Error/Error';
-// import { addToCart } from '../Redux/cartSlice';
 import { Helmet } from 'react-helmet-async';
 import Card from 'react-bootstrap/Card';
-import { ListGroupItem, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/ListGroup';
@@ -25,7 +24,6 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 import Reviews from '../Components/Reviews/Reviews';
 import AddReview from '../Components/Reviews/AddReview';
-import { Link } from 'react-router-dom';
 
 function ProductDetails() {
   const params = useParams();
@@ -42,7 +40,6 @@ function ProductDetails() {
   } = useGetSingleProdactQuery(id);
   //addProduct
   const [addToCart] = useAddToCartMutation();
-  let Qty = 1;
   const handleAddToCart = (product) => {
     // flag = 0 means decrease , 1 means add
     if (loggedInUser) {
@@ -50,10 +47,11 @@ function ProductDetails() {
         token: loggedInUser.token,
         body: {
           product_id: product._id,
-          flag: 1
+          flag: 1,
         },
-      })
-  
+      });
+      toast.success(`  ${product.name} add to cart`, {});
+
       // addProduct({
       //   token: loggedInUser.token,
       //   body: { quantity: Qty + 1, product_id: product._id },
@@ -65,7 +63,7 @@ function ProductDetails() {
   };
   //fav
   const [like, setLike] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [ setSaved] = useState(false);
   const saveShow = (product) => {
     if (loggedInUser) {
       setLike(!like);
@@ -160,9 +158,6 @@ function ProductDetails() {
               price:
               <span className="text-danger fw-bolder">{product.price} EGP</span>
             </ListGroup.Item>
-            {/* <ListGroup.Item>
-              products Description :<p>{product.description}</p>
-            </ListGroup.Item> */}
           </ListGroup>
         </Col>
         <Col md={3}>
@@ -249,9 +244,6 @@ function ProductDetails() {
       <hr />
       <Row>
         <Col md={6}>
-          {/* <Link to="/AddReview">
-            <Button>Review this product</Button>
-          </Link> */}
           <AddReview id={id} />
         </Col>
         <Col md={5}>

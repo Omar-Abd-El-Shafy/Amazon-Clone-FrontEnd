@@ -107,18 +107,6 @@ export default function AddProduct() {
                                 .catch((rejected) =>
                                     console.error(rejected.data)
                                 );
-
-                            // if (isSuccess) {
-                            //   toast.success(`Product Added Successfully`, {
-                            //     position: "bottom-center",
-                            //     autoClose: 3000,
-                            //     hideProgressBar: false,
-                            //     closeOnClick: true,
-                            //     pauseOnHover: true,
-                            //     draggable: true,
-                            //     progress: undefined,
-                            //   });
-                            // }
                         }}
                     >
                         {({ setFieldValue }) => (

@@ -1,7 +1,5 @@
 import React from "react";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useGetCategorydepartmentQuery } from "../../Redux/Api";
 import Accordion from "react-bootstrap/Accordion";
 

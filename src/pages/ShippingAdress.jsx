@@ -1,140 +1,122 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
-import { Helmet } from 'react-helmet-async';
-import { Container, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { saveShipping } from '../Redux/shippingSlice';
-import { RiArrowGoBackFill } from 'react-icons/ri';
-import { useAddaddressMutation } from '../Redux/Api';
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
+import { Helmet } from "react-helmet-async";
+import { Container, Form, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { saveShipping } from "../Redux/shippingSlice";
 
-const ShippingAdress = () =>
-{
-  
-  
+const ShippingAdress = () => {
   const Shipping = useSelector((state) => state.shipping.userAdress);
-  const [fullName, setFullName] = useState(Shipping.fullName || ' ');
-  const [phone, setPhone] = useState(Shipping.phone || ' ');
-  const [street, setStreet] = useState(Shipping.phone || ' ');
-  const [building, setBuilding] = useState(Shipping.phone || ' ');
-  const [city, setCity] = useState(Shipping.city || ' ');
-  const [state, setState] = useState(Shipping.city || ' ');
-  const [ zipCode, setZipCode ] = useState( Shipping.city || ' ' );
+  const [phone, setPhone] = useState(Shipping.phone || " ");
+  const [street, setStreet] = useState(Shipping.street || " ");
+  const [building, setBuilding] = useState(Shipping.building || " ");
+  const [city, setCity] = useState(Shipping.city || " ");
+  const [state, setState] = useState(Shipping.state || " ");
+  const [zipCode, setZipCode] = useState(Shipping.zipCode || " ");
+  const [country, setCountry] = useState(Shipping.country || " ");
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  console.log(Shipping);
-  
-//   "building": 100,
-//   "street": 9,
-//   "city": "El-Mokkattam",
-//   "state": "Cairo",
-//   "zipCode": 11571,
-//   "phone": 1012345678
 
-// }
-  console.log(loggedInUser);
-  //func
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!loggedInUser) {
-  //     navigate('/login');
-  //   }
-  // }, [loggedInUser, navigate]);
   const dispatch = useDispatch();
-
-  const [Addaddress] = useAddaddressMutation();
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    Addaddress({
-      token: loggedInUser.token,
-      body: { building, street, city, state, zipCode, phone },
-    })
-    // dispatch(saveShipping({ fullName, adress, city, country, phone }));
-    if (!loggedInUser) {
-      navigate('/login');
+    if (loggedInUser) {
+      dispatch(
+        saveShipping({ building, street, city, state, zipCode, phone, country })
+      );
+      navigate("/Payment");
     } else {
-      navigate('/Payment');
+      navigate("/login");
     }
   };
+
   return (
     <Container>
       <CheckoutSteps step1 step2 />
-      <Container style={{ maxWidth: '600px' }}>
+      <Container style={{ maxWidth: "600px" }}>
         <Row className="mt-4">
-          <Link to={'/'}>
+          <Link to={"/"}>
             <h5>
-              back to home {'  '}
+              back to home {"  "}
               <RiArrowGoBackFill />
             </h5>
           </Link>
           <hr />
         </Row>
-        <Helmet>Shipping Adress</Helmet>
-        <h1 className="my-3">Shipping Adress</h1>
+        <Helmet>Shipping Address</Helmet>
+        <h1 className="my-3">Shipping Address</h1>
         <Form onSubmit={handelSubmit}>
           <Form.Group className="mb-3" controlId="fullName">
             <Form.Label>full Name</Form.Label>
-            <Form.Control disabled
-              // placeholder={ Shipping.fullName }
-            />
+            <Form.Control placeholder={loggedInUser.user.name} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="phone">
             <Form.Label>Phone number</Form.Label>
             <Form.Control
-              // placeholder={Shipping.phone}
+              placeholder={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="adress">
+          <Form.Group className="mb-3" controlId="street">
             <Form.Label>street</Form.Label>
             <Form.Control
-              // placeholder={Shipping.adress}
+              placeholder={street}
               onChange={(e) => setStreet(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="adress">
+          <Form.Group className="mb-3" controlId="building">
             <Form.Label>building</Form.Label>
+
             <Form.Control
-              // placeholder={Shipping.adress}
+              placeholder={building}
               onChange={(e) => setBuilding(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="country">
+            <Form.Label>country</Form.Label>
+            <Form.Control
+              placeholder={country}
+              onChange={(e) => setCountry(e.target.value)}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="City">
             <Form.Label>City</Form.Label>
             <Form.Control
-              // placeholder={Shipping.city}
+              placeholder={city}
               onChange={(e) => setCity(e.target.value)}
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
+          <Form.Group className="mb-3" controlId="state">
             <Form.Label>state</Form.Label>
             <Form.Control
-              // placeholder={Shipping.country}
+              placeholder={state}
               onChange={(e) => setState(e.target.value)}
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
+          <Form.Group className="mb-3" controlId="zipCode">
             <Form.Label>zipCode</Form.Label>
             <Form.Control
-              // placeholder={Shipping.country}
+              placeholder={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
               required
             />
           </Form.Group>
         </Form>
         <div className=" mb-3 ">
-          {/* <Link to={'/Payment'}> */}
           <button
             onClick={handelSubmit}
             className="btn btn-warning text-capitalize"
@@ -142,7 +124,6 @@ const ShippingAdress = () =>
           >
             continue
           </button>
-          {/* </Link> */}
         </div>
       </Container>
     </Container>
