@@ -4,7 +4,13 @@ import DashSidebar from "../Components/Dashboard/DashSidebar";
 import { Col, Row } from "react-bootstrap";
 
 const Users = (props) => {
-    props.funcFoot(false);
+    useEffect(() => {
+        props.funcFoot(false);
+        return () => {
+            props.funcFoot(true);
+        };
+    }, []);
+
     return (
         <div className="container-fluid">
             <div className="row flex no-wrap">
