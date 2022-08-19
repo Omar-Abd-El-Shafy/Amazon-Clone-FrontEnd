@@ -44,6 +44,7 @@ import SearchResults from "./pages/SearchResults";
 import User from "./pages/User";
 import Favourite from "./pages/Favourite";
 import AddReview from "./Components/Reviews/AddReview";
+import Categories from "./Components/Dashboard/Categories";
 
 function App() {
     const dispatch = useDispatch();
@@ -67,7 +68,7 @@ function App() {
         loggedInUser?.token,
     ]);
     const [showNav, setShowNav] = useState(true);
-
+    const [showFooter, setShowFooter] = useState(true);
     return (
         <Router>
             <ToastContainer
@@ -162,7 +163,7 @@ function App() {
                             {/* //////////////////////////Admin/////////////////////// */}
                             <Route
                                 path="/dashboard"
-                                element={<Dashboard funcNav={setShowNav} />}
+                                element={<Dashboard funcFoot={setShowFooter} />}
                             >
                                 <Route index element={<DashProducts />} />
                                 <Route
@@ -170,12 +171,16 @@ function App() {
                                     element={<DashProducts />}
                                 />
                                 <Route path="Users" element={<Users />} />
+                                <Route
+                                    path="Categories"
+                                    element={<Categories />}
+                                />
                             </Route>
                             <Route path="*" element={<NoTFound />} />
                         </Routes>
                     </Container>
                 </main>
-                {showNav && (
+                {showNav && showFooter && (
                     <footer>
                         <BackTop />
                         <Footer />

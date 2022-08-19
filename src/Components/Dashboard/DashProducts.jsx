@@ -4,14 +4,18 @@ import AddCategory from "./AddCategory/AddCategoryForm";
 import DeleteCategory from "./DeleteCategory/DeleteCategoryForm";
 import productDevelopmentImg from "../../assets/imgs/Product-Development-01-01-1200x840-1-1.png";
 import UpdateCategory from "./UpdateCategory/UpdateCategoryForm";
-export default function DashProducts() {
-  return (
-    <>
-      <div className="d-flex flex-column justify-content-around">
-        <div className="mb-2">
-          <AddProduct />
-        </div>
-        <div className="mb-2">
+import Products from "../Products/Products";
+import { useEffect } from "react";
+export default function DashProducts(props) {
+    // props.funcFoot(false);
+    console.log(props);
+    return (
+        <>
+            <div className=" ">
+                <div className="mb-2">
+                    <AddProduct />
+                </div>
+                {/* <div className="mb-2">
           <AddCategory />
         </div>
         <div className="mb-2">
@@ -19,13 +23,14 @@ export default function DashProducts() {
         </div>
         <div>
           <DeleteCategory />
-        </div>
-      </div>
-      <img
+        </div> */}
+                <Products />
+            </div>
+            {/* <img
         src={productDevelopmentImg}
         alt="product-development"
         className="dashProducts"
-      />
-    </>
-  );
+      /> */}
+        </>
+    );
 }
