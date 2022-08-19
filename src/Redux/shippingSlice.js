@@ -3,11 +3,13 @@ const initialState = {
   userAdress: localStorage.getItem('shipping')
     ? JSON.parse(localStorage.getItem('shipping'))
     : {
-        fullName: '',
-        adress: '',
+        street: '',
+        building: '',
         city: '',
-        country: '',
+        state: '',
         phone: '',
+        zipCode: '',
+        country: '',
       },
 };
 
@@ -16,11 +18,13 @@ const shippingSlice = createSlice({
   initialState,
   reducers: {
     saveShipping: (state, action) => {
-      state.userAdress.fullName = action.payload.fullName;
-      state.userAdress.adress = action.payload.adress;
+      state.userAdress.street = action.payload.street;
+      state.userAdress.building = action.payload.building;
       state.userAdress.city = action.payload.city;
-      state.userAdress.country = action.payload.country;
+      state.userAdress.state = action.payload.state;
       state.userAdress.phone = action.payload.phone;
+      state.userAdress.zipCode = action.payload.zipCode;
+      state.userAdress.country = action.payload.country;
       //store at local storage
       localStorage.setItem('shipping', JSON.stringify(state.userAdress));
     },
@@ -28,3 +32,12 @@ const shippingSlice = createSlice({
 });
 export default shippingSlice.reducer;
 export const { saveShipping } = shippingSlice.actions;
+// adress: "elsinblawin"
+// building: "10"
+// city: "Alsinblawin"
+// country: "Egypt"
+// fullName: "Enas Awad"
+// phone: "01020356669"
+// state: "Egypt"
+// street: "Aldakahlya"
+// zipCode: "3
