@@ -184,4 +184,5 @@ export const {
   useAddReviewMutation,
   useAllProductReviewsQuery,
   useAddAddressMutation,
+  useAddCategoryImageMutation,
 } = Api;
