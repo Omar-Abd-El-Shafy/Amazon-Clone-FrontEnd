@@ -8,6 +8,7 @@ import LogInButton from './LoginButton/LoginButton';
 import { Link } from 'react-router-dom';
 import Sidebar from '../SideBar/SideBar';
 import { MdAdminPanelSettings } from 'react-icons/md';
+import { BsPerson } from 'react-icons/bs';
 
 function Header() {
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
@@ -26,9 +27,16 @@ function Header() {
         {loggedInUser?.user?.name ? (
           <>
             <Link to="/User">
-              <span style={{ color: 'white', cursor: 'pointer' }}>
+              <h4
+                style={{
+                  color: 'white',
+                  cursor: 'pointer',
+                  textTransform: 'capitalize',
+                }}
+              >
+                <BsPerson className="text-warning" />
                 {loggedInUser.user.name}
-              </span>
+              </h4>
             </Link>
             {/* <button
                             className="btn btn-outline-warning"
