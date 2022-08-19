@@ -62,7 +62,7 @@ const ShippingAdress = () => {
                   onClick={(e) => setOneAdress(e.target.value)}
                   // className="p-2 m-3 adress-Check form-check-input"
                 />
-                <label className="form-check-label" for={adress.createdAt}>
+                <label className="form-check-label" HtmlFor={adress.createdAt}>
                   {adress.fullAddress}
                 </label>
                 <Link to="/ShippingForm">
