@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Users() {
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
-    // console.log(loggedInUser);
     // get all users from the store
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
     if (!user) {
         navigate("/login");
     }
-    const dispatch = useDispatch();
     // get all users
     const [users, setUsers] = useState([]);
     useEffect(() => {
