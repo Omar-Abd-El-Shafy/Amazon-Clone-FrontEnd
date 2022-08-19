@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useAddToCartMutation } from "../../Redux/Api";
+import { toast } from 'react-toastify';
 
 const ProductsItem = ({ product }) => {
     const navigate = useNavigate();
@@ -21,7 +22,9 @@ const ProductsItem = ({ product }) => {
                     product_id: product._id,
                     flag: 1,
                 },
-            });
+            } );
+      toast.success(`  ${product.name} add to cart`, {});
+            
         } else {
             navigate("/login");
         }
