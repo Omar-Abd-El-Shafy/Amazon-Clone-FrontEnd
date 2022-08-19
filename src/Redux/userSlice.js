@@ -6,7 +6,7 @@ const initialState = {
     error: "",
 };
 
-const storedData = localStorage.getItem("userData");
+const storedData = JSON.parse(localStorage.getItem("userData"));
 
 export const login = createAsyncThunk("user/login", async (userData) => {
     const response = await axios.post(
@@ -40,12 +40,14 @@ export const updateUser = createAsyncThunk("user", async (userData) => {
             },
         })
         .then((response) => {
-            console.log("hhddd");
-            localStorage.setItem("userData", {
-                user: response.data.user,
-                token: userData.token,
-                expiration: storedData?.expiration,
-            });
+            localStorage.setItem(
+                "userData",
+                JSON.stringify({
+                    user: response.data.user,
+                    token: userData.token,
+                    expiration: storedData?.expiration,
+                })
+            );
             return response;
         })
         .catch((error) => {
