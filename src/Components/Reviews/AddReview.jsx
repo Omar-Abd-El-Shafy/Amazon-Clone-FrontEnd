@@ -14,13 +14,13 @@ const AddReview = ({ id }) => {
     const [rating, setRating] = useState();
     const [title, setTitle] = useState();
     const [comment, setComment] = useState();
-    console.log(id, rating, title, comment);
+    // console.log(id, rating, title, comment);
     const handleSubmit = (e) => {
         e.preventDefault();
         if (loggedInUser) {
             newReview({
                 token: loggedInUser.token,
-                body: { id, rating, title, comment },
+                body: { product: id, rating, title, comment },
             });
         } else {
             navigate("/login");
