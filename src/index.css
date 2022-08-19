@@ -50,7 +50,16 @@ main {
   box-shadow: 0 0 10px #f3a847;
 }
 .header-search {
-  width: 65%;
+  width: 50%;
+}
+
+@media screen and (max-width: 485px ) {
+ .header-search{display: none;
+
+ }
+}
+@media screen and (min-width: 486px ) {
+ .main-search{display: none;}
 }
 .cart {
   position: relative;
@@ -281,7 +290,7 @@ a:hover {
 .SearchCategory {
   position: absolute;
   top: 90px;
-  left: 90vw;
+  left: 80vw;
 }
 @media screen and (max-width: 768px) {
   .SearchCategory {

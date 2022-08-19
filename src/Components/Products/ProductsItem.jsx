@@ -31,57 +31,58 @@ const ProductsItem = ({ product }) => {
     };
 
     return (
-        <Col sm={6} md={4} lg={3} className="mb-3 ">
-            <Card
-                className="shadow border-0 rounded-5 bg-warning text-center bg-opacity-10 justify-content-center "
-                style={{ height: "100%" }}
-            >
-                <Link to={`/product/one/${product._id}`}>
-                    <Card.Img
-                        className="card-img-top w-50 mt-3 "
-                        src={product.image_path[0]}
-                        alt={product.name}
-                    />
-                </Link>
+      <Col sm={6} md={4} lg={3} className="mb-3 ">
+        <Card
+          className="shadow border-0 rounded-5 bg-warning bg-opacity-10"
+          style={{ height: '100%' }}
+        >
+          {/* <Link to={`/product/one/${product._id}`}> */}
+          <Card.Img
+            style={{ height: '200px' }}
+            className="card-img-top p-2 "
+            src={product.image_path[0]}
+            alt={product.name}
+          />
+          {/* </Link> */}
 
-                <Card.Body
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "space-around",
-                        textAlign: "center",
-                        borderRadius: "18px",
-                    }}
-                    className="cardBody"
-                >
-                    <Link to={`/product/one/${product._id}`}>
-                        <Card.Title>{product.name}</Card.Title>
-                    </Link>
-                    <Rating rating={product.rating} />
-                    <Card.Text
-                        style={{
-                            fontSize: "28px",
-                            fontWeight: "400",
-                        }}
-                    >
-                        EGP {product.price}
-                    </Card.Text>
-                    {product.stock > 0 ? (
-                        <Button
-                            variant="warning"
-                            onClick={() => handleAddToCart(product)}
-                        >
-                            Add to Cart
-                        </Button>
-                    ) : (
-                        <Button disabled variant="secondary">
-                            out of stock
-                        </Button>
-                    )}
-                </Card.Body>
-            </Card>
-        </Col>
+          <Card.Body
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'space-around',
+              textAlign: 'center',
+              borderRadius: '18px',
+            }}
+            className="cardBody"
+          >
+            <Link to={`/product/one/${product._id}`}>
+              <Card.Title>{product.name}</Card.Title>
+            </Link>
+            <Rating rating={product.rating} />
+            <Card.Text
+              style={{
+                fontSize: '28px',
+                fontWeight: '400',
+              }}
+            >
+              EGP {product.price}
+            </Card.Text>
+            {product.stock > 0 ? (
+              <Button
+                variant="warning"
+                onClick={() => handleAddToCart(product)}
+              >
+                Add to Cart
+              </Button>
+            ) : (
+              <Button disabled variant="secondary">
+                out of stock
+              </Button>
+            )}
+          </Card.Body>
+        </Card>
+      </Col>
     );
 };
 

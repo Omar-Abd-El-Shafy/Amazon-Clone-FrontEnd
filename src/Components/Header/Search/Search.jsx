@@ -14,7 +14,7 @@ function Search() {
         navigate(path + "/" + query);
     };
     return (
-        <Form className="header-search" onSubmit={handelSubmit}>
+        <Form  onSubmit={handelSubmit}>
             <InputGroup className="input-group">
                 <FormControl
                     className="form-control"

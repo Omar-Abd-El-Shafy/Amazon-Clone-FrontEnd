@@ -6,7 +6,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ProductsItem from '../Components/Products/ProductsItem';
-import { Container } from 'react-bootstrap';
+import { Col, Container } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
 
 export default function SearchResults() {
   let param = useParams();
@@ -31,40 +32,46 @@ export default function SearchResults() {
   };
   return (
     <Container>
+      <Helmet>
+        <title>Search Products</title>
+      </Helmet>
       <Row>
-        <h3>
-          {products.length} Results for
-          <span className="paramSearch"> {param.search}</span>
-        </h3>
-        <div className="SearchCategory">
-          <DropdownButton
-            as={ButtonGroup}
-            key="warning"
-            id="dropdown-variants-warning"
-            variant="warning"
-            title="Sort By"
-            onSelect={handleSelect}
-          >
-            <Dropdown.Item eventKey="Low-to-High">
-              Price: Low to High
-            </Dropdown.Item>
-            <Dropdown.Item eventKey="High-to-Low">
-              Price: High to Low
-            </Dropdown.Item>
-            <Dropdown.Item eventKey="Customer-review">
-              Avg. Customer review
-            </Dropdown.Item>
-          </DropdownButton>
-        </div>
-      </Row>
-      <Row className="mt-4">
-        {products && !error ? (
-          products.map((product) => {
-            return <ProductsItem product={product} />;
-          })
-        ) : (
-          <h1 className="w-50 m-auto">{error}</h1>
-        )}
+        <Row>
+          <Col>
+            <h3>
+              {products.length} Results for
+              <span className="paramSearch"> {param.search}</span>
+            </h3>
+            <div className="SearchCategory">
+              <DropdownButton
+                as={ButtonGroup}
+                key="warning"
+                id="dropdown-variants-warning"
+                variant="warning"
+                title="Sort By"
+                onSelect={handleSelect}
+              >
+                <Dropdown.Item eventKey="Low-to-High">
+                  Price: Low to High
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="High-to-Low">
+                  Price: High to Low
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="Customer-review">
+                  Avg. Customer review
+                </Dropdown.Item>
+              </DropdownButton>
+            </div>
+          </Col>
+        </Row>
+
+        <Row>
+          {products && !error ? (
+            products.map((product) => <ProductsItem product={product} />)
+          ) : (
+            <h1 className="w-50 m-auto">{error}</h1>
+          )}
+        </Row>
       </Row>
     </Container>
   );
