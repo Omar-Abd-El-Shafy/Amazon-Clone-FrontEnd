@@ -31,7 +31,7 @@ const CategoryItem = ({ item }) => {
                         }}
                     />
                 </Card.Body>
-                <Link className="btn " to={`product/category/${item._id}`}>
+                <Link className="btn " to={`/product/category/${item._id}`}>
                     <small className="text-primary fs-6 cat-btn">
                         show more{" "}
                     </small>

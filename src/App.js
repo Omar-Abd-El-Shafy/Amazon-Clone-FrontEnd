@@ -32,7 +32,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import PasswordReset from "./pages/PasswordReset";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
-import Department from "./pages/Department";
+import Departments from "./pages/Departments";
 import ProductDetails from "./pages/ProductDetails";
 import NoTFound from "./Components/notFound/NoTFound";
 import About from "./pages/About";
@@ -45,11 +45,11 @@ import User from "./pages/User";
 import Favourite from "./pages/Favourite";
 import AddReview from "./Components/Reviews/AddReview";
 import Categories from "./Components/Dashboard/Categories";
-import Stripe from "./pages/Stripe"
+import Stripe from "./pages/Stripe";
 import ShippingForm from "./pages/ShippingForm";
 import Search from "./Components/Header/Search/Search";
 import Orders from "./pages/Orders";
-
+import DepartmentsAdmin from "./Components/Dashboard/DepartmentsAdmin";
 function App() {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
@@ -74,92 +74,144 @@ function App() {
     const [showNav, setShowNav] = useState(true);
     const [showFooter, setShowFooter] = useState(true);
     return (
-      <Router>
-        <ToastContainer
-          autoClose="1000"
-          theme="colored"
-          position="bottom-left"
-          transition={Flip}
-        />
-        <div className="d-flex flex-column main">
-          {showNav && (
-            <div>
-              <Header />
+        <Router>
+            <ToastContainer
+                autoClose="1000"
+                theme="colored"
+                position="bottom-left"
+                transition={Flip}
+            />
+            <div className="d-flex flex-column main">
+                {showNav && (
+                    <div>
+                        <Header />
+                    </div>
+                )}
+                {showNav && <SideBar />}
+                <main>
+                    <Container fluid className="mt-5 text-capitalize">
+                        <Row
+                            style={{
+                                marginTop: "-27px",
+                                background: "#131921",
+                            }}
+                            className="main-search mb-2 p-2"
+                        >
+                            <Search />
+                        </Row>
+                        <Routes>
+                            <Route
+                                exact
+                                path="/"
+                                element={<Home funcNav={setShowNav} />}
+                            />
+                            <Route
+                                path="/login"
+                                element={<Login funcNav={setShowNav} />}
+                            />
+                            <Route path="/User" element={<User />} />
+                            <Route
+                                path="/signup"
+                                element={<Signup funcNav={setShowNav} />}
+                            />
+                            <Route
+                                path="/EditProfile"
+                                element={<EditProfile />}
+                            />
+                            <Route path="/Favourite" element={<Favourite />} />
+                            <Route
+                                path="/UpdateName"
+                                element={<UpdateName />}
+                            />
+                            <Route
+                                path="/Updatepass"
+                                element={<Updatepass />}
+                            />
+                            <Route
+                                path="/UpdatePhone"
+                                element={<UpdatePhone />}
+                            />
+                            <Route
+                                path="/UpdateEmail"
+                                element={<UpdateEmail />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={
+                                    <ForgotPassword funcNav={setShowNav} />
+                                }
+                            />
+                            <Route
+                                path="/password-reset/:id/:token"
+                                element={<PasswordReset />}
+                            />
+                            <Route
+                                path="/product/category/:id"
+                                element={<CategoryPage />}
+                            />
+                            <Route
+                                path="/product/one/:id"
+                                element={<ProductDetails />}
+                            />
+                            <Route
+                                path={"department/:id"}
+                                element={<Departments />}
+                            />
+                            <Route
+                                path="/SearchResults/:search"
+                                element={<SearchResults />}
+                            />
+                            <Route path="/CartPage" element={<CartPage />} />
+                            <Route path="/AddReview" element={<AddReview />} />
+                            <Route
+                                path="/ShippingAdress"
+                                element={<ShippingAdress />}
+                            />
+                            <Route
+                                path="/ShippingForm"
+                                element={<ShippingForm />}
+                            />
+                            <Route path="/Payment" element={<Payment />} />
+                            <Route
+                                path="/PlaceOrder"
+                                element={<PlaceOrder />}
+                            />
+                            <Route path="/Orders" element={<Orders />} />
+                            <Route path="/About" element={<About />} />
+                            {/* //////////////////////////stripe payment/////////////////////// */}
+                            <Route path="/Stripe" element={<Stripe />} />
+                            {/* //////////////////////////Admin/////////////////////// */}
+                            <Route
+                                path="/dashboard"
+                                element={<Dashboard funcFoot={setShowFooter} />}
+                            >
+                                <Route index element={<DashProducts />} />
+                                <Route
+                                    path="DashProducts"
+                                    element={<DashProducts />}
+                                />
+                                <Route path="Users" element={<Users />} />
+                                <Route
+                                    path="Categories"
+                                    element={<Categories />}
+                                />
+                                <Route
+                                    path="DepartmentsAdmin"
+                                    element={<DepartmentsAdmin />}
+                                />
+                            </Route>
+                            <Route path="*" element={<NoTFound />} />
+                        </Routes>
+                    </Container>
+                </main>
+                {showNav && showFooter && (
+                    <footer>
+                        <BackTop />
+                        <Footer />
+                    </footer>
+                )}
             </div>
-          )}
-          {showNav && <SideBar />}
-          <main>
-            <Container fluid className="mt-5 text-capitalize">
-              <Row
-                style={{ marginTop: '-27px', background: '#131921' }}
-                className="main-search mb-2 p-2"
-              >
-                <Search />
-              </Row>
-              <Routes>
-                <Route exact path="/" element={<Home funcNav={setShowNav} />} />
-                <Route path="/login" element={<Login funcNav={setShowNav} />} />
-                <Route path="/User" element={<User />} />
-                <Route
-                  path="/signup"
-                  element={<Signup funcNav={setShowNav} />}
-                />
-                <Route path="/EditProfile" element={<EditProfile />} />
-                <Route path="/Favourite" element={<Favourite />} />
-                <Route path="/UpdateName" element={<UpdateName />} />
-                <Route path="/Updatepass" element={<Updatepass />} />
-                <Route path="/UpdatePhone" element={<UpdatePhone />} />
-                <Route path="/UpdateEmail" element={<UpdateEmail />} />
-                <Route
-                  path="/forgot-password"
-                  element={<ForgotPassword funcNav={setShowNav} />}
-                />
-                <Route
-                  path="/password-reset/:id/:token"
-                  element={<PasswordReset />}
-                />
-                <Route
-                  path="/product/category/:id"
-                  element={<CategoryPage />}
-                />
-                <Route path="/product/one/:id" element={<ProductDetails />} />
-                <Route path={'department/:id'} element={<Department />} />
-                <Route
-                  path="/SearchResults/:search"
-                  element={<SearchResults />}
-                />
-                <Route path="/CartPage" element={<CartPage />} />
-                <Route path="/AddReview" element={<AddReview />} />
-                <Route path="/ShippingAdress" element={<ShippingAdress />} />
-                <Route path="/ShippingForm" element={<ShippingForm />} />
-                <Route path="/Payment" element={<Payment />} />
-                <Route path="/PlaceOrder" element={<PlaceOrder />} />
-                <Route path="/Orders" element={<Orders />} />
-                <Route path="/About" element={<About />} />
-                {/* //////////////////////////stripe payment/////////////////////// */}
-                <Route path="/Stripe" element={<Stripe />} />
-                {/* //////////////////////////Admin/////////////////////// */}
-                <Route
-                  path="/dashboard"
-                  element={<Dashboard funcFoot={setShowFooter} />}
-                >
-                  <Route index element={<DashProducts />} />
-                  <Route path="DashProducts" element={<DashProducts />} />
-                  <Route path="Users" element={<Users />} />
-                  <Route path="Categories" element={<Categories />} />
-                </Route>
-                <Route path="*" element={<NoTFound />} />
-              </Routes>
-            </Container>
-          </main>
-          {showNav && showFooter && (
-            <footer>
-              <BackTop />
-              <Footer />
-            </footer>
-          )}
-        </div>
-      </Router>
+        </Router>
     );
 }
 export default App;

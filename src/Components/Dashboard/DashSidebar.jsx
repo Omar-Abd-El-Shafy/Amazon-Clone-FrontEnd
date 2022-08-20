@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/imgs/logo/amazon_logo.png";
 import Categories from "./Categories";
 import DashProducts from "./DashProducts";
+import DepartmentsAdmin from "./DepartmentsAdmin";
 import Users from "./Users";
 const DashSidebar = () => {
     return (
@@ -38,6 +39,16 @@ const DashSidebar = () => {
                             className="d-block text-white m-4 navLink"
                         >
                             Categories
+                        </Link>
+                    </Nav.Item>
+                    <h3 className="DropdownHeader p-2">Departments</h3>
+                    <Nav.Item>
+                        <Link
+                            to="DepartmentsAdmin"
+                            element={<DepartmentsAdmin />}
+                            className="d-block text-white m-4 navLink"
+                        >
+                            Departments
                         </Link>
                     </Nav.Item>
                 </Container>
