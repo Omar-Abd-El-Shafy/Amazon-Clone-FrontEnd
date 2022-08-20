@@ -155,6 +155,17 @@ export const Api = createApi({
       }),
       invalidatesTags: ['Product'],
     }),
+    updateProduct: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `product`,
+        method: 'PUT',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
+    }),
     deleteProduct: builder.mutation({
       query: ({ token, id }) => ({
         url: `product/${id}`,
@@ -234,4 +245,5 @@ export const {
   useAddDepartmentMutation,
   useEmptyCartMutation,
   useGetAllOrderQuery,
+  useUpdateProductMutation
 } = Api;
