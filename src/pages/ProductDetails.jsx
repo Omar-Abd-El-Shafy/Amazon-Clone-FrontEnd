@@ -24,6 +24,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 import Reviews from '../Components/Reviews/Reviews';
 import AddReview from '../Components/Reviews/AddReview';
+import UpdateProduct from '../Components/Dashboard/UpdateProduct/UpdateProductForm';
 
 function ProductDetails() {
   const params = useParams();
@@ -263,6 +264,11 @@ function ProductDetails() {
                 <IoTrashOutline />
               </Button>
             ) : null}
+          </>
+          <>
+          {loggedInUser?.user.role && (
+            <UpdateProduct product={product}/>
+          )}
           </>
         </Col>
       </Row>
