@@ -114,3 +114,32 @@ const ShippingAdress = () => {
 };
 
 export default ShippingAdress;
+{
+  cartData.products.map((item) => (
+    <>
+      <Col md={4} xs={3}>
+        <img
+          src={item.product_id.image_path[0]}
+          alt={item.product_id.name}
+          className="w-50 rounded-start  border-0"
+        />
+      </Col>
+      <Col md={8}>
+        {' '}
+        <Card.Body>
+          <Card.Text>
+            <Link to={`/product/one/${item.product_id._id}`}>
+              {item.product_id.name}
+            </Link>
+          </Card.Text>
+          <Card.Text>Quantity: {item.quantity}</Card.Text>
+          <Card.Text>
+            <strong className="text-danger">
+              Price: {item.product_id.price} EGP
+            </strong>
+          </Card.Text>
+        </Card.Body>
+      </Col>
+    </>
+  ));
+}

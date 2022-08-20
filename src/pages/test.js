@@ -80,4 +80,27 @@ export default StripedRowExample;
               </tr>
             ))}
           </tbody>
-        </Table>                
+</Table>                
+        <div className="OrderDetails-Product">
+          <div className="OrderDetails-ProductPriceWrapper">
+            <div className="Placeholder Placeholder--Rounded">
+              <h1 className="OrderDetails-ProductPrice ">1225egp</h1>
+            </div>
+            <div className="OrderDetails-ProductAndDetails  ">
+              <div className="OrderDetails-ProductLineItems">
+                <div className="OrderDetails-ProductLineItem">
+                  <img className="OrderDetails-ProductImage OrderDetails-ProductImage--Rounded" />
+                  <div className="OrderDetails-DetailLines">
+                    <div className="OrderDetails-DetailLine">
+                      <div>
+                        <div className="Placeholder Placeholder--Rounded"></div>
+                        <div className='Placeholder Placeholder--Rounded'></div>
+                        <div className='Placeholder Placeholder--Rounded'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section></section>

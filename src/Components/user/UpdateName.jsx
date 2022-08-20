@@ -30,45 +30,46 @@ const UpdateName = () => {
     };
 
     return (
-        <Container style={{ maxWidth: "600px" }}>
-            <Row>
-                <Link to={"/EditProfile"}>
-                    <h1>
-                        back to your account
-                        <RiArrowGoBackFill />
-                    </h1>
-                </Link>
-                <hr />
-            </Row>
-            <Form>
-                <Helmet>
-                    <title>Edit profile information </title>
-                </Helmet>
+      <Container style={{ maxWidth: '600px' }}>
+        <Row>
+          <Link to={'/EditProfile'}>
+            <h1>
+              back to your account
+              <RiArrowGoBackFill />
+            </h1>
+          </Link>
+          <hr />
+        </Row>
+        <Form>
+          <Helmet>
+            <title>Edit profile information </title>
+          </Helmet>
 
-                <h4 className="text-dark"> Change your name</h4>
-                <Form.Text className="text-muted">
-                    If you want to change the name associated with your Amazon
-                    customer account, you may do so below. Be sure to click the
-                    Save Changes button when you are done.
-                </Form.Text>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>user Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        // placeholder={user.name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <Button
-                        onClick={handleSubmit}
-                        className="mt-2 "
-                        variant="warning"
-                        type="submit"
-                    >
-                        Save changes
-                    </Button>
-                </Form.Group>
-            </Form>
-        </Container>
+          <h4 className="text-dark"> Change your name</h4>
+          <Form.Text className="text-muted">
+            If you want to change the name associated with your Amazon customer
+            account, you may do so below. Be sure to click the Save Changes
+            button when you are done.
+          </Form.Text>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>user Name</Form.Label>
+            <Form.Control
+              type="text"
+              // placeholder={user.name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Button
+              onClick={handleSubmit}
+              
+              className="mt-2 shadow bg-warning bg-gradient"
+              variant="warning"
+              type="submit"
+            >
+              Save changes
+            </Button>
+          </Form.Group>
+        </Form>
+      </Container>
     );
 };
 

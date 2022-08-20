@@ -74,7 +74,9 @@ console.log(cartData);
     <Container>
       <CheckoutSteps step1 step2 step3 step4 />
       <Container>
-        <Helmet>place Order</Helmet>
+        <Helmet>
+          <title>place Order</title>
+        </Helmet>
         <h1 className="my-3">Place Order</h1>
         <Row>
           <Col md={8}>
@@ -183,7 +185,7 @@ console.log(cartData);
                 </ListGroup>
                 <div className="d-gred">
                   <button
-                    className="bg-warning w-100 border-0 rounded-2 mt-4 py-1 px-2 "
+                    className="shadow bg-warning bg-gradient w-100 border-0 rounded-2 mt-4 py-1 px-2 "
                     onClick={handelSubmit}
                   >
                     Place Order

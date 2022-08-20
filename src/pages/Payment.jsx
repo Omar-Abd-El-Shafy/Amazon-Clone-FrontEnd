@@ -50,7 +50,9 @@ console.log(loggedInUser);
             </span>
           </h3>
 
-          <Helmet>Payment method </Helmet>
+          <Helmet>
+            <title>Payment method</title>{' '}
+          </Helmet>
           <h1 className="my-3">Payment method</h1>
           <Form onSubmit={handelSubmit}>
             <div>
@@ -74,7 +76,10 @@ console.log(loggedInUser);
               />
             </div>
             <div className=" mb-3 ">
-              <button className="btn btn-warning text-capitalize" type="submit">
+              <button
+                className="btn shadow bg-warning bg-gradient text-capitalize"
+                type="submit"
+              >
                 continue
               </button>
             </div>

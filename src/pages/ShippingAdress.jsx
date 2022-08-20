@@ -12,14 +12,14 @@ import { useState } from 'react';
 
 const ShippingAdress = () => {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const [ oneAdaress, setOneAdress ] = useState();
-   const [phone, setPhone] = useState(' ');
-   const [street, setStreet] = useState(' ');
-   const [building, setBuilding] = useState(' ');
-   const [city, setCity] = useState(' ');
-   const [state, setState] = useState(' ');
-   const [zipCode, setZipCode] = useState(' ');
-   const [country, setCountry] = useState(' ');
+  const [oneAdaress, setOneAdress] = useState();
+  const [phone, setPhone] = useState(' ');
+  const [street, setStreet] = useState(' ');
+  const [building, setBuilding] = useState(' ');
+  const [city, setCity] = useState(' ');
+  const [state, setState] = useState(' ');
+  const [zipCode, setZipCode] = useState(' ');
+  const [country, setCountry] = useState(' ');
   const navigate = useNavigate();
   console.log(oneAdaress);
   useEffect(() => {
@@ -42,6 +42,10 @@ const ShippingAdress = () => {
   return (
     <Container>
       <CheckoutSteps step1 step2 />
+      <Helmet>
+        <title>Shipping Address</title>
+      </Helmet>
+
       <Container style={{ maxWidth: '800px' }}>
         <Row className="mt-4">
           <Link to={'/'}>
@@ -51,7 +55,6 @@ const ShippingAdress = () => {
             </span>
           </Link>
         </Row>
-        <Helmet>Shipping Address</Helmet>
         {adress ? (
           <Form className=" border border-1 rounded-3 p-2 mb-3">
             <h5 className="">choose Shipping addresses</h5>
@@ -108,7 +111,7 @@ const ShippingAdress = () => {
             </Link>
             <button
               onClick={handelSubmit}
-              className="btn btn-warning text-capitalize"
+              className="btn shadow bg-warning bg-gradient text-capitalize"
               type="submit"
             >
               continue
