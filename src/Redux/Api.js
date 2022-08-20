@@ -18,6 +18,7 @@ export const Api = createApi({
     }),
     getSingleProdact: builder.query({
       query: (id) => `product/one/${id}`,
+      providesTags: ["Product"],
     }),
 
     getAllCategories: builder.query({
@@ -168,13 +169,13 @@ export const Api = createApi({
     updateProduct: builder.mutation({
       query: ({ token, body }) => ({
         url: `product`,
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'x-access-token': `${token}`,
+          "x-access-token": `${token}`,
         },
         body,
       }),
-      invalidatesTags: ['Product'],
+      invalidatesTags: ["Product"],
     }),
     deleteProduct: builder.mutation({
       query: ({ token, id }) => ({
