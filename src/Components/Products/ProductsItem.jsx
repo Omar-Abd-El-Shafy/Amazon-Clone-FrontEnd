@@ -33,7 +33,7 @@ const ProductsItem = ({ product }) => {
     return (
       <Col sm={6} md={4} lg={3} className="mb-3 ">
         <Card
-          className="shadow border-0 rounded-5 bg-warning bg-opacity-10"
+          className="shadow border-0 rounded-3 bg-warning bg-opacity-10"
           style={{ height: '100%' }}
         >
           {/* <Link to={`/product/one/${product._id}`}> */}
@@ -57,7 +57,10 @@ const ProductsItem = ({ product }) => {
             className="cardBody"
           >
             <Link to={`/product/one/${product._id}`}>
-              <Card.Title>{product.name}</Card.Title>
+              <Card.Title
+                // style={ { width: '210px' } }
+              >
+                { product.name }</Card.Title>
             </Link>
             <Rating rating={product.rating} />
             <Card.Text

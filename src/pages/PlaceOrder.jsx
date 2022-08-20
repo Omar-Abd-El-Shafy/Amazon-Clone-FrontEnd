@@ -1,23 +1,31 @@
-import React, { useEffect } from "react";
-import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
-import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
-import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useAddAddressMutation } from "../Redux/Api";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
+import { Container, Col, Row, Card, ListGroup } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useAddAddressMutation, useGetUserCartQuery } from '../Redux/Api';
+import axios from 'axios';
 
 const PlaceOrder = () => {
   const paymentMethod = useSelector((state) => state.payment.payment);
   const Shipping = useSelector((state) => state.shipping.userAdress);
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
   //   const { data: cartData, isLoading } = useGetUserCartQuery(loggedInUser.token);
+  const { data: cartData, isLoading } = useGetUserCartQuery( loggedInUser.token );
+  let length;
+   if (cartData?.products) {
+     length = cartData.products.length;
+   } else {
+     length = 0;
+   }
+  console.log(cartData);
 
   const navigate = useNavigate();
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
   useEffect(() => {
     if (!loggedInUser) {
-      navigate("/login");
+      navigate('/login');
     }
   }, [loggedInUser, navigate]);
 
@@ -29,44 +37,43 @@ const PlaceOrder = () => {
         token: loggedInUser.token,
         body: { ...Shipping },
       });
-
       axios
         .post(
-          "https://amazon-clone-deploy.herokuapp.com/order",
+          'https://amazon-clone-deploy.herokuapp.com/order',
           {
             deliveryAddress: Shipping,
             paymentMethod,
           },
           {
             headers: {
-              "x-access-token": `${loggedInUser.token}`,
+              'x-access-token': `${loggedInUser.token}`,
             },
           }
         )
         .then((response) => {
           console.log(response.data);
 
-          if (paymentMethod === "visa") {
-            console.log("navigate to stripe payment page");
-            navigate("/Stripe", { state: { order_id: response.data[0]._id } });
+          if (paymentMethod === 'visa') {
+            console.log('navigate to stripe payment page');
+            navigate('/Stripe', { state: { order_id: response.data[0]._id } });
           } else {
-            console.log("navigate to order summary page");
+            console.log('navigate to order summary page');
           }
         })
         .catch((error) => {
           console.log(
-            "navigate to out-of-stock error products page to remove them from cart"
+            'navigate to out-of-stock error products page to remove them from cart'
           );
 
           //   the out-of-stock products array
           console.log(error.response.data);
         });
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   };
   // const round2 = (num) => Math.round(num * 100 + number.EPSILION) / 100;
-  // const ShippingFee = 21;
+  const ShippingFee = 21;
   // const cash = 9;
   // const total = cart.totalCartPrice + cash + ShippingFee;
   return (
@@ -80,13 +87,13 @@ const PlaceOrder = () => {
             <Card className="mb-3">
               <Card.Body>
                 <Card.Text>
-                  <strong>Shipping address </strong>{" "}
-                  <Link to={"/ShippingAdress"} className="fs-6 text-primary ">
+                  <strong>Shipping address </strong>{' '}
+                  <Link to={'/ShippingAdress'} className="fs-6 text-primary ">
                     Change
                   </Link>
                 </Card.Text>
                 <Card.Text>
-                  <strong>Name: {Shipping.fullName} </strong>
+                  <strong>Name: {loggedInUser.user.name} </strong>
                   <br />
                   <strong>
                     Address:
@@ -103,8 +110,8 @@ const PlaceOrder = () => {
             <Card className="mb-3">
               <Card.Body>
                 <Card.Text>
-                  <strong>Payment method </strong>{" "}
-                  <Link to={"/Payment"} className="fs-6 text-primary ">
+                  <strong>Payment method </strong>{' '}
+                  <Link to={'/Payment'} className="fs-6 text-primary ">
                     Change
                   </Link>
                 </Card.Text>
@@ -113,36 +120,36 @@ const PlaceOrder = () => {
             </Card>
             <Card className="mb-3">
               <Row className="align-items-center g-2 p-3">
-                {" "}
+                {' '}
                 <Card.Title>items</Card.Title>
-                {/* {cart.cartItems.map((item) => (
+                {cartData.products.map((item) => (
                   <>
                     <Col md={4} xs={3}>
                       <img
-                        src={item.image_path[0]}
-                        alt={item.name}
-                        className="img-thumbnail rounded-start  border-0"
+                        src={item.product_id.image_path[0]}
+                        alt={item.product_id.name}
+                        className="w-50 rounded-start  border-0"
                       />
                     </Col>
                     <Col md={8}>
-                      {" "}
+                      {' '}
                       <Card.Body>
                         <Card.Text>
-                          <Link to={`/product/one/${item._id}`}>
-                            {item.name}
+                          <Link to={`/product/one/${item.product_id._id}`}>
+                            {item.product_id.name}
                           </Link>
                         </Card.Text>
-                        <Card.Text>Quantity: {item.cartQuantity}</Card.Text>
+                        <Card.Text>Quantity: {item.quantity}</Card.Text>
                         <Card.Text>
                           <strong className="text-danger">
-                            Price: {item.price} EGP
+                            Price: {item.product_id.price} EGP
                           </strong>
                         </Card.Text>
                       </Card.Body>
                     </Col>
                   </>
-                ))} */}
-                <Link to={"/CartPage"}></Link>
+                ))}
+                <Link to={'/CartPage'}></Link>
               </Row>
             </Card>
           </Col>
@@ -153,29 +160,28 @@ const PlaceOrder = () => {
                 <ListGroup>
                   <ListGroup.Item>
                     <Row>
-                      <Col>items</Col>
-                      {/* <Col>{cart.totalcartQuantitye}</Col> */}
+                      <Col>Checkout for : ({length})</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
                       <Col>Shipping & handling</Col>
-                      {/* <Col>{ShippingFee.toFixed(2)}</Col> */}
+                      <Col>{ShippingFee.toFixed(2)}</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                    {" "}
+                    {' '}
                     <Row>
                       <Col> Cash on Delivery Fee</Col>
                       <Col>9 EGP</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    {" "}
+                    {' '}
                     <Row className=" text-danger fw-bold">
                       <Col> Order total:</Col>
-                      {/* <Col>{total} EGP</Col> */}
+                      <Col>{cartData.bill} EGP</Col>
                     </Row>
                   </ListGroup.Item>
                 </ListGroup>

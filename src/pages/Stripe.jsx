@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import React, { useState, useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
-import CheckoutForm from "./CheckoutForm";
-// import "./Stripe.css";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { useLocation } from "react-router-dom";
+import CheckoutForm from './CheckoutForm';
+import './Stripe.css';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(
-  "pk_test_51LTllPFwhSEkFDCITyyEeRWRWzutCNUpPLOVIjIxHxN9uExzSruNMu1Add2JKRRAf9OyQdcca00EQd70ccm35VBf00D0RNjgkw"
+  'pk_test_51LTllPFwhSEkFDCITyyEeRWRWzutCNUpPLOVIjIxHxN9uExzSruNMu1Add2JKRRAf9OyQdcca00EQd70ccm35VBf00D0RNjgkw'
 );
 
 export default function Stripe() {
-  const [clientSecret, setClientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState('');
 
   const location = useLocation();
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const navigate = useNavigate();
   useEffect(() => {
     if (!loggedInUser) {
-      navigate("/login");
+      navigate('/login');
     }
   }, [loggedInUser, navigate]);
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("/payment/create-payment-intent", {
-      method: "POST",
+    fetch('/payment/create-payment-intent', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "x-access-token": `${loggedInUser.token}`,
+        'Content-Type': 'application/json',
+        'x-access-token': `${loggedInUser.token}`,
       },
       body: JSON.stringify({ order_id: location.state.order_id }),
     })
@@ -42,7 +43,7 @@ export default function Stripe() {
   }, []);
 
   const appearance = {
-    theme: "stripe",
+    theme: 'stripe',
   };
   const options = {
     clientSecret,
@@ -50,12 +51,14 @@ export default function Stripe() {
   };
 
   return (
-    <div className="App">
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
-    </div>
+ 
+      <div className="App">
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )}
+      </div>
+
   );
 }
