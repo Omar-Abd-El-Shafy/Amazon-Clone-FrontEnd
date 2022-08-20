@@ -63,6 +63,17 @@ export const Api = createApi({
       }),
       invalidatesTags: ["Department"],
     }),
+    UpdateDepartment: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `department`,
+        method: "PUT",
+        headers: {
+          "x-access-token": `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ["Department"],
+    }),
     //Review
     addReview: builder.mutation({
       query: ({ token, body }) => ({
@@ -245,4 +256,5 @@ export const {
   useEmptyCartMutation,
   useGetAllOrderQuery,
   useDeleteDepartmentMutation,
+  useUpdateDepartmentMutation,
 } = Api;
