@@ -52,7 +52,7 @@ export default function AddDepartment() {
               })
                 .unwrap()
                 .then((fulfilled) => {
-                  toast.success(`Department Added Successfully`, {
+                  toast.success(`Category Added Successfully`, {
                     position: "bottom-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -67,6 +67,28 @@ export default function AddDepartment() {
           >
             {({ setFieldValue }) => (
               <Form id="btnId">
+                {/* department
+                                <div className="form-control">
+                                    <label htmlFor="department">
+                                        department
+                                    </label>
+                                    <Field name="department" as="select">
+                                        <option value="" disabled>
+                                            Select an option
+                                        </option>
+                                        {departments?.map((dept) => (
+                                            <option
+                                                key={dept._id}
+                                                value={dept._id}
+                                            >
+                                                {dept.name}
+                                            </option>
+                                        ))}
+                                    </Field>
+                                    <div className="ErrorMessageTxt">
+                                        <ErrorMessage name="department" />
+                                    </div>
+                                </div> */}
                 {/* name */}
                 <div className="form-control">
                   <label htmlFor="name">Department name</label>

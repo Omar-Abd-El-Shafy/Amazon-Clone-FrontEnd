@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
-import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
-import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
-import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  useAddAddressMutation,
-  useEmptyCartMutation,
-  useGetUserCartQuery,
-} from "../Redux/Api";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
+import { Container, Col, Row, Card, ListGroup } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useAddAddressMutation, useEmptyCartMutation, useGetUserCartQuery } from '../Redux/Api';
+import axios from 'axios';
+import OrderSummery from '../Components/orders/OrderSummery';
 
 const PlaceOrder = () => {
   const paymentMethod = useSelector((state) => state.payment.payment);
@@ -72,7 +69,8 @@ const PlaceOrder = () => {
     }
   };
   // const round2 = (num) => Math.round(num * 100 + number.EPSILION) / 100;
-  const ShippingFee = 21;
+  let ShippingFee = 21;
+  let cash =9;
   // const cash = 9;
   // const total = cart.totalCartPrice + cash + ShippingFee;
   return (
@@ -82,44 +80,12 @@ const PlaceOrder = () => {
         <Helmet>
           <title>place Order</title>
         </Helmet>
-        <h1 className="my-3">Place Order</h1>
-        <Row>
+        {/* <h1 className="my-3">Place Order</h1> */}
+        <Row className="my-3">
           <Col md={8}>
-            <Card className="mb-3">
-              <Card.Body>
-                <Card.Text>
-                  <strong>Shipping address </strong>{" "}
-                  <Link to={"/ShippingAdress"} className="fs-6 text-primary ">
-                    Change
-                  </Link>
-                </Card.Text>
-                <Card.Text>
-                  <strong>Name: {loggedInUser.user.name} </strong>
-                  <br />
-                  <strong>
-                    Address:
-                    {/* {Shipping.adress} <br /> */}
-                    {Shipping.city}
-                    <br />
-                    {Shipping.country}
-                    <br />
-                    {Shipping.phone}
-                  </strong>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card className="mb-3">
-              <Card.Body>
-                <Card.Text>
-                  <strong>Payment method </strong>{" "}
-                  <Link to={"/Payment"} className="fs-6 text-primary ">
-                    Change
-                  </Link>
-                </Card.Text>
-                <Card.Text>{paymentMethod}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card className="mb-3">
+            <OrderSummery />
+
+            {/* <Card className="mb-3">
               <Row className="align-items-center g-2 p-3">
                 {" "}
                 <Card.Title>items</Card.Title>
@@ -152,9 +118,20 @@ const PlaceOrder = () => {
                 ))}
                 <Link to={"/CartPage"}></Link>
               </Row>
-            </Card>
+            </Card> */}
           </Col>
           <Col md={4}>
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Text>
+                  <strong>Payment method </strong>{' '}
+                  <Link to={'/Payment'} className="fs-6 text-primary ">
+                    Change
+                  </Link>
+                </Card.Text>
+                <Card.Text>{paymentMethod}</Card.Text>
+              </Card.Body>
+            </Card>
             <Card>
               <Card.Body>
                 <Card.Title>Order Summary</Card.Title>
@@ -169,19 +146,19 @@ const PlaceOrder = () => {
                   <ListGroup.Item>
                     <Row>
                       <Col>Shipping & handling</Col>
-                      <Col>{cartData.products.shippingFee}</Col>
+                      <Col>{ShippingFee}EGP</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                    {" "}
+                    {' '}
                     <Row>
                       <Col> Cash on Delivery Fee</Col>
-                      <Col>9 EGP</Col>
+                      <Col>{cash} EGP</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    {" "}
+                    {' '}
                     <Row className=" text-danger fw-bold">
                       <Col> Order total:</Col>
                       <Col>{cartData.bill} EGP</Col>
