@@ -40,7 +40,11 @@ export default function UpdateProduct({ product }) {
 
     return (
         <>
-            <Button variant="warning" onClick={handleShow} className="crudBtn">
+            <Button
+                variant="warning"
+                onClick={handleShow}
+                className="crudBtn mt-3 ms-1"
+            >
                 Update Product
             </Button>
 
