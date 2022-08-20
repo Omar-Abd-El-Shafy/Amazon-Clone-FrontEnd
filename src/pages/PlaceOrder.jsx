@@ -14,7 +14,7 @@ const PlaceOrder = () => {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const { data: cartData } = useGetUserCartQuery( loggedInUser.token );
   const [emptyCart] = useEmptyCartMutation();
-
+console.log(cartData);
   const navigate = useNavigate();
   useEffect(() => {
     if (!loggedInUser) {
@@ -154,13 +154,15 @@ const PlaceOrder = () => {
                 <ListGroup>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Checkout for: ({cartData.products.length}) items</Col>
+                      <Col>
+                        Checkout for: ({cartData.products.length}) items
+                      </Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
                       <Col>Shipping & handling</Col>
-                      <Col>{ShippingFee.toFixed(2)}</Col>
+                      <Col>{cartData.products.shippingFee}</Col>
                     </Row>
                   </ListGroup.Item>
 
