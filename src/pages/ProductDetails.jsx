@@ -63,7 +63,7 @@ function ProductDetails() {
   };
   //fav
   const [like, setLike] = useState(false);
-  const [ setSaved] = useState(false);
+  const [setSaved] = useState(false);
   const saveShow = (product) => {
     if (loggedInUser) {
       setLike(!like);
@@ -107,12 +107,44 @@ function ProductDetails() {
             />
           )}
         </h5>
+        <Col md={1}>
+          <Row xs={1} md={2} className="flex-column">
+            {product.image_path.map((x) => (
+              <Col key={x}>
+                <Card className="border-0 border border-0 bg-transparent">
+                  <Button
+                    className="border border-0 bg-transparent d-none d-lg-block"
+                    type="button"
+                    variant="flush"
+                    onClick={() => {
+                      SetSelectedImg(x);
+                    }}
+                  >
+                    <Card.Img
+                      variant="topp"
+                      src={x}
+                      alt="product"
+                      style={{
+                        width: '80px',
+                        maxWidth: '80px',
+                        marginRight: '10px',
+                      }}
+                    ></Card.Img>
+                  </Button>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Col>
         <Col md={5}>
           <img
-            style={{ maxWidth: '100%' }}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '438px',
+              marginLeft: '10px',
+            }}
             src={Selectedimg || product.image_path[0]}
             alt={product.name}
-            className="w-75"
           ></img>
         </Col>
         <Col md={3}>
@@ -123,11 +155,11 @@ function ProductDetails() {
               </Helmet>
               <h1 className="text-secondary">{product.name}</h1>
             </ListGroup.Item>
-            <ListGroup.Item>
-              <Row xs={1} md={2} className="">
+            <ListGroup.Item className='border-0'>
+              <Row xs={1} md={2} className=" flex-row">
                 {product.image_path.map((x) => (
                   <Col key={x}>
-                    <Card className="border-0">
+                    <Card className="border-0 p-2 d-lg-none">
                       <Button
                         className="p-0"
                         type="button"

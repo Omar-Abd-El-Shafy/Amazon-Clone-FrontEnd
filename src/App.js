@@ -48,6 +48,7 @@ import Categories from "./Components/Dashboard/Categories";
 import Stripe from "./pages/Stripe"
 import ShippingForm from "./pages/ShippingForm";
 import Search from "./Components/Header/Search/Search";
+import Orders from "./pages/Orders";
 
 function App() {
     const dispatch = useDispatch();
@@ -133,6 +134,7 @@ function App() {
                 <Route path="/ShippingForm" element={<ShippingForm />} />
                 <Route path="/Payment" element={<Payment />} />
                 <Route path="/PlaceOrder" element={<PlaceOrder />} />
+                <Route path="/Orders" element={<Orders />} />
                 <Route path="/About" element={<About />} />
                 {/* //////////////////////////stripe payment/////////////////////// */}
                 <Route path="/Stripe" element={<Stripe />} />

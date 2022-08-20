@@ -1,62 +1,62 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const Api = createApi({
-    reducerPath: "Api",
-    baseQuery: fetchBaseQuery({
-        baseUrl: "https://amazon-clone-deploy.herokuapp.com/",
+  reducerPath: 'Api',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://amazon-clone-deploy.herokuapp.com/',
+  }),
+  tagTypes: ['Product', 'Department', 'Category', 'Cart'],
+
+  endpoints: (builder) => ({
+    getAllProdacts: builder.query({
+      query: (pageNum) => {
+        return {
+          url: `/product?page=${pageNum}`,
+        };
+      },
+      providesTags: ['Product'],
     }),
-    tagTypes: ["Product", "Department", "Category", "Cart"],
+    getSingleProdact: builder.query({
+      query: (id) => `product/one/${id}`,
+    }),
 
-    endpoints: (builder) => ({
-        getAllProdacts: builder.query({
-            query: (pageNum) => {
-                return {
-                    url: `/product?page=${pageNum}`,
-                };
-            },
-            providesTags: ["Product"],
-        }),
-        getSingleProdact: builder.query({
-            query: (id) => `product/one/${id}`,
-        }),
-
-        getAllCategories: builder.query({
-            query: () => `category`,
-            providesTags: ["Category"],
-        }),
-        getProdactCategories: builder.query({
-            query: (id) => {
-                return {
-                    url: `/product?category=${id}`,
-                    method: "GET",
-                    // product?page=1&category=22
-                    // /product/search?category=122
-                };
-            },
-            providesTags: ["Product"],
-        }),
-        getdAlldepartment: builder.query({
-            query: () => `department`,
-        }),
-        getCategorydepartment: builder.query({
-            query: (id) => `category/dept/${id}`,
-        }),
-        //Review
-        addReview: builder.mutation({
-            query: ({ token, body }) => ({
-                url: `review`,
-                method: "POST",
-                headers: {
-                    "x-access-token": `${token}`,
-                },
-                body,
-            }),
-            invalidatesTags: ["Product"],
-        }),
-        allProductReviews: builder.query({
-            query: (id) => `review/product/${id}`,
-            providesTags: ["Product"],
-        }),
+    getAllCategories: builder.query({
+      query: () => `category`,
+      providesTags: ['Category'],
+    }),
+    getProdactCategories: builder.query({
+      query: (id) => {
+        return {
+          url: `/product?category=${id}`,
+          method: 'GET',
+          // product?page=1&category=22
+          // /product/search?category=122
+        };
+      },
+      providesTags: ['Product'],
+    }),
+    getdAlldepartment: builder.query({
+      query: () => `department`,
+    }),
+    getCategorydepartment: builder.query({
+      query: (id) => `category/dept/${id}`,
+    }),
+    //Review
+    addReview: builder.mutation({
+      query: ({ token, body }) => ({
+        url: `review`,
+        method: 'POST',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ['Product'],
+    }),
+    allProductReviews: builder.query({
+      query: (id) => `review/product/${id}`,
+      providesTags: ['Product'],
+    }),
 
     //cart
     addToCart: builder.mutation({
@@ -105,6 +105,15 @@ export const Api = createApi({
     getAdress: builder.query({
       query: (token) => ({
         url: `address`,
+        method: 'GET',
+        headers: {
+          'x-access-token': `${token}`,
+        },
+      }),
+    }),
+    getِAlOorder: builder.query({
+      query: (token) => ({
+        url: `order`,
         method: 'GET',
         headers: {
           'x-access-token': `${token}`,

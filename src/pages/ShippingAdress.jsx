@@ -12,7 +12,14 @@ import { useState } from 'react';
 
 const ShippingAdress = () => {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const [oneAdaress, setOneAdress] = useState();
+  const [ oneAdaress, setOneAdress ] = useState();
+   const [phone, setPhone] = useState(' ');
+   const [street, setStreet] = useState(' ');
+   const [building, setBuilding] = useState(' ');
+   const [city, setCity] = useState(' ');
+   const [state, setState] = useState(' ');
+   const [zipCode, setZipCode] = useState(' ');
+   const [country, setCountry] = useState(' ');
   const navigate = useNavigate();
   console.log(oneAdaress);
   useEffect(() => {
@@ -24,13 +31,14 @@ const ShippingAdress = () => {
     e.preventDefault();
     addAdress({
       token: loggedInUser.token,
-      body: oneAdaress,
+      body: { building, street, city, state, zipCode, phone, country },
     });
     navigate('/Payment');
   };
   const [addAdress] = useAddAddressMutation();
   const { data: adress } = useGetAdressQuery(loggedInUser.token);
   console.log(adress);
+  console.log();
   return (
     <Container>
       <CheckoutSteps step1 step2 />
@@ -58,12 +66,29 @@ const ShippingAdress = () => {
                   name="exampleRadios"
                   id={adress.createdAt}
                   value={adress.fullAddress}
-                  checked
                   onClick={(e) => setOneAdress(e.target.value)}
                   // className="p-2 m-3 adress-Check form-check-input"
                 />
-                <label className="form-check-label" HtmlFor={adress.createdAt}>
-                  {adress.fullAddress}
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  building: {adress.building}
+                </label>
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  street: {adress.street}
+                </label>
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  city:{adress.city}
+                </label>
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  state: {adress.state}
+                </label>
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  zipCode:{adress.zipCode}
+                </label>
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  country:{adress.country}
+                </label>
+                <label className="form-check-label" htmlFor={adress.createdAt}>
+                  phone:{adress.phone}
                 </label>
                 <Link to="/ShippingForm">
                   <Button

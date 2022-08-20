@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 img {
-  object-fit: contain;
+  object-fit: cover;
 }
 main {
   flex: 1;
