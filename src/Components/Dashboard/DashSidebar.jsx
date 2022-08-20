@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/imgs/logo/amazon_logo.png";
 import Categories from "./Categories";
@@ -52,6 +52,16 @@ const DashSidebar = () => {
                         </Link>
                     </Nav.Item>
                 </Container>
+                <div className="logBTN btn btn-outline-light ms-5 mt-5">
+                    <a
+                        href="https://addons-sso.heroku.com/apps/amazon-clone-deploy/addons/papertrail"
+                        className="d-block text-white"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        All-Logs
+                    </a>
+                </div>
             </Nav>
         </>
     );

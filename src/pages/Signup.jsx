@@ -235,7 +235,9 @@ export default function Registration(props) {
                     >
                         Register
                     </Button>
-                    {apierror && <div> there is an error !</div>}
+                    {apierror && (
+                        <div className="text-danger"> there is an error !</div>
+                    )}
                     <Col className="m-3 text-center">
                         <span>Already have an account? </span>
                         <Link to="/login">
