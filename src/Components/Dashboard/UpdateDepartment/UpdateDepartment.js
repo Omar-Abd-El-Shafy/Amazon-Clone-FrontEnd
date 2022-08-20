@@ -6,11 +6,11 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import {
-  useDeleteDepartmentMutation,
+  useUpdateDepartmentMutation,
   useGetdAlldepartmentQuery,
 } from "../../../Redux/Api";
 
-export default function DeleteDepartment() {
+export default function UpdateDepartment() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,15 +18,16 @@ export default function DeleteDepartment() {
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const { data: departments } = useGetdAlldepartmentQuery();
-  const [DeleteDepartment, { isError }] = useDeleteDepartmentMutation();
+  const [UpdateDepartment, { isError }] = useUpdateDepartmentMutation();
   const schema = yup.object().shape({
     departments: yup.string().required("Required Field"),
+    name: yup.string().required("Required Field"),
   });
 
   return (
     <>
       <Button variant="warning" onClick={handleShow} className="crudBtn">
-        Delete department
+        Update department
       </Button>
 
       <Modal
@@ -43,17 +44,18 @@ export default function DeleteDepartment() {
             enableReinitialize
             initialValues={{
               departments: "",
+              name: "",
             }}
             validationSchema={schema}
             onSubmit={(values) => {
               console.log(values);
-              DeleteDepartment({
+              UpdateDepartment({
                 token: loggedInUser.token,
-                id: values.departments,
+                body: { id: values.departments, name: values.name },
               })
                 .unwrap()
                 .then((fulfilled) => {
-                  toast.success(`Department deleted Successfully`, {
+                  toast.success(`Department updated Successfully`, {
                     position: "bottom-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -89,6 +91,15 @@ export default function DeleteDepartment() {
                   </Field>
                   <div className="ErrorMessageTxt">
                     <ErrorMessage name="departments" />
+                  </div>
+                </div>
+
+                {/* name */}
+                <div className="form-control">
+                  <label htmlFor="name">New department name</label>
+                  <Field name="name" type="text" />
+                  <div className="ErrorMessageTxt">
+                    <ErrorMessage name="name" />
                   </div>
                 </div>
               </Form>

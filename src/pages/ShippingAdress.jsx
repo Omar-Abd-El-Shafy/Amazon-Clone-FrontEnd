@@ -3,12 +3,13 @@ import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
 import { Helmet } from 'react-helmet-async';
 import { Button, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 import { useAddAddressMutation, useGetAdressQuery } from '../Redux/Api';
 import ShippingForm from './ShippingForm';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useState } from 'react';
+import { saveShipping } from '../Redux/shippingSlice';
 
 const ShippingAdress = () => {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
@@ -26,13 +27,14 @@ const ShippingAdress = () => {
     if (!loggedInUser) {
       navigate('/login');
     }
-  }, [loggedInUser, navigate]);
+  }, [ loggedInUser, navigate ] );
+  const dispatch = useDispatch();
+  
   const handelSubmit = (e) => {
     e.preventDefault();
-    addAdress({
-      token: loggedInUser.token,
-      body: { building, street, city, state, zipCode, phone, country },
-    });
+    dispatch(
+      saveShipping({ building, street, city, state, zipCode, phone, country })
+    );
     navigate('/Payment');
   };
   const [addAdress] = useAddAddressMutation();

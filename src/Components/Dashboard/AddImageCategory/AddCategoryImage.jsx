@@ -78,6 +78,7 @@ export default function AddCategoryImage() {
                                         }
                                     );
                                 })
+                                .unwrap()
                                 .catch((rejected) =>
                                     console.error(rejected.data)
                                 );
