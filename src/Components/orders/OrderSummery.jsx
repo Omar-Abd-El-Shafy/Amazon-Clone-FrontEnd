@@ -1,15 +1,15 @@
-import React from 'react';
-import { BiArrowBack } from 'react-icons/bi';
-import { GrAmazon } from 'react-icons/gr';
-import { Card,  Container, ListGroup, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useGetAdressQuery, useGetUserCartQuery } from '../../Redux/Api';
+import React from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { GrAmazon } from "react-icons/gr";
+import { Card, Container, ListGroup, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useGetUserCartQuery } from "../../Redux/Api";
 
 const OrderSummery = () => {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const Shipping = useSelector((state) => state.shipping.userAdress);
 
-  const { data: Shipping } = useGetAdressQuery(loggedInUser.token);
   const { data: cart } = useGetUserCartQuery(loggedInUser.token);
   console.log(Shipping);
   console.log(cart);
@@ -28,8 +28,8 @@ const OrderSummery = () => {
         <Card variant="flush" className="border border-0 mb-3">
           <Card.Body>
             <Card.Text>
-              <span>Shipping address </span>{' '}
-              <Link to={'/ShippingAdress'} className="fs-6 text-primary ">
+              <span>Shipping address </span>{" "}
+              <Link to={"/ShippingAdress"} className="fs-6 text-primary ">
                 Change
               </Link>
             </Card.Text>
@@ -38,7 +38,8 @@ const OrderSummery = () => {
               <br />
               <strong>
                 Address:
-                {Shipping.fullAddress}
+                {Shipping.building}, {Shipping.street}, {Shipping.city},{" "}
+                {Shipping.state}, {Shipping.country}, {Shipping.zipCode}
               </strong>
             </Card.Text>
           </Card.Body>
@@ -46,10 +47,10 @@ const OrderSummery = () => {
         <p></p>
         <Card variant="flush" className="border border-0 mb-3">
           <Card.Text>
-            <h4>Review items and shipping</h4>{' '}
+            <h4>Review items and shipping</h4>{" "}
           </Card.Text>
           <Card.Text>
-            <h4>Totle{cart.bill} EGP</h4>{' '}
+            <h4>Totle{cart.bill} EGP</h4>{" "}
           </Card.Text>
 
           {cart.products.map((item) => (
@@ -57,18 +58,18 @@ const OrderSummery = () => {
               <ListGroup variant="flush" className=" ">
                 <ListGroup.Item className=" d-flex justify-content-between align-items-center border border-0">
                   <img
-                    style={{ width: '42px' }}
+                    style={{ width: "42px" }}
                     src={item.product_id.image_path[0]}
                     alt={item.product_id.name}
                   />
-                  <span style={{ width: '78px' }}>
-                    {' '}
+                  <span style={{ width: "78px" }}>
+                    {" "}
                     {item.product_id.brand}
                   </span>
-                  <span style={{ width: '78px' }}>
+                  <span style={{ width: "78px" }}>
                     quantity: {item.quantity}
                   </span>
-                  <span style={{ width: '78px' }}>
+                  <span style={{ width: "78px" }}>
                     price: {item.product_id.price}EGP
                   </span>
                 </ListGroup.Item>
