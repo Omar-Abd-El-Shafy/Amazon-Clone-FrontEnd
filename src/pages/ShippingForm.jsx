@@ -103,13 +103,12 @@ const ShippingForm = () => {
         <div className=" mb-3 ">
           <button
             onClick={handelSubmit}
-            className="btn btn-warning text-capitalize"
+            className="btn shadow bg-warning bg-gradient text-capitalize"
             type="submit"
           >
             continue
           </button>
         </div>{' '}
-        
       </Container>
     </Container>
   );

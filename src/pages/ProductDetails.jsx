@@ -155,7 +155,7 @@ function ProductDetails() {
               </Helmet>
               <h1 className="text-secondary">{product.name}</h1>
             </ListGroup.Item>
-            <ListGroup.Item className='border-0'>
+            <ListGroup.Item className="border-0">
               <Row xs={1} md={2} className=" flex-row">
                 {product.image_path.map((x) => (
                   <Col key={x}>
@@ -221,7 +221,7 @@ function ProductDetails() {
                 <div className="d-grid">
                   {product.stock > 0 ? (
                     <Button
-                      className="rounded-pill "
+                      className="shadow bg-warning bg-gradient rounded-pill "
                       variant="warning"
                       onClick={() => handleAddToCart(product)}
                     >

@@ -20,7 +20,7 @@ import Loading from '../Components/Loading/Loading';
 const CartPage = () => {
   const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-  
+
   const { data: cartData, isLoading } = useGetUserCartQuery(loggedInUser.token);
   console.log(cartData);
   //function to remove item from cart
@@ -55,11 +55,10 @@ const CartPage = () => {
         product_id: pro.product_id._id,
         flag: 1,
       },
-    } );
-      toast.warning(` increased ${pro.product_id.name} quantity`, {});
-      
+    });
+    toast.warning(` increased ${pro.product_id.name} quantity`, {});
   };
- 
+
   // function to checkout
   const HandelCheckOut = () => {
     if (!loggedInUser) {
@@ -117,6 +116,7 @@ const CartPage = () => {
                                 className="img-fluid rounded cart-img"
                                 style={{
                                   height: '70px',
+                                  objectFit: 'contain',
                                 }}
                                 src={pro.product_id.image_path[0]}
                                 alt={pro.product_id.name}
@@ -127,19 +127,19 @@ const CartPage = () => {
                             </Col>
                             <Col md={3}>
                               <Button
-                                className="bg-warning bg-opacity-10  px-2 py-0  m-2"
+                                className="shadow-sm bg-gradient bg-opacity-10  px-2 py-0  m-2"
                                 variant="light"
                                 onClick={() => HandelDecrease(pro)}
                               >
                                 <AiOutlineMinus />
                               </Button>
-                              <strong className=" rounded-2 py-1 px-2 bg-warning bg-opacity-10">
+                              <strong className=" rounded-2 py-1 px-2 shadow-sm bg-gradient bg-opacity-10">
                                 {pro.quantity}
                               </strong>
                               <Button
                                 disabled={pro.product_id.stock === pro.quantity}
                                 variant="light"
-                                className="bg-warning bg-opacity-10  px-2 py-0  m-2"
+                                className="shadow-sm  bg-gradient bg-opacity-10  px-2 py-0  m-2"
                                 onClick={() => Handelincrease(pro)}
                               >
                                 <AiOutlinePlus />
@@ -150,7 +150,7 @@ const CartPage = () => {
                             </Col>
                             <Col md={2} className="fw-bold fs-4">
                               <Button
-                                className="bg-warning bg-opacity-10 rounded  border border-1 m-2"
+                                className="shadow  bg-gradient bg-opacity-10 rounded  border border-1 m-2"
                                 variant="light"
                                 onClick={() => HandelRemove(pro)}
                               >
@@ -185,8 +185,8 @@ const CartPage = () => {
                           <ListGroup.Item></ListGroup.Item>
                           <ListGroup.Item>
                             <div className="d-grid">
-                                  <Button
-                                    className=' rounded-pill'
+                              <Button
+                                className="shadow bg-warning bg-gradient rounded-pill"
                                 onClick={() => HandelCheckOut()}
                                 disabled={cartData?.products.length === 0}
                                 variant="warning"

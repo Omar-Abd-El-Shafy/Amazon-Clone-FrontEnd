@@ -58,9 +58,10 @@ const ProductsItem = ({ product }) => {
           >
             <Link to={`/product/one/${product._id}`}>
               <Card.Title
-                // style={ { width: '210px' } }
+              // style={ { width: '210px' } }
               >
-                { product.name }</Card.Title>
+                {product.name}
+              </Card.Title>
             </Link>
             <Rating rating={product.rating} />
             <Card.Text
@@ -73,6 +74,7 @@ const ProductsItem = ({ product }) => {
             </Card.Text>
             {product.stock > 0 ? (
               <Button
+                className="shadow bg-warning bg-gradient"
                 variant="warning"
                 onClick={() => handleAddToCart(product)}
               >
