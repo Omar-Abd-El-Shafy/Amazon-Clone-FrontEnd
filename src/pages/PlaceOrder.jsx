@@ -1,24 +1,28 @@
-import React, { useEffect } from 'react';
-import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
-import { Container, Col, Row, Card, ListGroup } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useAddAddressMutation, useEmptyCartMutation, useGetUserCartQuery } from '../Redux/Api';
-import axios from 'axios';
+import React, { useEffect } from "react";
+import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
+import { Container, Col, Row, Card, ListGroup } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  useAddAddressMutation,
+  useEmptyCartMutation,
+  useGetUserCartQuery,
+} from "../Redux/Api";
+import axios from "axios";
 
 const PlaceOrder = () => {
   const paymentMethod = useSelector((state) => state.payment.payment);
   const Shipping = useSelector((state) => state.shipping.userAdress);
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const { data: cartData } = useGetUserCartQuery( loggedInUser.token );
+  const { data: cartData } = useGetUserCartQuery(loggedInUser.token);
   const [emptyCart] = useEmptyCartMutation();
-console.log(cartData);
+  // console.log(cartData);
   const navigate = useNavigate();
   useEffect(() => {
     if (!loggedInUser) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [loggedInUser, navigate]);
 
@@ -32,38 +36,39 @@ console.log(cartData);
       });
       axios
         .post(
-          'https://amazon-clone-deploy.herokuapp.com/order',
+          "https://amazon-clone-deploy.herokuapp.com/order",
           {
             deliveryAddress: Shipping,
             paymentMethod,
           },
           {
             headers: {
-              'x-access-token': `${loggedInUser.token}`,
+              "x-access-token": `${loggedInUser.token}`,
             },
           }
         )
         .then((response) => {
           console.log(response.data);
 
-          if (paymentMethod === 'visa') {
-            console.log('navigate to stripe payment page');
-            navigate('/Stripe', { state: { order_id: response.data[0]._id } });
+          if (paymentMethod === "visa") {
+            // console.log('navigate to stripe payment page');
+            navigate("/Stripe", { state: { order_id: response.data[0]._id } });
           } else {
-            emptyCart({token: loggedInUser.token});
-            console.log('navigate to order summary page');
+            emptyCart({ token: loggedInUser.token });
+            console.log("navigate to order summary page");
           }
         })
         .catch((error) => {
-          console.log(
-            'navigate to out-of-stock error products page to remove them from cart'
-          );
+          navigate("/OrderError", { state: { products: error.response.data } });
 
-          //   the out-of-stock products array
-          console.log(error.response.data);
+          // console.log(
+          //   'navigate to out-of-stock error products page to remove them from cart'
+          // );
+          // //   the out-of-stock products array
+          // console.log(error.response.data);
         });
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   };
   // const round2 = (num) => Math.round(num * 100 + number.EPSILION) / 100;
@@ -83,8 +88,8 @@ console.log(cartData);
             <Card className="mb-3">
               <Card.Body>
                 <Card.Text>
-                  <strong>Shipping address </strong>{' '}
-                  <Link to={'/ShippingAdress'} className="fs-6 text-primary ">
+                  <strong>Shipping address </strong>{" "}
+                  <Link to={"/ShippingAdress"} className="fs-6 text-primary ">
                     Change
                   </Link>
                 </Card.Text>
@@ -106,8 +111,8 @@ console.log(cartData);
             <Card className="mb-3">
               <Card.Body>
                 <Card.Text>
-                  <strong>Payment method </strong>{' '}
-                  <Link to={'/Payment'} className="fs-6 text-primary ">
+                  <strong>Payment method </strong>{" "}
+                  <Link to={"/Payment"} className="fs-6 text-primary ">
                     Change
                   </Link>
                 </Card.Text>
@@ -116,7 +121,7 @@ console.log(cartData);
             </Card>
             <Card className="mb-3">
               <Row className="align-items-center g-2 p-3">
-                {' '}
+                {" "}
                 <Card.Title>items</Card.Title>
                 {cartData.products.map((item) => (
                   <>
@@ -128,7 +133,7 @@ console.log(cartData);
                       />
                     </Col>
                     <Col md={8}>
-                      {' '}
+                      {" "}
                       <Card.Body>
                         <Card.Text>
                           <Link to={`/product/one/${item.product_id._id}`}>
@@ -145,7 +150,7 @@ console.log(cartData);
                     </Col>
                   </>
                 ))}
-                <Link to={'/CartPage'}></Link>
+                <Link to={"/CartPage"}></Link>
               </Row>
             </Card>
           </Col>
@@ -169,14 +174,14 @@ console.log(cartData);
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                    {' '}
+                    {" "}
                     <Row>
                       <Col> Cash on Delivery Fee</Col>
                       <Col>9 EGP</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    {' '}
+                    {" "}
                     <Row className=" text-danger fw-bold">
                       <Col> Order total:</Col>
                       <Col>{cartData.bill} EGP</Col>

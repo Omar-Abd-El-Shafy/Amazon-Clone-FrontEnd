@@ -40,6 +40,7 @@ import CartPage from "./pages/CartPage";
 import ShippingAdress from "./pages/ShippingAdress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
+import OrderErrorPage from "./pages/OrderErrorPage";
 import SearchResults from "./pages/SearchResults";
 import User from "./pages/User";
 import Favourite from "./pages/Favourite";
@@ -177,6 +178,7 @@ function App() {
                                 element={<PlaceOrder />}
                             />
                             <Route path="/Orders" element={<Orders />} />
+                            <Route path="/OrderError" element={<OrderErrorPage />} />
                             <Route path="/About" element={<About />} />
                             {/* //////////////////////////stripe payment/////////////////////// */}
                             <Route path="/Stripe" element={<Stripe />} />
