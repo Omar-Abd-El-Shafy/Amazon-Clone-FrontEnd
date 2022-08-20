@@ -29,6 +29,7 @@ const ShippingAdress = () => {
     }
   }, [ loggedInUser, navigate ] );
   const dispatch = useDispatch();
+  const Shipping = useSelector((state) => state.shipping.userAdress);
   
   const handelSubmit = (e) => {
     e.preventDefault();

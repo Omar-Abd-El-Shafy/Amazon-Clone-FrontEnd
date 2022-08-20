@@ -5,6 +5,7 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import './Stripe.css';
+import { Alert } from 'react-bootstrap';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -29,7 +30,8 @@ export default function CheckoutForm() {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case 'succeeded':
-          setMessage('Payment succeeded!');
+         
+          setMessage();
           break;
         case 'processing':
           setMessage('Your payment is processing.');
@@ -59,7 +61,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000/Orders',
+        return_url: 'http://localhost:3000/',
       },
     });
 

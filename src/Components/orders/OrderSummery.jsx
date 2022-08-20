@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetAdressQuery, useGetUserCartQuery } from '../../Redux/Api';
 
-const OrderSummery = () => {
+const OrderSummery = (  ) =>
+{
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-
+  
   const { data: Shipping } = useGetAdressQuery(loggedInUser.token);
+  console.log(Shipping);
   const { data: cart } = useGetUserCartQuery(loggedInUser.token);
   console.log(Shipping);
   console.log(cart);
@@ -38,7 +40,8 @@ const OrderSummery = () => {
               <br />
               <strong>
                 Address:
-                {Shipping.fullAddress}
+                {Shipping[0].country},{Shipping[0].state},{Shipping[0].street},
+                { Shipping[0].building },{ ' '}Phone:{Shipping[0].phone}
               </strong>
             </Card.Text>
           </Card.Body>

@@ -83,7 +83,7 @@ const PlaceOrder = () => {
         {/* <h1 className="my-3">Place Order</h1> */}
         <Row className="my-3">
           <Col md={8}>
-            <OrderSummery />
+            <OrderSummery Shipping={Shipping} />
 
             {/* <Card className="mb-3">
               <Row className="align-items-center g-2 p-3">
