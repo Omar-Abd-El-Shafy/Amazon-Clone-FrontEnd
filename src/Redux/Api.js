@@ -5,7 +5,7 @@ export const Api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://amazon-clone-deploy.herokuapp.com/",
   }),
-  tagTypes: ["Product", "Department", "Category", "Cart"],
+  tagTypes: ["Product", "Department", "Category", "Cart", "Review"],
 
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
@@ -73,11 +73,22 @@ export const Api = createApi({
         },
         body,
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["Review"],
     }),
     allProductReviews: builder.query({
       query: (id) => `review/product/${id}`,
-      providesTags: ["Product"],
+      providesTags: ["Review"],
+    }),
+
+    deleteReview: builder.mutation({
+      query: ({ token, id }) => ({
+        url: `review/${id}`,
+        method: "DELETE",
+        headers: {
+          "x-access-token": `${token}`,
+        },
+      }),
+      invalidatesTags: ["Review"],
     }),
 
     //cart
@@ -168,13 +179,13 @@ export const Api = createApi({
     updateProduct: builder.mutation({
       query: ({ token, body }) => ({
         url: `product`,
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'x-access-token': `${token}`,
+          "x-access-token": `${token}`,
         },
         body,
       }),
-      invalidatesTags: ['Product'],
+      invalidatesTags: ["Product"],
     }),
     deleteProduct: builder.mutation({
       query: ({ token, id }) => ({
@@ -248,6 +259,7 @@ export const {
   useRemoveFromCartMutation,
   useUpdateCategoryMutation,
   useAddReviewMutation,
+  useDeleteReviewMutation,
   useAllProductReviewsQuery,
   useAddAddressMutation,
   useAddCategoryImageMutation,
