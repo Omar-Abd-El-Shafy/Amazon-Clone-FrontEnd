@@ -13,23 +13,21 @@ const SidebarMenu = ({ item }) => {
     } = useGetCategorydepartmentQuery(id);
     // console.log(category);
     return (
-        <>
-            {loading ? (
-                <div>category...</div>
-            ) : isError ? (
-                { error }
-            ) : (
-                <>
-                    {category.map((cat) => (
-                        <Accordion.Body>
-                            <Link to={`product/category/${cat._id}`}>
-                                {cat.name}
-                            </Link>
-                        </Accordion.Body>
-                    ))}
-                </>
-            )}
-        </>
+      <>
+        {loading ? (
+          <div>category...</div>
+        ) : isError ? (
+          { error }
+        ) : (
+          <>
+            {category.map((cat) => (
+              <Accordion.Body key={cat._id}>
+                <Link to={`product/category/${cat._id}`}>{cat.name}</Link>
+              </Accordion.Body>
+            ))}
+          </>
+        )}
+      </>
     );
 };
 

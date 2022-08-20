@@ -24,7 +24,6 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addToFavourites, removeFromFavourites } from '../Redux/favouriteSlice';
 import Reviews from '../Components/Reviews/Reviews';
 import AddReview from '../Components/Reviews/AddReview';
-import UpdateProduct from '../Components/Dashboard/UpdateProduct/UpdateProductForm';
 
 function ProductDetails() {
   const params = useParams();
@@ -127,7 +126,7 @@ function ProductDetails() {
                       alt="product"
                       style={{
                         width: '80px',
-                        maxWidth: '80px',
+                        // maxWidth: '80px',
                         marginRight: '10px',
                       }}
                     ></Card.Img>
@@ -137,12 +136,13 @@ function ProductDetails() {
             ))}
           </Row>
         </Col>
-        <Col md={5}>
+        <Col md={4}>
           <img
             style={{
-              maxWidth: '100%',
-              maxHeight: '438px',
               marginLeft: '10px',
+              width: '300px',
+              height: '345px',
+              objectFit: 'contain',
             }}
             src={Selectedimg || product.image_path[0]}
             alt={product.name}
@@ -264,11 +264,6 @@ function ProductDetails() {
                 <IoTrashOutline />
               </Button>
             ) : null}
-          </>
-          <>
-          {loggedInUser?.user.role && (
-            <UpdateProduct product={product}/>
-          )}
           </>
         </Col>
       </Row>

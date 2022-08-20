@@ -13,7 +13,7 @@ const About = () => {
                 <Card
                     key={item.id}
                     style={{ borderRadius: "2rem" }}
-                    className={"container"}
+                    className={"m-4"}
                 >
                     <Card.Body
                         data-aos="fade-right"
