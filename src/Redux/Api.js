@@ -103,6 +103,16 @@ export const Api = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+    emptyCart: builder.mutation({
+      query: ({ token  }) => ({
+        url: `cart/emptyCart`,
+        method: "PUT",
+        headers: {
+          "x-access-token": `${token}`,
+        },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
     //address
     addAddress: builder.mutation({
       query: ({ token, body }) => ({
@@ -212,4 +222,5 @@ export const {
   useAddCategoryImageMutation,
   useGetAdressQuery,
   useAddDepartmentMutation,
+  useEmptyCartMutation
 } = Api;
