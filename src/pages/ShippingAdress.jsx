@@ -24,7 +24,7 @@ const ShippingAdress = () => {
   }, [loggedInUser, navigate]);
 
   const { data: addressess } = useGetAdressQuery(loggedInUser.token);
-
+  
   const handelSubmit = (e) => {
     e.preventDefault();
 

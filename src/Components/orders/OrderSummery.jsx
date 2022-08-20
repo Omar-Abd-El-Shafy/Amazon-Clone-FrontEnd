@@ -52,7 +52,6 @@ const OrderSummery = () => {
           <Card.Text>
             <h4>Totle{cart.bill} EGP</h4>{" "}
           </Card.Text>
-
           {cart.products.map((item) => (
             <>
               <ListGroup variant="flush" className=" ">
