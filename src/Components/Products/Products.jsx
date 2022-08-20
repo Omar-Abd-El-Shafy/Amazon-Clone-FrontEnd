@@ -6,10 +6,9 @@ import { useGetAllProdactsQuery } from "../../Redux/Api";
 import ProductsItem from "./ProductsItem";
 import Pagination from "react-bootstrap/Pagination";
 
-function ProHome({ cat }) {
+const ProHome = ({ cat, pagination }) => {
     const [page, setPage] = React.useState(1);
     const { data, isLoading } = useGetAllProdactsQuery(page);
-    console.log(data);
     const handelNextPage = () => {
         if (page < data.pages) {
             setPage(page + 1);
@@ -50,23 +49,42 @@ function ProHome({ cat }) {
                                       ))}
                         </Row>
                     </div>
-                    <div className=" d-flex justify-content-center mt-4 ">
-                        <Pagination>
-                            <Pagination.Prev onClick={() => handelPrevPage()}>
-                                Prev.
-                            </Pagination.Prev>
-                            <Pagination.Item className="pageNum">
-                                <span className="pageNum">{page}</span>
-                            </Pagination.Item>
-                            <Pagination.Next onClick={() => handelNextPage()}>
-                                Next
-                            </Pagination.Next>
-                        </Pagination>
-                    </div>
+                    {pagination ? (
+                        <div className=" d-flex justify-content-center mt-4 ">
+                            <Pagination>
+                                <Pagination.Prev
+                                    onClick={() => handelPrevPage()}
+                                >
+                                    Prev.
+                                </Pagination.Prev>
+                                <Pagination.Item className="pageNum">
+                                    <span className="pageNum">{page}</span>
+                                </Pagination.Item>
+                                <Pagination.Next
+                                    onClick={() => handelNextPage()}
+                                >
+                                    Next
+                                </Pagination.Next>
+                            </Pagination>
+                        </div>
+                    ) : null}
                 </>
             )}
         </>
     );
-}
+};
 
 export default ProHome;
+{
+    /* <div className=" d-flex justify-content-center mt-4 ">
+    <Pagination>
+        <Pagination.Prev onClick={() => handelPrevPage()}>
+            Prev.
+        </Pagination.Prev>
+        <Pagination.Item className="pageNum">
+            <span className="pageNum">{page}</span>
+        </Pagination.Item>
+        <Pagination.Next onClick={() => handelNextPage()}>Next</Pagination.Next>
+    </Pagination>
+</div>; */
+}
