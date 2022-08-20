@@ -1,21 +1,21 @@
-import React from 'react';
-import '../index.css';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
-import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { AiOutlineMinus } from 'react-icons/ai';
-import { IoTrashOutline } from 'react-icons/io5';
-import { toast } from 'react-toastify';
+import React from "react";
+import "../index.css";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus } from "react-icons/ai";
+import { IoTrashOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 import {
   useGetUserCartQuery,
   useRemoveFromCartMutation,
   useAddToCartMutation,
-} from '../Redux/Api';
-import Loading from '../Components/Loading/Loading';
+} from "../Redux/Api";
+import Loading from "../Components/Loading/Loading";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -62,15 +62,15 @@ const CartPage = () => {
   // function to checkout
   const HandelCheckOut = () => {
     if (!loggedInUser) {
-      navigate('/login');
+      navigate("/login");
     } else {
-      navigate('/ShippingAdress');
+      navigate("/ShippingAdress");
     }
   };
 
   return (
     <Container>
-      {' '}
+      {" "}
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
@@ -78,12 +78,12 @@ const CartPage = () => {
         <div>
           <Loading />
         </div>
-      ) : cartData ? (
+      ) : (
         <>
-          {' '}
+          {" "}
           <Row className="align-items-center ">
             <>
-              {cartData.length === 0 ? (
+              {cartData.products.length === 0 ? (
                 <>
                   <Col>
                     <h1>
@@ -92,8 +92,8 @@ const CartPage = () => {
                     <Button className="py-2 px-4 mt-4" variant="warning">
                       <Link
                         style={{
-                          fontSize: '1.5rem',
-                          fontWeight: '500',
+                          fontSize: "1.5rem",
+                          fontWeight: "500",
                         }}
                         to="/"
                       >
@@ -105,7 +105,7 @@ const CartPage = () => {
               ) : (
                 <>
                   <Col md={8}>
-                    {' '}
+                    {" "}
                     <ListGroup>
                       <h1>Shopping Cart</h1>
                       {cartData?.products.map((pro) => (
@@ -115,12 +115,12 @@ const CartPage = () => {
                               <img
                                 className="img-fluid rounded cart-img"
                                 style={{
-                                  height: '70px',
-                                  objectFit: 'contain',
+                                  height: "70px",
+                                  objectFit: "contain",
                                 }}
                                 src={pro.product_id.image_path[0]}
                                 alt={pro.product_id.name}
-                              />{' '}
+                              />{" "}
                               <Link to={`/product/one/${pro.product_id._id}`}>
                                 {pro.product_id.name}
                               </Link>
@@ -164,13 +164,13 @@ const CartPage = () => {
                   </Col>
 
                   <Col md={4} className="total-cart ">
-                    {' '}
+                    {" "}
                     <Card>
                       <Card.Body>
                         <ListGroup variant="flush">
                           <ListGroup.Item>
                             <h3>
-                              Subtotal ( {cartData.products.length} items) :{' '}
+                              Subtotal ( {cartData.products.length} items) :{" "}
                               {cartData?.bill} EGP
                               {/* <Button
                                     onClick={()=>{handelClear(cartData);}}
@@ -204,7 +204,7 @@ const CartPage = () => {
             </>
           </Row>
         </>
-      ) : null}
+      )}
     </Container>
   );
 };

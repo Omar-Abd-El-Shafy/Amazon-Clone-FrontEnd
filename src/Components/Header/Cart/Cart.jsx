@@ -11,12 +11,12 @@ export default function Cart() {
     const { data: cartData } = useGetUserCartQuery(loggedInUser?.token, {
         skip: loggedInUser ? false : true,
     });
-    let length;
-    if (cartData?.products) {
-        length = cartData.products.length;
-    } else {
-        length = 0;
-    }
+    // let length;
+    // if (cartData?.products) {
+    //     length = cartData.products.length;
+    // } else {
+    //     length = 0;
+    // }
     return (
         <>
             <Link
@@ -25,8 +25,8 @@ export default function Cart() {
             >
                 <div className="cart">
                     <span className="cart-count ms-sm-1 mt-1 me-3 font-monospace">
-                        {length}
-                        {/* {cartData?.products.length} */}
+                        {/* {length} */}
+                        {cartData?.products.length}
                     </span>
                     <RiShoppingCartLine className="fa-solid fs-3 me-4 text-white cart-img" />
                 </div>
