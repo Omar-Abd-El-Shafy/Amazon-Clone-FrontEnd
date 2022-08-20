@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MainCarousel from "../Components/Carousel/Carousel";
 import Categorier from "../Components/Categories/Category";
-import Products from "../Components/Products/Products";
+import ProHome from "../Components/Products/Products";
 import { Helmet } from "react-helmet-async";
 const Home = (props) => {
     useEffect(() => {
@@ -12,10 +12,9 @@ const Home = (props) => {
             <Helmet>
                 <title>Amazon</title>
             </Helmet>
-
             <MainCarousel />
             <Categorier />
-            <Products />
+            <ProHome pagination={true} />
         </>
     );
 };

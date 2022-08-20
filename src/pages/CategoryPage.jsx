@@ -18,7 +18,7 @@ const CategoryPage = () => {
                 </div>
             ) : (
                 <>
-                    <Products cat={data.products} />
+                    <Products cat={data.products} pagination={false} />
                 </>
             )}
         </>

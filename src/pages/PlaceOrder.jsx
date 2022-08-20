@@ -5,22 +5,15 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useAddAddressMutation, useGetUserCartQuery } from '../Redux/Api';
+import { useAddAddressMutation, useEmptyCartMutation, useGetUserCartQuery } from '../Redux/Api';
 import axios from 'axios';
 
 const PlaceOrder = () => {
   const paymentMethod = useSelector((state) => state.payment.payment);
   const Shipping = useSelector((state) => state.shipping.userAdress);
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  //   const { data: cartData, isLoading } = useGetUserCartQuery(loggedInUser.token);
-  const { data: cartData, isLoading } = useGetUserCartQuery( loggedInUser.token );
-  let length;
-   if (cartData?.products) {
-     length = cartData.products.length;
-   } else {
-     length = 0;
-   }
-  console.log(cartData);
+  const { data: cartData } = useGetUserCartQuery( loggedInUser.token );
+  const [emptyCart] = useEmptyCartMutation();
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -57,6 +50,7 @@ const PlaceOrder = () => {
             console.log('navigate to stripe payment page');
             navigate('/Stripe', { state: { order_id: response.data[0]._id } });
           } else {
+            emptyCart({token: loggedInUser.token});
             console.log('navigate to order summary page');
           }
         })
@@ -160,7 +154,7 @@ const PlaceOrder = () => {
                 <ListGroup>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Checkout for : ({length})</Col>
+                      <Col>Checkout for: ({cartData.products.length}) items</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
