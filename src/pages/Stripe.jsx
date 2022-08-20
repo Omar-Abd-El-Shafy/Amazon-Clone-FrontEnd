@@ -7,7 +7,9 @@ import './Stripe.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
+import Orders from './Orders';
+import OrderSummery from '../Components/orders/OrderSummery';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -51,14 +53,21 @@ export default function Stripe() {
   };
 
   return (
- 
-      <div className="App">
-        {clientSecret && (
-          <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm />
-          </Elements>
-        )}
-      </div>
-
+    <div className="App">
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <Container className="m-0 p-0 w-100 h-100  Checkout-Stripe">
+            <Row>
+              <Col className="OrderDetails" md={5}>
+                <OrderSummery />
+              </Col>
+              <Col md={5}>
+                <CheckoutForm />
+              </Col>
+            </Row>
+          </Container>
+        </Elements>
+      )}
+    </div>
   );
 }
