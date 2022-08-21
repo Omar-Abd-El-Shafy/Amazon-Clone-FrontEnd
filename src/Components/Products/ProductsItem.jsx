@@ -89,7 +89,7 @@ console.log(product)
                 Add to Cart
               </Button>
             ) : (
-              <Button disabled variant="secondary">
+              <Button disabled variant="shadow bg-gradien secondary">
                 out of stock
               </Button>
             )}
