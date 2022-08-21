@@ -20,7 +20,7 @@ export default function AddCategoryImage() {
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
     const { data: categories } = useGetAllCategoriesQuery();
     // const { data: departments } = useGetdAlldepartmentQuery();
-    const [AddCategoryImage, { isError }] = useAddCategoryImageMutation();
+    const [AddCategoryImage] = useAddCategoryImageMutation();
 
     const schema = yup.object().shape({
         category: yup.string().required("Required Field"),

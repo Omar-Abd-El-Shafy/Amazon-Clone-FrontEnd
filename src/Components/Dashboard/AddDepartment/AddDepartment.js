@@ -15,7 +15,7 @@ export default function AddDepartment() {
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   // const { data: departments } = useGetdAlldepartmentQuery();
-  const [addDepartment, { isError }] = useAddDepartmentMutation();
+  const [addDepartment] = useAddDepartmentMutation();
   const schema = yup.object().shape({
     name: yup.string().required("Required Field"),
   });

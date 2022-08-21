@@ -29,8 +29,7 @@ export const Api = createApi({
         return {
           url: `/product?category=${id}`,
           method: "GET",
-          // product?page=1&category=22
-          // /product/search?category=122
+         
         };
       },
       providesTags: ["Product"],

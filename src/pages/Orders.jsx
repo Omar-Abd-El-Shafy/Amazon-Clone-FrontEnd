@@ -9,7 +9,6 @@ import { useGetAllOrderQuery } from '../Redux/Api';
 import { Link } from 'react-router-dom';
 const Orders = () => {
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
-  const paymentMethod = useSelector((state) => state.payment.payment);
 
   const { data, isLoading, error } = useGetAllOrderQuery(loggedInUser.token);
   console.log(data);

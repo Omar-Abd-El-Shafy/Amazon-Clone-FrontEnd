@@ -3,7 +3,13 @@ import { about } from "../data";
 import { Helmet } from "react-helmet-async";
 import Card from "react-bootstrap/Card";
 
-const About = () => {
+const About = () =>
+{
+    window.scrollTo({
+      top: 100,
+
+      behavior: 'smooth',
+    });
     return (
         <div style={{ borderRadius: "1.5rem" }} className={""}>
             <Helmet>

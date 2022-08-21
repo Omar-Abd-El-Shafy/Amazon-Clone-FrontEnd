@@ -5,11 +5,11 @@ import { Col, Row } from "react-bootstrap";
 
 const Users = (props) => {
     useEffect(() => {
-        props.funcFoot(false);
-        return () => {
-            props.funcFoot(true);
-        };
-    }, []);
+      props.funcFoot(false);
+      return () => {
+        props.funcFoot(true);
+      };
+    }, [props]);
 
     return (
         <div className="container-fluid">

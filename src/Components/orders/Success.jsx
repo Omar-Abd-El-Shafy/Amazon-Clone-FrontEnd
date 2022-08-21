@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import SuccessImg from "../../assets/imgs/logo/istockphoto-1314758416-612x612.jpg";
 const Success = () => {
     useEffect(() => {

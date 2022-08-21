@@ -20,7 +20,7 @@ export default function UpdateCategory() {
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
     const { data: categories } = useGetAllCategoriesQuery();
     const { data: departments } = useGetdAlldepartmentQuery();
-    const [updateCategory, { isError }] = useUpdateCategoryMutation();
+    const [updateCategory] = useUpdateCategoryMutation();
 
     const schema = yup.object().shape({
         category: yup.string().required("Required Field"),

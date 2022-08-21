@@ -41,7 +41,7 @@ export default function Stripe() {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+  }, [loggedInUser, location.state.order_id]);
 
   const appearance = {
     theme: 'stripe',

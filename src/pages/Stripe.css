@@ -1,7 +1,7 @@
 .Checkout-Stripe {
   margin-top: 0;
   padding-top: 0;
-   webkit-animation: enter-no-scale .6s;
+   /* webkit-animation: enter-no-scale .6s; */
     animation: enter-no-scale .6s;
     position: relative;
   transition: outline 0.2s ease;
