@@ -5,7 +5,11 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useAddAddressMutation, useEmptyCartMutation, useGetUserCartQuery } from '../Redux/Api';
+import {
+  useAddAddressMutation,
+  useEmptyCartMutation,
+  useGetUserCartQuery,
+} from '../Redux/Api';
 import axios from 'axios';
 import OrderSummery from '../Components/orders/OrderSummery';
 
@@ -19,7 +23,7 @@ const PlaceOrder = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!loggedInUser) {
-      navigate("/login");
+      navigate('/login');
     }
   }, [loggedInUser, navigate]);
 
@@ -33,30 +37,30 @@ const PlaceOrder = () => {
       });
       axios
         .post(
-          "https://amazon-clone-deploy.herokuapp.com/order",
+          'https://amazon-clone-deploy.herokuapp.com/order',
           {
             deliveryAddress: Shipping,
             paymentMethod,
           },
           {
             headers: {
-              "x-access-token": `${loggedInUser.token}`,
+              'x-access-token': `${loggedInUser.token}`,
             },
           }
         )
         .then((response) => {
           console.log(response.data);
 
-          if (paymentMethod === "visa") {
+          if (paymentMethod === 'visa') {
             // console.log('navigate to stripe payment page');
-            navigate("/Stripe", { state: { order_id: response.data[0]._id } });
+            navigate('/Stripe', { state: { order_id: response.data[0]._id } });
           } else {
             emptyCart({ token: loggedInUser.token });
-            console.log("navigate to order summary page");
+            navigate('/Success');
           }
         })
         .catch((error) => {
-          navigate("/OrderError", { state: { products: error.response.data } });
+          navigate('/OrderError', { state: { products: error.response.data } });
 
           // console.log(
           //   'navigate to out-of-stock error products page to remove them from cart'
@@ -65,12 +69,12 @@ const PlaceOrder = () => {
           // console.log(error.response.data);
         });
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   };
   // const round2 = (num) => Math.round(num * 100 + number.EPSILION) / 100;
   let ShippingFee = 21;
-  let cash =9;
+  let cash = 9;
   // const cash = 9;
   // const total = cart.totalCartPrice + cash + ShippingFee;
   return (
@@ -144,15 +148,23 @@ const PlaceOrder = () => {
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <Row>
+                    <Row
+                      className={
+                        paymentMethod === 'visa'
+                          ? 'checkoutvisa'
+                          : ''
+                      }
+                    >
                       <Col>Shipping & handling</Col>
                       <Col>{ShippingFee}EGP</Col>
                     </Row>
-                  </ListGroup.Item>
-
-                  <ListGroup.Item>
-                    {' '}
-                    <Row>
+                    <Row
+                      className={
+                        paymentMethod === 'visa'
+                          ? 'checkoutvisa'
+                          : ''
+                      }
+                    >
                       <Col> Cash on Delivery Fee</Col>
                       <Col>{cash} EGP</Col>
                     </Row>

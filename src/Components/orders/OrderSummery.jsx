@@ -50,7 +50,7 @@ const OrderSummery = () => {
             <h4>Review items and shipping</h4>{" "}
           </Card.Text>
           <Card.Text>
-            <h4>Totle{cart.bill} EGP</h4>{" "}
+            <h4>Totle:{cart.bill} EGP</h4>{" "}
           </Card.Text>
           {cart.products.map((item) => (
             <>

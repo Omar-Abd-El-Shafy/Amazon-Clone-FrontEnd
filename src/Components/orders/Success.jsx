@@ -10,7 +10,7 @@ const Success = () => {
     }, []);
     return (
         <Container className="text-center ">
-            <h1 className="mt-5">payment succeeded</h1>
+            <h1 className="mt-5">Order succeeded</h1>
             <h5 className="mt-4">
                 You will be redirected to home page in 10 seconds
             </h5>
