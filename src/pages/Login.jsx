@@ -48,79 +48,91 @@ export default function Login(props) {
         dispatch(userSliceActions.login({ email: emailorphone, password }));
     };
     return (
-      <Container style={{ maxWidth: '600px' }}>
-        <Row className="mb-3 text-center">
-          <Link to="/">
-            <img src={logoMain} alt="logo-main" style={{ width: '103px' }} />
-          </Link>
-        </Row>
-        <Row className="justify-content-center">
-          <Form
-            className="border border-1 py-2 px-3 "
-            style={{ maxWidth: '80%' }}
-          >
-            <h3 className="mb-3 text-start">Sign-In</h3>
-            <Form.Group>
-              <Form.Label htmlFor="name">Please enter your Email</Form.Label>
-              <Form.Control
-                type="email"
-                id="name"
-                required
-                value={emailorphone}
-                onChange={(e) => setEmailorphone(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label htmlFor="password">Password</Form.Label>
-              <Form.Control
-                type={isRevealedPassword ? 'text' : 'password'}
-                id="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Form.Text className="text-dark">
-                <div
-                  className="passwordToggle"
-                  variant="outline-dark"
-                  onClick={() => setIsRevealedPassword(!isRevealedPassword)}
+        <Container style={{ maxWidth: "600px" }}>
+            <Row className="mb-3 text-center">
+                <Link to="/">
+                    <img
+                        src={logoMain}
+                        alt="logo-main"
+                        style={{ width: "103px" }}
+                    />
+                </Link>
+            </Row>
+            <Row className="justify-content-center">
+                <Form
+                    className="border border-1 py-2 px-3 "
+                    style={{ maxWidth: "80%" }}
                 >
-                  {isRevealedPassword ? <BiHide /> : <BiShow />}
-                </div>
-              </Form.Text>
-            </Form.Group>
-            <div className="mb-3 ">
-              <Button
-                className="shadow bg-warning bg-gradient form-btn"
-                style={{
-                  background: '#f0c14b',
-                  borderColor: '#a88734 #9c7e31 #846a29',
-                  marginTop: '20px',
-                }}
-                onClick={loginn}
-                type="submit"
-              >
-                Sign In
-              </Button>
-              {error && (
-                <div className="text-danger mt-2"> there is an error !</div>
-              )}
-            </div>
-            <Col className="mb-3 text-center">New to Amazon ?{'  '}</Col>
-            <Link to="/signup">
-              {'  '}
-              <Button
-                className=" form-btn"
-                style={{
-                  background: '#e7e9ec',
-                  borderColor: '#adb1b8 #a2a6ac #8d9096',
-                }}
-              >
-                Create your Amazon account
-              </Button>
-            </Link>
-          </Form>
-        </Row>
-      </Container>
+                    <h3 className="mb-3 text-start">Sign-In</h3>
+                    <Form.Group>
+                        <Form.Label htmlFor="name">
+                            Please enter your Email
+                        </Form.Label>
+                        <Form.Control
+                            type="email"
+                            id="name"
+                            required
+                            value={emailorphone}
+                            onChange={(e) => setEmailorphone(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="password">Password</Form.Label>
+                        <Form.Control
+                            type={isRevealedPassword ? "text" : "password"}
+                            id="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <Form.Text className="text-dark">
+                            <div
+                                className="passwordToggle"
+                                variant="outline-dark"
+                                onClick={() =>
+                                    setIsRevealedPassword(!isRevealedPassword)
+                                }
+                            >
+                                {isRevealedPassword ? <BiHide /> : <BiShow />}
+                            </div>
+                        </Form.Text>
+                    </Form.Group>
+                    <div className="mb-3 ">
+                        <Button
+                            className="shadow bg-warning bg-gradient form-btn"
+                            style={{
+                                background: "#f0c14b",
+                                borderColor: "#a88734 #9c7e31 #846a29",
+                                marginTop: "20px",
+                            }}
+                            onClick={loginn}
+                            type="submit"
+                        >
+                            Sign In
+                        </Button>
+                        {error && (
+                            <div className="text-danger mt-2">
+                                Opps! please check data again
+                            </div>
+                        )}
+                    </div>
+                    <Col className="mb-3 text-center">
+                        New to Amazon ?{"  "}
+                    </Col>
+                    <Link to="/signup">
+                        {"  "}
+                        <Button
+                            className=" form-btn"
+                            style={{
+                                background: "#e7e9ec",
+                                borderColor: "#adb1b8 #a2a6ac #8d9096",
+                            }}
+                        >
+                            Create your Amazon account
+                        </Button>
+                    </Link>
+                </Form>
+            </Row>
+        </Container>
     );
 }
