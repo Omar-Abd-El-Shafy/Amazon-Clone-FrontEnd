@@ -17,7 +17,7 @@ export default function SearchResults() {
   useEffect(() => {
     axios
       .get(
-        `https://amazon-clone-deploy.herokuapp.com/product/search?name=${param.search}&sortBy=${sortBy}`
+        `https://amazon-clone-deploy.herokuapp.com/product/search?name=${param.search}&sortBy=${sortBy}&includeOutOfStock=true`
       )
       .then((res) => {
         setProducts(res.data.products);
