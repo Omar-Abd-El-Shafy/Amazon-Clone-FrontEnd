@@ -88,7 +88,9 @@ const Orders = () => {
                         back to Home
                       </Button>
                     </Link>
-                    <Col className=' text-center mt-1'>paymentMethod :{paymentMethod}</Col>
+                    <Col className=" text-center mt-1">
+                      paymentMethod :{item.paymentMethod}
+                    </Col>
                   </Col>
                 </Row>
               ))}
