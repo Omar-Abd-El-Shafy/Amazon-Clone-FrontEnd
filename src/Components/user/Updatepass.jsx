@@ -41,7 +41,7 @@ const Updatepass = () => {
     return (
       <Container style={{ maxWidth: '600px' }}>
         <Row>
-          <Link to={'/profile'}>
+          <Link to={'/EditProfile'}>
             <h1>
               back to your account {'  '}
               <RiArrowGoBackFill />
