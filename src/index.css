@@ -70,6 +70,7 @@ main {
         display: none;
     }
 }
+.main-search input{background-color: rgb(252, 249, 218);}
 .cart {
     position: relative;
 }
@@ -392,3 +393,12 @@ a:hover {
     position: relative;
     top: 5vh !important;
 }
+
+@media screen and (max-width: 600px) {
+    .order-top {
+        
+        display: none !important
+    }
+}
+.checkoutvisa{display: none;}
+
