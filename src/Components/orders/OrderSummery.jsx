@@ -54,7 +54,7 @@ const OrderSummery = () => {
           </Card.Text>
           {cart.products.map((item) => (
             <>
-              <ListGroup variant="flush" className=" ">
+              <ListGroup variant="flush" key={item._id}>
                 <ListGroup.Item className=" d-flex justify-content-between align-items-center border border-0">
                   <img
                     style={{ width: "42px" }}

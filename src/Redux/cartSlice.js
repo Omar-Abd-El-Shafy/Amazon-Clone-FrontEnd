@@ -40,7 +40,7 @@ const cartSlice = createSlice({
       console.log(elemints);
       state.cartItems = elemints;
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-      toast.error(`${action.payload.name} removed to cart`, {});
+      toast.error(`${action.payload.name} removed from cart`, {});
     },
     //decrease
     decreaseCartItem(state, action) {
