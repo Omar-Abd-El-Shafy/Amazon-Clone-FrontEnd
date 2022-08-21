@@ -43,6 +43,7 @@ function Sidebar() {
                                 className="btn btn-outline-dark text-capitalize"
                                 onClick={() => {
                                     dispatch(userSliceActions.logout());
+                                    handleClose();
                                 }}
                             >
                                 logout
