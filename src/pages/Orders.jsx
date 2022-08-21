@@ -9,6 +9,7 @@ import { useGetAllOrderQuery } from '../Redux/Api';
 import { Link } from 'react-router-dom';
 const Orders = () => {
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
+  const paymentMethod = useSelector((state) => state.payment.payment);
 
   const { data, isLoading, error } = useGetAllOrderQuery(loggedInUser.token);
   console.log(data);
@@ -40,7 +41,8 @@ const Orders = () => {
                 </Col>
                 <Col md={3} className=" text-end">
                   <Card.Text>
-                    deliveryAddress:<p className='fs-6'>{item.deliveryAddress.city}</p>
+                    deliveryAddress:
+                    <p className="fs-6">{item.deliveryAddress.city}</p>
                   </Card.Text>
                 </Col>
               </Row>
@@ -86,6 +88,7 @@ const Orders = () => {
                         back to Home
                       </Button>
                     </Link>
+                    <Col className=' text-center mt-1'>paymentMethod :{paymentMethod}</Col>
                   </Col>
                 </Row>
               ))}
