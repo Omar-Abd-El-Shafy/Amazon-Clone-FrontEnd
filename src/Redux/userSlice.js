@@ -21,7 +21,7 @@ export const login = createAsyncThunk('user/login', async (userData) => {
   );
   console.log(response.data);
   return response.data;
-});
+})
 ///////////////////////////////////////
 
 export const register = createAsyncThunk("user/register", async (userData) => {

@@ -32,12 +32,3 @@ const shippingSlice = createSlice({
 });
 export default shippingSlice.reducer;
 export const { saveShipping } = shippingSlice.actions;
-// adress: "elsinblawin"
-// building: "10"
-// city: "Alsinblawin"
-// country: "Egypt"
-// fullName: "Enas Awad"
-// phone: "01020356669"
-// state: "Egypt"
-// street: "Aldakahlya"
-// zipCode: "3

@@ -29,8 +29,6 @@ export const Api = createApi({
                 return {
                     url: `/product?category=${id}`,
                     method: "GET",
-                    // product?page=1&category=22
-                    // /product/search?category=122
                 };
             },
             providesTags: ["Product"],
@@ -60,6 +58,18 @@ export const Api = createApi({
                 headers: {
                     "x-access-token": `${token}`,
                 },
+            }),
+            invalidatesTags: ["Department"],
+        }),
+
+        UpdateDepartment: builder.mutation({
+            query: ({ token, body }) => ({
+                url: `department`,
+                method: "PUT",
+                headers: {
+                    "x-access-token": `${token}`,
+                },
+                body,
             }),
             invalidatesTags: ["Department"],
         }),
@@ -282,4 +292,5 @@ export const {
     useUpdateProductMutation,
     useDeleteDepartmentMutation,
     useGetOrdersAdminQuery,
+    useUpdateDepartmentMutation,
 } = Api;

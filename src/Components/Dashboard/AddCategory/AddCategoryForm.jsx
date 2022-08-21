@@ -18,7 +18,7 @@ export default function AddCategory() {
 
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
     const { data: departments } = useGetdAlldepartmentQuery();
-    const [addCategory, { isError }] = useAddCategoryMutation();
+    const [addCategory] = useAddCategoryMutation();
     const schema = yup.object().shape({
         department: yup.string().required("Required Field"),
         name: yup.string().required("Required Field"),

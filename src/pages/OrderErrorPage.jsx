@@ -24,7 +24,7 @@ const OrderErrorPage = () => {
     });
 
     setProducts(
-      products.filter((item) => item.product_id._id != pro.product_id._id)
+      products.filter((item) => item.product_id._id !== pro.product_id._id)
     );
 
     toast.error(`  ${pro.product_id.name} removed from cart`, {});

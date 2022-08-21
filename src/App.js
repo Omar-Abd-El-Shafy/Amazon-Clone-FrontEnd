@@ -95,12 +95,14 @@ function App() {
                     <Container fluid className="mt-5 text-capitalize">
                         <Row
                             style={{
-                                marginTop: "-27px",
-                                background: "#131921",
+                                marginTop: "-3px",
+                                marginBottom: "5px",
+
+                                // background: '#131921',
                             }}
-                            className="main-search mb-2 p-2"
+                            className="main-search "
                         >
-                            <Search />
+                            {showNav && <Search />}
                         </Row>
                         <Routes>
                             <Route

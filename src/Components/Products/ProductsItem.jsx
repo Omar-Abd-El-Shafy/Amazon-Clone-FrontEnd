@@ -11,7 +11,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 
 const ProductsItem = ({ product }) => {
   const navigate = useNavigate();
-
+console.log(product)
   //addProduct
   const [addToCart] = useAddToCartMutation();
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
@@ -89,7 +89,7 @@ const ProductsItem = ({ product }) => {
                 Add to Cart
               </Button>
             ) : (
-              <Button disabled variant="secondary">
+              <Button disabled variant="shadow bg-gradien secondary">
                 out of stock
               </Button>
             )}

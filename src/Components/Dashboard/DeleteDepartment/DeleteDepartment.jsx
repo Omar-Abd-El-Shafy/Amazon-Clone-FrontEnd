@@ -18,7 +18,7 @@ export default function DeleteDepartment() {
 
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
   const { data: departments } = useGetdAlldepartmentQuery();
-  const [DeleteDepartment, { isError }] = useDeleteDepartmentMutation();
+  const [DeleteDepartment] = useDeleteDepartmentMutation();
   const schema = yup.object().shape({
     departments: yup.string().required("Required Field"),
   });

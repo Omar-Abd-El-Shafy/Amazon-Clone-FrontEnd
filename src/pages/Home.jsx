@@ -5,8 +5,8 @@ import ProHome from "../Components/Products/Products";
 import { Helmet } from "react-helmet-async";
 const Home = (props) => {
     useEffect(() => {
-        props.funcNav(true);
-    }, []);
+      props.funcNav(true);
+    }, [props]);
     return (
         <>
             <Helmet>

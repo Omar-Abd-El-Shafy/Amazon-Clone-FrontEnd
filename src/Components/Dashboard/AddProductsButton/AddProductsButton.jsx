@@ -24,7 +24,7 @@ export default function AddProduct() {
     const { data: categories } = useGetCategorydepartmentQuery(item, {
         skip: item ? false : true,
     });
-    const [addProduct, { isSuccess }] = useAddProductMutation();
+    const [addProduct] = useAddProductMutation();
 
     const schema = yup.object().shape({
         department: yup.string().required("Required Field"),

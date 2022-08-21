@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import SuccessImg from "../../assets/imgs/logo/istockphoto-1314758416-612x612.jpg";
 const Success = () => {
     useEffect(() => {
@@ -10,7 +9,7 @@ const Success = () => {
     }, []);
     return (
         <Container className="text-center ">
-            <h1 className="mt-5">payment succeeded</h1>
+            <h1 className="mt-5">Order succeeded</h1>
             <h5 className="mt-4">
                 You will be redirected to home page in 10 seconds
             </h5>

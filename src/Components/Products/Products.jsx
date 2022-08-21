@@ -13,11 +13,22 @@ const ProHome = ({ cat, pagination }) => {
     if (page < data.pages) {
       setPage(page + 1);
     }
+     window.scrollTo({
+       top: 100,
+
+       behavior: 'smooth',
+     });
   };
   const handelPrevPage = () => {
+    
     if (page > 1) {
       setPage(page - 1);
     }
+     window.scrollTo({
+       top: 100,
+
+       behavior: 'smooth',
+     });
   };
   return (
     <>
@@ -65,16 +76,3 @@ const ProHome = ({ cat, pagination }) => {
 };
 
 export default ProHome;
-{
-  /* <div className=" d-flex justify-content-center mt-4 ">
-    <Pagination>
-        <Pagination.Prev onClick={() => handelPrevPage()}>
-            Prev.
-        </Pagination.Prev>
-        <Pagination.Item className="pageNum">
-            <span className="pageNum">{page}</span>
-        </Pagination.Item>
-        <Pagination.Next onClick={() => handelNextPage()}>Next</Pagination.Next>
-    </Pagination>
-</div>; */
-}

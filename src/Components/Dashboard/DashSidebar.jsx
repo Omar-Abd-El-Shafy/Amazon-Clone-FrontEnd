@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import {  Container, Nav,  } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/imgs/logo/amazon_logo.png";
 import Categories from "./Categories";
 import DashProducts from "./DashProducts";
 import DepartmentsAdmin from "./DepartmentsAdmin";

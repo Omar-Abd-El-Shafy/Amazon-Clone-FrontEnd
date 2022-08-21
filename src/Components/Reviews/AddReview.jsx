@@ -62,7 +62,7 @@ const AddReview = ({ id }) => {
               </Form.Label>
               <Form.Control
                 id="review"
-                placeholder="What did you like or dislike? What did you use this product for?"
+                placeholder="What did you like or dislike?"
                 onChange={(e) => setComment(e.target.value)}
               />
             </Form.Group>
