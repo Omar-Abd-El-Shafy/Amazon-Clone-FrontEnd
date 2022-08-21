@@ -24,17 +24,18 @@ function Header() {
                 {loggedInUser?.user?.name ? (
                     <>
                         <Link to="/User">
-                            <h4
+                            <h3
                                 style={{
                                     color: "white",
                                     cursor: "pointer",
                                     textTransform: "capitalize",
                                     marginTop: "10px",
+                                    textAlign:'center'
                                 }}
                             >
                                 <IoPerson className="text-warning fs-5 mb-1 me-1" />
                                 {loggedInUser.user.name}
-                            </h4>
+                            </h3>
                         </Link>
                     </>
                 ) : (

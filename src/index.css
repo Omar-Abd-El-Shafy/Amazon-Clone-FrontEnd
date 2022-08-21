@@ -70,6 +70,7 @@ main {
         display: none;
     }
 }
+.main-search input{background-color: rgb(252, 249, 218);}
 .cart {
     position: relative;
 }

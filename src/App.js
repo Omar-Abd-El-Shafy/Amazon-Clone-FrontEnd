@@ -95,7 +95,9 @@ function App() {
               <Row
                 style={{
                   marginTop: '-3px',
-                  background: '#131921',
+                  marginBottom: '5px',
+                  
+                  // background: '#131921',
                 }}
                 className="main-search "
               >
