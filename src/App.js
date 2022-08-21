@@ -51,6 +51,7 @@ import ShippingForm from "./pages/ShippingForm";
 import Search from "./Components/Header/Search/Search";
 import Orders from "./pages/Orders";
 import DepartmentsAdmin from "./Components/Dashboard/DepartmentsAdmin";
+import Success from "./Components/orders/Success";
 function App() {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
@@ -178,10 +179,14 @@ function App() {
                                 element={<PlaceOrder />}
                             />
                             <Route path="/Orders" element={<Orders />} />
-                            <Route path="/OrderError" element={<OrderErrorPage />} />
+                            <Route
+                                path="/OrderError"
+                                element={<OrderErrorPage />}
+                            />
                             <Route path="/About" element={<About />} />
                             {/* //////////////////////////stripe payment/////////////////////// */}
                             <Route path="/Stripe" element={<Stripe />} />
+                            <Route path="/success" element={<Success />} />
                             {/* //////////////////////////Admin/////////////////////// */}
                             <Route
                                 path="/dashboard"
