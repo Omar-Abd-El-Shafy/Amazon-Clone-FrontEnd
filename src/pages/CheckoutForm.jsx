@@ -61,7 +61,7 @@ export default function CheckoutForm() {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: "http://localhost:3000/success",
+                return_url: "https://amazon-clone-front-end-alpha.vercel.app/success",
             },
         });
 
