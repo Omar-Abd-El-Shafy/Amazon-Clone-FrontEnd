@@ -1,7 +1,6 @@
 import React from "react";
 import Categorier from "../Categories/Category";
 import AddCategory from "./AddCategory/AddCategoryForm";
-import AddDepartment from "./AddDepartment/AddDepartment";
 import AddCategoryImage from "./AddImageCategory/AddCategoryImage";
 import DeleteCategory from "./DeleteCategory/DeleteCategoryForm";
 import UpdateCategory from "./UpdateCategory/UpdateCategoryForm";
