@@ -75,6 +75,7 @@ export default function UpdateCategory() {
                                             progress: undefined,
                                         }
                                     );
+                                    handleClose();
                                 })
                                 .catch((rejected) =>
                                     console.error(rejected.data)

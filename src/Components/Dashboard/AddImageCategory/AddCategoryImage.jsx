@@ -77,6 +77,7 @@ export default function AddCategoryImage() {
                                             progress: undefined,
                                         }
                                     );
+                                    handleClose();
                                 })
                                 .unwrap()
                                 .catch((rejected) =>

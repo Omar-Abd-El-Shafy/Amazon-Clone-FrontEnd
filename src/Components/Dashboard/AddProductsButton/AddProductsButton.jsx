@@ -103,6 +103,7 @@ export default function AddProduct() {
                                             progress: undefined,
                                         }
                                     );
+                                    handleClose();
                                 })
                                 .catch((rejected) =>
                                     console.error(rejected.data)

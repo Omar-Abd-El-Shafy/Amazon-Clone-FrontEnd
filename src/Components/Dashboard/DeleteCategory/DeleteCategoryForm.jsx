@@ -48,7 +48,6 @@ export default function DeleteCategory() {
                         validationSchema={schema}
                         onSubmit={(values) => {
                             deleteCategory({ token, id: values.category });
-
                             if (!isError) {
                                 toast.success(`Category Deleted Successfully`, {
                                     position: "bottom-center",
@@ -59,6 +58,7 @@ export default function DeleteCategory() {
                                     draggable: true,
                                     progress: undefined,
                                 });
+                                handleClose();
                             }
                         }}
                     >

@@ -107,6 +107,7 @@ export default function UpdateProduct({ product }) {
                                             progress: undefined,
                                         }
                                     );
+                                    handleClose();
                                 })
                                 .catch((rejected) =>
                                     console.error(rejected.data)

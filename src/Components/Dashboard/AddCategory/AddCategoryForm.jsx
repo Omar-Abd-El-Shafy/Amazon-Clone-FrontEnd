@@ -69,6 +69,7 @@ export default function AddCategory() {
                                             progress: undefined,
                                         }
                                     );
+                                    handleClose();
                                 })
                                 .catch((rejected) =>
                                     console.error(rejected.data)
