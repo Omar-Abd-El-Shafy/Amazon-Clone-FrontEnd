@@ -61,9 +61,9 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h1>Forgot Password</h1>
+        <div className="d-flex justify-content-center">
+            <form onSubmit={handleSubmit} className="border border-3 p-5">
+                <h3 className="mt-3">Please enter your email</h3>
                 <input
                     type="email"
                     placeholder="Email"
@@ -72,11 +72,14 @@ const ForgotPassword = () => {
                     onChange={handleChange}
                     value={email}
                     required
+                    className="mt-2 rounded-1 p-2 w-100"
                 />
                 {error && <div>{error}</div>}
                 {msg && <div>{msg}</div>}
                 <div className="text-danger mb-2">{emailError}</div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="btn btn-info mt-2 mx-auto">
+                    Submit
+                </button>
             </form>
         </div>
     );

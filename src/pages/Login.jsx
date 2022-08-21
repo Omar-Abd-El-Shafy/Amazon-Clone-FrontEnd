@@ -41,6 +41,9 @@ export default function Login(props) {
         } else {
             console.log("user is NOT logged in");
         }
+        return () => {
+            props.funcNav(true);
+        };
     }, [error, loggedInUser, navigate, props]);
 
     const loginn = (e) => {
@@ -95,6 +98,11 @@ export default function Login(props) {
                             >
                                 {isRevealedPassword ? <BiHide /> : <BiShow />}
                             </div>
+                        </Form.Text>
+                        <Form.Text className="">
+                            <Link to="/forgot-password" className="text-muted">
+                                Forgot Password?
+                            </Link>
                         </Form.Text>
                     </Form.Group>
                     <div className="mb-3 ">
