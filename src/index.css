@@ -408,6 +408,17 @@ a:hover {
     display: none;
 }
 .myModal {
-    width: clamp(90vw, 100vw, 90vw);
-    margin: auto;
+    /* min-width: 60vw;
+    width: clamp(50vw, 50vw, 90vw);
+    margin: auto; */
+    width: 50vw;
+    max-width: 50vw;
+}
+@media screen and (max-width: 768px) {
+    .myModal {
+        width: 80vw;
+        max-width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
