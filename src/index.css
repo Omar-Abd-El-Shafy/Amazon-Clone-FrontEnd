@@ -392,3 +392,10 @@ a:hover {
     position: relative;
     top: 5vh !important;
 }
+
+@media screen and (max-width: 600px) {
+    .order-top {
+        
+        display: none !important
+    }
+}

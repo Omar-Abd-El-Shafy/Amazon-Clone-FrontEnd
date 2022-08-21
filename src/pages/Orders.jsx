@@ -7,7 +7,6 @@ import Loading from '../Components/Loading/Loading';
 import { useGetAllOrderQuery } from '../Redux/Api';
 // import TbTruckLoading from 'react-icons/tb';
 import { Link } from 'react-router-dom';
-
 const Orders = () => {
   const loggedInUser = useSelector((state) => state.user?.loggedInUser);
 
@@ -27,8 +26,8 @@ const Orders = () => {
         <>
           {data.map((item) => (
             <Card className="m-2" key={item._id}>
-              <Row className="m-0  bg-secondary bg-opacity-10">
-                <Col md={8} className=" d-flex justify-content-between">
+              <Row className="m-0  bg-secondary bg-opacity-10 order-top">
+                <Col md={8} className=" d-flex justify-content-between ">
                   <Card.Text>
                     ORDER PLACED: <strong>{item.createdAt}</strong>
                   </Card.Text>
@@ -40,9 +39,12 @@ const Orders = () => {
                   </Card.Text>
                 </Col>
                 <Col md={3} className=" text-end">
-                  deliveryAddress:<strong>{item.deliveryAddress.city}</strong>
+                  <Card.Text>
+                    deliveryAddress:<p className='fs-6'>{item.deliveryAddress.city}</p>
+                  </Card.Text>
                 </Col>
               </Row>
+
               {/* <Row className="m-0 p-1">Delivered {item.deliveryDate}</Row> */}
               {item.products.map((x) => (
                 <Row key={x.product_id} className="m-0 p-1">
