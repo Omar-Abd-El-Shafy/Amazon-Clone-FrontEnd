@@ -31,7 +31,6 @@ const AddReview = ({ id }) => {
       <Row>
         <h4>Create Review</h4>
       </Row>
-      <Row>Product</Row>
       <Row>
         <Form onSubmit={handleSubmit}>
           <fieldset>
