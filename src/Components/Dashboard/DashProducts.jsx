@@ -17,7 +17,7 @@ export default function DashProducts() {
         <div>
           <DeleteCategory />
         </div> */}
-                <Products />
+                <Products pagination={true} />
             </div>
             {/* <img
         src={productDevelopmentImg}

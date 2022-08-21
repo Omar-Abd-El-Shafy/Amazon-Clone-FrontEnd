@@ -14,8 +14,7 @@ const ProHome = ({ cat, pagination }) => {
             setPage(page + 1);
         }
         window.scrollTo({
-            top: 50,
-
+            top: 1700,
             behavior: "smooth",
         });
     };
@@ -24,8 +23,7 @@ const ProHome = ({ cat, pagination }) => {
             setPage(page - 1);
         }
         window.scrollTo({
-            top: 100,
-
+            top: 1700,
             behavior: "smooth",
         });
     };
