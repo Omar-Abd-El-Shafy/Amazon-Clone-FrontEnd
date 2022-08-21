@@ -52,6 +52,7 @@ import Search from "./Components/Header/Search/Search";
 import Orders from "./pages/Orders";
 import DepartmentsAdmin from "./Components/Dashboard/DepartmentsAdmin";
 import Success from "./Components/orders/Success";
+import UserOrder from "./Components/Dashboard/UserOrder";
 function App() {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
@@ -198,6 +199,10 @@ function App() {
                                     element={<DashProducts />}
                                 />
                                 <Route path="Users" element={<Users />} />
+                                <Route
+                                    path="UserOrder/:userID"
+                                    element={<UserOrder />}
+                                />
                                 <Route
                                     path="Categories"
                                     element={<Categories />}

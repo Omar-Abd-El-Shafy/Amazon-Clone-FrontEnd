@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Users() {
     const loggedInUser = useSelector((state) => state.user.loggedInUser);
@@ -23,7 +24,7 @@ export default function Users() {
             })
             .then((res) => {
                 setUsers(res.data);
-                console.log(res.data);
+                // console.log(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -42,6 +43,7 @@ export default function Users() {
                         total users:{" "}
                         <span className=" text-warning">{users.length}</span>
                     </h2>
+                    {/* <h3>Admins: </h3> */}
                     <table className="table table-striped">
                         <thead>
                             <tr>
@@ -54,7 +56,13 @@ export default function Users() {
                         <tbody>
                             {users?.map((user) => (
                                 <tr key={user._id}>
-                                    <td>{user.name}</td>
+                                    <td>
+                                        <Link
+                                            to={`/dashboard/UserOrder/${user._id}`}
+                                        >
+                                            {user.name}
+                                        </Link>
+                                    </td>
                                     <td>{user.email}</td>
                                     <td>{user.phone}</td>
                                     <td>{user.role ? "Admin" : "User"}</td>
@@ -63,6 +71,9 @@ export default function Users() {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div className="row">
+                <div className="col-md-12"></div>
             </div>
         </div>
     );
