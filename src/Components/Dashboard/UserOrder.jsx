@@ -9,7 +9,7 @@ export default function UserOrder() {
         token: loggedInUser.token,
         id: userID,
     });
-    console.log(data);
+    // console.log(data);
     return (
         <div>
             <h3>User Order</h3>

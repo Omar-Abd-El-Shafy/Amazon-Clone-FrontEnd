@@ -21,7 +21,7 @@ export default function SearchResults() {
             )
             .then((res) => {
                 setProducts(res.data.products);
-                console.log(res.data.products);
+                // console.log(res.data.products);
                 setError(null);
             })
             .catch((err) => {

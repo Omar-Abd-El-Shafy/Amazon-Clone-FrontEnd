@@ -32,7 +32,7 @@ export default function Registration(props) {
     const navigate = useNavigate();
     const [isRevealedPassword, setIsRevealedPassword] = useState(false);
     const handleValidation = (field, value) => {
-        console.log(field, value);
+        // console.log(field, value);
 
         if (field === "name") {
             setErrors({

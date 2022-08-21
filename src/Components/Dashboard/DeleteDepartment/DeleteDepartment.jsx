@@ -47,7 +47,7 @@ export default function DeleteDepartment() {
                         }}
                         validationSchema={schema}
                         onSubmit={(values) => {
-                            console.log(values);
+                            // console.log(values);
                             DeleteDepartment({
                                 token: loggedInUser.token,
                                 id: values.departments,

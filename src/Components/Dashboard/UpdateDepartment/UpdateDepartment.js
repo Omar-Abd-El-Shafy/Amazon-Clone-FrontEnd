@@ -49,7 +49,7 @@ export default function UpdateDepartment() {
                         }}
                         validationSchema={schema}
                         onSubmit={(values) => {
-                            console.log(values);
+                            // console.log(values);
                             UpdateDepartment({
                                 token: loggedInUser.token,
                                 body: {

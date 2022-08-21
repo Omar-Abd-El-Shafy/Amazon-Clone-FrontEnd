@@ -57,8 +57,8 @@ export default function AddCategoryImage() {
                             const formData = new FormData();
 
                             formData.append("img", file[0]);
-                            console.log(file);
-                            console.log(values);
+                            // console.log(file);
+                            // console.log(values);
                             // console.log(JSON.stringify(formData));
                             AddCategoryImage({
                                 token: loggedInUser?.token,

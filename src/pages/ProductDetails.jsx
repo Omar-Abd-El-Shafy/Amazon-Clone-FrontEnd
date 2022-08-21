@@ -266,7 +266,7 @@ function ProductDetails() {
                                 className="rounded-pill my-3 d-block shadow bg-gradien"
                                 variant="danger"
                                 onClick={() => {
-                                    console.log(product._id);
+                                    // console.log(product._id);
                                     deleteProduct({
                                         token: loggedInUser.token,
                                         id: product._id,

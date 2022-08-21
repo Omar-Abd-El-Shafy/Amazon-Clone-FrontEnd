@@ -36,7 +36,7 @@ export default function Login(props) {
         props.funcNav(false);
 
         if (loggedInUser?.user.name && !error) {
-            console.log("user is logged in");
+            // console.log("user is logged in");
             navigate("/");
         } else {
             console.log("user is NOT logged in");

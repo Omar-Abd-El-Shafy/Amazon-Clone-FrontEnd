@@ -44,7 +44,7 @@ export default function AddDepartment() {
                         }}
                         validationSchema={schema}
                         onSubmit={(values) => {
-                            console.log(values);
+                            // console.log(values);
                             addDepartment({
                                 token: loggedInUser.token,
                                 body: {
