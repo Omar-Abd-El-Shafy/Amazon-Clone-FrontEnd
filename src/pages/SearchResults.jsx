@@ -1,13 +1,13 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ProductsItem from '../Components/Products/ProductsItem';
-import { Col, Container } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ProductsItem from "../Components/Products/ProductsItem";
+import { Col, Container } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
 
 export default function SearchResults() {
   let param = useParams();
@@ -64,15 +64,16 @@ export default function SearchResults() {
             </div>
           </Col>
         </Row>
-
-        <Row>
-          {products && !error ? (
-            products.map((product) => <ProductsItem product={product} />)
-          ) : (
-            <h1 className="w-50 m-auto">{error}</h1>
-          )}
-        </Row>
-      </Row>
-    </Container>
-  );
+                <Row>
+                    {products && !error ? (
+                        products.map((product) => (
+                            <ProductsItem key={product._id} product={product} />
+                        ))
+                    ) : (
+                        <h1 className="w-50 m-auto">{error}</h1>
+                    )}
+                </Row>
+            </Row>
+        </Container>
+    );
 }

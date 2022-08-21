@@ -35,6 +35,7 @@ export default function UpdateDepartment() {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="myModal"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Delete department</Modal.Title>

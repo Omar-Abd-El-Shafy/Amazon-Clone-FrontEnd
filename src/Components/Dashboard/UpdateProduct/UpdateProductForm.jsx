@@ -53,6 +53,7 @@ export default function UpdateProduct({ product }) {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="myModal"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Update Product</Modal.Title>

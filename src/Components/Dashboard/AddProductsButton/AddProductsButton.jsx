@@ -50,6 +50,7 @@ export default function AddProduct() {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="myModal"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Product</Modal.Title>

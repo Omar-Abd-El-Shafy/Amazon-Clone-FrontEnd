@@ -12,11 +12,12 @@
     --sidebar-navs-hover: #eaeded;
 }
 /*  */
-body{  font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif,'Lato';
-  color: rgb(48, 48, 48);
-  background-color: rgb(255, 255, 255);
+body {
+    font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif, "Lato";
+    color: rgb(48, 48, 48);
+    background-color: rgb(255, 255, 255);
 }
 * {
     box-sizing: border-box;
@@ -72,7 +73,9 @@ main {
         display: none;
     }
 }
-.main-search input{background-color: rgb(252, 249, 218);}
+.main-search input {
+    background-color: rgb(252, 249, 218);
+}
 .cart {
     position: relative;
 }
@@ -398,9 +401,24 @@ a:hover {
 
 @media screen and (max-width: 600px) {
     .order-top {
-        
-        display: none !important
+        display: none !important;
     }
 }
-.checkoutvisa{display: none;}
-
+.checkoutvisa {
+    display: none;
+}
+.myModal {
+    /* min-width: 60vw;
+    width: clamp(50vw, 50vw, 90vw);
+    margin: auto; */
+    width: 50vw;
+    max-width: 50vw;
+}
+@media screen and (max-width: 768px) {
+    .myModal {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

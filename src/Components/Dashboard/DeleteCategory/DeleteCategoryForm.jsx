@@ -35,6 +35,7 @@ export default function DeleteCategory() {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="myModal"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Delete Category</Modal.Title>
