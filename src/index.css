@@ -416,8 +416,8 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
     .myModal {
-        width: 80vw;
-        max-width: 80vw;
+        width: 100vw;
+        max-width: 100vw;
         margin-left: auto;
         margin-right: auto;
     }
