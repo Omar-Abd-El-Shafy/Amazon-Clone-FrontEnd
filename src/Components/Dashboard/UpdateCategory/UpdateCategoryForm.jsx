@@ -39,6 +39,7 @@ export default function UpdateCategory() {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="myModal"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Update Category</Modal.Title>

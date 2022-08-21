@@ -35,6 +35,7 @@ export default function AddCategory() {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="myModal"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Category</Modal.Title>
