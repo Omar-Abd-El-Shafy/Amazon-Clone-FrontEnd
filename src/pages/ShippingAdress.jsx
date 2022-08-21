@@ -1,47 +1,52 @@
-import React, { useEffect } from 'react';
-import CheckoutSteps from '../Components/CheckoutSteps/CheckoutSteps';
-import { Helmet } from 'react-helmet-async';
-import { Button, Container, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RiArrowGoBackFill } from 'react-icons/ri';
-import { useAddAddressMutation, useGetAdressQuery } from '../Redux/Api';
-import ShippingForm from './ShippingForm';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { useState } from 'react';
-import { saveShipping } from '../Redux/shippingSlice';
+import React, { useEffect } from "react";
+import CheckoutSteps from "../Components/CheckoutSteps/CheckoutSteps";
+import { Helmet } from "react-helmet-async";
+import { Button, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { useGetAdressQuery } from "../Redux/Api";
+import ShippingForm from "./ShippingForm";
+import { AiOutlinePlus } from "react-icons/ai";
+import { saveShipping } from "../Redux/shippingSlice";
 
 const ShippingAdress = () => {
   const loggedInUser = useSelector((state) => state.user.loggedInUser);
-  const [oneAdaress, setOneAdress] = useState();
-  const [phone, setPhone] = useState(' ');
-  const [street, setStreet] = useState(' ');
-  const [building, setBuilding] = useState(' ');
-  const [city, setCity] = useState(' ');
-  const [state, setState] = useState(' ');
-  const [zipCode, setZipCode] = useState(' ');
-  const [country, setCountry] = useState(' ');
+  const Shipping = useSelector((state) => state.shipping.userAdress);
+
   const navigate = useNavigate();
-  console.log(oneAdaress);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!loggedInUser) {
-      navigate('/login');
+      navigate("/login");
     }
-  }, [ loggedInUser, navigate ] );
-  const dispatch = useDispatch();
-  const Shipping = useSelector((state) => state.shipping.userAdress);
+  }, [loggedInUser, navigate]);
+
+  const { data: addressess } = useGetAdressQuery(loggedInUser.token);
   
   const handelSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      saveShipping({ building, street, city, state, zipCode, phone, country })
-    );
-    navigate('/Payment');
+
+    if (!Shipping.country) {
+      dispatch(
+        saveShipping({
+          ...addressess[0],
+        })
+      );
+    }
+
+    navigate("/Payment");
   };
-  const [addAdress] = useAddAddressMutation();
-  const { data: adress } = useGetAdressQuery(loggedInUser.token);
-  console.log(adress);
-  console.log();
+
+  const setAddressData = (address) => {
+    dispatch(
+      saveShipping({
+        ...address,
+      })
+    );
+  };
+
   return (
     <Container>
       <CheckoutSteps step1 step2 />
@@ -49,19 +54,19 @@ const ShippingAdress = () => {
         <title>Shipping Address</title>
       </Helmet>
 
-      <Container style={{ maxWidth: '800px' }}>
+      <Container style={{ maxWidth: "800px" }}>
         <Row className="mt-4">
-          <Link to={'/'}>
+          <Link to={"/"}>
             <span>
-              back to home {'  '}
+              back to home {"  "}
               <RiArrowGoBackFill />
             </span>
           </Link>
         </Row>
-        {adress ? (
+        {addressess?.length ? (
           <Form className=" border border-1 rounded-3 p-2 mb-3">
             <h5 className="">choose Shipping addresses</h5>
-            {adress.map((adress) => (
+            {addressess.map((adress) => (
               <div
                 key={adress.createdAt}
                 className="form-check adress-Check mb-2"
@@ -71,32 +76,14 @@ const ShippingAdress = () => {
                   type="radio"
                   name="exampleRadios"
                   id={adress.createdAt}
-                  value={adress.fullAddress}
-                  onClick={(e) => setOneAdress(e.target.value)}
+                  value={adress._id}
+                  onClick={() => setAddressData(adress)}
                   // className="p-2 m-3 adress-Check form-check-input"
                 />
                 <label className="form-check-label" htmlFor={adress.createdAt}>
-                  building: {adress.building}
+                  {adress.fullAddress}
                 </label>
-                <label className="form-check-label" htmlFor={adress.createdAt}>
-                  street: {adress.street}
-                </label>
-                <label className="form-check-label" htmlFor={adress.createdAt}>
-                  city:{adress.city}
-                </label>
-                <label className="form-check-label" htmlFor={adress.createdAt}>
-                  state: {adress.state}
-                </label>
-                <label className="form-check-label" htmlFor={adress.createdAt}>
-                  zipCode:{adress.zipCode}
-                </label>
-                <label className="form-check-label" htmlFor={adress.createdAt}>
-                  country:{adress.country}
-                </label>
-                <label className="form-check-label" htmlFor={adress.createdAt}>
-                  phone:{adress.phone}
-                </label>
-                <Link to="/ShippingForm">
+                <Link to="/ShippingForm" onClick={() => setAddressData(adress)}>
                   <Button
                     variant="light"
                     className=" text-primary ms-1 p-0 mb-2 p-1 rounded-3"
@@ -109,7 +96,7 @@ const ShippingAdress = () => {
             <Link className=" d-block text-muted" to="/ShippingForm">
               <Button variant="light" className="text-muted m-0">
                 <AiOutlinePlus />
-                Add New Aderss
+                Add New Adderss
               </Button>
             </Link>
             <button
@@ -122,7 +109,7 @@ const ShippingAdress = () => {
           </Form>
         ) : (
           <>
-            {' '}
+            {" "}
             <ShippingForm />
           </>
         )}
