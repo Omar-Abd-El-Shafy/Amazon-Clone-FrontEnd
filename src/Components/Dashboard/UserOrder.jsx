@@ -1,13 +1,11 @@
-import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetOrdersAdminQuery } from "../../Redux/Api";
 export default function UserOrder() {
     const loggedInUser = useSelector((state) => state.user?.loggedInUser);
     const { userID } = useParams();
-    const { data, isLoading, error } = useGetOrdersAdminQuery({
+    const { data } = useGetOrdersAdminQuery({
         token: loggedInUser.token,
         id: userID,
     });

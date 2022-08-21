@@ -11,7 +11,7 @@ export const Api = createApi({
         getAllProdacts: builder.query({
             query: (pageNum) => {
                 return {
-                    url: `/product?page=${pageNum}`,
+                    url: `/product?page=${pageNum}&includeOutOfStock=true`,
                 };
             },
             providesTags: ["Product"],
@@ -84,7 +84,7 @@ export const Api = createApi({
                 },
                 body,
             }),
-            invalidatesTags: ["Review"],
+            invalidatesTags: ["Review", "Product"],
         }),
         allProductReviews: builder.query({
             query: (id) => `review/product/${id}`,

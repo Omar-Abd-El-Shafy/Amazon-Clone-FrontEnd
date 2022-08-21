@@ -6,7 +6,9 @@ const Rating = ({ rating }) => {
             <span className="text-warning">
                 <i
                     className={
-                        rating >= 1
+                        rating === 0
+                            ? "far fa-star"
+                            : rating >= 1
                             ? "fa fa-star"
                             : rating >= 0.5
                             ? "fa fa-star-half-o"

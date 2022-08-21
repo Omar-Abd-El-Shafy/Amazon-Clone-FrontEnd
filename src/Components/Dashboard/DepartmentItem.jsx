@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, Col } from "react-bootstrap";
 const DepartmentItem = ({ item }) => {
     return (
@@ -21,7 +20,7 @@ const DepartmentItem = ({ item }) => {
                     <Card.Title className="fw-bold text-capitalize">
                         {item.name}
                     </Card.Title>
-                    <Card.Img
+                    {/* <Card.Img
                         variant="top"
                         src={item.image_path}
                         style={{
@@ -29,13 +28,13 @@ const DepartmentItem = ({ item }) => {
                             width: "100%",
                             objectFit: "cover",
                         }}
-                    />
+                    /> */}
                 </Card.Body>
-                <Link className="btn " to={`/product/department/${item._id}`}>
+                {/* <Link className="btn " to={`/product/department/${item._id}`}>
                     <small className="text-primary fs-6 cat-btn">
                         show more
                     </small>
-                </Link>
+                </Link> */}
             </Card>
         </Col>
     );
