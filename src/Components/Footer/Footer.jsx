@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/amazon_logo.png";
-
+import { RiHeart2Fill } from "react-icons/ri";
 const Footer = () => {
     return (
         <div className="footer">
@@ -34,7 +34,9 @@ const Footer = () => {
                 </div>
             </div>
             <div className="text-white pb-3 text-center">
-                © 1996-2022, Amazon.com, Inc. or its affiliates
+                Made with{" "}
+                <RiHeart2Fill style={{ color: "red", fontSize: "1.5rem" }} /> by
+                Black organization Team ©2022
             </div>
         </div>
     );
