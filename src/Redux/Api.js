@@ -5,7 +5,7 @@ export const Api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://amazon-clone-deploy.herokuapp.com/",
   }),
-  tagTypes: ["Product", "Department", "Category", "Cart", "Review"],
+  tagTypes: ["Product", "Department", "Category", "Cart", "Review", "Order"],
 
   endpoints: (builder) => ({
     getAllProdacts: builder.query({
@@ -163,6 +163,19 @@ export const Api = createApi({
           "x-access-token": `${token}`,
         },
       }),
+      providesTags: ["Order"],
+    }),
+    //OrdersAdmin
+    getOrdersAdmin: builder.query({
+      query: ({ token, body }) => ({
+        url: `order/admin`,
+        method: "GET",
+        headers: {
+          "x-access-token": `${token}`,
+        },
+        body,
+      }),
+      providesTags: ["Order"],
     }),
     //admin
     addProduct: builder.mutation({
