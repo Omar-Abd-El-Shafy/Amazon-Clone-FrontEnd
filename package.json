@@ -1,6 +1,5 @@
 {
     "name": "front-end",
-    "proxy": "https://amazon-clone-deploy.herokuapp.com",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
