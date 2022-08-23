@@ -32,7 +32,6 @@
         "web-vitals": "^2.1.4",
         "yup": "^0.32.11"
     },
-    "homepage": "https://amazon-clone-front-q9mm26tso-omar-abd-el-shafy.vercel.app/checkout",
     "proxy": "https://amazon-clone-deploy.herokuapp.com",
     "scripts": {
         "start": "react-scripts start",
