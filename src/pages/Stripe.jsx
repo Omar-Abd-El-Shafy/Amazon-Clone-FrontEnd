@@ -31,14 +31,17 @@ export default function Stripe() {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("/payment/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": `${loggedInUser.token}`,
-      },
-      body: JSON.stringify({ order_id: location.state.order_id }),
-    })
+    fetch(
+      "https://amazon-clone-deploy.herokuapp.com/payment/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": `${loggedInUser.token}`,
+        },
+        body: JSON.stringify({ order_id: location.state.order_id }),
+      }
+    )
       .then((res) => res.json({}))
       .then((data) => setClientSecret(data.clientSecret));
   }, [loggedInUser, location.state.order_id]);
