@@ -59,7 +59,7 @@ function App() {
     useEffect(() => {
         AOS.init();
         AOS.refresh();
-
+        // push notification
         const storedData = JSON.parse(localStorage.getItem("userData"));
         if (
             storedData?.user._id &&
